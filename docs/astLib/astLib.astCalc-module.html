@@ -1,0 +1,1120 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>astLib.astCalc</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="astLib-module.html">Package&nbsp;astLib</a> ::
+        Module&nbsp;astCalc
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="astLib.astCalc-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module astCalc</h1><p class="nomargin-top"><span class="codelink"><a href="astLib.astCalc-pysrc.html">source&nbsp;code</a></span></p>
+<p>module for performing common calculations</p>
+  <p>(c) 2007-2011 Matt Hilton</p>
+  <p>(c) 2013-2014 Matt Hilton &amp; Steven Boada</p>
+  <p><a href="http://astlib.sourceforge.net" 
+  target="_top">http://astlib.sourceforge.net</a></p>
+  <p>The focus in this module is at present on calculations of distances in
+  a given cosmology. The parameters for the cosmological model are set 
+  using the variables OMEGA_M0, OMEGA_L0, OMEGA_R0, H0 in the module 
+  namespace (see below for details).</p>
+
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#dl" class="summary-sig-name">dl</a>(<span class="summary-sig-arg">z</span>)</span><br />
+      Calculates the luminosity distance in Mpc at redshift z.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#dl">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#da" class="summary-sig-name">da</a>(<span class="summary-sig-arg">z</span>)</span><br />
+      Calculates the angular diameter distance in Mpc at redshift z.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#da">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#dm" class="summary-sig-name">dm</a>(<span class="summary-sig-arg">z</span>)</span><br />
+      Calculates the transverse comoving distance (proper motion distance) 
+      in Mpc at redshift z.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#dm">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#dc" class="summary-sig-name">dc</a>(<span class="summary-sig-arg">z</span>)</span><br />
+      Calculates the line of sight comoving distance in Mpc at redshift z.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#dc">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#dVcdz" class="summary-sig-name">dVcdz</a>(<span class="summary-sig-arg">z</span>)</span><br />
+      Calculates the line of sight comoving volume element per steradian 
+      dV/dz at redshift z.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#dVcdz">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#dl2z" class="summary-sig-name">dl2z</a>(<span class="summary-sig-arg">distanceMpc</span>)</span><br />
+      Calculates the redshift z corresponding to the luminosity distance 
+      given in Mpc.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#dl2z">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#dc2z" class="summary-sig-name">dc2z</a>(<span class="summary-sig-arg">distanceMpc</span>)</span><br />
+      Calculates the redshift z corresponding to the comoving distance 
+      given in Mpc.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#dc2z">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#t0" class="summary-sig-name">t0</a>()</span><br />
+      Calculates the age of the universe in Gyr at z=0 for the current set 
+      of cosmological parameters.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#t0">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#tl" class="summary-sig-name">tl</a>(<span class="summary-sig-arg">z</span>)</span><br />
+      Calculates the lookback time in Gyr to redshift z for the current set
+      of cosmological parameters.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#tl">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#tz" class="summary-sig-name">tz</a>(<span class="summary-sig-arg">z</span>)</span><br />
+      Calculates the age of the universe at redshift z for the current set 
+      of cosmological parameters.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#tz">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#tl2z" class="summary-sig-name">tl2z</a>(<span class="summary-sig-arg">tlGyr</span>)</span><br />
+      Calculates the redshift z corresponding to lookback time tlGyr given 
+      in Gyr.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#tl2z">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#tz2z" class="summary-sig-name">tz2z</a>(<span class="summary-sig-arg">tzGyr</span>)</span><br />
+      Calculates the redshift z corresponding to age of the universe tzGyr 
+      given in Gyr.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#tz2z">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#absMag" class="summary-sig-name">absMag</a>(<span class="summary-sig-arg">appMag</span>,
+        <span class="summary-sig-arg">distMpc</span>)</span><br />
+      Calculates the absolute magnitude of an object at given luminosity 
+      distance in Mpc.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#absMag">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#Ez" class="summary-sig-name">Ez</a>(<span class="summary-sig-arg">z</span>)</span><br />
+      Calculates the value of E(z), which describes evolution of the Hubble
+      parameter with redshift, at redshift z for the current set of 
+      cosmological parameters.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#Ez">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#Ez2" class="summary-sig-name">Ez2</a>(<span class="summary-sig-arg">z</span>)</span><br />
+      Calculates the value of E(z)^2, which describes evolution of the 
+      Hubble parameter with redshift, at redshift z for the current set of 
+      cosmological parameters.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#Ez2">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#OmegaMz" class="summary-sig-name">OmegaMz</a>(<span class="summary-sig-arg">z</span>)</span><br />
+      Calculates the matter density of the universe at redshift z.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#OmegaMz">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#OmegaLz" class="summary-sig-name">OmegaLz</a>(<span class="summary-sig-arg">z</span>)</span><br />
+      Calculates the dark energy density of the universe at redshift z.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#OmegaLz">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#OmegaRz" class="summary-sig-name">OmegaRz</a>(<span class="summary-sig-arg">z</span>)</span><br />
+      Calculates the radiation density of the universe at redshift z.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#OmegaRz">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#DeltaVz" class="summary-sig-name">DeltaVz</a>(<span class="summary-sig-arg">z</span>)</span><br />
+      Calculates the density contrast of a virialised region &Delta;V(z), 
+      assuming a &Lambda;CDM-type flat cosmology.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#DeltaVz">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCalc-module.html#RVirialXRayCluster" class="summary-sig-name">RVirialXRayCluster</a>(<span class="summary-sig-arg">kT</span>,
+        <span class="summary-sig-arg">z</span>,
+        <span class="summary-sig-arg">betaT</span>)</span><br />
+      Calculates the virial radius (in Mpc) of a galaxy cluster at redshift
+      z with X-ray temperature kT, assuming self-similar evolution and a 
+      flat cosmology.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCalc-pysrc.html#RVirialXRayCluster">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+        <a name="OMEGA_M0"></a><span class="summary-name">OMEGA_M0</span> = <code title="0.3">0.3</code><br />
+      The matter density parameter at z=0.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+        <a name="OMEGA_L0"></a><span class="summary-name">OMEGA_L0</span> = <code title="0.7">0.7</code><br />
+      The dark energy density (in the form of a cosmological constant) at 
+      z=0.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+        <a name="OMEGA_R0"></a><span class="summary-name">OMEGA_R0</span> = <code title="8.24e-05">8.24e-05</code><br />
+      The radiation density at z=0 (note this is only used currently in 
+      calculation of <a href="astLib.astCalc-module.html#Ez" 
+      class="link">Ez</a>).
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+        <a name="H0"></a><span class="summary-name">H0</span> = <code title="70.0">70.0</code><br />
+      The Hubble parameter (in km/s/Mpc) at z=0.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+        <a name="C_LIGHT"></a><span class="summary-name">C_LIGHT</span> = <code title="300000.0">300000.0</code><br />
+      The speed of light in km/s.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="'astLib'"><code class="variable-quote">'</code><code class="variable-string">astLib</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="dl"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dl</span>(<span class="sig-arg">z</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#dl">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the luminosity distance in Mpc at redshift z.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>z</code></strong> (float) - redshift</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>luminosity distance in Mpc</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="da"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">da</span>(<span class="sig-arg">z</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#da">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the angular diameter distance in Mpc at redshift z.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>z</code></strong> (float) - redshift</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>angular diameter distance in Mpc</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="dm"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dm</span>(<span class="sig-arg">z</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#dm">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the transverse comoving distance (proper motion distance) 
+  in Mpc at redshift z.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>z</code></strong> (float) - redshift</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>transverse comoving distance (proper motion distance) in Mpc</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="dc"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dc</span>(<span class="sig-arg">z</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#dc">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the line of sight comoving distance in Mpc at redshift 
+  z.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>z</code></strong> (float) - redshift</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>transverse comoving distance (proper motion distance) in Mpc</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="dVcdz"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dVcdz</span>(<span class="sig-arg">z</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#dVcdz">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the line of sight comoving volume element per steradian 
+  dV/dz at redshift z.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>z</code></strong> (float) - redshift</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>comoving volume element per steradian</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="dl2z"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dl2z</span>(<span class="sig-arg">distanceMpc</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#dl2z">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the redshift z corresponding to the luminosity distance 
+  given in Mpc.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>distanceMpc</code></strong> (float) - distance in Mpc</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>redshift</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="dc2z"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dc2z</span>(<span class="sig-arg">distanceMpc</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#dc2z">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the redshift z corresponding to the comoving distance given
+  in Mpc.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>distanceMpc</code></strong> (float) - distance in Mpc</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>redshift</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="t0"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">t0</span>()</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#t0">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the age of the universe in Gyr at z=0 for the current set 
+  of cosmological parameters.</p>
+  <dl class="fields">
+    <dt>Returns: float</dt>
+        <dd>age of the universe in Gyr at z=0</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="tl"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">tl</span>(<span class="sig-arg">z</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#tl">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the lookback time in Gyr to redshift z for the current set 
+  of cosmological parameters.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>z</code></strong> (float) - redshift</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>lookback time in Gyr to redshift z</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="tz"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">tz</span>(<span class="sig-arg">z</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#tz">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the age of the universe at redshift z for the current set 
+  of cosmological parameters.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>z</code></strong> (float) - redshift</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>age of the universe in Gyr at redshift z</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="tl2z"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">tl2z</span>(<span class="sig-arg">tlGyr</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#tl2z">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the redshift z corresponding to lookback time tlGyr given 
+  in Gyr.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>tlGyr</code></strong> (float) - lookback time in Gyr</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>redshift</dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        Raises ValueError if tlGyr is not positive.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="tz2z"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">tz2z</span>(<span class="sig-arg">tzGyr</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#tz2z">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the redshift z corresponding to age of the universe tzGyr 
+  given in Gyr.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>tzGyr</code></strong> (float) - age of the universe in Gyr</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>redshift</dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        Raises ValueError if Universe age not positive
+      </p>
+</div></td></tr></table>
+</div>
+<a name="absMag"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">absMag</span>(<span class="sig-arg">appMag</span>,
+        <span class="sig-arg">distMpc</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#absMag">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the absolute magnitude of an object at given luminosity 
+  distance in Mpc.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>appMag</code></strong> (float) - apparent magnitude of object</li>
+        <li><strong class="pname"><code>distMpc</code></strong> (float) - distance to object in Mpc</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>absolute magnitude of object</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="Ez"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Ez</span>(<span class="sig-arg">z</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#Ez">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the value of E(z), which describes evolution of the Hubble 
+  parameter with redshift, at redshift z for the current set of 
+  cosmological parameters. See, e.g., Bryan &amp; Norman 1998 (ApJ, 495, 
+  80).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>z</code></strong> (float) - redshift</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>value of E(z) at redshift z</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="Ez2"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Ez2</span>(<span class="sig-arg">z</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#Ez2">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the value of E(z)^2, which describes evolution of the 
+  Hubble parameter with redshift, at redshift z for the current set of 
+  cosmological parameters. See, e.g., Bryan &amp; Norman 1998 (ApJ, 495, 
+  80).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>z</code></strong> (float) - redshift</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>value of E(z)^2 at redshift z</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="OmegaMz"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">OmegaMz</span>(<span class="sig-arg">z</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#OmegaMz">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the matter density of the universe at redshift z. See, 
+  e.g., Bryan &amp; Norman 1998 (ApJ, 495, 80).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>z</code></strong> (float) - redshift</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>matter density of universe at redshift z</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="OmegaLz"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">OmegaLz</span>(<span class="sig-arg">z</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#OmegaLz">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the dark energy density of the universe at redshift z.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>z</code></strong> (float) - redshift</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>dark energy density of universe at redshift z</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="OmegaRz"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">OmegaRz</span>(<span class="sig-arg">z</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#OmegaRz">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the radiation density of the universe at redshift z.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>z</code></strong> (float) - redshift</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>radiation density of universe at redshift z</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="DeltaVz"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">DeltaVz</span>(<span class="sig-arg">z</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#DeltaVz">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the density contrast of a virialised region &Delta;V(z), 
+  assuming a &Lambda;CDM-type flat cosmology. See, e.g., Bryan &amp; Norman
+  1998 (ApJ, 495, 80).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>z</code></strong> (float) - redshift</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>density contrast of a virialised region at redshift z</dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        If OMEGA_M0+OMEGA_L0 is not equal to 1, this routine exits and 
+        prints an error message to the console.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="RVirialXRayCluster"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">RVirialXRayCluster</span>(<span class="sig-arg">kT</span>,
+        <span class="sig-arg">z</span>,
+        <span class="sig-arg">betaT</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCalc-pysrc.html#RVirialXRayCluster">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the virial radius (in Mpc) of a galaxy cluster at redshift 
+  z with X-ray temperature kT, assuming self-similar evolution and a flat 
+  cosmology. See Arnaud et al. 2002 (A&amp;A, 389, 1) and Bryan &amp; 
+  Norman 1998 (ApJ, 495, 80). A flat &Lambda;CDM-type flat cosmology is 
+  assumed.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>kT</code></strong> (float) - cluster X-ray temperature in keV</li>
+        <li><strong class="pname"><code>z</code></strong> (float) - redshift</li>
+        <li><strong class="pname"><code>betaT</code></strong> (float) - the normalisation of the virial relation, for which Evrard et al.
+          1996 (ApJ,469, 494) find a value of 1.05</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>virial radius of cluster in Mpc</dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        If OMEGA_M0+OMEGA_L0 is not equal to 1, this routine exits and 
+        prints an error message to the console.
+      </p>
+</div></td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Aug 21 20:24:26 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

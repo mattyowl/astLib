@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>astLib.astWCS.WCS</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="astLib-module.html">Package&nbsp;astLib</a> ::
+        <a href="astLib.astWCS-module.html">Module&nbsp;astWCS</a> ::
+        Class&nbsp;WCS
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="astLib.astWCS.WCS-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class WCS</h1><p class="nomargin-top"><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS">source&nbsp;code</a></span></p>
+<p>This class provides methods for accessing information from the World 
+  Coordinate System (WCS) contained in the header of a FITS image. 
+  Conversions between pixel and WCS coordinates can also be performed.</p>
+  <p>To create a WCS object from a FITS file called &quot;test.fits&quot;, 
+  simply:</p>
+  <p>WCS=astWCS.WCS(&quot;test.fits&quot;)</p>
+  <p>Likewise, to create a WCS object from the pyfits.header of 
+  &quot;test.fits&quot;:</p>
+  <p>img=pyfits.open(&quot;test.fits&quot;) header=img[0].header 
+  WCS=astWCS.WCS(header, mode = &quot;pyfits&quot;)</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astWCS.WCS-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">headerSource</span>,
+        <span class="summary-sig-arg">extensionName</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">mode</span>=<span class="summary-sig-default">&quot;image&quot;</span>,
+        <span class="summary-sig-arg">zapKeywords</span>=<span class="summary-sig-default">[]</span>)</span><br />
+      Creates a WCS object using either the information contained in the 
+      header of the specified .fits image, or from a pyfits.header object.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">astWCS.WCS object</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astWCS.WCS-class.html#copy" class="summary-sig-name">copy</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Copies the WCS object to a new object.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.copy">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astWCS.WCS-class.html#updateFromHeader" class="summary-sig-name">updateFromHeader</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Updates the WCS object using information from WCS.header.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.updateFromHeader">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astWCS.WCS-class.html#getCentreWCSCoords" class="summary-sig-name">getCentreWCSCoords</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the RA and dec coordinates (in decimal degrees) at the centre
+      of the WCS.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getCentreWCSCoords">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astWCS.WCS-class.html#getFullSizeSkyDeg" class="summary-sig-name">getFullSizeSkyDeg</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the width, height of the image according to the WCS in 
+      decimal degrees on the sky (i.e., with the projection taken into 
+      account).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getFullSizeSkyDeg">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astWCS.WCS-class.html#getHalfSizeDeg" class="summary-sig-name">getHalfSizeDeg</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the half-width, half-height of the image according to the WCS
+      in RA and dec degrees.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getHalfSizeDeg">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astWCS.WCS-class.html#getImageMinMaxWCSCoords" class="summary-sig-name">getImageMinMaxWCSCoords</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the minimum, maximum WCS coords defined by the size of the 
+      parent image (as defined by the NAXIS keywords in the image header).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getImageMinMaxWCSCoords">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astWCS.WCS-class.html#wcs2pix" class="summary-sig-name">wcs2pix</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">RADeg</span>,
+        <span class="summary-sig-arg">decDeg</span>)</span><br />
+      Returns the pixel coordinates corresponding to the input WCS 
+      coordinates (given in decimal degrees).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.wcs2pix">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astWCS.WCS-class.html#pix2wcs" class="summary-sig-name">pix2wcs</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">y</span>)</span><br />
+      Returns the WCS coordinates corresponding to the input pixel 
+      coordinates.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.pix2wcs">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">bool</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astWCS.WCS-class.html#coordsAreInImage" class="summary-sig-name">coordsAreInImage</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">RADeg</span>,
+        <span class="summary-sig-arg">decDeg</span>)</span><br />
+      Returns True if the given RA, dec coordinate is within the image 
+      boundaries.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.coordsAreInImage">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astWCS.WCS-class.html#getRotationDeg" class="summary-sig-name">getRotationDeg</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the rotation angle in degrees around the axis, North through 
+      East.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getRotationDeg">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">int</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astWCS.WCS-class.html#isFlipped" class="summary-sig-name">isFlipped</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns 1 if image is reflected around axis, otherwise returns 0.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.isFlipped">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astWCS.WCS-class.html#getPixelSizeDeg" class="summary-sig-name">getPixelSizeDeg</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the pixel scale of the WCS.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getPixelSizeDeg">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astWCS.WCS-class.html#getXPixelSizeDeg" class="summary-sig-name">getXPixelSizeDeg</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the pixel scale along the x-axis of the WCS in degrees.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getXPixelSizeDeg">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astWCS.WCS-class.html#getYPixelSizeDeg" class="summary-sig-name">getYPixelSizeDeg</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the pixel scale along the y-axis of the WCS in degrees.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getYPixelSizeDeg">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astWCS.WCS-class.html#getEquinox" class="summary-sig-name">getEquinox</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the equinox of the WCS.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getEquinox">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astWCS.WCS-class.html#getEpoch" class="summary-sig-name">getEpoch</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the epoch of the WCS.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getEpoch">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">headerSource</span>,
+        <span class="sig-arg">extensionName</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">mode</span>=<span class="sig-default">&quot;image&quot;</span>,
+        <span class="sig-arg">zapKeywords</span>=<span class="sig-default">[]</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Creates a WCS object using either the information contained in the 
+  header of the specified .fits image, or from a pyfits.header object. Set 
+  mode = &quot;pyfits&quot; if the headerSource is a pyfits.header.</p>
+  <p>For some images from some archives, particular header keywords such as
+  COMMENT or HISTORY may contain unprintable strings. If you encounter 
+  this, try setting zapKeywords = ['COMMENT', 'HISTORY'] (for example).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>headerSource</code></strong> (string or pyfits.header) - filename of input .fits image, or a pyfits.header object</li>
+        <li><strong class="pname"><code>extensionName</code></strong> (int or string) - name or number of .fits extension in which image data is stored</li>
+        <li><strong class="pname"><code>mode</code></strong> (string) - set to &quot;image&quot; if headerSource is a .fits file name, or
+          set to &quot;pyfits&quot; if headerSource is a pyfits.header 
+          object</li>
+        <li><strong class="pname"><code>zapKeywords</code></strong> (list)</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        The meta data provided by headerSource is stored in WCS.header as a
+        pyfits.header object.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="copy"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">copy</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.copy">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Copies the WCS object to a new object.</p>
+  <dl class="fields">
+    <dt>Returns: astWCS.WCS object</dt>
+        <dd>WCS object</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="updateFromHeader"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">updateFromHeader</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.updateFromHeader">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Updates the WCS object using information from WCS.header. This routine
+  should be called whenever changes are made to WCS keywords in 
+  WCS.header.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="getCentreWCSCoords"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getCentreWCSCoords</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getCentreWCSCoords">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the RA and dec coordinates (in decimal degrees) at the centre 
+  of the WCS.</p>
+  <dl class="fields">
+    <dt>Returns: list</dt>
+        <dd>coordinates in decimal degrees in format [RADeg, decDeg]</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getFullSizeSkyDeg"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getFullSizeSkyDeg</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getFullSizeSkyDeg">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the width, height of the image according to the WCS in decimal
+  degrees on the sky (i.e., with the projection taken into account).</p>
+  <dl class="fields">
+    <dt>Returns: list</dt>
+        <dd>width and height of image in decimal degrees on the sky in format
+          [width, height]</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getHalfSizeDeg"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getHalfSizeDeg</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getHalfSizeDeg">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the half-width, half-height of the image according to the WCS 
+  in RA and dec degrees.</p>
+  <dl class="fields">
+    <dt>Returns: list</dt>
+        <dd>half-width and half-height of image in R.A., dec. decimal degrees
+          in format [half-width, half-height]</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getImageMinMaxWCSCoords"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getImageMinMaxWCSCoords</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getImageMinMaxWCSCoords">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the minimum, maximum WCS coords defined by the size of the 
+  parent image (as defined by the NAXIS keywords in the image header).</p>
+  <dl class="fields">
+    <dt>Returns: list</dt>
+        <dd>[minimum R.A., maximum R.A., minimum Dec., maximum Dec.]</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="wcs2pix"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">wcs2pix</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">RADeg</span>,
+        <span class="sig-arg">decDeg</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.wcs2pix">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the pixel coordinates corresponding to the input WCS 
+  coordinates (given in decimal degrees). RADeg, decDeg can be single 
+  floats, or lists or numpy arrays.</p>
+  <dl class="fields">
+    <dt>Returns: list</dt>
+        <dd>pixel coordinates in format [x, y]</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="pix2wcs"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">pix2wcs</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">x</span>,
+        <span class="sig-arg">y</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.pix2wcs">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the WCS coordinates corresponding to the input pixel 
+  coordinates.</p>
+  <dl class="fields">
+    <dt>Returns: list</dt>
+        <dd>WCS coordinates in format [RADeg, decDeg]</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="coordsAreInImage"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">coordsAreInImage</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">RADeg</span>,
+        <span class="sig-arg">decDeg</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.coordsAreInImage">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns True if the given RA, dec coordinate is within the image 
+  boundaries.</p>
+  <dl class="fields">
+    <dt>Returns: bool</dt>
+        <dd>True if coordinate within image, False if not.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getRotationDeg"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getRotationDeg</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getRotationDeg">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the rotation angle in degrees around the axis, North through 
+  East.</p>
+  <dl class="fields">
+    <dt>Returns: float</dt>
+        <dd>rotation angle in degrees</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="isFlipped"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">isFlipped</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.isFlipped">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns 1 if image is reflected around axis, otherwise returns 0.</p>
+  <dl class="fields">
+    <dt>Returns: int</dt>
+        <dd>1 if image is flipped, 0 otherwise</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getPixelSizeDeg"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getPixelSizeDeg</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getPixelSizeDeg">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the pixel scale of the WCS. This is the average of the x, y 
+  pixel scales.</p>
+  <dl class="fields">
+    <dt>Returns: float</dt>
+        <dd>pixel size in decimal degrees</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getXPixelSizeDeg"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getXPixelSizeDeg</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getXPixelSizeDeg">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the pixel scale along the x-axis of the WCS in degrees.</p>
+  <dl class="fields">
+    <dt>Returns: float</dt>
+        <dd>pixel size in decimal degrees</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getYPixelSizeDeg"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getYPixelSizeDeg</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getYPixelSizeDeg">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the pixel scale along the y-axis of the WCS in degrees.</p>
+  <dl class="fields">
+    <dt>Returns: float</dt>
+        <dd>pixel size in decimal degrees</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getEquinox"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getEquinox</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getEquinox">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the equinox of the WCS.</p>
+  <dl class="fields">
+    <dt>Returns: float</dt>
+        <dd>equinox of the WCS</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getEpoch"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getEpoch</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astWCS-pysrc.html#WCS.getEpoch">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the epoch of the WCS.</p>
+  <dl class="fields">
+    <dt>Returns: float</dt>
+        <dd>epoch of the WCS</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Aug 21 20:24:26 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

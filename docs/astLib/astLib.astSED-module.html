@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>astLib.astSED</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="astLib-module.html">Package&nbsp;astLib</a> ::
+        Module&nbsp;astSED
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="astLib.astSED-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module astSED</h1><p class="nomargin-top"><span class="codelink"><a href="astLib.astSED-pysrc.html">source&nbsp;code</a></span></p>
+<p>module for performing calculations on Spectral Energy Distributions 
+  (SEDs)</p>
+  <p>(c) 2007-2013 Matt Hilton</p>
+  <p><a href="http://astlib.sourceforge.net" 
+  target="_top">http://astlib.sourceforge.net</a></p>
+  <p>This module provides classes for manipulating SEDs, in particular the 
+  Bruzual &amp; Charlot 2003, Maraston 2005, and Percival et al 2009 
+  stellar population synthesis models are currently supported. Functions 
+  are provided for calculating the evolution of colours and magnitudes in 
+  these models with redshift etc., and for fitting broadband photometry 
+  using these models.</p>
+
+<!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="astLib.astSED.Passband-class.html" class="summary-name">Passband</a><br />
+      This class describes a filter transmission curve.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="astLib.astSED.TopHatPassband-class.html" class="summary-name">TopHatPassband</a><br />
+      This class generates a passband with a top hat response between the
+        given wavelengths.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="astLib.astSED.SED-class.html" class="summary-name">SED</a><br />
+      This class describes a Spectral Energy Distribution (SED).
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="astLib.astSED.VegaSED-class.html" class="summary-name">VegaSED</a><br />
+      This class stores the SED of Vega, used for calculation of 
+        magnitudes on the Vega system.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="astLib.astSED.StellarPopulation-class.html" class="summary-name">StellarPopulation</a><br />
+      This class describes a stellar population model, either a Simple 
+        Stellar Population (SSP) or a Composite Stellar Population (CSP), 
+        such as the models of Bruzual &amp; Charlot 2003 or Maraston 2005.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="astLib.astSED.M05Model-class.html" class="summary-name">M05Model</a><br />
+      This class describes a Maraston 2005 stellar population model.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="astLib.astSED.BC03Model-class.html" class="summary-name">BC03Model</a><br />
+      This class describes a Bruzual &amp; Charlot 2003 stellar 
+        population model, extracted from a GALAXEV .ised file using the 
+        galaxevpl program that is included in GALAXEV.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="astLib.astSED.P09Model-class.html" class="summary-name">P09Model</a><br />
+      This class describes a Percival et al 2009 (BaSTI; 
+        http://albione.oa-teramo.inaf.it) stellar population model.
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED-module.html#makeModelSEDDictList" class="summary-sig-name">makeModelSEDDictList</a>(<span class="summary-sig-arg">modelList</span>,
+        <span class="summary-sig-arg">z</span>,
+        <span class="summary-sig-arg">passbandsList</span>,
+        <span class="summary-sig-arg">labelsList</span>=<span class="summary-sig-default"><code class="variable-group">[</code><code class="variable-group">]</code></span>,
+        <span class="summary-sig-arg">EBMinusVList</span>=<span class="summary-sig-default"><code class="variable-group">[</code>0.0<code class="variable-group">]</code></span>,
+        <span class="summary-sig-arg">forceYoungerThanUniverse</span>=<span class="summary-sig-default">True</span>)</span><br />
+      This routine makes a list of SEDDict dictionaries (see <a 
+      href="astLib.astSED-module.html#mags2SEDDict" 
+      class="link">mags2SEDDict</a>) for fitting using <a 
+      href="astLib.astSED-module.html#fitSEDDict" 
+      class="link">fitSEDDict</a>.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#makeModelSEDDictList">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED-module.html#fitSEDDict" class="summary-sig-name">fitSEDDict</a>(<span class="summary-sig-arg">SEDDict</span>,
+        <span class="summary-sig-arg">modelSEDDictList</span>)</span><br />
+      Fits the given SED dictionary (made using <a 
+      href="astLib.astSED-module.html#mags2SEDDict" 
+      class="link">mags2SEDDict</a>) with the given list of model SED 
+      dictionaries.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#fitSEDDict">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED-module.html#mags2SEDDict" class="summary-sig-name">mags2SEDDict</a>(<span class="summary-sig-arg">ABMags</span>,
+        <span class="summary-sig-arg">ABMagErrs</span>,
+        <span class="summary-sig-arg">passbands</span>)</span><br />
+      Takes a set of corresponding AB magnitudes, uncertainties, and 
+      passbands, and returns a dictionary with keys 'flux', 'fluxErr', 
+      'wavelength'.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#mags2SEDDict">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED-module.html#mag2Flux" class="summary-sig-name">mag2Flux</a>(<span class="summary-sig-arg">ABMag</span>,
+        <span class="summary-sig-arg">ABMagErr</span>,
+        <span class="summary-sig-arg">passband</span>)</span><br />
+      Converts given AB magnitude and uncertainty into flux, in 
+      erg/s/cm^2/Angstrom.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#mag2Flux">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED-module.html#flux2Mag" class="summary-sig-name">flux2Mag</a>(<span class="summary-sig-arg">flux</span>,
+        <span class="summary-sig-arg">fluxErr</span>,
+        <span class="summary-sig-arg">passband</span>)</span><br />
+      Converts given flux and uncertainty in erg/s/cm^2/Angstrom into AB 
+      magnitudes.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#flux2Mag">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED-module.html#mag2Jy" class="summary-sig-name">mag2Jy</a>(<span class="summary-sig-arg">ABMag</span>)</span><br />
+      Converts an AB magnitude into flux density in Jy</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#mag2Jy">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED-module.html#Jy2Mag" class="summary-sig-name">Jy2Mag</a>(<span class="summary-sig-arg">fluxJy</span>)</span><br />
+      Converts flux density in Jy into AB magnitude</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#Jy2Mag">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><a href="astLib.astSED.SED-class.html" class="link">SED</a> object</span>
+    </td><td class="summary">
+        <a name="VEGA"></a><span class="summary-name">VEGA</span> = <code title="VegaSED()">VegaSED()</code><br />
+      The SED of Vega, used for calculation of magnitudes on the Vega 
+      system.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><a href="astLib.astSED.SED-class.html" class="link">SED</a> object</span>
+    </td><td class="summary">
+        <a href="astLib.astSED-module.html#AB" class="summary-name">AB</a> = <code title="SED(wavelength= numpy.logspace(1, 8, 1e5), flux= numpy.ones(1e6))">SED(wavelength= numpy.logspace(1, 8, 1e5), flux= numpy.on<code class="variable-ellipsis">...</code></code><br />
+      Flat spectrum SED, used for calculation of magnitudes on the AB 
+      system.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><a href="astLib.astSED.SED-class.html" class="link">SED</a> object</span>
+    </td><td class="summary">
+        <a name="SOL"></a><span class="summary-name">SOL</span> = <code title="SED()">SED()</code><br />
+      The SED of the Sun.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="'astLib'"><code class="variable-quote">'</code><code class="variable-string">astLib</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="makeModelSEDDictList"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">makeModelSEDDictList</span>(<span class="sig-arg">modelList</span>,
+        <span class="sig-arg">z</span>,
+        <span class="sig-arg">passbandsList</span>,
+        <span class="sig-arg">labelsList</span>=<span class="sig-default"><code class="variable-group">[</code><code class="variable-group">]</code></span>,
+        <span class="sig-arg">EBMinusVList</span>=<span class="sig-default"><code class="variable-group">[</code>0.0<code class="variable-group">]</code></span>,
+        <span class="sig-arg">forceYoungerThanUniverse</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#makeModelSEDDictList">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>This routine makes a list of SEDDict dictionaries (see <a 
+  href="astLib.astSED-module.html#mags2SEDDict" 
+  class="link">mags2SEDDict</a>) for fitting using <a 
+  href="astLib.astSED-module.html#fitSEDDict" class="link">fitSEDDict</a>. 
+  This speeds up the fitting as this allows us to calculate model SED 
+  magnitudes only once, if all objects to be fitted are at the same 
+  redshift. We add some meta data to the modelSEDDicts (e.g. the model file
+  names).</p>
+  <p>The effect of extinction by dust (assuming the Calzetti et al. 2000 
+  law) can be included by giving a list of E(B-V) values.</p>
+  <p>If forceYoungerThanUniverse == True, ages which are older than the 
+  universe at the given z will not be included.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>modelList</code></strong> (list of <a href="astLib.astSED.StellarPopulation-class.html" 
+          class="link">StellarPopulation</a> model objects) - list of StellarPopulation models to include</li>
+        <li><strong class="pname"><code>z</code></strong> (float) - redshift to apply to all stellar population models in modelList</li>
+        <li><strong class="pname"><code>EBMinusVList</code></strong> (list) - list of E(B-V) extinction values to apply to all models, in 
+          magnitudes</li>
+        <li><strong class="pname"><code>labelsList</code></strong> (list) - optional list used for labelling passbands in output SEDDicts</li>
+        <li><strong class="pname"><code>forceYoungerThanUniverse</code></strong> (bool) - if True, do not allow models that exceed the age of the universe 
+          at z</li>
+    </ul></dd>
+    <dt>Returns: list</dt>
+        <dd>list of dictionaries containing model fluxes, to be used as input
+          to <a href="astLib.astSED-module.html#fitSEDDict" 
+          class="link">fitSEDDict</a>.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="fitSEDDict"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">fitSEDDict</span>(<span class="sig-arg">SEDDict</span>,
+        <span class="sig-arg">modelSEDDictList</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#fitSEDDict">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Fits the given SED dictionary (made using <a 
+  href="astLib.astSED-module.html#mags2SEDDict" 
+  class="link">mags2SEDDict</a>) with the given list of model SED 
+  dictionaries. The latter should be made using <a 
+  href="astLib.astSED-module.html#makeModelSEDDictList" 
+  class="link">makeModelSEDDictList</a>, and entries for fluxes should 
+  correspond directly between the model and SEDDict.</p>
+  <p>Returns a dictionary with best fit values.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>SEDDict</code></strong> (dictionary, in format of <a 
+          href="astLib.astSED-module.html#mags2SEDDict" 
+          class="link">mags2SEDDict</a>) - dictionary of observed fluxes and uncertainties, in format of <a 
+          href="astLib.astSED-module.html#mags2SEDDict" 
+          class="link">mags2SEDDict</a></li>
+        <li><strong class="pname"><code>modelSEDDictList</code></strong> (list of dictionaries, in format of <a 
+          href="astLib.astSED-module.html#makeModelSEDDictList" 
+          class="link">makeModelSEDDictList</a>) - list of dictionaries containing fluxes of models to be fitted to 
+          the observed fluxes listed in the SEDDict. This should be made 
+          using <a href="astLib.astSED-module.html#makeModelSEDDictList" 
+          class="link">makeModelSEDDictList</a>.</li>
+    </ul></dd>
+    <dt>Returns: dictionary</dt>
+        <dd>results of the fitting - keys:
+          <ul>
+            <li>
+              'minChiSq': minimum chi squared value of best fit
+            </li>
+            <li>
+              'chiSqContrib': corresponding contribution at each passband 
+              to the minimum chi squared value
+            </li>
+            <li>
+              'ageGyr': the age in Gyr of the best fitting model
+            </li>
+            <li>
+              'modelFileName': the file name of the stellar population 
+              model corresponding to the best fit
+            </li>
+            <li>
+              'modelListIndex': the index of the best fitting model in the 
+              input modelSEDDictList
+            </li>
+            <li>
+              'norm': the normalisation that the best fit model should be 
+              multiplied by to match the SEDDict
+            </li>
+            <li>
+              'z': the redshift of the best fit model
+            </li>
+            <li>
+              'E(B-V)': the extinction, E(B-V), in magnitudes, of the best 
+              fit model
+            </li>
+          </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="mags2SEDDict"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">mags2SEDDict</span>(<span class="sig-arg">ABMags</span>,
+        <span class="sig-arg">ABMagErrs</span>,
+        <span class="sig-arg">passbands</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#mags2SEDDict">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Takes a set of corresponding AB magnitudes, uncertainties, and 
+  passbands, and returns a dictionary with keys 'flux', 'fluxErr', 
+  'wavelength'. Fluxes are in units of erg/s/cm^2/Angstrom, wavelength in 
+  Angstroms. These dictionaries are the staple diet of the <a 
+  href="astLib.astSED-module.html#fitSEDDict" class="link">fitSEDDict</a> 
+  routine.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ABMags</code></strong> (list or numpy array) - AB magnitudes, specified in corresponding order to passbands and 
+          ABMagErrs</li>
+        <li><strong class="pname"><code>ABMagErrs</code></strong> (list or numpy array) - AB magnitude errors, specified in corresponding order to 
+          passbands and ABMags</li>
+        <li><strong class="pname"><code>passbands</code></strong> (list of <a href="astLib.astSED.Passband-class.html" 
+          class="link">Passband</a> objects) - passband objects, specified in corresponding order to ABMags and 
+          ABMagErrs</li>
+    </ul></dd>
+    <dt>Returns: dictionary</dt>
+        <dd>dictionary with keys {'flux', 'fluxErr', 'wavelength'}, suitable 
+          for input to <a href="astLib.astSED-module.html#fitSEDDict" 
+          class="link">fitSEDDict</a></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="mag2Flux"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">mag2Flux</span>(<span class="sig-arg">ABMag</span>,
+        <span class="sig-arg">ABMagErr</span>,
+        <span class="sig-arg">passband</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#mag2Flux">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Converts given AB magnitude and uncertainty into flux, in 
+  erg/s/cm^2/Angstrom.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ABMag</code></strong> (float) - magnitude on AB system in passband</li>
+        <li><strong class="pname"><code>ABMagErr</code></strong> (float) - uncertainty in AB magnitude in passband</li>
+        <li><strong class="pname"><code>passband</code></strong> (<a href="astLib.astSED.Passband-class.html" 
+          class="link">Passband</a> object) - <a href="astLib.astSED.Passband-class.html" 
+          class="link">Passband</a> object at which ABMag was measured</li>
+    </ul></dd>
+    <dt>Returns: list</dt>
+        <dd>[flux, fluxError], in units of erg/s/cm^2/Angstrom</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="flux2Mag"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">flux2Mag</span>(<span class="sig-arg">flux</span>,
+        <span class="sig-arg">fluxErr</span>,
+        <span class="sig-arg">passband</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#flux2Mag">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Converts given flux and uncertainty in erg/s/cm^2/Angstrom into AB 
+  magnitudes.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>flux</code></strong> (float) - flux in erg/s/cm^2/Angstrom in passband</li>
+        <li><strong class="pname"><code>fluxErr</code></strong> (float) - uncertainty in flux in passband, in erg/s/cm^2/Angstrom</li>
+        <li><strong class="pname"><code>passband</code></strong> (<a href="astLib.astSED.Passband-class.html" 
+          class="link">Passband</a> object) - <a href="astLib.astSED.Passband-class.html" 
+          class="link">Passband</a> object at which ABMag was measured</li>
+    </ul></dd>
+    <dt>Returns: list</dt>
+        <dd>[ABMag, ABMagError], in AB magnitudes</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="mag2Jy"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">mag2Jy</span>(<span class="sig-arg">ABMag</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#mag2Jy">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Converts an AB magnitude into flux density in Jy</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ABMag</code></strong> (float) - AB magnitude</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>flux density in Jy</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="Jy2Mag"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">Jy2Mag</span>(<span class="sig-arg">fluxJy</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#Jy2Mag">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Converts flux density in Jy into AB magnitude</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>fluxJy</code></strong> (float) - flux density in Jy</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>AB magnitude</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== VARIABLES DETAILS ==================== -->
+<a name="section-VariablesDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-VariablesDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="AB"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">AB</h3>
+  Flat spectrum SED, used for calculation of magnitudes on the AB system.
+  <dl class="fields">
+    <dt>Type:</dt>
+      <dd><a href="astLib.astSED.SED-class.html" class="link">SED</a> object</dd>
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+SED(wavelength= numpy.logspace(1, 8, 1e5), flux= numpy.ones(1e6))
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Aug 21 20:24:26 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

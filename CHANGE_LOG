@@ -1,0 +1,189 @@
+CHANGE LOG:
+
+VERSION 0.8.0
+-------------
+
+* Upgraded underlying wcssubs to version 3.8.7, and added a bug fix for repeat runs
+  of coord conversion encountered when using images with polynomial distortion 
+  coefficients (thanks to Ralf Kotulla; this error not reproduced on Kubuntu). 
+  
+* Some updates to avoid using deprecated features in pyfits (so now require 
+  pyfits 3.3 or astropy 0.4) and matplotlib.
+
+* Added zapKeywords option when creating WCS objects in astWCS - this can help in
+  dealing with some malformed FITS headers (the usual culprits are COMMENT or
+  HISTORY keywords with unprintable characters).
+
+* Fixed an index bug in MAD, median that affected biweightScale, biweightLocation 
+  calculations in astStats (small shift in values that ought to be insignificant in
+  to any result that relies on the use of the biweight).
+ 
+* Some improvements in astCalc (using scipy for integration, tl2z and tz2z now throw
+  exceptions for negative values).
+
+
+VERSION 0.7.0
+-------------
+
+* Python 2.6-3.2 now supported.
+
+* Fixed bug in effective wavelength calculation (1 per cent effect depending on band).
+
+* Changed h, m, s in image plot labels to non-italic.
+
+* Added choice of interpolation used in ImagePlot.
+
+* Added OmegaLz, OmegaRz, and updated Ez, Ez2 functions to account for radiation density.
+
+* Added shiftRADec function.
+
+* Added a workaround for bug in handling ZPN projections if PV2_3 == 0.
+
+* Updated astWCS to avoid using a depreciated function in pyfits 3.0+.
+
+
+VERSION 0.6.1
+-------------
+
+* Bug fix: doing e.g. 'from astLib import astWCS' no longer pulls in e.g. pylab from the other modules.
+
+
+VERSION 0.6.0
+-------------
+
+* Thanks to an upgrade of the WCSTools C-routines, WCSs with polynomial distortion coefficients (i.e. with
+  PVi_j type header keywords) are now supported transparently (thanks to Wes Fraser for help with this).
+
+* Fixed bug with handling WCSs with SIP distortion coefficients (i.e. A_i_j, B_i_j type header keywords;
+  thanks to L.W. Piotrowski for this one).
+
+* Fixed convergence bug in astCoords.calcRASearchBox() at high declination.
+
+* Fixed scalebar length bug and placement of scalebar and compass objects in plots should be much improved.  
+
+
+VERSION 0.5.0
+-------------
+
+* astWCS.WCS.wcs2pix() now gracefully handles RA wraparounds in e.g. CEA images that cover > 180 degrees.
+
+* Added routines to convert from Jy <-> AB mag (Jy2Mag, mag2Jy) in astSED
+
+* Some miscellaneous bug fixes in astSED - renamed renormaliseToMag() -> normaliseToMag(), fixed BC03Model()
+  to read galaxevpl files with arbitrary number of ages, force age > 0 in makeModelSEDDict()
+
+* Fixed bug parsing non-standard FITS headers in astWCS.WCS
+
+* Added more input unit options to astSED.Passband()
+
+* Added astCoords.calcRASearchBox() function (handy for freeform SQL queries of e.g. SDSS, UKIDSS)
+
+
+VERSION 0.4.0
+-------------
+
+* astPlots.ImagePlot now works under python 2.6 - this bug was related to the WCS <-> pixel coordinate 
+  conversion routines handling of numpy arrays (now fixed).
+
+* Fixed tick label bug in astPlots.ImagePlot around dec == +/- 00 degrees, when using sexagesimal labels
+  (thanks Toby).
+
+* astCoords.calcAngSepDeg() now accepts and returns arrays - this makes it easy (and fast) to sort a bunch 
+  of objects by radial distance from some point.
+
+* Removed the astSED.SED.calcAbsMag(), astSED.SED.calcAppMag() functions and replaced with 
+  astSED.SED.calcMag(), with option to add distance modulus.
+
+* Fixed bug in flux calculation from SEDs.
+
+* Vega and AB SEDs are now in physical units. Added Sun (SOL) SED.
+
+* Can now apply Calzetti et al. (2000) extinction law to SED objects.
+
+* Rewritten, fast SED fitting code in astSED module. Several new related functions (flux2Mag(), mag2Flux() 
+  etc.)
+
+* Changed astImages.clipImageSectionWCS() and astImages.clipUsingRADecCoords() to additionally return the
+  corresponding pixel coordinates in the parent image to the clipped section.
+
+
+VERSION 0.3.2
+-------------
+
+* Fixed bugs in NEDQueryPlot.py, MStarEvolution.py example scripts.
+
+* Fixed bug when handling HIERARCH keywords (thanks to Stefano). This also fixes bug when handling headers
+  made by astrometry.net (I believe).
+
+* Added TopHatPassband class to astSED.
+
+* Changed so that PIL only imported in the couple of routines it is needed by (and got rid of annoying
+  warning message when PIL not installed).
+
+* Fixed the occasional rounding error appearing in astPlot axis labelling.
+
+* Improved default y-axis scaling for astSED plotting function. Added SED integrate function.
+
+* Added astCalc.dVcdz() - calculates volume element for given cosmology and redshift.
+
+* Some updates in the astSED module to work with changes in scipy 0.7.x interpolation routines.
+
+* Fixed astImages.scaleImage() to work with CRDELTi keywords (thanks to Ben Keller for this).
+
+* Some code has been added towards fitting SEDs in the astSED module - this code is not fully tested yet
+  (astSED.fitSEDDict()).
+
+
+VERSION 0.3.1
+-------------
+
+* Fixed bug in contour overlays so should now work on any image with any valid WCS that WCSTools 
+  understands.
+
+* Speeded up contour overlay generation significantly - can select a "high accuracy" mode that is similar
+  to the old method.
+
+* Fixed bug when parsing FITS headers with extra long header cards (as can be found in e.g. headers of some
+  Chandra images). Previously, these would cause the coordinate conversion routines to fail.
+
+* Added cross and diamond plot symbols to ImagePlot.
+
+* Added scale bar to ImagePlot.
+
+* Changes such as adding plot objects or contour overlays in ImagePlot now cause the plot to be redrawn -
+  i.e. calling ImagePlot.draw after such changes is no longer necessary.
+
+* Rewritten coordinate axes labelling in ImagePlot - should now be much more robust, and automatically
+  choose sensible tick steps. If it doesn't, it can now be overridden using the RATickSteps, decTickSteps
+  parameters. Dropped option for minor tick marks for now.
+
+* Added clipUsingRADecCoords, resampleToTanProjection to astImages module.
+
+* Fixed bug in astCoords conversion from decimal to dms/hms: previously, sometimes seconds in dms/hms could 
+  equal 60.00 instead of 00.00.
+  
+
+VERSION 0.3.0 
+-------------
+
+* Added the astSED module.
+
+* Fixed bug in astImages.clipImageSectionWCS, where if returnWCS = False, didn't return data.
+
+* Added NUMPY_MODE to astWCS and enabled it by default (i.e., WCS pixel coordinates are now zero indexed).
+
+* Tidied up astImages clipping routines - now return dictionaries with keys 'data', 'wcs' (instead of
+  'clippedData', 'clippedWCS' as previously). Also, clipping routines can now clip rectangles if given
+  a list in format [width, height].
+
+* Removed astPlots finderChart, contourOverlayChart macros and replaced them with a new ImagePlot class.
+  This has a much better, simpler but more flexible interface with several new features (e.g. overplotting 
+  objects with RA, dec. coords).
+
+* Now raising exceptions rather than printing error messages and exiting when things go wrong.
+
+* Added several new miscellaneous functions across the modules.
+
+* Added new example scripts.
+
+* Added a warning about potential locale problems for locales where decimal point separator is not '.'.

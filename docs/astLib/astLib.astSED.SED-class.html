@@ -1,0 +1,927 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>astLib.astSED.SED</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="astLib-module.html">Package&nbsp;astLib</a> ::
+        <a href="astLib.astSED-module.html">Module&nbsp;astSED</a> ::
+        Class&nbsp;SED
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="astLib.astSED.SED-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class SED</h1><p class="nomargin-top"><span class="codelink"><a href="astLib.astSED-pysrc.html#SED">source&nbsp;code</a></span></p>
+<dl><dt>Known Subclasses:</dt>
+<dd>
+      <ul class="subclass-list">
+<li><a href="astLib.astSED.VegaSED-class.html">VegaSED</a></li>  </ul>
+</dd></dl>
+
+<hr />
+<p>This class describes a Spectral Energy Distribution (SED).</p>
+  <p>To create a SED object, lists (or numpy arrays) of wavelength and 
+  relative flux must be provided. The SED can optionally be redshifted. The
+  wavelength units of SEDs are assumed to be Angstroms - flux calculations 
+  using Passband and SED objects specified with different wavelength units 
+  will be incorrect.</p>
+  <p>The <a href="astLib.astSED.StellarPopulation-class.html" 
+  class="link">StellarPopulation</a> class (and derivatives) can be used to
+  extract SEDs for specified ages from e.g. the Bruzual &amp; Charlot 2003 
+  or Maraston 2005 models.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__init__"></a><span class="summary-sig-name">__init__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">wavelength</span>=<span class="summary-sig-default"><code class="variable-group">[</code><code class="variable-group">]</code></span>,
+        <span class="summary-sig-arg">flux</span>=<span class="summary-sig-default"><code class="variable-group">[</code><code class="variable-group">]</code></span>,
+        <span class="summary-sig-arg">z</span>=<span class="summary-sig-default">0.0</span>,
+        <span class="summary-sig-arg">ageGyr</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">normalise</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">label</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#SED.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><a href="astLib.astSED.SED-class.html" class="link">SED</a> object</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.SED-class.html#copy" class="summary-sig-name">copy</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Copies the SED, returning a new SED object</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#SED.copy">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.SED-class.html#loadFromFile" class="summary-sig-name">loadFromFile</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">fileName</span>)</span><br />
+      Loads SED from a white space delimited file in the format wavelength,
+      flux.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#SED.loadFromFile">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.SED-class.html#writeToFile" class="summary-sig-name">writeToFile</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">fileName</span>)</span><br />
+      Writes SED to a white space delimited file in the format wavelength, 
+      flux.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#SED.writeToFile">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.SED-class.html#asList" class="summary-sig-name">asList</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns a two dimensional list of [wavelength, flux], suitable for 
+      plotting by gnuplot.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#SED.asList">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.SED-class.html#plot" class="summary-sig-name">plot</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">xmin</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">min</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">xmax</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">max</code><code class="variable-quote">'</code></span>)</span><br />
+      Produces a simple (wavelength, flux) plot of the SED.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#SED.plot">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.SED-class.html#integrate" class="summary-sig-name">integrate</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">wavelengthMin</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">min</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">wavelengthMax</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">max</code><code class="variable-quote">'</code></span>)</span><br />
+      Calculates flux in SED within given wavelength range.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#SED.integrate">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.SED-class.html#smooth" class="summary-sig-name">smooth</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">smoothPix</span>)</span><br />
+      Smooths SED.flux with a uniform (boxcar) filter of width smoothPix.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#SED.smooth">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.SED-class.html#redshift" class="summary-sig-name">redshift</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">z</span>)</span><br />
+      Redshifts the SED to redshift z.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#SED.redshift">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.SED-class.html#normalise" class="summary-sig-name">normalise</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">minWavelength</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">min</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">maxWavelength</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">max</code><code class="variable-quote">'</code></span>)</span><br />
+      Normalises the SED such that the area under the specified wavelength 
+      range is equal to 1.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#SED.normalise">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.SED-class.html#normaliseToMag" class="summary-sig-name">normaliseToMag</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">ABMag</span>,
+        <span class="summary-sig-arg">passband</span>)</span><br />
+      Normalises the SED to match the flux equivalent to the given AB 
+      magnitude in the given passband.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#SED.normaliseToMag">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.SED-class.html#matchFlux" class="summary-sig-name">matchFlux</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">matchSED</span>,
+        <span class="summary-sig-arg">minWavelength</span>,
+        <span class="summary-sig-arg">maxWavelength</span>)</span><br />
+      Matches the flux in the wavelength range given by minWavelength, 
+      maxWavelength to the flux in the same region in matchSED.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#SED.matchFlux">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.SED-class.html#calcFlux" class="summary-sig-name">calcFlux</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">passband</span>)</span><br />
+      Calculates flux in the given passband.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#SED.calcFlux">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.SED-class.html#calcMag" class="summary-sig-name">calcMag</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">passband</span>,
+        <span class="summary-sig-arg">addDistanceModulus</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">magType</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Vega</code><code class="variable-quote">'</code></span>)</span><br />
+      Calculates magnitude in the given passband.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#SED.calcMag">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.SED-class.html#calcColour" class="summary-sig-name">calcColour</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">passband1</span>,
+        <span class="summary-sig-arg">passband2</span>,
+        <span class="summary-sig-arg">magType</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Vega</code><code class="variable-quote">'</code></span>)</span><br />
+      Calculates the colour passband1-passband2.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#SED.calcColour">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.SED-class.html#getSEDDict" class="summary-sig-name">getSEDDict</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">passbands</span>)</span><br />
+      This is a convenience function for pulling out fluxes from a SED for 
+      a given set of passbands in the same format as made by <a 
+      href="astLib.astSED-module.html#mags2SEDDict" 
+      class="link">mags2SEDDict</a> - designed to make fitting code 
+      simpler.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#SED.getSEDDict">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.SED-class.html#extinctionCalzetti" class="summary-sig-name">extinctionCalzetti</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">EBMinusV</span>)</span><br />
+      Applies the Calzetti et al.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#SED.extinctionCalzetti">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="copy"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">copy</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#SED.copy">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Copies the SED, returning a new SED object</p>
+  <dl class="fields">
+    <dt>Returns: <a href="astLib.astSED.SED-class.html" class="link">SED</a> object</dt>
+        <dd>SED</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="loadFromFile"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">loadFromFile</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">fileName</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#SED.loadFromFile">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Loads SED from a white space delimited file in the format wavelength, 
+  flux. Lines beginning with # are ignored.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>fileName</code></strong> (string) - path to file containing wavelength, flux data</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="writeToFile"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">writeToFile</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">fileName</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#SED.writeToFile">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Writes SED to a white space delimited file in the format wavelength, 
+  flux.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>fileName</code></strong> (string) - path to file</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="asList"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">asList</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#SED.asList">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a two dimensional list of [wavelength, flux], suitable for 
+  plotting by gnuplot.</p>
+  <dl class="fields">
+    <dt>Returns: list</dt>
+        <dd>list in format [wavelength, flux]</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="plot"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">plot</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">xmin</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">min</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">xmax</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">max</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#SED.plot">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Produces a simple (wavelength, flux) plot of the SED.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>xmin</code></strong> (float or 'min') - minimum of the wavelength range of the plot</li>
+        <li><strong class="pname"><code>xmax</code></strong> (float or 'max') - maximum of the wavelength range of the plot</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="integrate"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">integrate</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">wavelengthMin</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">min</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">wavelengthMax</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">max</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#SED.integrate">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates flux in SED within given wavelength range.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>wavelengthMin</code></strong> (float or 'min') - minimum of the wavelength range</li>
+        <li><strong class="pname"><code>wavelengthMax</code></strong> (float or 'max') - maximum of the wavelength range</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>relative flux</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="smooth"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">smooth</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">smoothPix</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#SED.smooth">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Smooths SED.flux with a uniform (boxcar) filter of width smoothPix. 
+  Cannot be undone.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>smoothPix</code></strong> (int) - size of uniform filter applied to SED, in pixels</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="redshift"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">redshift</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">z</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#SED.redshift">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Redshifts the SED to redshift z.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>z</code></strong> (float) - redshift</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="normalise"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">normalise</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">minWavelength</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">min</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">maxWavelength</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">max</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#SED.normalise">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Normalises the SED such that the area under the specified wavelength 
+  range is equal to 1.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>minWavelength</code></strong> (float or 'min') - minimum wavelength of range over which to normalise SED</li>
+        <li><strong class="pname"><code>maxWavelength</code></strong> (float or 'max') - maximum wavelength of range over which to normalise SED</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="normaliseToMag"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">normaliseToMag</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">ABMag</span>,
+        <span class="sig-arg">passband</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#SED.normaliseToMag">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Normalises the SED to match the flux equivalent to the given AB 
+  magnitude in the given passband.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ABMag</code></strong> (float) - AB magnitude to which the SED is to be normalised at the given 
+          passband</li>
+        <li><strong class="pname"><code>passband</code></strong> (an <a href="astLib.astSED.Passband-class.html" 
+          class="link">Passband</a> object) - passband at which normalisation to AB magnitude is calculated</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="matchFlux"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">matchFlux</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">matchSED</span>,
+        <span class="sig-arg">minWavelength</span>,
+        <span class="sig-arg">maxWavelength</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#SED.matchFlux">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Matches the flux in the wavelength range given by minWavelength, 
+  maxWavelength to the flux in the same region in matchSED. Useful for 
+  plotting purposes.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>matchSED</code></strong> (<a href="astLib.astSED.SED-class.html" class="link">SED</a> 
+          object) - SED to match flux to</li>
+        <li><strong class="pname"><code>minWavelength</code></strong> (float) - minimum of range in which to match flux of current SED to 
+          matchSED</li>
+        <li><strong class="pname"><code>maxWavelength</code></strong> (float) - maximum of range in which to match flux of current SED to 
+          matchSED</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="calcFlux"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">calcFlux</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">passband</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#SED.calcFlux">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates flux in the given passband.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>passband</code></strong> (<a href="astLib.astSED.Passband-class.html" 
+          class="link">Passband</a> object) - filter passband through which to calculate the flux from the SED</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>flux</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="calcMag"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">calcMag</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">passband</span>,
+        <span class="sig-arg">addDistanceModulus</span>=<span class="sig-default">True</span>,
+        <span class="sig-arg">magType</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Vega</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#SED.calcMag">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates magnitude in the given passband. If addDistanceModulus == 
+  True, then the distance modulus (5.0*log10*(dl*1e5), where dl is the 
+  luminosity distance in Mpc at the redshift of the <a 
+  href="astLib.astSED.SED-class.html" class="link">SED</a>) is added.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>passband</code></strong> (<a href="astLib.astSED.Passband-class.html" 
+          class="link">Passband</a> object) - filter passband through which to calculate the magnitude from the
+          SED</li>
+        <li><strong class="pname"><code>addDistanceModulus</code></strong> (bool) - if True, adds 5.0*log10*(dl*1e5) to the mag returned, where dl is
+          the luminosity distance (Mpc) corresponding to the SED z</li>
+        <li><strong class="pname"><code>magType</code></strong> (string) - either &quot;Vega&quot; or &quot;AB&quot;</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>magnitude through the given passband on the specified magnitude 
+          system</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="calcColour"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">calcColour</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">passband1</span>,
+        <span class="sig-arg">passband2</span>,
+        <span class="sig-arg">magType</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Vega</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#SED.calcColour">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the colour passband1-passband2.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>passband1</code></strong> (<a href="astLib.astSED.Passband-class.html" 
+          class="link">Passband</a> object) - filter passband through which to calculate the first magnitude</li>
+        <li><strong class="pname"><code>passband1</code></strong> (<a href="astLib.astSED.Passband-class.html" 
+          class="link">Passband</a> object) - filter passband through which to calculate the second magnitude</li>
+        <li><strong class="pname"><code>magType</code></strong> (string) - either &quot;Vega&quot; or &quot;AB&quot;</li>
+        <li><strong class="pname"><code>passband2</code></strong> (<a href="astLib.astSED.Passband-class.html" 
+          class="link">Passband</a> object)</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>colour defined by passband1 - passband2 on the specified 
+          magnitude system</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getSEDDict"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getSEDDict</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">passbands</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#SED.getSEDDict">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>This is a convenience function for pulling out fluxes from a SED for a
+  given set of passbands in the same format as made by <a 
+  href="astLib.astSED-module.html#mags2SEDDict" 
+  class="link">mags2SEDDict</a> - designed to make fitting code 
+  simpler.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>passbands</code></strong> (list of <a href="astLib.astSED.Passband-class.html" 
+          class="link">Passband</a> objects) - list of passbands through which fluxes will be calculated</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="extinctionCalzetti"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">extinctionCalzetti</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">EBMinusV</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#SED.extinctionCalzetti">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Applies the Calzetti et al. 2000 (ApJ, 533, 682) extinction law to the
+  SED with the given E(B-V) amount of extinction. R_v' = 4.05 is assumed 
+  (see equation (5) of Calzetti et al.).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>EBMinusV</code></strong> (float) - extinction E(B-V), in magnitudes</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Aug 21 20:24:26 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

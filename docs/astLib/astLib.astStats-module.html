@@ -1,0 +1,1165 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>astLib.astStats</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="astLib-module.html">Package&nbsp;astLib</a> ::
+        Module&nbsp;astStats
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="astLib.astStats-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module astStats</h1><p class="nomargin-top"><span class="codelink"><a href="astLib.astStats-pysrc.html">source&nbsp;code</a></span></p>
+<p>module for performing statistical calculations.</p>
+  <p>(c) 2007-2012 Matt Hilton</p>
+  <p>(c) 2013-2014 Matt Hilton &amp; Steven Boada</p>
+  <p><a href="http://astlib.sourceforge.net" 
+  target="_top">http://astlib.sourceforge.net</a></p>
+  <p>This module (as you may notice) provides very few statistical 
+  routines. It does, however, provide biweight (robust) estimators of 
+  location and scale, as described in Beers et al. 1990 (AJ, 100, 32), in 
+  addition to a robust least squares fitting routine that uses the biweight
+  transform.</p>
+  <p>Some routines may fail if they are passed lists with few items and 
+  encounter a `divide by zero' error. Where this occurs, the function will 
+  return None. An error message will be printed to the console when this 
+  happens if astStats.REPORT_ERRORS=True (the default). Testing if an 
+  astStats function returns None can be used to handle errors in 
+  scripts.</p>
+  <p>For extensive statistics modules, the Python bindings for GNU R (<a 
+  href="http://rpy.sourceforge.net" 
+  target="_top">http://rpy.sourceforge.net</a>), or SciPy (<a 
+  href="http://www.scipy.org" target="_top">http://www.scipy.org</a>) are 
+  suggested.</p>
+
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#mean" class="summary-sig-name">mean</a>(<span class="summary-sig-arg">dataList</span>)</span><br />
+      Calculates the mean average of a list of numbers.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#mean">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#weightedMean" class="summary-sig-name">weightedMean</a>(<span class="summary-sig-arg">dataList</span>)</span><br />
+      Calculates the weighted mean average of a two dimensional list 
+      (value, weight) of numbers.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#weightedMean">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#stdev" class="summary-sig-name">stdev</a>(<span class="summary-sig-arg">dataList</span>)</span><br />
+      Calculates the (sample) standard deviation of a list of numbers.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#stdev">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#rms" class="summary-sig-name">rms</a>(<span class="summary-sig-arg">dataList</span>)</span><br />
+      Calculates the root mean square of a list of numbers.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#rms">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#weightedStdev" class="summary-sig-name">weightedStdev</a>(<span class="summary-sig-arg">dataList</span>)</span><br />
+      Calculates the weighted (sample) standard deviation of a list of 
+      numbers.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#weightedStdev">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#median" class="summary-sig-name">median</a>(<span class="summary-sig-arg">dataList</span>)</span><br />
+      Calculates the median of a list of numbers.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#median">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#modeEstimate" class="summary-sig-name">modeEstimate</a>(<span class="summary-sig-arg">dataList</span>)</span><br />
+      Returns an estimate of the mode of a set of values by 
+      mode=(3*median)-(2*mean).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#modeEstimate">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#MAD" class="summary-sig-name">MAD</a>(<span class="summary-sig-arg">dataList</span>)</span><br />
+      Calculates the Median Absolute Deviation of a list of numbers.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#MAD">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#biweightLocation" class="summary-sig-name">biweightLocation</a>(<span class="summary-sig-arg">dataList</span>,
+        <span class="summary-sig-arg">tuningConstant</span>)</span><br />
+      Calculates the biweight location estimator (like a robust average) of
+      a list of numbers.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#biweightLocation">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#biweightScale" class="summary-sig-name">biweightScale</a>(<span class="summary-sig-arg">dataList</span>,
+        <span class="summary-sig-arg">tuningConstant</span>)</span><br />
+      Calculates the biweight scale estimator (like a robust standard 
+      deviation) of a list of numbers.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#biweightScale">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#biweightClipped" class="summary-sig-name">biweightClipped</a>(<span class="summary-sig-arg">dataList</span>,
+        <span class="summary-sig-arg">tuningConstant</span>,
+        <span class="summary-sig-arg">sigmaCut</span>)</span><br />
+      Iteratively calculates biweight location and scale, using sigma 
+      clipping, for a list of values.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#biweightClipped">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#biweightTransform" class="summary-sig-name">biweightTransform</a>(<span class="summary-sig-arg">dataList</span>,
+        <span class="summary-sig-arg">tuningConstant</span>)</span><br />
+      Calculates the biweight transform for a set of values.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#biweightTransform">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#OLSFit" class="summary-sig-name">OLSFit</a>(<span class="summary-sig-arg">dataList</span>)</span><br />
+      Performs an ordinary least squares fit on a two dimensional list of 
+      numbers.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#OLSFit">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#clippedMeanStdev" class="summary-sig-name">clippedMeanStdev</a>(<span class="summary-sig-arg">dataList</span>,
+        <span class="summary-sig-arg">sigmaCut</span>=<span class="summary-sig-default">3.0</span>,
+        <span class="summary-sig-arg">maxIterations</span>=<span class="summary-sig-default">10.0</span>)</span><br />
+      Calculates the clipped mean and stdev of a list of numbers.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#clippedMeanStdev">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#clippedWeightedLSFit" class="summary-sig-name">clippedWeightedLSFit</a>(<span class="summary-sig-arg">dataList</span>,
+        <span class="summary-sig-arg">sigmaCut</span>)</span><br />
+      Performs a weighted least squares fit on a list of numbers with sigma
+      clipping.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#clippedWeightedLSFit">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#weightedLSFit" class="summary-sig-name">weightedLSFit</a>(<span class="summary-sig-arg">dataList</span>,
+        <span class="summary-sig-arg">weightType</span>)</span><br />
+      Performs a weighted least squares fit on a three dimensional list of 
+      numbers [x, y, y error].</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#weightedLSFit">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#biweightLSFit" class="summary-sig-name">biweightLSFit</a>(<span class="summary-sig-arg">dataList</span>,
+        <span class="summary-sig-arg">tuningConstant</span>,
+        <span class="summary-sig-arg">sigmaCut</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Performs a weighted least squares fit, where the weights used are the
+      biweight transforms of the residuals to the previous best fit .i.e.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#biweightLSFit">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#cumulativeBinner" class="summary-sig-name">cumulativeBinner</a>(<span class="summary-sig-arg">data</span>,
+        <span class="summary-sig-arg">binMin</span>,
+        <span class="summary-sig-arg">binMax</span>,
+        <span class="summary-sig-arg">binTotal</span>)</span><br />
+      Bins the input data cumulatively.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#cumulativeBinner">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#binner" class="summary-sig-name">binner</a>(<span class="summary-sig-arg">data</span>,
+        <span class="summary-sig-arg">binMin</span>,
+        <span class="summary-sig-arg">binMax</span>,
+        <span class="summary-sig-arg">binTotal</span>)</span><br />
+      Bins the input data..</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#binner">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astStats-module.html#weightedBinner" class="summary-sig-name">weightedBinner</a>(<span class="summary-sig-arg">data</span>,
+        <span class="summary-sig-arg">weights</span>,
+        <span class="summary-sig-arg">binMin</span>,
+        <span class="summary-sig-arg">binMax</span>,
+        <span class="summary-sig-arg">binTotal</span>)</span><br />
+      Bins the input data, recorded frequency is sum of weights in bin.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astStats-pysrc.html#weightedBinner">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="REPORT_ERRORS"></a><span class="summary-name">REPORT_ERRORS</span> = <code title="True">True</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="'astLib'"><code class="variable-quote">'</code><code class="variable-string">astLib</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="mean"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">mean</span>(<span class="sig-arg">dataList</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#mean">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the mean average of a list of numbers.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dataList</code></strong> (list or numpy array) - input data, must be a one dimensional list</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>mean average</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="weightedMean"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">weightedMean</span>(<span class="sig-arg">dataList</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#weightedMean">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the weighted mean average of a two dimensional list (value,
+  weight) of numbers.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dataList</code></strong> (list) - input data, must be a two dimensional list in format [value, 
+          weight]</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>weighted mean average</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="stdev"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">stdev</span>(<span class="sig-arg">dataList</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#stdev">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the (sample) standard deviation of a list of numbers.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dataList</code></strong> (list or numpy array) - input data, must be a one dimensional list</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>standard deviation</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="rms"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">rms</span>(<span class="sig-arg">dataList</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#rms">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the root mean square of a list of numbers.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dataList</code></strong> (list) - input data, must be a one dimensional list</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>root mean square</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="weightedStdev"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">weightedStdev</span>(<span class="sig-arg">dataList</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#weightedStdev">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the weighted (sample) standard deviation of a list of 
+  numbers.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dataList</code></strong> (list) - input data, must be a two dimensional list in format [value, 
+          weight]</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>weighted standard deviation</dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        Returns None if an error occurs.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="median"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">median</span>(<span class="sig-arg">dataList</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#median">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the median of a list of numbers.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dataList</code></strong> (list or numpy array) - input data, must be a one dimensional list</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>median average</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="modeEstimate"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">modeEstimate</span>(<span class="sig-arg">dataList</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#modeEstimate">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns an estimate of the mode of a set of values by 
+  mode=(3*median)-(2*mean).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dataList</code></strong> (list) - input data, must be a one dimensional list</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>estimate of mode average</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="MAD"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">MAD</span>(<span class="sig-arg">dataList</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#MAD">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the Median Absolute Deviation of a list of numbers.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dataList</code></strong> (list) - input data, must be a one dimensional list</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>median absolute deviation</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="biweightLocation"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">biweightLocation</span>(<span class="sig-arg">dataList</span>,
+        <span class="sig-arg">tuningConstant</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#biweightLocation">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the biweight location estimator (like a robust average) of 
+  a list of numbers.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dataList</code></strong> (list) - input data, must be a one dimensional list</li>
+        <li><strong class="pname"><code>tuningConstant</code></strong> (float) - 6.0 is recommended.</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>biweight location</dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        Returns None if an error occurs.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="biweightScale"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">biweightScale</span>(<span class="sig-arg">dataList</span>,
+        <span class="sig-arg">tuningConstant</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#biweightScale">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the biweight scale estimator (like a robust standard 
+  deviation) of a list of numbers.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dataList</code></strong> (list) - input data, must be a one dimensional list</li>
+        <li><strong class="pname"><code>tuningConstant</code></strong> (float) - 9.0 is recommended.</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>biweight scale</dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        Returns None if an error occurs.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="biweightClipped"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">biweightClipped</span>(<span class="sig-arg">dataList</span>,
+        <span class="sig-arg">tuningConstant</span>,
+        <span class="sig-arg">sigmaCut</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#biweightClipped">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Iteratively calculates biweight location and scale, using sigma 
+  clipping, for a list of values.  The calculation is performed on the 
+  first column of a multi-dimensional list; other columns are ignored.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dataList</code></strong> (list) - input data</li>
+        <li><strong class="pname"><code>tuningConstant</code></strong> (float) - 6.0 is recommended for location estimates, 9.0 is recommended for
+          scale estimates</li>
+        <li><strong class="pname"><code>sigmaCut</code></strong> (float) - sigma clipping to apply</li>
+    </ul></dd>
+    <dt>Returns: dictionary</dt>
+        <dd>estimate of biweight location, scale, and list of non-clipped 
+          data, in the format {'biweightLocation', 'biweightScale', 
+          'dataList'}</dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        Returns None if an error occurs.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="biweightTransform"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">biweightTransform</span>(<span class="sig-arg">dataList</span>,
+        <span class="sig-arg">tuningConstant</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#biweightTransform">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the biweight transform for a set of values. Useful for 
+  using as weights in robust line fitting.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dataList</code></strong> (list) - input data, must be a one dimensional list</li>
+        <li><strong class="pname"><code>tuningConstant</code></strong> (float) - 6.0 is recommended for location estimates, 9.0 is recommended for
+          scale estimates</li>
+    </ul></dd>
+    <dt>Returns: list</dt>
+        <dd>list of biweights</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="OLSFit"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">OLSFit</span>(<span class="sig-arg">dataList</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#OLSFit">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Performs an ordinary least squares fit on a two dimensional list of 
+  numbers. Minimum number of data points is 5.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dataList</code></strong> (list) - input data, must be a two dimensional list in format [x, y]</li>
+    </ul></dd>
+    <dt>Returns: dictionary</dt>
+        <dd>slope and intercept on y-axis, with associated errors, in the 
+          format {'slope', 'intercept', 'slopeError', 'interceptError'}</dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        Returns None if an error occurs.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="clippedMeanStdev"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">clippedMeanStdev</span>(<span class="sig-arg">dataList</span>,
+        <span class="sig-arg">sigmaCut</span>=<span class="sig-default">3.0</span>,
+        <span class="sig-arg">maxIterations</span>=<span class="sig-default">10.0</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#clippedMeanStdev">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the clipped mean and stdev of a list of numbers.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dataList</code></strong> (list) - input data, one dimensional list of numbers</li>
+        <li><strong class="pname"><code>sigmaCut</code></strong> (float) - clipping in Gaussian sigma to apply</li>
+        <li><strong class="pname"><code>maxIterations</code></strong> (int) - maximum number of iterations</li>
+    </ul></dd>
+    <dt>Returns: dictionary</dt>
+        <dd>format {'clippedMean', 'clippedStdev', 'numPoints'}</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="clippedWeightedLSFit"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">clippedWeightedLSFit</span>(<span class="sig-arg">dataList</span>,
+        <span class="sig-arg">sigmaCut</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#clippedWeightedLSFit">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Performs a weighted least squares fit on a list of numbers with sigma 
+  clipping. Minimum number of data points is 5.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dataList</code></strong> (list) - input data, must be a three dimensional list in format [x, y, y 
+          weight]</li>
+    </ul></dd>
+    <dt>Returns: dictionary</dt>
+        <dd>slope and intercept on y-axis, with associated errors, in the 
+          format {'slope', 'intercept', 'slopeError', 'interceptError'}</dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        Returns None if an error occurs.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="weightedLSFit"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">weightedLSFit</span>(<span class="sig-arg">dataList</span>,
+        <span class="sig-arg">weightType</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#weightedLSFit">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Performs a weighted least squares fit on a three dimensional list of 
+  numbers [x, y, y error].</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dataList</code></strong> (list) - input data, must be a three dimensional list in format [x, y, y 
+          error]</li>
+        <li><strong class="pname"><code>weightType</code></strong> (string) - if &quot;errors&quot;, weights are calculated assuming the input 
+          data is in the format [x, y, error on y]; if &quot;weights&quot;,
+          the weights are assumed to be already calculated and stored in a 
+          fourth column [x, y, error on y, weight] (as used by e.g. <a 
+          href="astLib.astStats-module.html#biweightLSFit" 
+          class="link">astStats.biweightLSFit</a>)</li>
+    </ul></dd>
+    <dt>Returns: dictionary</dt>
+        <dd>slope and intercept on y-axis, with associated errors, in the 
+          format {'slope', 'intercept', 'slopeError', 'interceptError'}</dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        Returns None if an error occurs.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="biweightLSFit"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">biweightLSFit</span>(<span class="sig-arg">dataList</span>,
+        <span class="sig-arg">tuningConstant</span>,
+        <span class="sig-arg">sigmaCut</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#biweightLSFit">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Performs a weighted least squares fit, where the weights used are the 
+  biweight transforms of the residuals to the previous best fit .i.e. the 
+  procedure is iterative, and converges very quickly (iterations is set to 
+  10 by default). Minimum number of data points is 10.</p>
+  <p>This seems to give slightly different results to the equivalent R 
+  routine, so use at your own risk!</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dataList</code></strong> (list) - input data, must be a three dimensional list in format [x, y, y 
+          weight]</li>
+        <li><strong class="pname"><code>tuningConstant</code></strong> (float) - 6.0 is recommended for location estimates, 9.0 is recommended for
+          scale estimates</li>
+        <li><strong class="pname"><code>sigmaCut</code></strong> (float) - sigma clipping to apply (set to None if not required)</li>
+    </ul></dd>
+    <dt>Returns: dictionary</dt>
+        <dd>slope and intercept on y-axis, with associated errors, in the 
+          format {'slope', 'intercept', 'slopeError', 'interceptError'}</dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        Returns None if an error occurs.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="cumulativeBinner"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">cumulativeBinner</span>(<span class="sig-arg">data</span>,
+        <span class="sig-arg">binMin</span>,
+        <span class="sig-arg">binMax</span>,
+        <span class="sig-arg">binTotal</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#cumulativeBinner">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Bins the input data cumulatively.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>data</code></strong> - input data, must be a one dimensional list</li>
+        <li><strong class="pname"><code>binMin</code></strong> (float) - minimum value from which to bin data</li>
+        <li><strong class="pname"><code>binMax</code></strong> (float) - maximum value from which to bin data</li>
+        <li><strong class="pname"><code>binTotal</code></strong> (int) - number of bins</li>
+    </ul></dd>
+    <dt>Returns: list</dt>
+        <dd>binned data, in format [bin centre, frequency]</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="binner"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">binner</span>(<span class="sig-arg">data</span>,
+        <span class="sig-arg">binMin</span>,
+        <span class="sig-arg">binMax</span>,
+        <span class="sig-arg">binTotal</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#binner">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Bins the input data..</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>data</code></strong> - input data, must be a one dimensional list</li>
+        <li><strong class="pname"><code>binMin</code></strong> (float) - minimum value from which to bin data</li>
+        <li><strong class="pname"><code>binMax</code></strong> (float) - maximum value from which to bin data</li>
+        <li><strong class="pname"><code>binTotal</code></strong> (int) - number of bins</li>
+    </ul></dd>
+    <dt>Returns: list</dt>
+        <dd>binned data, in format [bin centre, frequency]</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="weightedBinner"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">weightedBinner</span>(<span class="sig-arg">data</span>,
+        <span class="sig-arg">weights</span>,
+        <span class="sig-arg">binMin</span>,
+        <span class="sig-arg">binMax</span>,
+        <span class="sig-arg">binTotal</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astStats-pysrc.html#weightedBinner">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Bins the input data, recorded frequency is sum of weights in bin.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>data</code></strong> - input data, must be a one dimensional list</li>
+        <li><strong class="pname"><code>binMin</code></strong> (float) - minimum value from which to bin data</li>
+        <li><strong class="pname"><code>binMax</code></strong> (float) - maximum value from which to bin data</li>
+        <li><strong class="pname"><code>binTotal</code></strong> (int) - number of bins</li>
+    </ul></dd>
+    <dt>Returns: list</dt>
+        <dd>binned data, in format [bin centre, frequency]</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Aug 21 20:24:26 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

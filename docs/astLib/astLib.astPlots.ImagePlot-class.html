@@ -1,0 +1,858 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>astLib.astPlots.ImagePlot</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="astLib-module.html">Package&nbsp;astLib</a> ::
+        <a href="astLib.astPlots-module.html">Module&nbsp;astPlots</a> ::
+        Class&nbsp;ImagePlot
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="astLib.astPlots.ImagePlot-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class ImagePlot</h1><p class="nomargin-top"><span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot">source&nbsp;code</a></span></p>
+<p>This class describes a matplotlib image plot containing an 
+  astronomical image with an associated WCS.</p>
+  <p>Objects within the image boundaries can be marked by passing their WCS
+  coordinates to <a 
+  href="astLib.astPlots.ImagePlot-class.html#addPlotObjects" 
+  class="link">ImagePlot.addPlotObjects</a>.</p>
+  <p>Other images can be overlaid using <a 
+  href="astLib.astPlots.ImagePlot-class.html#addContourOverlay" 
+  class="link">ImagePlot.addContourOverlay</a>.</p>
+  <p>For images rotated with North at the top, East at the left (as can be 
+  done using <a 
+  href="astLib.astImages-module.html#clipRotatedImageSectionWCS" 
+  class="link">astImages.clipRotatedImageSectionWCS</a> or <a 
+  href="astLib.astImages-module.html#resampleToTanProjection" 
+  class="link">astImages.resampleToTanProjection</a>, WCS coordinate axes 
+  can be plotted, with tick marks set appropriately for the image size. 
+  Otherwise, a compass can be plotted showing the directions of North and 
+  East in the image.</p>
+  <p>RGB images are also supported.</p>
+  <p>The plot can of course be tweaked further after creation using 
+  matplotlib/pylab commands.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astPlots.ImagePlot-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">imageData</span>,
+        <span class="summary-sig-arg">imageWCS</span>,
+        <span class="summary-sig-arg">axes</span>=<span class="summary-sig-default">[0.1,0.1,0.8,0.8]</span>,
+        <span class="summary-sig-arg">cutLevels</span>=<span class="summary-sig-default">[&quot;smart&quot;,99.5]</span>,
+        <span class="summary-sig-arg">colorMapName</span>=<span class="summary-sig-default">&quot;gray&quot;</span>,
+        <span class="summary-sig-arg">title</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">axesLabels</span>=<span class="summary-sig-default">&quot;sexagesimal&quot;</span>,
+        <span class="summary-sig-arg">axesFontFamily</span>=<span class="summary-sig-default">&quot;serif&quot;</span>,
+        <span class="summary-sig-arg">axesFontSize</span>=<span class="summary-sig-default">12.0</span>,
+        <span class="summary-sig-arg">RATickSteps</span>=<span class="summary-sig-default">&quot;auto&quot;</span>,
+        <span class="summary-sig-arg">decTickSteps</span>=<span class="summary-sig-default">&quot;auto&quot;</span>,
+        <span class="summary-sig-arg">colorBar</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">interpolation</span>=<span class="summary-sig-default">&quot;bilinear&quot;</span>)</span><br />
+      Makes an ImagePlot from the given image array and astWCS.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="draw"></a><span class="summary-sig-name">draw</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Redraws the ImagePlot.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.draw">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astPlots.ImagePlot-class.html#addContourOverlay" class="summary-sig-name">addContourOverlay</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">contourImageData</span>,
+        <span class="summary-sig-arg">contourWCS</span>,
+        <span class="summary-sig-arg">tag</span>,
+        <span class="summary-sig-arg">levels</span>=<span class="summary-sig-default">[&quot;linear&quot;,&quot;min&quot;,&quot;max&quot;,5]</span>,
+        <span class="summary-sig-arg">width</span>=<span class="summary-sig-default">1</span>,
+        <span class="summary-sig-arg">color</span>=<span class="summary-sig-default">&quot;white&quot;</span>,
+        <span class="summary-sig-arg">smooth</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">highAccuracy</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Adds image data to the ImagePlot as a contour overlay.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.addContourOverlay">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astPlots.ImagePlot-class.html#removeContourOverlay" class="summary-sig-name">removeContourOverlay</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">tag</span>)</span><br />
+      Removes the contourOverlay from the ImagePlot corresponding to the 
+      tag.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.removeContourOverlay">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astPlots.ImagePlot-class.html#addPlotObjects" class="summary-sig-name">addPlotObjects</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">objRAs</span>,
+        <span class="summary-sig-arg">objDecs</span>,
+        <span class="summary-sig-arg">tag</span>,
+        <span class="summary-sig-arg">symbol</span>=<span class="summary-sig-default">&quot;circle&quot;</span>,
+        <span class="summary-sig-arg">size</span>=<span class="summary-sig-default">4.0</span>,
+        <span class="summary-sig-arg">width</span>=<span class="summary-sig-default">1.0</span>,
+        <span class="summary-sig-arg">color</span>=<span class="summary-sig-default">&quot;yellow&quot;</span>,
+        <span class="summary-sig-arg">objLabels</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">objLabelSize</span>=<span class="summary-sig-default">12.0</span>)</span><br />
+      Add objects with RA, dec coords objRAs, objDecs to the ImagePlot.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.addPlotObjects">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astPlots.ImagePlot-class.html#removePlotObjects" class="summary-sig-name">removePlotObjects</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">tag</span>)</span><br />
+      Removes the plotObjects from the ImagePlot corresponding to the tag.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.removePlotObjects">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astPlots.ImagePlot-class.html#addCompass" class="summary-sig-name">addCompass</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">location</span>,
+        <span class="summary-sig-arg">sizeArcSec</span>,
+        <span class="summary-sig-arg">color</span>=<span class="summary-sig-default">&quot;white&quot;</span>,
+        <span class="summary-sig-arg">fontSize</span>=<span class="summary-sig-default">12</span>,
+        <span class="summary-sig-arg">width</span>=<span class="summary-sig-default">20.0</span>)</span><br />
+      Adds a compass to the ImagePlot at the given location ('N', 'NE', 
+      'E', 'SE', 'S', 'SW', 'W', or 'NW').</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.addCompass">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astPlots.ImagePlot-class.html#addScaleBar" class="summary-sig-name">addScaleBar</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">location</span>,
+        <span class="summary-sig-arg">sizeArcSec</span>,
+        <span class="summary-sig-arg">color</span>=<span class="summary-sig-default">&quot;white&quot;</span>,
+        <span class="summary-sig-arg">fontSize</span>=<span class="summary-sig-default">12</span>,
+        <span class="summary-sig-arg">width</span>=<span class="summary-sig-default">20.0</span>)</span><br />
+      Adds a scale bar to the ImagePlot at the given location ('N', 'NE', 
+      'E', 'SE', 'S', 'SW', 'W', or 'NW').</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.addScaleBar">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astPlots.ImagePlot-class.html#calcWCSAxisLabels" class="summary-sig-name">calcWCSAxisLabels</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">axesLabels</span>=<span class="summary-sig-default">&quot;decimal&quot;</span>)</span><br />
+      This function calculates the positions of coordinate labels for the 
+      RA and Dec axes of the ImagePlot.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.calcWCSAxisLabels">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astPlots.ImagePlot-class.html#save" class="summary-sig-name">save</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">fileName</span>)</span><br />
+      Saves the ImagePlot in any format that matplotlib can understand, as 
+      determined from the fileName extension.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.save">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astPlots.ImagePlot-class.html#getTickSteps" class="summary-sig-name">getTickSteps</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Chooses the appropriate WCS coordinate tick steps for the plot based 
+      on its size.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.getTickSteps">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">imageData</span>,
+        <span class="sig-arg">imageWCS</span>,
+        <span class="sig-arg">axes</span>=<span class="sig-default">[0.1,0.1,0.8,0.8]</span>,
+        <span class="sig-arg">cutLevels</span>=<span class="sig-default">[&quot;smart&quot;,99.5]</span>,
+        <span class="sig-arg">colorMapName</span>=<span class="sig-default">&quot;gray&quot;</span>,
+        <span class="sig-arg">title</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">axesLabels</span>=<span class="sig-default">&quot;sexagesimal&quot;</span>,
+        <span class="sig-arg">axesFontFamily</span>=<span class="sig-default">&quot;serif&quot;</span>,
+        <span class="sig-arg">axesFontSize</span>=<span class="sig-default">12.0</span>,
+        <span class="sig-arg">RATickSteps</span>=<span class="sig-default">&quot;auto&quot;</span>,
+        <span class="sig-arg">decTickSteps</span>=<span class="sig-default">&quot;auto&quot;</span>,
+        <span class="sig-arg">colorBar</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">interpolation</span>=<span class="sig-default">&quot;bilinear&quot;</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Makes an ImagePlot from the given image array and astWCS. For 
+  coordinate axes to work, the image and WCS should have been rotated such 
+  that East is at the left, North is at the top (see e.g. <a 
+  href="astLib.astImages-module.html#clipRotatedImageSectionWCS" 
+  class="link">astImages.clipRotatedImageSectionWCS</a>, or <a 
+  href="astLib.astImages-module.html#resampleToTanProjection" 
+  class="link">astImages.resampleToTanProjection</a>).</p>
+  <p>If imageData is given as a list in the format [r, g, b], a color RGB 
+  plot will be made. However, in this case the cutLevels must be specified 
+  manually for each component as a list - i.e. cutLevels = [[r min, r max],
+  [g min, g max], [b min, b max]]. In this case of course, the colorMap 
+  will be ignored. All r, g, b image arrays must have the same 
+  dimensions.</p>
+  <p>Set axesLabels = None to make a plot without coordinate axes 
+  plotted.</p>
+  <p>The axes can be marked in either sexagesimal or decimal celestial 
+  coordinates. If RATickSteps or decTickSteps are set to &quot;auto&quot;, 
+  the appropriate axis scales will be determined automatically from the 
+  size of the image array and associated WCS. The tick step sizes can be 
+  overidden. If the coordinate axes are in sexagesimal format a dictionary 
+  in the format {'deg', 'unit'} is needed (see <a 
+  href="astLib.astPlots-module.html#RA_TICK_STEPS" 
+  class="link">RA_TICK_STEPS</a> and <a 
+  href="astLib.astPlots-module.html#DEC_TICK_STEPS" 
+  class="link">DEC_TICK_STEPS</a> for examples). If the coordinate axes are
+  in decimal format, the tick step size is specified simply in RA, dec 
+  decimal degrees.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>imageData</code></strong> (numpy array or list) - image data array or list of numpy arrays [r, g, b]</li>
+        <li><strong class="pname"><code>imageWCS</code></strong> (astWCS.WCS) - astWCS.WCS object</li>
+        <li><strong class="pname"><code>axes</code></strong> (list) - specifies where in the current figure to draw the finder chart 
+          (see pylab.axes)</li>
+        <li><strong class="pname"><code>cutLevels</code></strong> (list) - sets the image scaling - available options:
+          <ul>
+            <li>
+              pixel values: cutLevels=[low value, high value].
+            </li>
+            <li>
+              histogram equalisation: cutLevels=[&quot;histEq&quot;, number
+              of bins ( e.g. 1024)]
+            </li>
+            <li>
+              relative: cutLevels=[&quot;relative&quot;, cut per cent level
+              (e.g. 99.5)]
+            </li>
+            <li>
+              smart: cutLevels=[&quot;smart&quot;, cut per cent level (e.g.
+              99.5)]
+            </li>
+          </ul>
+          <p>[&quot;smart&quot;, 99.5] seems to provide good scaling over a
+          range of different images. Note that for RGB images, cut levels 
+          must be specified manually i.e. as a list: [[r min, rmax], [g 
+          min, g max], [b min, b max]]</p></li>
+        <li><strong class="pname"><code>colorMapName</code></strong> (string) - name of a standard matplotlib colormap, e.g. &quot;hot&quot;, 
+          &quot;cool&quot;, &quot;gray&quot; etc. (do 
+          &quot;help(pylab.colormaps)&quot; in the Python interpreter to 
+          see available options)</li>
+        <li><strong class="pname"><code>title</code></strong> (string) - optional title for the plot</li>
+        <li><strong class="pname"><code>axesLabels</code></strong> (string) - either &quot;sexagesimal&quot; (for H:M:S, D:M:S), 
+          &quot;decimal&quot; (for decimal degrees) or None (for no 
+          coordinate axes labels)</li>
+        <li><strong class="pname"><code>axesFontFamily</code></strong> (string) - matplotlib fontfamily, e.g. 'serif', 'sans-serif' etc.</li>
+        <li><strong class="pname"><code>axesFontSize</code></strong> (float) - font size of axes labels and titles (in points)</li>
+        <li><strong class="pname"><code>colorBar</code></strong> (bool) - if True, plot a vertical color bar at the side of the image 
+          indicating the intensity scale.</li>
+        <li><strong class="pname"><code>interpolation</code></strong> (string) - interpolation to apply to the image plot (see the documentation 
+          for the matplotlib.pylab.imshow command)</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="addContourOverlay"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">addContourOverlay</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">contourImageData</span>,
+        <span class="sig-arg">contourWCS</span>,
+        <span class="sig-arg">tag</span>,
+        <span class="sig-arg">levels</span>=<span class="sig-default">[&quot;linear&quot;,&quot;min&quot;,&quot;max&quot;,5]</span>,
+        <span class="sig-arg">width</span>=<span class="sig-default">1</span>,
+        <span class="sig-arg">color</span>=<span class="sig-default">&quot;white&quot;</span>,
+        <span class="sig-arg">smooth</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">highAccuracy</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.addContourOverlay">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Adds image data to the ImagePlot as a contour overlay. The contours 
+  can be removed using <a 
+  href="astLib.astPlots.ImagePlot-class.html#removeContourOverlay" 
+  class="link">removeContourOverlay</a>. If a contour overlay already 
+  exists with this tag, it will be replaced.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>contourImageData</code></strong> (numpy array) - image data array from which contours are to be generated</li>
+        <li><strong class="pname"><code>contourWCS</code></strong> (astWCS.WCS) - astWCS.WCS object for the image to be contoured</li>
+        <li><strong class="pname"><code>tag</code></strong> (string) - identifying tag for this set of contours</li>
+        <li><strong class="pname"><code>levels</code></strong> (list) - sets the contour levels - available options:
+          <ul>
+            <li>
+              values: contourLevels=[list of values specifying each level]
+            </li>
+            <li>
+              linear spacing: contourLevels=['linear', min level value, max
+              level value, number of levels] - can use &quot;min&quot;, 
+              &quot;max&quot; to automatically set min, max levels from 
+              image data
+            </li>
+            <li>
+              log spacing: contourLevels=['log', min level value, max level
+              value, number of levels] - can use &quot;min&quot;, 
+              &quot;max&quot; to automatically set min, max levels from 
+              image data
+            </li>
+          </ul></li>
+        <li><strong class="pname"><code>width</code></strong> (int) - width of the overlaid contours</li>
+        <li><strong class="pname"><code>color</code></strong> (string) - color of the overlaid contours, specified by the name of a 
+          standard matplotlib color, e.g., &quot;black&quot;, 
+          &quot;white&quot;, &quot;cyan&quot; etc. (do 
+          &quot;help(pylab.colors)&quot; in the Python interpreter to see 
+          available options)</li>
+        <li><strong class="pname"><code>smooth</code></strong> (float) - standard deviation (in arcsec) of Gaussian filter for 
+          pre-smoothing of contour image data (set to 0 for no smoothing)</li>
+        <li><strong class="pname"><code>highAccuracy</code></strong> (bool) - if True, sample every corresponding pixel in each image; 
+          otherwise, sample every nth pixel, where n = the ratio of the 
+          image scales.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="removeContourOverlay"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">removeContourOverlay</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">tag</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.removeContourOverlay">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Removes the contourOverlay from the ImagePlot corresponding to the 
+  tag.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>tag</code></strong> (string) - tag for contour overlay in ImagePlot.contourOverlays to be 
+          removed</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="addPlotObjects"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">addPlotObjects</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">objRAs</span>,
+        <span class="sig-arg">objDecs</span>,
+        <span class="sig-arg">tag</span>,
+        <span class="sig-arg">symbol</span>=<span class="sig-default">&quot;circle&quot;</span>,
+        <span class="sig-arg">size</span>=<span class="sig-default">4.0</span>,
+        <span class="sig-arg">width</span>=<span class="sig-default">1.0</span>,
+        <span class="sig-arg">color</span>=<span class="sig-default">&quot;yellow&quot;</span>,
+        <span class="sig-arg">objLabels</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">objLabelSize</span>=<span class="sig-default">12.0</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.addPlotObjects">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Add objects with RA, dec coords objRAs, objDecs to the ImagePlot. Only
+  objects that fall within the image boundaries will be plotted.</p>
+  <p>symbol specifies the type of symbol with which to mark the object in 
+  the image. The following values are allowed:</p>
+  <ul>
+    <li>
+      &quot;circle&quot;
+    </li>
+    <li>
+      &quot;box&quot;
+    </li>
+    <li>
+      &quot;cross&quot;
+    </li>
+    <li>
+      &quot;diamond&quot;
+    </li>
+  </ul>
+  <p>size specifies the diameter in arcsec of the symbol (if plotSymbol == 
+  &quot;circle&quot;), or the width of the box in arcsec (if plotSymbol == 
+  &quot;box&quot;)</p>
+  <p>width specifies the thickness of the symbol lines in pixels</p>
+  <p>color can be any valid matplotlib color (e.g. &quot;red&quot;, 
+  &quot;green&quot;, etc.)</p>
+  <p>The objects can be removed from the plot by using removePlotObjects(),
+  and then calling draw(). If the ImagePlot already has a set of 
+  plotObjects with the same tag, they will be replaced.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>objRAs</code></strong> (numpy array or list) - object RA coords in decimal degrees</li>
+        <li><strong class="pname"><code>objDecs</code></strong> (numpy array or list) - corresponding object Dec. coords in decimal degrees</li>
+        <li><strong class="pname"><code>tag</code></strong> (string) - identifying tag for this set of objects</li>
+        <li><strong class="pname"><code>symbol</code></strong> (string) - either &quot;circle&quot;, &quot;box&quot;, &quot;cross&quot;, or
+          &quot;diamond&quot;</li>
+        <li><strong class="pname"><code>size</code></strong> (float) - size of symbols to plot (radius in arcsec, or width of box)</li>
+        <li><strong class="pname"><code>width</code></strong> (float) - width of symbols in pixels</li>
+        <li><strong class="pname"><code>color</code></strong> (string) - any valid matplotlib color string, e.g. &quot;red&quot;, 
+          &quot;green&quot; etc.</li>
+        <li><strong class="pname"><code>objLabels</code></strong> (list) - text labels to plot next to objects in figure</li>
+        <li><strong class="pname"><code>objLabelSize</code></strong> (float) - size of font used for object labels (in points)</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="removePlotObjects"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">removePlotObjects</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">tag</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.removePlotObjects">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Removes the plotObjects from the ImagePlot corresponding to the tag. 
+  The plot must be redrawn for the change to take effect.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>tag</code></strong> (string) - tag for set of objects in ImagePlot.plotObjects to be removed</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="addCompass"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">addCompass</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">location</span>,
+        <span class="sig-arg">sizeArcSec</span>,
+        <span class="sig-arg">color</span>=<span class="sig-default">&quot;white&quot;</span>,
+        <span class="sig-arg">fontSize</span>=<span class="sig-default">12</span>,
+        <span class="sig-arg">width</span>=<span class="sig-default">20.0</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.addCompass">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Adds a compass to the ImagePlot at the given location ('N', 'NE', 'E',
+  'SE', 'S', 'SW', 'W', or 'NW'). Note these aren't directions on the WCS 
+  coordinate grid, they are relative positions on the plot - so N is top 
+  centre, NE is top right, SW is bottom right etc.. Alternatively, pixel 
+  coordinates (x, y) in the image can be given.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>location</code></strong> (string or tuple) - location in the plot where the compass is drawn:
+          <ul>
+            <li>
+              string: N, NE, E, SE, S, SW, W or NW
+            </li>
+            <li>
+              tuple: (x, y)
+            </li>
+          </ul></li>
+        <li><strong class="pname"><code>sizeArcSec</code></strong> (float) - length of the compass arrows on the plot in arc seconds</li>
+        <li><strong class="pname"><code>color</code></strong> (string) - any valid matplotlib color string</li>
+        <li><strong class="pname"><code>fontSize</code></strong> (float) - size of font used to label N and E, in points</li>
+        <li><strong class="pname"><code>width</code></strong> (float) - width of arrows used to mark compass</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="addScaleBar"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">addScaleBar</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">location</span>,
+        <span class="sig-arg">sizeArcSec</span>,
+        <span class="sig-arg">color</span>=<span class="sig-default">&quot;white&quot;</span>,
+        <span class="sig-arg">fontSize</span>=<span class="sig-default">12</span>,
+        <span class="sig-arg">width</span>=<span class="sig-default">20.0</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.addScaleBar">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Adds a scale bar to the ImagePlot at the given location ('N', 'NE', 
+  'E', 'SE', 'S', 'SW', 'W', or 'NW'). Note these aren't directions on the 
+  WCS coordinate grid, they are relative positions on the plot - so N is 
+  top centre, NE is top right, SW is bottom right etc.. Alternatively, 
+  pixel coordinates (x, y) in the image can be given.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>location</code></strong> (string or tuple) - location in the plot where the compass is drawn:
+          <ul>
+            <li>
+              string: N, NE, E, SE, S, SW, W or NW
+            </li>
+            <li>
+              tuple: (x, y)
+            </li>
+          </ul></li>
+        <li><strong class="pname"><code>sizeArcSec</code></strong> (float) - scale length to indicate on the plot in arc seconds</li>
+        <li><strong class="pname"><code>color</code></strong> (string) - any valid matplotlib color string</li>
+        <li><strong class="pname"><code>fontSize</code></strong> (float) - size of font used to label N and E, in points</li>
+        <li><strong class="pname"><code>width</code></strong> (float) - width of arrow used to mark scale</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="calcWCSAxisLabels"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">calcWCSAxisLabels</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">axesLabels</span>=<span class="sig-default">&quot;decimal&quot;</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.calcWCSAxisLabels">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>This function calculates the positions of coordinate labels for the RA
+  and Dec axes of the ImagePlot. The tick steps are calculated 
+  automatically unless self.RATickSteps, self.decTickSteps are set to 
+  values other than &quot;auto&quot; (see <a 
+  href="astLib.astPlots.ImagePlot-class.html#__init__" 
+  class="link">ImagePlot.__init__</a>).</p>
+  <p>The ImagePlot must be redrawn for changes to be applied.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>axesLabels</code></strong> (string) - either &quot;sexagesimal&quot; (for H:M:S, D:M:S), 
+          &quot;decimal&quot; (for decimal degrees), or None for no 
+          coordinate axes labels</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="save"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">save</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">fileName</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.save">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Saves the ImagePlot in any format that matplotlib can understand, as 
+  determined from the fileName extension.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>fileName</code></strong> (string) - path where plot will be written</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getTickSteps"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getTickSteps</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astPlots-pysrc.html#ImagePlot.getTickSteps">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Chooses the appropriate WCS coordinate tick steps for the plot based 
+  on its size. Whether the ticks are decimal or sexagesimal is set by 
+  self.axesLabels.</p>
+  <p>Note: minor ticks not used at the moment.</p>
+  <dl class="fields">
+    <dt>Returns: dictionary</dt>
+        <dd>tick step sizes for major, minor plot ticks, in format {'major', 
+          'minor'}</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Aug 21 20:24:26 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

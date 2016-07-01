@@ -1,0 +1,1128 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>astLib.astImages</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="astLib-module.html">Package&nbsp;astLib</a> ::
+        Module&nbsp;astImages
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="astLib.astImages-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module astImages</h1><p class="nomargin-top"><span class="codelink"><a href="astLib.astImages-pysrc.html">source&nbsp;code</a></span></p>
+<p>module for simple .fits image tasks (rotation, clipping out sections, 
+  making .pngs etc.)</p>
+  <p>(c) 2007-2014 Matt Hilton</p>
+  <p><a href="http://astlib.sourceforge.net" 
+  target="_top">http://astlib.sourceforge.net</a></p>
+  <p>Some routines in this module will fail if, e.g., asked to clip a 
+  section from a .fits image at a position not found within the image (as 
+  determined using the WCS). Where this occurs, the function will return 
+  None. An error message will be printed to the console when this happens 
+  if astImages.REPORT_ERRORS=True (the default). Testing if an astImages 
+  function returns None can be used to handle errors in scripts.</p>
+
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astImages-module.html#clipImageSectionWCS" class="summary-sig-name">clipImageSectionWCS</a>(<span class="summary-sig-arg">imageData</span>,
+        <span class="summary-sig-arg">imageWCS</span>,
+        <span class="summary-sig-arg">RADeg</span>,
+        <span class="summary-sig-arg">decDeg</span>,
+        <span class="summary-sig-arg">clipSizeDeg</span>,
+        <span class="summary-sig-arg">returnWCS</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Clips a square or rectangular section from an image array at the 
+      given celestial coordinates.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astImages-pysrc.html#clipImageSectionWCS">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astImages-module.html#clipImageSectionPix" class="summary-sig-name">clipImageSectionPix</a>(<span class="summary-sig-arg">imageData</span>,
+        <span class="summary-sig-arg">XCoord</span>,
+        <span class="summary-sig-arg">YCoord</span>,
+        <span class="summary-sig-arg">clipSizePix</span>)</span><br />
+      Clips a square or rectangular section from an image array at the 
+      given pixel coordinates.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astImages-pysrc.html#clipImageSectionPix">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astImages-module.html#clipRotatedImageSectionWCS" class="summary-sig-name">clipRotatedImageSectionWCS</a>(<span class="summary-sig-arg">imageData</span>,
+        <span class="summary-sig-arg">imageWCS</span>,
+        <span class="summary-sig-arg">RADeg</span>,
+        <span class="summary-sig-arg">decDeg</span>,
+        <span class="summary-sig-arg">clipSizeDeg</span>,
+        <span class="summary-sig-arg">returnWCS</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Clips a square or rectangular section from an image array at the 
+      given celestial coordinates.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astImages-pysrc.html#clipRotatedImageSectionWCS">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astImages-module.html#clipUsingRADecCoords" class="summary-sig-name">clipUsingRADecCoords</a>(<span class="summary-sig-arg">imageData</span>,
+        <span class="summary-sig-arg">imageWCS</span>,
+        <span class="summary-sig-arg">RAMin</span>,
+        <span class="summary-sig-arg">RAMax</span>,
+        <span class="summary-sig-arg">decMin</span>,
+        <span class="summary-sig-arg">decMax</span>,
+        <span class="summary-sig-arg">returnWCS</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Clips a section from an image array at the pixel coordinates 
+      corresponding to the given celestial coordinates.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astImages-pysrc.html#clipUsingRADecCoords">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astImages-module.html#scaleImage" class="summary-sig-name">scaleImage</a>(<span class="summary-sig-arg">imageData</span>,
+        <span class="summary-sig-arg">imageWCS</span>,
+        <span class="summary-sig-arg">scaleFactor</span>)</span><br />
+      Scales image array and WCS by the given scale factor.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astImages-pysrc.html#scaleImage">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astImages-module.html#intensityCutImage" class="summary-sig-name">intensityCutImage</a>(<span class="summary-sig-arg">imageData</span>,
+        <span class="summary-sig-arg">cutLevels</span>)</span><br />
+      Creates a matplotlib.pylab plot of an image array with the specified 
+      cuts in intensity applied.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astImages-pysrc.html#intensityCutImage">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astImages-module.html#resampleToTanProjection" class="summary-sig-name">resampleToTanProjection</a>(<span class="summary-sig-arg">imageData</span>,
+        <span class="summary-sig-arg">imageWCS</span>,
+        <span class="summary-sig-arg">outputPixDimensions</span>=<span class="summary-sig-default">[600,600]</span>)</span><br />
+      Resamples an image and WCS to a tangent plane projection.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astImages-pysrc.html#resampleToTanProjection">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astImages-module.html#resampleToWCS" class="summary-sig-name">resampleToWCS</a>(<span class="summary-sig-arg">im1Data</span>,
+        <span class="summary-sig-arg">im1WCS</span>,
+        <span class="summary-sig-arg">im2Data</span>,
+        <span class="summary-sig-arg">im2WCS</span>,
+        <span class="summary-sig-arg">highAccuracy</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">onlyOverlapping</span>=<span class="summary-sig-default">True</span>)</span><br />
+      Resamples data corresponding to second image (with data im2Data, WCS 
+      im2WCS) onto the WCS of the first image (im1Data, im1WCS).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astImages-pysrc.html#resampleToWCS">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astImages-module.html#generateContourOverlay" class="summary-sig-name">generateContourOverlay</a>(<span class="summary-sig-arg">backgroundImageData</span>,
+        <span class="summary-sig-arg">backgroundImageWCS</span>,
+        <span class="summary-sig-arg">contourImageData</span>,
+        <span class="summary-sig-arg">contourImageWCS</span>,
+        <span class="summary-sig-arg">contourLevels</span>,
+        <span class="summary-sig-arg">contourSmoothFactor</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">highAccuracy</span>=<span class="summary-sig-default">False</span>)</span><br />
+      Rescales an image array to be used as a contour overlay to have the 
+      same dimensions as the background image, and generates a set of 
+      contour levels.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astImages-pysrc.html#generateContourOverlay">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astImages-module.html#saveBitmap" class="summary-sig-name">saveBitmap</a>(<span class="summary-sig-arg">outputFileName</span>,
+        <span class="summary-sig-arg">imageData</span>,
+        <span class="summary-sig-arg">cutLevels</span>,
+        <span class="summary-sig-arg">size</span>,
+        <span class="summary-sig-arg">colorMapName</span>)</span><br />
+      Makes a bitmap image from an image array; the image format is 
+      specified by the filename extension.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astImages-pysrc.html#saveBitmap">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astImages-module.html#saveContourOverlayBitmap" class="summary-sig-name">saveContourOverlayBitmap</a>(<span class="summary-sig-arg">outputFileName</span>,
+        <span class="summary-sig-arg">backgroundImageData</span>,
+        <span class="summary-sig-arg">backgroundImageWCS</span>,
+        <span class="summary-sig-arg">cutLevels</span>,
+        <span class="summary-sig-arg">size</span>,
+        <span class="summary-sig-arg">colorMapName</span>,
+        <span class="summary-sig-arg">contourImageData</span>,
+        <span class="summary-sig-arg">contourImageWCS</span>,
+        <span class="summary-sig-arg">contourSmoothFactor</span>,
+        <span class="summary-sig-arg">contourLevels</span>,
+        <span class="summary-sig-arg">contourColor</span>,
+        <span class="summary-sig-arg">contourWidth</span>)</span><br />
+      Makes a bitmap image from an image array, with a set of contours 
+      generated from a second image array overlaid.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astImages-pysrc.html#saveContourOverlayBitmap">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astImages-module.html#saveFITS" class="summary-sig-name">saveFITS</a>(<span class="summary-sig-arg">outputFileName</span>,
+        <span class="summary-sig-arg">imageData</span>,
+        <span class="summary-sig-arg">imageWCS</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Writes an image array to a new .fits file.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astImages-pysrc.html#saveFITS">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astImages-module.html#histEq" class="summary-sig-name">histEq</a>(<span class="summary-sig-arg">inputArray</span>,
+        <span class="summary-sig-arg">numBins</span>)</span><br />
+      Performs histogram equalisation of the input numpy array.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astImages-pysrc.html#histEq">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">numpy array</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astImages-module.html#normalise" class="summary-sig-name">normalise</a>(<span class="summary-sig-arg">inputArray</span>,
+        <span class="summary-sig-arg">clipMinMax</span>)</span><br />
+      Clips the inputArray in intensity and normalises the array such that 
+      minimum and maximum values are 0, 1.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astImages-pysrc.html#normalise">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="REPORT_ERRORS"></a><span class="summary-name">REPORT_ERRORS</span> = <code title="True">True</code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="clipImageSectionWCS"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">clipImageSectionWCS</span>(<span class="sig-arg">imageData</span>,
+        <span class="sig-arg">imageWCS</span>,
+        <span class="sig-arg">RADeg</span>,
+        <span class="sig-arg">decDeg</span>,
+        <span class="sig-arg">clipSizeDeg</span>,
+        <span class="sig-arg">returnWCS</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astImages-pysrc.html#clipImageSectionWCS">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Clips a square or rectangular section from an image array at the given
+  celestial coordinates. An updated WCS for the clipped section is 
+  optionally returned, as well as the x, y pixel coordinates in the 
+  original image corresponding to the clipped section.</p>
+  <p>Note that the clip size is specified in degrees on the sky. For 
+  projections that have varying real pixel scale across the map (e.g. CEA),
+  use <a href="astLib.astImages-module.html#clipUsingRADecCoords" 
+  class="link">clipUsingRADecCoords</a> instead.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>imageData</code></strong> (numpy array) - image data array</li>
+        <li><strong class="pname"><code>imageWCS</code></strong> (astWCS.WCS) - astWCS.WCS object</li>
+        <li><strong class="pname"><code>RADeg</code></strong> (float) - coordinate in decimal degrees</li>
+        <li><strong class="pname"><code>decDeg</code></strong> (float) - coordinate in decimal degrees</li>
+        <li><strong class="pname"><code>clipSizeDeg</code></strong> (float or list in format [widthDeg, heightDeg]) - if float, size of square clipped section in decimal degrees; if 
+          list, size of clipped section in degrees in x, y axes of image 
+          respectively</li>
+        <li><strong class="pname"><code>returnWCS</code></strong> (bool) - if True, return an updated WCS for the clipped section</li>
+    </ul></dd>
+    <dt>Returns: dictionary</dt>
+        <dd>clipped image section (numpy array), updated astWCS WCS object 
+          for clipped image section, and coordinates of clipped section in 
+          imageData in format {'data', 'wcs', 'clippedSection'}.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="clipImageSectionPix"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">clipImageSectionPix</span>(<span class="sig-arg">imageData</span>,
+        <span class="sig-arg">XCoord</span>,
+        <span class="sig-arg">YCoord</span>,
+        <span class="sig-arg">clipSizePix</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astImages-pysrc.html#clipImageSectionPix">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Clips a square or rectangular section from an image array at the given
+  pixel coordinates.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>imageData</code></strong> (numpy array) - image data array</li>
+        <li><strong class="pname"><code>XCoord</code></strong> (float) - coordinate in pixels</li>
+        <li><strong class="pname"><code>YCoord</code></strong> (float) - coordinate in pixels</li>
+        <li><strong class="pname"><code>clipSizePix</code></strong> (float or list in format [widthPix, heightPix]) - if float, size of square clipped section in pixels; if list, size
+          of clipped section in pixels in x, y axes of output image 
+          respectively</li>
+    </ul></dd>
+    <dt>Returns: numpy array</dt>
+        <dd>clipped image section</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="clipRotatedImageSectionWCS"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">clipRotatedImageSectionWCS</span>(<span class="sig-arg">imageData</span>,
+        <span class="sig-arg">imageWCS</span>,
+        <span class="sig-arg">RADeg</span>,
+        <span class="sig-arg">decDeg</span>,
+        <span class="sig-arg">clipSizeDeg</span>,
+        <span class="sig-arg">returnWCS</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astImages-pysrc.html#clipRotatedImageSectionWCS">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Clips a square or rectangular section from an image array at the given
+  celestial coordinates. The resulting clip is rotated and/or flipped such 
+  that North is at the top, and East appears at the left. An updated WCS 
+  for the clipped section is also returned. Note that the alignment of the 
+  rotated WCS is currently not perfect - however, it is probably good 
+  enough in most cases for use with <a 
+  href="astLib.astPlots.ImagePlot-class.html" class="link">ImagePlot</a> 
+  for plotting purposes.</p>
+  <p>Note that the clip size is specified in degrees on the sky. For 
+  projections that have varying real pixel scale across the map (e.g. CEA),
+  use <a href="astLib.astImages-module.html#clipUsingRADecCoords" 
+  class="link">clipUsingRADecCoords</a> instead.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>imageData</code></strong> (numpy array) - image data array</li>
+        <li><strong class="pname"><code>imageWCS</code></strong> (astWCS.WCS) - astWCS.WCS object</li>
+        <li><strong class="pname"><code>RADeg</code></strong> (float) - coordinate in decimal degrees</li>
+        <li><strong class="pname"><code>decDeg</code></strong> (float) - coordinate in decimal degrees</li>
+        <li><strong class="pname"><code>clipSizeDeg</code></strong> (float) - if float, size of square clipped section in decimal degrees; if 
+          list, size of clipped section in degrees in RA, dec. axes of 
+          output rotated image respectively</li>
+        <li><strong class="pname"><code>returnWCS</code></strong> (bool) - if True, return an updated WCS for the clipped section</li>
+    </ul></dd>
+    <dt>Returns: dictionary</dt>
+        <dd>clipped image section (numpy array), updated astWCS WCS object 
+          for clipped image section, in format {'data', 'wcs'}.</dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        Returns 'None' if the requested position is not found within the 
+        image. If the image WCS does not have keywords of the form CD1_1 
+        etc., the output WCS will not be rotated.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="clipUsingRADecCoords"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">clipUsingRADecCoords</span>(<span class="sig-arg">imageData</span>,
+        <span class="sig-arg">imageWCS</span>,
+        <span class="sig-arg">RAMin</span>,
+        <span class="sig-arg">RAMax</span>,
+        <span class="sig-arg">decMin</span>,
+        <span class="sig-arg">decMax</span>,
+        <span class="sig-arg">returnWCS</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astImages-pysrc.html#clipUsingRADecCoords">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Clips a section from an image array at the pixel coordinates 
+  corresponding to the given celestial coordinates.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>imageData</code></strong> (numpy array) - image data array</li>
+        <li><strong class="pname"><code>imageWCS</code></strong> (astWCS.WCS) - astWCS.WCS object</li>
+        <li><strong class="pname"><code>RAMin</code></strong> (float) - minimum RA coordinate in decimal degrees</li>
+        <li><strong class="pname"><code>RAMax</code></strong> (float) - maximum RA coordinate in decimal degrees</li>
+        <li><strong class="pname"><code>decMin</code></strong> (float) - minimum dec coordinate in decimal degrees</li>
+        <li><strong class="pname"><code>decMax</code></strong> (float) - maximum dec coordinate in decimal degrees</li>
+        <li><strong class="pname"><code>returnWCS</code></strong> (bool) - if True, return an updated WCS for the clipped section</li>
+    </ul></dd>
+    <dt>Returns: dictionary</dt>
+        <dd>clipped image section (numpy array), updated astWCS WCS object 
+          for clipped image section, and corresponding pixel coordinates in
+          imageData in format {'data', 'wcs', 'clippedSection'}.</dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        Returns 'None' if the requested position is not found within the 
+        image.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="scaleImage"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">scaleImage</span>(<span class="sig-arg">imageData</span>,
+        <span class="sig-arg">imageWCS</span>,
+        <span class="sig-arg">scaleFactor</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astImages-pysrc.html#scaleImage">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Scales image array and WCS by the given scale factor.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>imageData</code></strong> (numpy array) - image data array</li>
+        <li><strong class="pname"><code>imageWCS</code></strong> (astWCS.WCS) - astWCS.WCS object</li>
+        <li><strong class="pname"><code>scaleFactor</code></strong> (float or list or tuple) - factor to resize image by - if tuple or list, in format [x scale 
+          factor, y scale factor]</li>
+    </ul></dd>
+    <dt>Returns: dictionary</dt>
+        <dd>image data (numpy array), updated astWCS WCS object for image, in
+          format {'data', 'wcs'}.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="intensityCutImage"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">intensityCutImage</span>(<span class="sig-arg">imageData</span>,
+        <span class="sig-arg">cutLevels</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astImages-pysrc.html#intensityCutImage">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Creates a matplotlib.pylab plot of an image array with the specified 
+  cuts in intensity applied. This routine is used by <a 
+  href="astLib.astImages-module.html#saveBitmap" 
+  class="link">saveBitmap</a> and <a 
+  href="astLib.astImages-module.html#saveContourOverlayBitmap" 
+  class="link">saveContourOverlayBitmap</a>, which both produce output as 
+  .png, .jpg, etc. images.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>imageData</code></strong> (numpy array) - image data array</li>
+        <li><strong class="pname"><code>cutLevels</code></strong> (list) - sets the image scaling - available options:
+          <ul>
+            <li>
+              pixel values: cutLevels=[low value, high value].
+            </li>
+            <li>
+              histogram equalisation: cutLevels=[&quot;histEq&quot;, number
+              of bins ( e.g. 1024)]
+            </li>
+            <li>
+              relative: cutLevels=[&quot;relative&quot;, cut per cent level
+              (e.g. 99.5)]
+            </li>
+            <li>
+              smart: cutLevels=[&quot;smart&quot;, cut per cent level (e.g.
+              99.5)]
+            </li>
+          </ul>
+          <p>[&quot;smart&quot;, 99.5] seems to provide good scaling over a
+          range of different images.</p></li>
+    </ul></dd>
+    <dt>Returns: dictionary</dt>
+        <dd>image section (numpy.array), matplotlib image normalisation 
+          (matplotlib.colors.Normalize), in the format {'image', 'norm'}.</dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        If cutLevels[0] == &quot;histEq&quot;, then only {'image'} is 
+        returned.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="resampleToTanProjection"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">resampleToTanProjection</span>(<span class="sig-arg">imageData</span>,
+        <span class="sig-arg">imageWCS</span>,
+        <span class="sig-arg">outputPixDimensions</span>=<span class="sig-default">[600,600]</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astImages-pysrc.html#resampleToTanProjection">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Resamples an image and WCS to a tangent plane projection. Purely for 
+  plotting purposes (e.g., ensuring RA, dec. coordinate axes 
+  perpendicular).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>imageData</code></strong> (numpy array) - image data array</li>
+        <li><strong class="pname"><code>imageWCS</code></strong> (astWCS.WCS) - astWCS.WCS object</li>
+        <li><strong class="pname"><code>outputPixDimensions</code></strong> (list) - [width, height] of output image in pixels</li>
+    </ul></dd>
+    <dt>Returns: dictionary</dt>
+        <dd>image data (numpy array), updated astWCS WCS object for image, in
+          format {'data', 'wcs'}.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="resampleToWCS"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">resampleToWCS</span>(<span class="sig-arg">im1Data</span>,
+        <span class="sig-arg">im1WCS</span>,
+        <span class="sig-arg">im2Data</span>,
+        <span class="sig-arg">im2WCS</span>,
+        <span class="sig-arg">highAccuracy</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">onlyOverlapping</span>=<span class="sig-default">True</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astImages-pysrc.html#resampleToWCS">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Resamples data corresponding to second image (with data im2Data, WCS 
+  im2WCS) onto the WCS of the first image (im1Data, im1WCS). The output, 
+  resampled image is of the pixel same dimensions of the first image. This 
+  routine is for assisting in plotting - performing photometry on the 
+  output is not recommended.</p>
+  <p>Set highAccuracy == True to sample every corresponding pixel in each 
+  image; otherwise only every nth pixel (where n is the ratio of the image 
+  scales) will be sampled, with values in between being set using a linear 
+  interpolation (much faster).</p>
+  <p>Set onlyOverlapping == True to speed up resampling by only resampling 
+  the overlapping area defined by both image WCSs.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>im1Data</code></strong> (numpy array) - image data array for first image</li>
+        <li><strong class="pname"><code>im1WCS</code></strong> (astWCS.WCS) - astWCS.WCS object corresponding to im1Data</li>
+        <li><strong class="pname"><code>im2Data</code></strong> (numpy array) - image data array for second image (to be resampled to match first
+          image)</li>
+        <li><strong class="pname"><code>im2WCS</code></strong> (astWCS.WCS) - astWCS.WCS object corresponding to im2Data</li>
+        <li><strong class="pname"><code>highAccuracy</code></strong> (bool) - if True, sample every corresponding pixel in each image; 
+          otherwise, sample every nth pixel, where n = the ratio of the 
+          image scales.</li>
+        <li><strong class="pname"><code>onlyOverlapping</code></strong> (bool) - if True, only consider the overlapping area defined by both image
+          WCSs (speeds things up)</li>
+    </ul></dd>
+    <dt>Returns: dictionary</dt>
+        <dd>numpy image data array and associated WCS in format {'data', 
+          'wcs'}</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="generateContourOverlay"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">generateContourOverlay</span>(<span class="sig-arg">backgroundImageData</span>,
+        <span class="sig-arg">backgroundImageWCS</span>,
+        <span class="sig-arg">contourImageData</span>,
+        <span class="sig-arg">contourImageWCS</span>,
+        <span class="sig-arg">contourLevels</span>,
+        <span class="sig-arg">contourSmoothFactor</span>=<span class="sig-default">0</span>,
+        <span class="sig-arg">highAccuracy</span>=<span class="sig-default">False</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astImages-pysrc.html#generateContourOverlay">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Rescales an image array to be used as a contour overlay to have the 
+  same dimensions as the background image, and generates a set of contour 
+  levels. The image array from which the contours are to be generated will 
+  be resampled to the same dimensions as the background image data, and can
+  be optionally smoothed using a Gaussian filter. The sigma of the Gaussian
+  filter (contourSmoothFactor) is specified in arcsec.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>backgroundImageData</code></strong> (numpy array) - background image data array</li>
+        <li><strong class="pname"><code>backgroundImageWCS</code></strong> (astWCS.WCS) - astWCS.WCS object of the background image data array</li>
+        <li><strong class="pname"><code>contourImageData</code></strong> (numpy array) - image data array from which contours are to be generated</li>
+        <li><strong class="pname"><code>contourImageWCS</code></strong> (astWCS.WCS) - astWCS.WCS object corresponding to contourImageData</li>
+        <li><strong class="pname"><code>contourLevels</code></strong> (list) - sets the contour levels - available options:
+          <ul>
+            <li>
+              values: contourLevels=[list of values specifying each level]
+            </li>
+            <li>
+              linear spacing: contourLevels=['linear', min level value, max
+              level value, number of levels] - can use &quot;min&quot;, 
+              &quot;max&quot; to automatically set min, max levels from 
+              image data
+            </li>
+            <li>
+              log spacing: contourLevels=['log', min level value, max level
+              value, number of levels] - can use &quot;min&quot;, 
+              &quot;max&quot; to automatically set min, max levels from 
+              image data
+            </li>
+          </ul></li>
+        <li><strong class="pname"><code>contourSmoothFactor</code></strong> (float) - standard deviation (in arcsec) of Gaussian filter for 
+          pre-smoothing of contour image data (set to 0 for no smoothing)</li>
+        <li><strong class="pname"><code>highAccuracy</code></strong> (bool) - if True, sample every corresponding pixel in each image; 
+          otherwise, sample every nth pixel, where n = the ratio of the 
+          image scales.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="saveBitmap"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">saveBitmap</span>(<span class="sig-arg">outputFileName</span>,
+        <span class="sig-arg">imageData</span>,
+        <span class="sig-arg">cutLevels</span>,
+        <span class="sig-arg">size</span>,
+        <span class="sig-arg">colorMapName</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astImages-pysrc.html#saveBitmap">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Makes a bitmap image from an image array; the image format is 
+  specified by the filename extension. (e.g. &quot;.jpg&quot; =JPEG, 
+  &quot;.png&quot;=PNG).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>outputFileName</code></strong> (string) - filename of output bitmap image</li>
+        <li><strong class="pname"><code>imageData</code></strong> (numpy array) - image data array</li>
+        <li><strong class="pname"><code>cutLevels</code></strong> (list) - sets the image scaling - available options:
+          <ul>
+            <li>
+              pixel values: cutLevels=[low value, high value].
+            </li>
+            <li>
+              histogram equalisation: cutLevels=[&quot;histEq&quot;, number
+              of bins ( e.g. 1024)]
+            </li>
+            <li>
+              relative: cutLevels=[&quot;relative&quot;, cut per cent level
+              (e.g. 99.5)]
+            </li>
+            <li>
+              smart: cutLevels=[&quot;smart&quot;, cut per cent level (e.g.
+              99.5)]
+            </li>
+          </ul>
+          <p>[&quot;smart&quot;, 99.5] seems to provide good scaling over a
+          range of different images.</p></li>
+        <li><strong class="pname"><code>size</code></strong> (int) - size of output image in pixels</li>
+        <li><strong class="pname"><code>colorMapName</code></strong> (string) - name of a standard matplotlib colormap, e.g. &quot;hot&quot;, 
+          &quot;cool&quot;, &quot;gray&quot; etc. (do 
+          &quot;help(pylab.colormaps)&quot; in the Python interpreter to 
+          see available options)</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="saveContourOverlayBitmap"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">saveContourOverlayBitmap</span>(<span class="sig-arg">outputFileName</span>,
+        <span class="sig-arg">backgroundImageData</span>,
+        <span class="sig-arg">backgroundImageWCS</span>,
+        <span class="sig-arg">cutLevels</span>,
+        <span class="sig-arg">size</span>,
+        <span class="sig-arg">colorMapName</span>,
+        <span class="sig-arg">contourImageData</span>,
+        <span class="sig-arg">contourImageWCS</span>,
+        <span class="sig-arg">contourSmoothFactor</span>,
+        <span class="sig-arg">contourLevels</span>,
+        <span class="sig-arg">contourColor</span>,
+        <span class="sig-arg">contourWidth</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astImages-pysrc.html#saveContourOverlayBitmap">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Makes a bitmap image from an image array, with a set of contours 
+  generated from a second image array overlaid. The image format is 
+  specified by the file extension (e.g. &quot;.jpg&quot;=JPEG, 
+  &quot;.png&quot;=PNG). The image array from which the contours are to be 
+  generated can optionally be pre-smoothed using a Gaussian filter.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>outputFileName</code></strong> (string) - filename of output bitmap image</li>
+        <li><strong class="pname"><code>backgroundImageData</code></strong> (numpy array) - background image data array</li>
+        <li><strong class="pname"><code>backgroundImageWCS</code></strong> (astWCS.WCS) - astWCS.WCS object of the background image data array</li>
+        <li><strong class="pname"><code>cutLevels</code></strong> (list) - sets the image scaling - available options:
+          <ul>
+            <li>
+              pixel values: cutLevels=[low value, high value].
+            </li>
+            <li>
+              histogram equalisation: cutLevels=[&quot;histEq&quot;, number
+              of bins ( e.g. 1024)]
+            </li>
+            <li>
+              relative: cutLevels=[&quot;relative&quot;, cut per cent level
+              (e.g. 99.5)]
+            </li>
+            <li>
+              smart: cutLevels=[&quot;smart&quot;, cut per cent level (e.g.
+              99.5)]
+            </li>
+          </ul>
+          <p>[&quot;smart&quot;, 99.5] seems to provide good scaling over a
+          range of different images.</p></li>
+        <li><strong class="pname"><code>size</code></strong> (int) - size of output image in pixels</li>
+        <li><strong class="pname"><code>colorMapName</code></strong> (string) - name of a standard matplotlib colormap, e.g. &quot;hot&quot;, 
+          &quot;cool&quot;, &quot;gray&quot; etc. (do 
+          &quot;help(pylab.colormaps)&quot; in the Python interpreter to 
+          see available options)</li>
+        <li><strong class="pname"><code>contourImageData</code></strong> (numpy array) - image data array from which contours are to be generated</li>
+        <li><strong class="pname"><code>contourImageWCS</code></strong> (astWCS.WCS) - astWCS.WCS object corresponding to contourImageData</li>
+        <li><strong class="pname"><code>contourSmoothFactor</code></strong> (float) - standard deviation (in pixels) of Gaussian filter for 
+          pre-smoothing of contour image data (set to 0 for no smoothing)</li>
+        <li><strong class="pname"><code>contourLevels</code></strong> (list) - sets the contour levels - available options:
+          <ul>
+            <li>
+              values: contourLevels=[list of values specifying each level]
+            </li>
+            <li>
+              linear spacing: contourLevels=['linear', min level value, max
+              level value, number of levels] - can use &quot;min&quot;, 
+              &quot;max&quot; to automatically set min, max levels from 
+              image data
+            </li>
+            <li>
+              log spacing: contourLevels=['log', min level value, max level
+              value, number of levels] - can use &quot;min&quot;, 
+              &quot;max&quot; to automatically set min, max levels from 
+              image data
+            </li>
+          </ul></li>
+        <li><strong class="pname"><code>contourColor</code></strong> (string) - color of the overlaid contours, specified by the name of a 
+          standard matplotlib color, e.g., &quot;black&quot;, 
+          &quot;white&quot;, &quot;cyan&quot; etc. (do 
+          &quot;help(pylab.colors)&quot; in the Python interpreter to see 
+          available options)</li>
+        <li><strong class="pname"><code>contourWidth</code></strong> (int) - width of the overlaid contours</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="saveFITS"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">saveFITS</span>(<span class="sig-arg">outputFileName</span>,
+        <span class="sig-arg">imageData</span>,
+        <span class="sig-arg">imageWCS</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astImages-pysrc.html#saveFITS">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Writes an image array to a new .fits file.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>outputFileName</code></strong> (string) - filename of output FITS image</li>
+        <li><strong class="pname"><code>imageData</code></strong> (numpy array) - image data array</li>
+        <li><strong class="pname"><code>imageWCS</code></strong> (astWCS.WCS object) - image WCS object</li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Note:</strong>
+        If imageWCS=None, the FITS image will be written with a rudimentary
+        header containing no meta data.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="histEq"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">histEq</span>(<span class="sig-arg">inputArray</span>,
+        <span class="sig-arg">numBins</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astImages-pysrc.html#histEq">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Performs histogram equalisation of the input numpy array.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>inputArray</code></strong> (numpy array) - image data array</li>
+        <li><strong class="pname"><code>numBins</code></strong> (int) - number of bins in which to perform the operation (e.g. 1024)</li>
+    </ul></dd>
+    <dt>Returns: numpy array</dt>
+        <dd>image data array</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="normalise"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">normalise</span>(<span class="sig-arg">inputArray</span>,
+        <span class="sig-arg">clipMinMax</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astImages-pysrc.html#normalise">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Clips the inputArray in intensity and normalises the array such that 
+  minimum and maximum values are 0, 1. Clip in intensity is specified by 
+  clipMinMax, a list in the format [clipMin, clipMax]</p>
+  <p>Used for normalising image arrays so that they can be turned into RGB 
+  arrays that matplotlib can plot (see <a 
+  href="astLib.astPlots.ImagePlot-class.html" 
+  class="link">astPlots.ImagePlot</a>).</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>inputArray</code></strong> (numpy array) - image data array</li>
+        <li><strong class="pname"><code>clipMinMax</code></strong> (list) - [minimum value of clipped array, maximum value of clipped array]</li>
+    </ul></dd>
+    <dt>Returns: numpy array</dt>
+        <dd>normalised array with minimum value 0, maximum value 1</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Aug 21 20:24:26 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

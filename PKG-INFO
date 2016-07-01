@@ -1,0 +1,23 @@
+Metadata-Version: 1.1
+Name: astLib
+Version: 0.9.0
+Summary: A set of python modules for producing simple plots, statistics, common calculations, coordinate conversions, and manipulating FITS images with World Coordinate System (WCS) information.
+Home-page: http://astlib.sourceforge.net
+Author: Matt Hilton
+Author-email: matt.hilton@mykolab.com
+License: UNKNOWN
+Download-URL: http://sourceforge.net/project/platformdownload.php?group_id=202537
+Description: astLib is a set of Python modules that provides some tools for research astronomers. It can be
+            used for simple plots, statistics, common calculations, coordinate conversions, and manipulating FITS images
+            with World Coordinate System (WCS) information through PyWCSTools - a simple wrapping of WCSTools by Jessica Mink.
+            PyWCSTools is distributed (and developed) as part of astLib.
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Classifier: Topic :: Software Development :: Libraries

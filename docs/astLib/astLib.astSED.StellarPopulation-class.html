@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>astLib.astSED.StellarPopulation</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="astLib-module.html">Package&nbsp;astLib</a> ::
+        <a href="astLib.astSED-module.html">Module&nbsp;astSED</a> ::
+        Class&nbsp;StellarPopulation
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="astLib.astSED.StellarPopulation-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class StellarPopulation</h1><p class="nomargin-top"><span class="codelink"><a href="astLib.astSED-pysrc.html#StellarPopulation">source&nbsp;code</a></span></p>
+<dl><dt>Known Subclasses:</dt>
+<dd>
+      <ul class="subclass-list">
+<li><a href="astLib.astSED.BC03Model-class.html">BC03Model</a></li><li>, <a href="astLib.astSED.M05Model-class.html">M05Model</a></li><li>, <a href="astLib.astSED.P09Model-class.html">P09Model</a></li>  </ul>
+</dd></dl>
+
+<hr />
+<p>This class describes a stellar population model, either a Simple 
+  Stellar Population (SSP) or a Composite Stellar Population (CSP), such as
+  the models of Bruzual &amp; Charlot 2003 or Maraston 2005.</p>
+  <p>The constructor for this class can be used for generic SSPs or CSPs 
+  stored in white space delimited text files, containing columns for age, 
+  wavelength, and flux. Columns are counted from 0 ... n. Lines starting 
+  with # are ignored.</p>
+  <p>The classes <a href="astLib.astSED.M05Model-class.html" 
+  class="link">M05Model</a> (for Maraston 2005 models), <a 
+  href="astLib.astSED.BC03Model-class.html" class="link">BC03Model</a> (for
+  Bruzual &amp; Charlot 2003 models), and <a 
+  href="astLib.astSED.P09Model-class.html" class="link">P09Model</a> (for 
+  Percival et al. 2009 models) are derived from this class. The only 
+  difference between them is the code used to load in the model data.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__init__"></a><span class="summary-sig-name">__init__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">fileName</span>,
+        <span class="summary-sig-arg">ageColumn</span>=<span class="summary-sig-default">0</span>,
+        <span class="summary-sig-arg">wavelengthColumn</span>=<span class="summary-sig-default">1</span>,
+        <span class="summary-sig-arg">fluxColumn</span>=<span class="summary-sig-default">2</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#StellarPopulation.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type"><a href="astLib.astSED.SED-class.html" class="link">SED</a> object</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.StellarPopulation-class.html#getSED" class="summary-sig-name">getSED</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">ageGyr</span>,
+        <span class="summary-sig-arg">z</span>=<span class="summary-sig-default">0.0</span>,
+        <span class="summary-sig-arg">normalise</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">label</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Extract a SED for given age.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#StellarPopulation.getSED">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.StellarPopulation-class.html#getColourEvolution" class="summary-sig-name">getColourEvolution</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">passband1</span>,
+        <span class="summary-sig-arg">passband2</span>,
+        <span class="summary-sig-arg">zFormation</span>,
+        <span class="summary-sig-arg">zStepSize</span>=<span class="summary-sig-default">0.05</span>,
+        <span class="summary-sig-arg">magType</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Vega</code><code class="variable-quote">'</code></span>)</span><br />
+      Calculates the evolution of the colour observed through passband1 - 
+      passband2 for the StellarPopulation with redshift, from z = 0 to z = 
+      zFormation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#StellarPopulation.getColourEvolution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dictionary</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.StellarPopulation-class.html#getMagEvolution" class="summary-sig-name">getMagEvolution</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">passband</span>,
+        <span class="summary-sig-arg">magNormalisation</span>,
+        <span class="summary-sig-arg">zNormalisation</span>,
+        <span class="summary-sig-arg">zFormation</span>,
+        <span class="summary-sig-arg">zStepSize</span>=<span class="summary-sig-default">0.05</span>,
+        <span class="summary-sig-arg">onePlusZSteps</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">magType</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Vega</code><code class="variable-quote">'</code></span>)</span><br />
+      Calculates the evolution with redshift (from z = 0 to z = zFormation)
+      of apparent magnitude in the observed frame through the passband for 
+      the StellarPopulation, normalised to magNormalisation (apparent) at z
+      = zNormalisation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#StellarPopulation.getMagEvolution">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astSED.StellarPopulation-class.html#calcEvolutionCorrection" class="summary-sig-name">calcEvolutionCorrection</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">zFrom</span>,
+        <span class="summary-sig-arg">zTo</span>,
+        <span class="summary-sig-arg">zFormation</span>,
+        <span class="summary-sig-arg">passband</span>,
+        <span class="summary-sig-arg">magType</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Vega</code><code class="variable-quote">'</code></span>)</span><br />
+      Calculates the evolution correction in magnitudes in the rest frame 
+      through the passband from redshift zFrom to redshift zTo, where the 
+      stellarPopulation is assumed to be formed at redshift zFormation.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astSED-pysrc.html#StellarPopulation.calcEvolutionCorrection">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="getSED"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getSED</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">ageGyr</span>,
+        <span class="sig-arg">z</span>=<span class="sig-default">0.0</span>,
+        <span class="sig-arg">normalise</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">label</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#StellarPopulation.getSED">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Extract a SED for given age. Do linear interpolation between models if
+  necessary.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ageGyr</code></strong> (float) - age of the SED in Gyr</li>
+        <li><strong class="pname"><code>z</code></strong> (float) - redshift the SED from z = 0 to z = z</li>
+        <li><strong class="pname"><code>normalise</code></strong> (bool) - normalise the SED to have area 1</li>
+    </ul></dd>
+    <dt>Returns: <a href="astLib.astSED.SED-class.html" class="link">SED</a> object</dt>
+        <dd>SED</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getColourEvolution"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getColourEvolution</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">passband1</span>,
+        <span class="sig-arg">passband2</span>,
+        <span class="sig-arg">zFormation</span>,
+        <span class="sig-arg">zStepSize</span>=<span class="sig-default">0.05</span>,
+        <span class="sig-arg">magType</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Vega</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#StellarPopulation.getColourEvolution">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the evolution of the colour observed through passband1 - 
+  passband2 for the StellarPopulation with redshift, from z = 0 to z = 
+  zFormation.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>passband1</code></strong> (<a href="astLib.astSED.Passband-class.html" 
+          class="link">Passband</a> object) - filter passband through which to calculate the first magnitude</li>
+        <li><strong class="pname"><code>passband2</code></strong> (<a href="astLib.astSED.Passband-class.html" 
+          class="link">Passband</a> object) - filter passband through which to calculate the second magnitude</li>
+        <li><strong class="pname"><code>zFormation</code></strong> (float) - formation redshift of the StellarPopulation</li>
+        <li><strong class="pname"><code>zStepSize</code></strong> (float) - size of interval in z at which to calculate model colours</li>
+        <li><strong class="pname"><code>magType</code></strong> (string) - either &quot;Vega&quot; or &quot;AB&quot;</li>
+    </ul></dd>
+    <dt>Returns: dictionary</dt>
+        <dd>dictionary of numpy.arrays in format {'z', 'colour'}</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getMagEvolution"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getMagEvolution</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">passband</span>,
+        <span class="sig-arg">magNormalisation</span>,
+        <span class="sig-arg">zNormalisation</span>,
+        <span class="sig-arg">zFormation</span>,
+        <span class="sig-arg">zStepSize</span>=<span class="sig-default">0.05</span>,
+        <span class="sig-arg">onePlusZSteps</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">magType</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Vega</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#StellarPopulation.getMagEvolution">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the evolution with redshift (from z = 0 to z = zFormation) 
+  of apparent magnitude in the observed frame through the passband for the 
+  StellarPopulation, normalised to magNormalisation (apparent) at z = 
+  zNormalisation.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>passband</code></strong> (<a href="astLib.astSED.Passband-class.html" 
+          class="link">Passband</a> object) - filter passband through which to calculate the magnitude</li>
+        <li><strong class="pname"><code>magNormalisation</code></strong> (float) - sets the apparent magnitude of the SED at zNormalisation</li>
+        <li><strong class="pname"><code>zNormalisation</code></strong> (float) - the redshift at which the magnitude normalisation is carried out</li>
+        <li><strong class="pname"><code>zFormation</code></strong> (float) - formation redshift of the StellarPopulation</li>
+        <li><strong class="pname"><code>zStepSize</code></strong> (float) - size of interval in z at which to calculate model magnitudes</li>
+        <li><strong class="pname"><code>onePlusZSteps</code></strong> (bool) - if True, zSteps are (1+z)*zStepSize, otherwise zSteps are linear</li>
+        <li><strong class="pname"><code>magType</code></strong> (string) - either &quot;Vega&quot; or &quot;AB&quot;</li>
+    </ul></dd>
+    <dt>Returns: dictionary</dt>
+        <dd>dictionary of numpy.arrays in format {'z', 'mag'}</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="calcEvolutionCorrection"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">calcEvolutionCorrection</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">zFrom</span>,
+        <span class="sig-arg">zTo</span>,
+        <span class="sig-arg">zFormation</span>,
+        <span class="sig-arg">passband</span>,
+        <span class="sig-arg">magType</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Vega</code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astSED-pysrc.html#StellarPopulation.calcEvolutionCorrection">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the evolution correction in magnitudes in the rest frame 
+  through the passband from redshift zFrom to redshift zTo, where the 
+  stellarPopulation is assumed to be formed at redshift zFormation.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>zFormation</code></strong> (float) - redshift to evolution correct from</li>
+        <li><strong class="pname"><code>zTo</code></strong> (float) - redshift to evolution correct to</li>
+        <li><strong class="pname"><code>zFormation</code></strong> (float) - formation redshift of the StellarPopulation</li>
+        <li><strong class="pname"><code>passband</code></strong> (<a href="astLib.astSED.Passband-class.html" 
+          class="link">Passband</a> object) - filter passband through which to calculate magnitude</li>
+        <li><strong class="pname"><code>magType</code></strong> (string) - either &quot;Vega&quot; or &quot;AB&quot;</li>
+        <li><strong class="pname"><code>zFrom</code></strong> (float)</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>evolution correction in magnitudes in the rest frame</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Aug 21 20:24:26 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

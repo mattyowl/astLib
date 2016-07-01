@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>astLib.astCoords</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="astLib-module.html">Package&nbsp;astLib</a> ::
+        Module&nbsp;astCoords
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="astLib.astCoords-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module astCoords</h1><p class="nomargin-top"><span class="codelink"><a href="astLib.astCoords-pysrc.html">source&nbsp;code</a></span></p>
+<p>module for coordinate manipulation (conversions, calculations 
+  etc.)</p>
+  <p>(c) 2007-2012 Matt Hilton</p>
+  <p>(c) 2013-2014 Matt Hilton &amp; Steven Boada</p>
+  <p><a href="http://astlib.sourceforge.net" 
+  target="_top">http://astlib.sourceforge.net</a></p>
+
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCoords-module.html#hms2decimal" class="summary-sig-name">hms2decimal</a>(<span class="summary-sig-arg">RAString</span>,
+        <span class="summary-sig-arg">delimiter</span>)</span><br />
+      Converts a delimited string of Hours:Minutes:Seconds format into 
+      decimal degrees.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCoords-pysrc.html#hms2decimal">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCoords-module.html#dms2decimal" class="summary-sig-name">dms2decimal</a>(<span class="summary-sig-arg">decString</span>,
+        <span class="summary-sig-arg">delimiter</span>)</span><br />
+      Converts a delimited string of Degrees:Minutes:Seconds format into 
+      decimal degrees.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCoords-pysrc.html#dms2decimal">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">string</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCoords-module.html#decimal2hms" class="summary-sig-name">decimal2hms</a>(<span class="summary-sig-arg">RADeg</span>,
+        <span class="summary-sig-arg">delimiter</span>)</span><br />
+      Converts decimal degrees to string in Hours:Minutes:Seconds format 
+      with user specified delimiter.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCoords-pysrc.html#decimal2hms">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">string</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCoords-module.html#decimal2dms" class="summary-sig-name">decimal2dms</a>(<span class="summary-sig-arg">decDeg</span>,
+        <span class="summary-sig-arg">delimiter</span>)</span><br />
+      Converts decimal degrees to string in Degrees:Minutes:Seconds format 
+      with user specified delimiter.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCoords-pysrc.html#decimal2dms">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float or numpy array, depending upon type of RADeg2, decDeg2</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCoords-module.html#calcAngSepDeg" class="summary-sig-name">calcAngSepDeg</a>(<span class="summary-sig-arg">RADeg1</span>,
+        <span class="summary-sig-arg">decDeg1</span>,
+        <span class="summary-sig-arg">RADeg2</span>,
+        <span class="summary-sig-arg">decDeg2</span>)</span><br />
+      Calculates the angular separation of two positions on the sky 
+      (specified in decimal degrees) in decimal degrees, assuming a tangent
+      plane projection (so separation has to be &lt;90 deg).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCoords-pysrc.html#calcAngSepDeg">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">float [newRA, newDec]</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCoords-module.html#shiftRADec" class="summary-sig-name">shiftRADec</a>(<span class="summary-sig-arg">ra1</span>,
+        <span class="summary-sig-arg">dec1</span>,
+        <span class="summary-sig-arg">deltaRA</span>,
+        <span class="summary-sig-arg">deltaDec</span>)</span><br />
+      Computes new right ascension and declination shifted from the 
+      original by some delta RA and delta DEC.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCoords-pysrc.html#shiftRADec">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCoords-module.html#convertCoords" class="summary-sig-name">convertCoords</a>(<span class="summary-sig-arg">inputSystem</span>,
+        <span class="summary-sig-arg">outputSystem</span>,
+        <span class="summary-sig-arg">coordX</span>,
+        <span class="summary-sig-arg">coordY</span>,
+        <span class="summary-sig-arg">epoch</span>)</span><br />
+      Converts specified coordinates (given in decimal degrees) between 
+      J2000, B1950, and Galactic.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCoords-pysrc.html#convertCoords">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">list</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="astLib.astCoords-module.html#calcRADecSearchBox" class="summary-sig-name">calcRADecSearchBox</a>(<span class="summary-sig-arg">RADeg</span>,
+        <span class="summary-sig-arg">decDeg</span>,
+        <span class="summary-sig-arg">radiusSkyDeg</span>)</span><br />
+      Calculates minimum and maximum RA, dec coords needed to define a box 
+      enclosing a circle of radius radiusSkyDeg around the given RADeg, 
+      decDeg coordinates.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="astLib.astCoords-pysrc.html#calcRADecSearchBox">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="hms2decimal"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">hms2decimal</span>(<span class="sig-arg">RAString</span>,
+        <span class="sig-arg">delimiter</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCoords-pysrc.html#hms2decimal">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Converts a delimited string of Hours:Minutes:Seconds format into 
+  decimal degrees.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>RAString</code></strong> (string) - coordinate string in H:M:S format</li>
+        <li><strong class="pname"><code>delimiter</code></strong> (string) - delimiter character in RAString</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>coordinate in decimal degrees</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="dms2decimal"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dms2decimal</span>(<span class="sig-arg">decString</span>,
+        <span class="sig-arg">delimiter</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCoords-pysrc.html#dms2decimal">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Converts a delimited string of Degrees:Minutes:Seconds format into 
+  decimal degrees.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>decString</code></strong> (string) - coordinate string in D:M:S format</li>
+        <li><strong class="pname"><code>delimiter</code></strong> (string) - delimiter character in decString</li>
+    </ul></dd>
+    <dt>Returns: float</dt>
+        <dd>coordinate in decimal degrees</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="decimal2hms"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">decimal2hms</span>(<span class="sig-arg">RADeg</span>,
+        <span class="sig-arg">delimiter</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCoords-pysrc.html#decimal2hms">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Converts decimal degrees to string in Hours:Minutes:Seconds format 
+  with user specified delimiter.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>RADeg</code></strong> (float) - coordinate in decimal degrees</li>
+        <li><strong class="pname"><code>delimiter</code></strong> (string) - delimiter character in returned string</li>
+    </ul></dd>
+    <dt>Returns: string</dt>
+        <dd>coordinate string in H:M:S format</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="decimal2dms"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">decimal2dms</span>(<span class="sig-arg">decDeg</span>,
+        <span class="sig-arg">delimiter</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCoords-pysrc.html#decimal2dms">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Converts decimal degrees to string in Degrees:Minutes:Seconds format 
+  with user specified delimiter.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>decDeg</code></strong> (float) - coordinate in decimal degrees</li>
+        <li><strong class="pname"><code>delimiter</code></strong> (string) - delimiter character in returned string</li>
+    </ul></dd>
+    <dt>Returns: string</dt>
+        <dd>coordinate string in D:M:S format</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="calcAngSepDeg"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">calcAngSepDeg</span>(<span class="sig-arg">RADeg1</span>,
+        <span class="sig-arg">decDeg1</span>,
+        <span class="sig-arg">RADeg2</span>,
+        <span class="sig-arg">decDeg2</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCoords-pysrc.html#calcAngSepDeg">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates the angular separation of two positions on the sky 
+  (specified in decimal degrees) in decimal degrees, assuming a tangent 
+  plane projection (so separation has to be &lt;90 deg). Note that RADeg2, 
+  decDeg2 can be numpy arrays.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>RADeg1</code></strong> (float) - R.A. in decimal degrees for position 1</li>
+        <li><strong class="pname"><code>decDeg1</code></strong> (float) - dec. in decimal degrees for position 1</li>
+        <li><strong class="pname"><code>RADeg2</code></strong> (float or numpy array) - R.A. in decimal degrees for position 2</li>
+        <li><strong class="pname"><code>decDeg2</code></strong> (float or numpy array) - dec. in decimal degrees for position 2</li>
+    </ul></dd>
+    <dt>Returns: float or numpy array, depending upon type of RADeg2, decDeg2</dt>
+        <dd>angular separation in decimal degrees</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="shiftRADec"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">shiftRADec</span>(<span class="sig-arg">ra1</span>,
+        <span class="sig-arg">dec1</span>,
+        <span class="sig-arg">deltaRA</span>,
+        <span class="sig-arg">deltaDec</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCoords-pysrc.html#shiftRADec">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Computes new right ascension and declination shifted from the original
+  by some delta RA and delta DEC. Input position is decimal degrees. Shifts
+  (deltaRA, deltaDec) are arcseconds, and output is decimal degrees. Based 
+  on an IDL routine of the same name.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>ra1</code></strong> (R.A. in decimal degrees) - float</li>
+        <li><strong class="pname"><code>dec1</code></strong> (dec. in decimal degrees) - float</li>
+        <li><strong class="pname"><code>deltaRA</code></strong> (shift in R.A. in arcseconds) - float</li>
+        <li><strong class="pname"><code>deltaDec</code></strong> (shift in dec. in arcseconds) - float</li>
+    </ul></dd>
+    <dt>Returns: float [newRA, newDec]</dt>
+        <dd>shifted R.A. and dec.</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="convertCoords"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">convertCoords</span>(<span class="sig-arg">inputSystem</span>,
+        <span class="sig-arg">outputSystem</span>,
+        <span class="sig-arg">coordX</span>,
+        <span class="sig-arg">coordY</span>,
+        <span class="sig-arg">epoch</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCoords-pysrc.html#convertCoords">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Converts specified coordinates (given in decimal degrees) between 
+  J2000, B1950, and Galactic.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>inputSystem</code></strong> (string) - system of the input coordinates (either &quot;J2000&quot;, 
+          &quot;B1950&quot; or &quot;GALACTIC&quot;)</li>
+        <li><strong class="pname"><code>outputSystem</code></strong> (string) - system of the returned coordinates (either &quot;J2000&quot;, 
+          &quot;B1950&quot; or &quot;GALACTIC&quot;)</li>
+        <li><strong class="pname"><code>coordX</code></strong> (float) - longitude coordinate in decimal degrees, e.g. R. A.</li>
+        <li><strong class="pname"><code>coordY</code></strong> (float) - latitude coordinate in decimal degrees, e.g. dec.</li>
+        <li><strong class="pname"><code>epoch</code></strong> (float) - epoch of the input coordinates</li>
+    </ul></dd>
+    <dt>Returns: list</dt>
+        <dd>coordinates in decimal degrees in requested output system</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="calcRADecSearchBox"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">calcRADecSearchBox</span>(<span class="sig-arg">RADeg</span>,
+        <span class="sig-arg">decDeg</span>,
+        <span class="sig-arg">radiusSkyDeg</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="astLib.astCoords-pysrc.html#calcRADecSearchBox">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculates minimum and maximum RA, dec coords needed to define a box 
+  enclosing a circle of radius radiusSkyDeg around the given RADeg, decDeg 
+  coordinates. Useful for freeform queries of e.g. SDSS, UKIDSS etc.. Uses 
+  <a href="astLib.astCoords-module.html#calcAngSepDeg" 
+  class="link">calcAngSepDeg</a>, so has the same limitations.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>RADeg</code></strong> (float) - RA coordinate of centre of search region</li>
+        <li><strong class="pname"><code>decDeg</code></strong> (float) - dec coordinate of centre of search region</li>
+        <li><strong class="pname"><code>radiusSkyDeg</code></strong> (float) - radius in degrees on the sky used to define search region</li>
+    </ul></dd>
+    <dt>Returns: list</dt>
+        <dd>[RAMin, RAMax, decMin, decMax] - coordinates in decimal degrees 
+          defining search box</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="astLib-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Aug 21 20:24:26 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
