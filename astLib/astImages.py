@@ -611,21 +611,20 @@ def resampleToTanProjection(imageData, imageWCS, outputPixDimensions=[600, 600])
     yRefPix=ySizePix/2.0
     xOutPixScale=xSizeDeg/xSizePix
     yOutPixScale=ySizeDeg/ySizePix
-    cardList=pyfits.CardList()
-    cardList.append(pyfits.Card('NAXIS', 2))
-    cardList.append(pyfits.Card('NAXIS1', xSizePix))
-    cardList.append(pyfits.Card('NAXIS2', ySizePix))
-    cardList.append(pyfits.Card('CTYPE1', 'RA---TAN'))
-    cardList.append(pyfits.Card('CTYPE2', 'DEC--TAN'))
-    cardList.append(pyfits.Card('CRVAL1', RADeg))
-    cardList.append(pyfits.Card('CRVAL2', decDeg))
-    cardList.append(pyfits.Card('CRPIX1', xRefPix+1))
-    cardList.append(pyfits.Card('CRPIX2', yRefPix+1))
-    cardList.append(pyfits.Card('CDELT1', -xOutPixScale))
-    cardList.append(pyfits.Card('CDELT2', xOutPixScale))    # Makes more sense to use same pix scale
-    cardList.append(pyfits.Card('CUNIT1', 'DEG'))
-    cardList.append(pyfits.Card('CUNIT2', 'DEG'))
-    newHead=pyfits.Header(cards=cardList)
+    newHead=pyfits.Header()
+    newHead['NAXIS']=2
+    newHead['NAXIS1']=xSizePix
+    newHead['NAXIS2']=ySizePix
+    newHead['CTYPE1']='RA---TAN'
+    newHead['CTYPE2']='DEC--TAN'
+    newHead['CRVAL1']=RADeg
+    newHead['CRVAL2']=decDeg
+    newHead['CRPIX1']=xRefPix+1
+    newHead['CRPIX2']=yRefPix+1
+    newHead['CDELT1']=-xOutPixScale
+    newHead['CDELT2']=xOutPixScale    # Makes more sense to use same pix scale
+    newHead['CUNIT1']='DEG'
+    newHead['CUNIT2']='DEG'
     newWCS=astWCS.WCS(newHead, mode='pyfits')
     newImage=numpy.zeros([ySizePix, xSizePix])
 
