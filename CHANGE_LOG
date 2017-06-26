@@ -1,5 +1,11 @@
 CHANGE LOG:
 
+VERSION 0.9.0
+-------------
+
+* A bug fix release, primarily for compatibility with numpy 1.12+ and pyfits 3.4.
+  No new features added.
+
 VERSION 0.8.0
 -------------
 
