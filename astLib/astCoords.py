@@ -248,23 +248,14 @@ def calcAngSepDeg(RADeg1, decDeg1, RADeg2, decDeg2):
 
     """
     
-    #cRA = numpy.radians(RADeg1)
-    #cDec = numpy.radians(decDeg1)
-
-    #gRA = numpy.radians(RADeg2)
-    #gDec = numpy.radians(decDeg2)
-
-    #dRA = cRA-gRA
-    #dDec = gDec-cDec
-    #cosC = ((numpy.sin(gDec)*numpy.sin(cDec)) +
-        #(numpy.cos(gDec)*numpy.cos(cDec) * numpy.cos(gRA-cRA)))
-    #x = (numpy.cos(cDec)*numpy.sin(gRA-cRA))/cosC
-    #y = (((numpy.cos(gDec)*numpy.sin(cDec)) - (numpy.sin(gDec) *
-        #numpy.cos(cDec)*numpy.cos(gRA-cRA)))/cosC)
-    #r = numpy.degrees(numpy.sqrt(x*x+y*y))
-
-    r=numpy.degrees(numpy.arccos(numpy.sin(numpy.radians(decDeg1))*numpy.sin(numpy.radians(decDeg2))+numpy.cos(numpy.radians(decDeg1))*numpy.cos(numpy.radians(decDeg2))*numpy.cos(numpy.radians(RADeg1-RADeg2))))
-    
+    a=numpy.sin(numpy.radians(decDeg1))*numpy.sin(numpy.radians(decDeg2))+numpy.cos(numpy.radians(decDeg1))*numpy.cos(numpy.radians(decDeg2))*numpy.cos(numpy.radians(RADeg1-RADeg2))
+    mask=[numpy.greater(a, 1.0)]
+    if type(a) == numpy.ndarray:
+        a[mask]=1.0
+    elif mask == [True]:
+        a=1.0
+    r=numpy.degrees(numpy.arccos(a))
+            
     # Above gives nan when RADeg1, decDeg1 == RADeg1, decDeg2
     indexList=numpy.where(numpy.isnan(r) == True)[0]
     tolerance=1e-6
