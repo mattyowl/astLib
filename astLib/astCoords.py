@@ -265,12 +265,12 @@ def calcAngSepDeg(RADeg1, decDeg1, RADeg2, decDeg2):
                     if abs(RADeg1 - RADeg2[index]) < tolerance and abs(decDeg1 -decDeg2[index]) < tolerance:
                         r[index]=0.0
                     else:
-                        raise Exception, "astCoords: calcAngSepDeg - encountered nan not due to equal RADeg, decDeg coords"
+                        raise Exception("astCoords: calcAngSepDeg - encountered nan not due to equal RADeg, decDeg coords")
                 elif type(RADeg1) == numpy.ndarray:
                     if abs(RADeg2 - RADeg1[index]) < tolerance and abs(decDeg2 -decDeg1[index]) < tolerance: 
                         r[index]=0.0
                     else:
-                        raise Exception, "astCoords: calcAngSepDeg - encountered nan not due to equal RADeg, decDeg coords"
+                        raise Exception("astCoords: calcAngSepDeg - encountered nan not due to equal RADeg, decDeg coords")
             else:
                 r=0.0
         
@@ -401,7 +401,7 @@ def calcRADecSearchBox(RADeg, decDeg, radiusSkyDeg):
             else:
                 #print sizeDiff, bestGuess, bestGuess-minGuess, bestGuess-maxGuess
                 if bestGuess == None:
-                    raise Exception, "bestGuess is None"
+                    raise Exception("bestGuess is None")
                 guessRange = abs((maxGuess-minGuess))
                 maxGuess = bestGuess+guessRange/4.0
                 minGuess = bestGuess-guessRange/4.0
@@ -415,7 +415,7 @@ def calcRADecSearchBox(RADeg, decDeg, radiusSkyDeg):
                 #guessStep = (maxGuess-minGuess)/20.0
                 guesses = numpy.linspace(minGuess, maxGuess, 1000)
         if converged == False:
-            raise Exception, "calcRADecSearchBox failed to converge"
+            raise Exception("calcRADecSearchBox failed to converge")
         results.append(bestGuess)
 
     RAMax = results[0]
@@ -425,7 +425,7 @@ def calcRADecSearchBox(RADeg, decDeg, radiusSkyDeg):
 
     # Sanity check
     if (RAMax-RAMin)+(2*tolerance) < 2*targetHalfSizeSkyDeg:
-        raise Exception, "calcRADecSearchBox failed sanity check"
+        raise Exception("calcRADecSearchBox failed sanity check")
 
     return [RAMin, RAMax, decMin, decMax]
 
