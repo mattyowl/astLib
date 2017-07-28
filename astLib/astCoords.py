@@ -382,8 +382,8 @@ def calcRADecSearchBox(RADeg, decDeg, radiusSkyDeg):
     results = []
     for f, c, sign in zip(funcCalls, coords, signs):
         # Initial guess range
-        maxGuess = sign*targetHalfSizeSkyDeg*20.0
-        minGuess = sign*targetHalfSizeSkyDeg/20.0
+        maxGuess = sign*targetHalfSizeSkyDeg*80.0
+        minGuess = sign*targetHalfSizeSkyDeg/80.0
         #guessStep = (maxGuess-minGuess)/10.0
         guesses = numpy.linspace(minGuess+c, maxGuess+c, 1000)
         converged=False
