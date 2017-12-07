@@ -252,7 +252,10 @@ def calcAngSepDeg(RADeg1, decDeg1, RADeg2, decDeg2):
     a=numpy.sin(numpy.radians(decDeg1))*numpy.sin(numpy.radians(decDeg2))+numpy.cos(numpy.radians(decDeg1))*numpy.cos(numpy.radians(decDeg2))*numpy.cos(numpy.radians(RADeg1-RADeg2))
     mask=numpy.greater(a, 1.0)
     if mask.sum() > 0:
-        a[mask]=1.0
+        if type(a) == numpy.ndarray:
+            a[mask]=1.0
+        else:
+            a=1.0
     r=numpy.degrees(numpy.arccos(a))
             
     # Above gives nan when RADeg1, decDeg1 == RADeg1, decDeg2

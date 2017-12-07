@@ -50,6 +50,10 @@ def clipImageSectionWCS(imageData, imageWCS, RADeg, decDeg, clipSizeDeg, returnW
     Note that the clip size is specified in degrees on the sky. For projections that have varying
     real pixel scale across the map (e.g. CEA), use L{clipUsingRADecCoords} instead.
 
+    Similarly, this routine will not work for a WCS that has polynomial distortion coefficients 
+    in the header (e.g., CTYPE1 = 'RA---TAN-SIP' etc.) - again L{clipUsingRADecCoords} can be used
+    in such cases.
+    
     @type imageData: numpy array
     @param imageData: image data array
     @type imageWCS: astWCS.WCS
@@ -194,6 +198,10 @@ def clipRotatedImageSectionWCS(imageData, imageWCS, RADeg, decDeg, clipSizeDeg, 
     
     Note that the clip size is specified in degrees on the sky. For projections that have varying
     real pixel scale across the map (e.g. CEA), use L{clipUsingRADecCoords} instead.
+    
+    Similarly, this routine will not work for a WCS that has polynomial distortion coefficients 
+    in the header (e.g., CTYPE1 = 'RA---TAN-SIP' etc.) - again L{clipUsingRADecCoords} can be used
+    in such cases.
     
     @type imageData: numpy array
     @param imageData: image data array
@@ -1019,14 +1027,20 @@ def saveFITS(outputFileName, imageData, imageWCS = None):
     
     if os.path.exists(outputFileName):
         os.remove(outputFileName)
-        
-    newImg=pyfits.HDUList()
     
+    # A fudge for the case where a user feeds in a WCS with an astropy.io.fits header, but also has pyfits installed
+    # I _think_ this issue should only arise in this routine
+    fitsmodule=pyfits
     if imageWCS!=None:
-        hdu=pyfits.PrimaryHDU(None, imageWCS.header)
+        if imageWCS.header.__module__ == 'pyfits.header' and pyfits.__package__ == 'astropy.io.fits':
+            import pyfits as fitsmodule     # this shouldn't be able to happen... but just in case...
+        elif imageWCS.header.__module__ == 'astropy.io.fits.header' and pyfits.__package__ == 'pyfits':
+            import astropy.io.fits as fitsmodule
+        hdu=fitsmodule.PrimaryHDU(None, imageWCS.header)
     else:
-        hdu=pyfits.PrimaryHDU(None, None)
+        hdu=fitsmodule.PrimaryHDU(None, None)
     
+    newImg=fitsmodule.HDUList()
     hdu.data=imageData
     newImg.append(hdu)
     newImg.writeto(outputFileName)
