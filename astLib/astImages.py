@@ -1026,7 +1026,7 @@ def saveFITS(outputFileName, imageData, imageWCS = None):
     else:
         hdu=pyfits.PrimaryHDU(None, None)
     
-    newImg=fitsmodule.HDUList()
+    newImg=pyfits.HDUList()
     hdu.data=imageData
     newImg.append(hdu)
     newImg.writeto(outputFileName)
