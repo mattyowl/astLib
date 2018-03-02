@@ -6,7 +6,7 @@
 #
 # Test of contour plot
 
-import pyfits
+import astropy.io.fits as pyfits
 from astLib import *
 import pylab
 import numpy

@@ -7,7 +7,7 @@
 # Test of image scaling
 
 from astLib import *
-import pyfits
+import astropy.io.fits as pyfits
 
 TEST_IMAGE = "../../../testingData/testImage1.fits"
 

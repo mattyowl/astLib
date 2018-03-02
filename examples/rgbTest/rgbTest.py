@@ -7,7 +7,7 @@
 # Example RGB ImagePlot with objects marked and a contour overlay
 
 import numpy
-import pyfits
+import astropy.io.fits as pyfits
 import pylab
 from astLib import *
 

@@ -34,7 +34,7 @@ BOOTSTRAPS = 1000
 # number of galaxies, gets * number of models, having same age in each
 # metallicity bin
 NGAL = 25
-FILTER_DIR = "../../../../testingData/filters/"
+FILTER_DIR = "../../../testingData/filters/"
 
 # Map between short filter names on command line and paths, labels etc..
 filterMap=[]
@@ -391,10 +391,10 @@ CMR.
 # Input parameters
 MODEL_TYPE="bc03"
 
-modelFileNames = ["../../../../testingData/models/tau0p1Gyr_m42.20",
-                "../../../../testingData/models/tau0p1Gyr_m52.20",
-                "../../../../testingData/models/tau0p1Gyr_m62.20",
-                "../../../../testingData/models/tau0p1Gyr_m72.20"]
+modelFileNames = ["../../../testingData/models/tau0p1Gyr_m42.20",
+                "../../../testingData/models/tau0p1Gyr_m52.20",
+                "../../../testingData/models/tau0p1Gyr_m62.20",
+                "../../../testingData/models/tau0p1Gyr_m72.20"]
 models = LoadModels(modelFileNames, modelType = MODEL_TYPE)
 
 # Target colour and mag bands

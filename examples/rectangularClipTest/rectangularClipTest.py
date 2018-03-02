@@ -6,7 +6,7 @@
 #
 # Quick script to test out rotation, clipping - rectangles
 
-import pyfits
+import astropy.io.fits as pyfits
 from astLib import *
 
 # Regular clipping rputines test

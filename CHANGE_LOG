@@ -1,5 +1,12 @@
 CHANGE LOG:
 
+VERSION 0.10.0
+--------------
+
+* No new features added; this version breaks compatibility with pyfits (which has
+  been depreciated by STScI) and Astropy is now a requirement. If you still 
+  require a version that works with pyfits, please continue to use astLib 0.9.3.
+
 VERSION 0.9.0
 -------------
 

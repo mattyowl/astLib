@@ -16,7 +16,7 @@ try:
 except ImportError:
     from urllib import urlretrieve
 from astLib import *
-import pyfits
+import astropy.io.fits as pyfits
 import pylab
 
 #-----------------------------------------------------------------------------

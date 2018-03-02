@@ -2,7 +2,7 @@
 
 (c) 2007-2012 Matt Hilton
 
-(c) 2013-2014 Matt Hilton & Steven Boada
+(c) 2013-2018 Matt Hilton & Steven Boada
 
 U{http://astlib.sourceforge.net}
 
@@ -24,14 +24,7 @@ unnecessary.
 
 #-----------------------------------------------------------------------------
 
-# So far as I can tell in astropy 0.4 the API is the same as pyfits for what we need...
-try:
-    import pyfits
-except:
-    try:
-        from astropy.io import fits as pyfits
-    except:
-        raise Exception("couldn't import either pyfits or astropy.io.fits")
+from astropy.io import fits as pyfits
 from PyWCSTools import wcs
 import numpy
 import locale
@@ -84,7 +77,9 @@ class WCS:
             data is stored
         @type mode: string
         @param mode: set to "image" if headerSource is a .fits file name, or
-            set to "pyfits" if headerSource is a pyfits.header object
+            set to "astropy" if headerSource is an astropy.io.fits.Header object 
+            (setting to this to "pyfits" is equivalent, for backwards 
+            compatibility with existing code)
         @type zapKeywords: list
         @param: zapKeywords: keywords to remove from the header before making
             astWCS object.
@@ -109,7 +104,7 @@ class WCS:
             img.verify('silentfix') # solves problems with non-standard headers
             self.header = img[self.extensionName].header
             img.close()
-        elif self.mode == "pyfits":
+        elif self.mode == "astropy" or self.mode == "pyfits":
             for z in zapKeywords:
                 if z in self.headerSource.keys():
                     for count in range(self.headerSource.count(z)):

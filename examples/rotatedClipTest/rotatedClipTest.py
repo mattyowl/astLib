@@ -6,7 +6,7 @@
 #
 # Quick script to test out rotation, clipping
 
-import pyfits
+import astropy.io.fits as pyfits
 from astLib import *
 
 img = pyfits.open("../../../testingData/testImage1.fits")

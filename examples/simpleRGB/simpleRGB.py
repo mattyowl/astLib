@@ -7,7 +7,7 @@
 # Simple RGB ImagePlot example
 
 import numpy
-import pyfits
+import astropy.io.fits as pyfits
 import pylab
 from astLib import *
 
@@ -25,6 +25,6 @@ gCut = [g.min(), g.max()]
 bCut = [b.min(), b.max()]
 
 # Make the figure
-p = astPlots.ImagePlot([r, g, b], wcs, cutLevels = [rCut, gCut, bCut],
+p = astPlots.ImagePlot([r, g, b], wcs, axes = [0.12, 0.12, 0.8, 0.8], cutLevels = [rCut, gCut, bCut],
     title="Stephan's Quintet")
 p.save("output_simpleRGB.png")

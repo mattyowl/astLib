@@ -6,11 +6,11 @@
 #
 # Test of contour plot
 
-import pyfits
+import astropy.io.fits as pyfits
 from astLib import *
 import pylab
 
-TEST_IMAGE = "../../../../testingData/testImage1.fits"
+TEST_IMAGE = "../../../testingData/testImage1.fits"
 
 img = pyfits.open(TEST_IMAGE)
 wcs = astWCS.WCS(TEST_IMAGE)

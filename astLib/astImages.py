@@ -1,6 +1,6 @@
 """module for simple .fits image tasks (rotation, clipping out sections, making .pngs etc.)
 
-(c) 2007-2014 Matt Hilton 
+(c) 2007-2018 Matt Hilton 
 
 U{http://astlib.sourceforge.net}
 
@@ -18,16 +18,7 @@ import os
 import sys
 import math
 from astLib import astWCS
-
-# So far as I can tell in astropy 0.4 the API is the same as pyfits for what we need...
-try:
-    import pyfits
-except:
-    try:
-        from astropy.io import fits as pyfits
-    except:
-        raise Exception("couldn't import either pyfits or astropy.io.fits")
-    
+from astropy.io import fits as pyfits    
 try:
     from scipy import ndimage
     from scipy import interpolate
@@ -1028,17 +1019,12 @@ def saveFITS(outputFileName, imageData, imageWCS = None):
     if os.path.exists(outputFileName):
         os.remove(outputFileName)
     
-    # A fudge for the case where a user feeds in a WCS with an astropy.io.fits header, but also has pyfits installed
-    # I _think_ this issue should only arise in this routine
-    fitsmodule=pyfits
-    if imageWCS!=None:
-        if imageWCS.header.__module__ == 'pyfits.header' and pyfits.__package__ == 'astropy.io.fits':
-            import pyfits as fitsmodule     # this shouldn't be able to happen... but just in case...
-        elif imageWCS.header.__module__ == 'astropy.io.fits.header' and pyfits.__package__ == 'pyfits':
-            import astropy.io.fits as fitsmodule
-        hdu=fitsmodule.PrimaryHDU(None, imageWCS.header)
+    # There a fudge here for handling both pyfits and astropy.io.fits headers
+    # Removed from version 0.10.0+ (supporting astropy only)
+    if imageWCS != None:
+        hdu=pyfits.PrimaryHDU(None, imageWCS.header)
     else:
-        hdu=fitsmodule.PrimaryHDU(None, None)
+        hdu=pyfits.PrimaryHDU(None, None)
     
     newImg=fitsmodule.HDUList()
     hdu.data=imageData
