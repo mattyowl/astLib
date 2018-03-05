@@ -17,3 +17,7 @@ d = img[0].data
 
 scaled = astImages.scaleImage(d, wcs, 0.55)
 astImages.saveFITS("output_scaleTest.fits", scaled['data'], scaled['wcs'])
+
+scaledUp = astImages.scaleImage(d, wcs, 1.43)
+astImages.saveFITS("output_scaleTest_up.fits", scaledUp['data'], scaledUp['wcs'])
+

@@ -24,7 +24,7 @@ try:
     from scipy import interpolate
 except ImportError:
     print("WARNING: astImages: failed to import scipy.ndimage - some functions will not work.")
-import numpy
+import numpy as np
 try:
     import matplotlib
     from matplotlib import pylab
@@ -45,7 +45,7 @@ def clipImageSectionWCS(imageData, imageWCS, RADeg, decDeg, clipSizeDeg, returnW
     in the header (e.g., CTYPE1 = 'RA---TAN-SIP' etc.) - again L{clipUsingRADecCoords} can be used
     in such cases.
     
-    @type imageData: numpy array
+    @type imageData: np array
     @param imageData: image data array
     @type imageWCS: astWCS.WCS
     @param imageWCS: astWCS.WCS object
@@ -59,7 +59,7 @@ def clipImageSectionWCS(imageData, imageWCS, RADeg, decDeg, clipSizeDeg, returnW
     @type returnWCS: bool
     @param returnWCS: if True, return an updated WCS for the clipped section
     @rtype: dictionary
-    @return: clipped image section (numpy array), updated astWCS WCS object for
+    @return: clipped image section (np array), updated astWCS WCS object for
     clipped image section, and coordinates of clipped section in imageData in format 
     {'data', 'wcs', 'clippedSection'}.
         
@@ -133,7 +133,7 @@ def clipImageSectionWCS(imageData, imageWCS, RADeg, decDeg, clipSizeDeg, returnW
 def clipImageSectionPix(imageData, XCoord, YCoord, clipSizePix):
     """Clips a square or rectangular section from an image array at the given pixel coordinates.
     
-    @type imageData: numpy array
+    @type imageData: np array
     @param imageData: image data array
     @type XCoord: float
     @param XCoord: coordinate in pixels
@@ -142,7 +142,7 @@ def clipImageSectionPix(imageData, XCoord, YCoord, clipSizePix):
     @type clipSizePix: float or list in format [widthPix, heightPix]
     @param clipSizePix: if float, size of square clipped section in pixels; if list,
     size of clipped section in pixels in x, y axes of output image respectively
-    @rtype: numpy array
+    @rtype: np array
     @return: clipped image section
     
     """		
@@ -194,7 +194,7 @@ def clipRotatedImageSectionWCS(imageData, imageWCS, RADeg, decDeg, clipSizeDeg, 
     in the header (e.g., CTYPE1 = 'RA---TAN-SIP' etc.) - again L{clipUsingRADecCoords} can be used
     in such cases.
     
-    @type imageData: numpy array
+    @type imageData: np array
     @param imageData: image data array
     @type imageWCS: astWCS.WCS
     @param imageWCS: astWCS.WCS object
@@ -208,7 +208,7 @@ def clipRotatedImageSectionWCS(imageData, imageWCS, RADeg, decDeg, clipSizeDeg, 
     @type returnWCS: bool
     @param returnWCS: if True, return an updated WCS for the clipped section
     @rtype: dictionary
-    @return: clipped image section (numpy array), updated astWCS WCS object for
+    @return: clipped image section (np array), updated astWCS WCS object for
     clipped image section, in format {'data', 'wcs'}.
     
     @note: Returns 'None' if the requested position is not found within the image. If the image
@@ -261,27 +261,27 @@ def clipRotatedImageSectionWCS(imageData, imageWCS, RADeg, decDeg, clipSizeDeg, 
                 if rotatedWCS.isFlipped() == 1:
                     CD11=CD11*-1
                     CD12=CD12*-1
-                CDMatrix=numpy.array([[CD11, CD12], [CD21, CD22]], dtype=numpy.float64)
+                CDMatrix=np.array([[CD11, CD12], [CD21, CD22]], dtype=np.float64)
 
                 rotRadians=rotRadians
                 rot11=math.cos(rotRadians)
                 rot12=math.sin(rotRadians)
                 rot21=-math.sin(rotRadians)
                 rot22=math.cos(rotRadians)
-                rotMatrix=numpy.array([[rot11, rot12], [rot21, rot22]], dtype=numpy.float64)
-                newCDMatrix=numpy.dot(rotMatrix, CDMatrix)
+                rotMatrix=np.array([[rot11, rot12], [rot21, rot22]], dtype=np.float64)
+                newCDMatrix=np.dot(rotMatrix, CDMatrix)
 
                 P1=diagonalWCS.header['CRPIX1']
                 P2=diagonalWCS.header['CRPIX2']
                 V1=diagonalWCS.header['CRVAL1']
                 V2=diagonalWCS.header['CRVAL2']
                 
-                PMatrix=numpy.zeros((2,), dtype = numpy.float64)
+                PMatrix=np.zeros((2,), dtype = np.float64)
                 PMatrix[0]=P1
                 PMatrix[1]=P2
                 
                 # BELOW IS HOW TO WORK OUT THE NEW REF PIXEL
-                CMatrix=numpy.array([imageRotated.shape[1]/2.0, imageRotated.shape[0]/2.0])
+                CMatrix=np.array([imageRotated.shape[1]/2.0, imageRotated.shape[0]/2.0])
                 centreCoords=diagonalWCS.getCentreWCSCoords()
                 alphaRad=math.radians(centreCoords[0])
                 deltaRad=math.radians(centreCoords[1])
@@ -293,15 +293,15 @@ def clipRotatedImageSectionWCS(imageData, imageWCS, RADeg, decDeg, clipSizeDeg, 
                                 math.pi
                 RTheta=(180.0/math.pi)*(1.0/math.tan(thetaRad))
                 
-                xy=numpy.zeros((2,), dtype=numpy.float64)
+                xy=np.zeros((2,), dtype=np.float64)
                 xy[0]=RTheta*math.sin(phiRad)
                 xy[1]=-RTheta*math.cos(phiRad)
-                newPMatrix=CMatrix - numpy.dot(numpy.linalg.inv(newCDMatrix), xy)
+                newPMatrix=CMatrix - np.dot(np.linalg.inv(newCDMatrix), xy)
                 
                 # But there's a small offset to CRPIX due to the rotatedImage being rounded to an integer
                 # number of pixels (not sure this helps much)
-                #d=numpy.dot(rotMatrix, [diagonalClip.shape[1], diagonalClip.shape[0]])
-                #offset=abs(d)-numpy.array(imageRotated.shape)
+                #d=np.dot(rotMatrix, [diagonalClip.shape[1], diagonalClip.shape[0]])
+                #offset=abs(d)-np.array(imageRotated.shape)
                 
                 rotatedWCS.header['NAXIS1']=imageRotated.shape[1]
                 rotatedWCS.header['NAXIS2']=imageRotated.shape[0]
@@ -343,7 +343,7 @@ def clipUsingRADecCoords(imageData, imageWCS, RAMin, RAMax, decMin, decMax, retu
     """Clips a section from an image array at the pixel coordinates corresponding to the given
     celestial coordinates.
     
-    @type imageData: numpy array
+    @type imageData: np array
     @param imageData: image data array
     @type imageWCS: astWCS.WCS
     @param imageWCS: astWCS.WCS object
@@ -358,7 +358,7 @@ def clipUsingRADecCoords(imageData, imageWCS, RAMin, RAMax, decMin, decMax, retu
     @type returnWCS: bool
     @param returnWCS: if True, return an updated WCS for the clipped section
     @rtype: dictionary
-    @return: clipped image section (numpy array), updated astWCS WCS object for
+    @return: clipped image section (np array), updated astWCS WCS object for
     clipped image section, and corresponding pixel coordinates in imageData in format 
     {'data', 'wcs', 'clippedSection'}.
     
@@ -420,7 +420,7 @@ def clipUsingRADecCoords(imageData, imageWCS, RAMin, RAMax, decMin, decMax, retu
 def scaleImage(imageData, imageWCS, scaleFactor):
     """Scales image array and WCS by the given scale factor.
     
-    @type imageData: numpy array
+    @type imageData: np array
     @param imageData: image data array
     @type imageWCS: astWCS.WCS
     @param imageWCS: astWCS.WCS object
@@ -428,7 +428,7 @@ def scaleImage(imageData, imageWCS, scaleFactor):
     @param scaleFactor: factor to resize image by - if tuple or list, in format 
         [x scale factor, y scale factor]
     @rtype: dictionary
-    @return: image data (numpy array), updated astWCS WCS object for image, in format {'data', 'wcs'}.
+    @return: image data (np array), updated astWCS WCS object for image, in format {'data', 'wcs'}.
     
     """
 
@@ -436,9 +436,10 @@ def scaleImage(imageData, imageWCS, scaleFactor):
         scaleFactor=[float(scaleFactor), float(scaleFactor)]    
     scaledData=ndimage.zoom(imageData, scaleFactor)
     
-    # Take care of offset due to rounding in scaling image to integer pixel dimensions
-    properDimensions=numpy.array(imageData.shape)*scaleFactor
-    offset=properDimensions-numpy.array(scaledData.shape)
+    # Changed below because ndimage.zoom now uses round instead of int (since scipy 0.13.0)
+    # NOTE: np axes order flips order compared to scaleFactor
+    trueScaleFactor=np.array(scaledData.shape, dtype = float) / np.array(imageData.shape, dtype = float)
+    offset=0.
     
     # Rescale WCS
     try:
@@ -463,15 +464,16 @@ def scaleImage(imageData, imageWCS, scaleFactor):
             scaledWCS=imageWCS.copy()
             return {'data': scaledData, 'wcs': scaledWCS}
 
-    CDMatrix=numpy.array([[CD11, CD12], [CD21, CD22]], dtype=numpy.float64)
-    scaleFactorMatrix=numpy.array([[1.0/scaleFactor[0], 0], [0, 1.0/scaleFactor[1]]])
-    scaledCDMatrix=numpy.dot(scaleFactorMatrix, CDMatrix)
+    CDMatrix=np.array([[CD11, CD12], [CD21, CD22]], dtype=np.float64)
+    scaleFactorMatrix=np.array([[1.0/trueScaleFactor[1], 0], [0, 1.0/trueScaleFactor[0]]])
+    scaleFactorMatrix=np.array([[1.0/trueScaleFactor[1], 0], [0, 1.0/trueScaleFactor[0]]])
+    scaledCDMatrix=np.dot(scaleFactorMatrix, CDMatrix)
 
     scaledWCS=imageWCS.copy()
     scaledWCS.header['NAXIS1']=scaledData.shape[1]
     scaledWCS.header['NAXIS2']=scaledData.shape[0]
-    scaledWCS.header['CRPIX1']=oldCRPIX1*scaleFactor[0]+offset[1]
-    scaledWCS.header['CRPIX2']=oldCRPIX2*scaleFactor[1]+offset[0]
+    scaledWCS.header['CRPIX1']=oldCRPIX1*trueScaleFactor[1]
+    scaledWCS.header['CRPIX2']=oldCRPIX2*trueScaleFactor[0]
     scaledWCS.header['CD1_1']=scaledCDMatrix[0][0]
     scaledWCS.header['CD2_1']=scaledCDMatrix[1][0]
     scaledWCS.header['CD1_2']=scaledCDMatrix[0][1]
@@ -486,7 +488,7 @@ def intensityCutImage(imageData, cutLevels):
     applied. This routine is used by L{saveBitmap} and L{saveContourOverlayBitmap}, which both
     produce output as .png, .jpg, etc. images.
     
-    @type imageData: numpy array
+    @type imageData: np array
     @param imageData: image data array
     @type cutLevels: list
     @param cutLevels: sets the image scaling - available options:
@@ -496,7 +498,7 @@ def intensityCutImage(imageData, cutLevels):
         - smart: cutLevels=["smart", cut per cent level (e.g. 99.5)]
     ["smart", 99.5] seems to provide good scaling over a range of different images.
     @rtype: dictionary
-    @return: image section (numpy.array), matplotlib image normalisation (matplotlib.colors.Normalize), in the format {'image', 'norm'}.
+    @return: image section (np.array), matplotlib image normalisation (matplotlib.colors.Normalize), in the format {'image', 'norm'}.
     
     @note: If cutLevels[0] == "histEq", then only {'image'} is returned.
     
@@ -514,7 +516,7 @@ def intensityCutImage(imageData, cutLevels):
     elif cutLevels[0]=="relative":
         
         # this turns image data into 1D array then sorts
-        sorted=numpy.sort(numpy.ravel(imageData))	
+        sorted=np.sort(np.ravel(imageData))	
         maxValue=sorted.max()
         minValue=sorted.min()
         
@@ -529,7 +531,7 @@ def intensityCutImage(imageData, cutLevels):
     elif cutLevels[0]=="smart":
         
         # this turns image data into 1Darray then sorts
-        sorted=numpy.sort(numpy.ravel(imageData))	
+        sorted=np.sort(np.ravel(imageData))	
         maxValue=sorted.max()
         minValue=sorted.min()
         numBins=10000 		# 0.01 per cent accuracy
@@ -567,7 +569,7 @@ def intensityCutImage(imageData, cutLevels):
             topBinValue=maxValue
          
         #Now we apply relative scaling to this
-        smartClipped=numpy.clip(sorted, bottomBinValue, topBinValue)
+        smartClipped=np.clip(sorted, bottomBinValue, topBinValue)
         topCutIndex=len(smartClipped-1) \
             -int(math.floor(float((100.0-cutLevels[1])/100.0)*len(smartClipped-1)))
         bottomCutIndex=int(math.ceil(float((100.0-cutLevels[1])/100.0)*len(smartClipped-1)))
@@ -589,14 +591,14 @@ def resampleToTanProjection(imageData, imageWCS, outputPixDimensions=[600, 600])
     """Resamples an image and WCS to a tangent plane projection. Purely for plotting purposes
     (e.g., ensuring RA, dec. coordinate axes perpendicular).
     
-    @type imageData: numpy array
+    @type imageData: np array
     @param imageData: image data array
     @type imageWCS: astWCS.WCS
     @param imageWCS: astWCS.WCS object
     @type outputPixDimensions: list
     @param outputPixDimensions: [width, height] of output image in pixels
     @rtype: dictionary
-    @return: image data (numpy array), updated astWCS WCS object for image, in format {'data', 'wcs'}.
+    @return: image data (np array), updated astWCS WCS object for image, in format {'data', 'wcs'}.
     
     """
     
@@ -625,7 +627,7 @@ def resampleToTanProjection(imageData, imageWCS, outputPixDimensions=[600, 600])
     newHead['CUNIT1']='DEG'
     newHead['CUNIT2']='DEG'
     newWCS=astWCS.WCS(newHead, mode='pyfits')
-    newImage=numpy.zeros([ySizePix, xSizePix])
+    newImage=np.zeros([ySizePix, xSizePix])
 
     tanImage=resampleToWCS(newImage, newWCS, imageData, imageWCS, highAccuracy=True, 
                             onlyOverlapping=False)
@@ -646,11 +648,11 @@ def resampleToWCS(im1Data, im1WCS, im2Data, im2WCS, highAccuracy = False, onlyOv
     Set onlyOverlapping == True to speed up resampling by only resampling the overlapping
     area defined by both image WCSs.
     
-    @type im1Data: numpy array
+    @type im1Data: np array
     @param im1Data: image data array for first image
     @type im1WCS: astWCS.WCS
     @param im1WCS: astWCS.WCS object corresponding to im1Data
-    @type im2Data: numpy array
+    @type im2Data: np array
     @param im2Data: image data array for second image (to be resampled to match first image)
     @type im2WCS: astWCS.WCS
     @param im2WCS: astWCS.WCS object corresponding to im2Data
@@ -661,11 +663,11 @@ def resampleToWCS(im1Data, im1WCS, im2Data, im2WCS, highAccuracy = False, onlyOv
     @param onlyOverlapping: if True, only consider the overlapping area defined by both image WCSs
         (speeds things up)
     @rtype: dictionary
-    @return: numpy image data array and associated WCS in format {'data', 'wcs'}
+    @return: np image data array and associated WCS in format {'data', 'wcs'}
     
     """
     
-    resampledData=numpy.zeros(im1Data.shape)
+    resampledData=np.zeros(im1Data.shape)
     
     # Find overlap - speed things up
     # But have a border so as not to require the overlap to be perfect
@@ -730,14 +732,14 @@ def resampleToWCS(im1Data, im1WCS, im2Data, im2WCS, highAccuracy = False, onlyOv
     # linear interpolation
     if highAccuracy == False:
         for row in range(resampledData.shape[0]):
-            vals=resampledData[row, numpy.arange(xMin, xMax, xPixStep)]
-            index2data=interpolate.interp1d(numpy.arange(0, vals.shape[0], 1), vals)
-            interpedVals=index2data(numpy.arange(0, vals.shape[0]-1, 1.0/xPixStep))
+            vals=resampledData[row, np.arange(xMin, xMax, xPixStep)]
+            index2data=interpolate.interp1d(np.arange(0, vals.shape[0], 1), vals)
+            interpedVals=index2data(np.arange(0, vals.shape[0]-1, 1.0/xPixStep))
             resampledData[row, xMin:xMin+interpedVals.shape[0]]=interpedVals
         for col in range(resampledData.shape[1]):
-            vals=resampledData[numpy.arange(yMin, yMax, yPixStep), col]
-            index2data=interpolate.interp1d(numpy.arange(0, vals.shape[0], 1), vals)
-            interpedVals=index2data(numpy.arange(0, vals.shape[0]-1, 1.0/yPixStep))
+            vals=resampledData[np.arange(yMin, yMax, yPixStep), col]
+            index2data=interpolate.interp1d(np.arange(0, vals.shape[0], 1), vals)
+            interpedVals=index2data(np.arange(0, vals.shape[0]-1, 1.0/yPixStep))
             resampledData[yMin:yMin+interpedVals.shape[0], col]=interpedVals
         
     # Note: should really just copy im1WCS keywords into im2WCS and return that
@@ -753,11 +755,11 @@ def generateContourOverlay(backgroundImageData, backgroundImageWCS, contourImage
     can be optionally smoothed using a Gaussian filter. The sigma of the Gaussian filter 
     (contourSmoothFactor) is specified in arcsec.
     
-    @type backgroundImageData: numpy array
+    @type backgroundImageData: np array
     @param backgroundImageData: background image data array
     @type backgroundImageWCS: astWCS.WCS
     @param backgroundImageWCS: astWCS.WCS object of the background image data array
-    @type contourImageData: numpy array
+    @type contourImageData: np array
     @param contourImageData: image data array from which contours are to be generated
     @type contourImageWCS: astWCS.WCS
     @param contourImageWCS: astWCS.WCS object corresponding to contourImageData
@@ -857,7 +859,7 @@ def saveBitmap(outputFileName, imageData, cutLevels, size, colorMapName):
     
     @type outputFileName: string
     @param outputFileName: filename of output bitmap image
-    @type imageData: numpy array
+    @type imageData: np array
     @param imageData: image data array
     @type cutLevels: list
     @param cutLevels: sets the image scaling - available options:
@@ -919,7 +921,7 @@ def saveContourOverlayBitmap(outputFileName, backgroundImageData, backgroundImag
     
     @type outputFileName: string
     @param outputFileName: filename of output bitmap image
-    @type backgroundImageData: numpy array
+    @type backgroundImageData: np array
     @param backgroundImageData: background image data array
     @type backgroundImageWCS: astWCS.WCS
     @param backgroundImageWCS: astWCS.WCS object of the background image data array
@@ -935,7 +937,7 @@ def saveContourOverlayBitmap(outputFileName, backgroundImageData, backgroundImag
     @type colorMapName: string
     @param colorMapName: name of a standard matplotlib colormap, e.g. "hot", "cool", "gray"
     etc. (do "help(pylab.colormaps)" in the Python interpreter to see available options)
-    @type contourImageData: numpy array
+    @type contourImageData: np array
     @param contourImageData: image data array from which contours are to be generated
     @type contourImageWCS: astWCS.WCS
     @param contourImageWCS: astWCS.WCS object corresponding to contourImageData
@@ -1006,7 +1008,7 @@ def saveFITS(outputFileName, imageData, imageWCS = None):
     
     @type outputFileName: string
     @param outputFileName: filename of output FITS image
-    @type imageData: numpy array
+    @type imageData: np array
     @param imageData: image data array
     @type imageWCS: astWCS.WCS object
     @param imageWCS: image WCS object
@@ -1034,13 +1036,13 @@ def saveFITS(outputFileName, imageData, imageWCS = None):
     
 #---------------------------------------------------------------------------------------------------
 def histEq(inputArray, numBins):
-    """Performs histogram equalisation of the input numpy array.
+    """Performs histogram equalisation of the input np array.
     
-    @type inputArray: numpy array
+    @type inputArray: np array
     @param inputArray: image data array
     @type numBins: int
     @param numBins: number of bins in which to perform the operation (e.g. 1024)
-    @rtype: numpy array
+    @rtype: np array
     @return: image data array
     
     """
@@ -1048,26 +1050,26 @@ def histEq(inputArray, numBins):
     imageData=inputArray
     
     # histogram equalisation: we want an equal number of pixels in each intensity range
-    sortedDataIntensities=numpy.sort(numpy.ravel(imageData))	
-    median=numpy.median(sortedDataIntensities)
+    sortedDataIntensities=np.sort(np.ravel(imageData))	
+    median=np.median(sortedDataIntensities)
     
     # Make cumulative histogram of data values, simple min-max used to set bin sizes and range
-    dataCumHist=numpy.zeros(numBins)
+    dataCumHist=np.zeros(numBins)
     minIntensity=sortedDataIntensities.min()	
     maxIntensity=sortedDataIntensities.max()
     histRange=maxIntensity-minIntensity
     binWidth=histRange/float(numBins-1)
     for i in range(len(sortedDataIntensities)):
         binNumber=int(math.ceil((sortedDataIntensities[i]-minIntensity)/binWidth))
-        addArray=numpy.zeros(numBins)
-        onesArray=numpy.ones(numBins-binNumber)
+        addArray=np.zeros(numBins)
+        onesArray=np.ones(numBins-binNumber)
         onesRange=list(range(binNumber, numBins))
-        numpy.put(addArray, onesRange, onesArray)
+        np.put(addArray, onesRange, onesArray)
         dataCumHist=dataCumHist+addArray
                 
     # Make ideal cumulative histogram
     idealValue=dataCumHist.max()/float(numBins)
-    idealCumHist=numpy.arange(idealValue, dataCumHist.max()+idealValue, idealValue)
+    idealCumHist=np.arange(idealValue, dataCumHist.max()+idealValue, idealValue)
     
     # Map the data to the ideal
     for y in range(imageData.shape[0]):
@@ -1085,7 +1087,7 @@ def histEq(inputArray, numBins):
             dataCumFreq=dataCumHist[intensityBin]
             
             # Get the index of the corresponding ideal cumulative frequency
-            idealBin=numpy.searchsorted(idealCumHist, dataCumFreq)
+            idealBin=np.searchsorted(idealCumHist, dataCumFreq)
             idealIntensity=(idealBin*binWidth)+minIntensity
             imageData[y][x]=idealIntensity	
         
@@ -1100,11 +1102,11 @@ def normalise(inputArray, clipMinMax):
     Used for normalising image arrays so that they can be turned into RGB arrays that matplotlib
     can plot (see L{astPlots.ImagePlot}).
     
-    @type inputArray: numpy array
+    @type inputArray: np array
     @param inputArray: image data array
     @type clipMinMax: list
     @param clipMinMax: [minimum value of clipped array, maximum value of clipped array]
-    @rtype: numpy array
+    @rtype: np array
     @return: normalised array with minimum value 0, maximum value 1
 
     """
