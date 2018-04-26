@@ -118,7 +118,7 @@ def decimal2hms(RADeg, delimiter):
     if 0.001 < secs < 10:
         sSecs = "0"+str(secs)[:str(secs).find(".")+4]
     elif secs < 0.0001:
-        sSecs = "00.001"
+        sSecs = "00.000"
     else:
         sSecs = str(secs)[:str(secs).find(".")+4]
     if len(sSecs) < 5:
@@ -129,7 +129,7 @@ def decimal2hms(RADeg, delimiter):
         sMins = str(int(sMins)+1)
     if int(sMins) == 60:
         sMins = "00"
-        sDeg = str(int(sDeg)+1)
+        sHours = str(int(sHours)+1)
 
     return sHours+delimiter+sMins+delimiter+sSecs
 

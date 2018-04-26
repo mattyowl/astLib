@@ -1,6 +1,6 @@
 """module for producing astronomical plots
 
-(c) 2007-2016 Matt Hilton 
+(c) 2007-2018 Matt Hilton 
 
 U{http://astlib.sourceforge.net}
 
@@ -36,7 +36,7 @@ from . import astImages
 from . import astWCS
 from . import astCoords
 import numpy
-import pyfits
+import astropy.io.fits as pyfits
 from scipy import interpolate
 import pylab
 import matplotlib.patches as patches
