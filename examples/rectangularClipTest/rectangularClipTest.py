@@ -9,7 +9,7 @@
 import astropy.io.fits as pyfits
 from astLib import *
 
-# Regular clipping rputines test
+# Regular clipping routines test
 img = pyfits.open("../../../testingData/testImage3.fits")
 wcs = astWCS.WCS("../../../testingData/testImage3.fits")
 d = img[0].data
@@ -38,4 +38,4 @@ clip = astImages.clipUsingRADecCoords(img[0].data, wcs, 30.0, 50.0, -55.0,
         -50.0)
 
 astImages.saveFITS("output_RADecClipped.fits", clip['data'], clip['wcs'])
-
+print(clip['wcs'].getImageMinMaxWCSCoords())

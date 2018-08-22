@@ -372,10 +372,6 @@ def clipUsingRADecCoords(imageData, imageWCS, RAMin, RAMax, decMin, decMax, retu
     # Fixed for TPV headers
     xMin, yMin=imageWCS.wcs2pix(RAMax, decMin)
     xMax, yMax=imageWCS.wcs2pix(RAMin, decMax)
-    xMin=int(np.floor(xMin))
-    xMax=int(np.ceil(xMax))
-    yMin=int(np.floor(yMin))
-    yMax=int(np.ceil(yMax))
     X=[xMin, xMax]
     X.sort()
     Y=[yMin, yMax]
