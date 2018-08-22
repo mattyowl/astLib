@@ -369,16 +369,19 @@ def clipUsingRADecCoords(imageData, imageWCS, RAMin, RAMax, decMin, decMax, retu
     imHeight=imageData.shape[0]
     imWidth=imageData.shape[1]
     
-    xMin, yMin=imageWCS.wcs2pix(RAMin, decMin)
-    xMax, yMax=imageWCS.wcs2pix(RAMax, decMax)
-    xMin=int(round(xMin))
-    xMax=int(round(xMax))
-    yMin=int(round(yMin))
-    yMax=int(round(yMax))
+    # Fixed for TPV headers
+    xMin, yMin=imageWCS.wcs2pix(RAMax, decMin)
+    xMax, yMax=imageWCS.wcs2pix(RAMin, decMax)
+    xMin=int(np.floor(xMin))
+    xMax=int(np.ceil(xMax))
+    yMin=int(np.floor(yMin))
+    yMax=int(np.ceil(yMax))
     X=[xMin, xMax]
     X.sort()
     Y=[yMin, yMax]
     Y.sort()
+    X=[int(np.floor(X[0])), int(np.ceil(X[1]))]
+    Y=[int(np.floor(Y[0])), int(np.ceil(Y[1]))]
     
     if X[0] < 0:
         X[0]=0
