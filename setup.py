@@ -79,9 +79,9 @@ setup(name='astLib',
             'Topic :: Software Development :: Libraries'],
     description='A set of python modules for producing simple plots, statistics, common calculations, coordinate conversions, and manipulating FITS images with World Coordinate System (WCS) information.',
     long_description="""astLib is a set of Python modules that provides some tools for research astronomers. It can be
-    used for simple plots, statistics, common calculations, coordinate conversions, and manipulating FITS images
-    with World Coordinate System (WCS) information through PyWCSTools - a simple wrapping of WCSTools by Jessica Mink.
-    PyWCSTools is distributed (and developed) as part of astLib.""",
+used for simple plots, statistics, common calculations, coordinate conversions, and manipulating FITS images
+with World Coordinate System (WCS) information through PyWCSTools - a simple wrapping of WCSTools by Jessica Mink.
+PyWCSTools is distributed (and developed) as part of astLib.""",
     packages=['astLib', 'PyWCSTools'],
     package_data={'astLib': ['data/*']},
     cmdclass={"build_ext": build_PyWCSTools_ext},
