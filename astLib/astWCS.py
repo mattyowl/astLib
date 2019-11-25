@@ -26,6 +26,7 @@ unnecessary.
 
 from astropy.io import fits as pyfits
 from PyWCSTools import wcs
+import astropy.wcs as apywcs
 import numpy
 import locale
 
@@ -60,7 +61,8 @@ class WCS:
 
     """
 
-    def __init__(self, headerSource, extensionName = 0, mode = "image", zapKeywords = []):
+    def __init__(self, headerSource, extensionName = 0, mode = "image", zapKeywords = [],
+                 useAstropyWCS = True):
         """Creates a WCS object using either the information contained in the
         header of the specified .fits image, or from a pyfits.header object.
         Set mode = "pyfits" if the headerSource is a pyfits.header.
@@ -83,6 +85,9 @@ class WCS:
         @type zapKeywords: list
         @param: zapKeywords: keywords to remove from the header before making
             astWCS object.
+        @type: useAstropyWCS: bool
+        @param: useAstropyWCS: if True, use astropy.wcs to perform WCS 
+            coordinate conversions in wcs2pix, pix2wcs (if False, use PyWCSTools)
             
         @note: The meta data provided by headerSource is stored in WCS.header
             as a pyfits.header object.
@@ -110,6 +115,13 @@ class WCS:
                     for count in range(self.headerSource.count(z)):
                         self.headerSource.remove(z)
             self.header=headerSource
+        
+        # This enables a shim to allow code written for astLib to use astropy.wcs underneath
+        self.useAstropyWCS=useAstropyWCS
+        if NUMPY_MODE == True:
+            self._apywcsOrigin=0
+        else:
+            self._apywcsOrigin=1
 
         self.updateFromHeader()
 
@@ -123,7 +135,8 @@ class WCS:
         """
 
         # This only sets up a new WCS object, doesn't do a deep copy
-        ret = WCS(self.headerSource, self.extensionName, self.mode)
+        ret = WCS(self.headerSource, self.extensionName, self.mode, 
+                  useAstropyWCS = self.useAstropyWCS)
 
         # This fixes copy bug
         ret.header = self.header.copy()
@@ -155,7 +168,8 @@ class WCS:
         cardstring = ""
         for card in newHead.cards:
             cardstring = cardstring+str(card)
-            
+        
+        self.AWCS = apywcs.WCS(self.header)             # For astropy.wcs shim
         self.WCSStructure = wcs.wcsinit(cardstring)
 
 
@@ -168,7 +182,6 @@ class WCS:
 
         """
         full = wcs.wcsfull(self.WCSStructure)
-
         RADeg = full[0]
         decDeg = full[1]
 
@@ -186,7 +199,6 @@ class WCS:
 
         """
         full = wcs.wcsfull(self.WCSStructure)
-
         width = full[2]
         height = full[3]
 
@@ -203,7 +215,6 @@ class WCS:
 
         """
         half = wcs.wcssize(self.WCSStructure)
-
         width = half[2]
         height = half[3]
 
@@ -251,35 +262,40 @@ class WCS:
         @return: pixel coordinates in format [x, y]
 
         """
-
-        if type(RADeg) == numpy.ndarray or type(RADeg) == list:
-            if type(decDeg) == numpy.ndarray or type(decDeg) == list:
-                pixCoords = []
-                for ra, dec in zip(RADeg, decDeg):
-                    pix = wcs.wcs2pix(self.WCSStructure, float(ra), float(dec))
-                    # Below handles CEA wraparounds
-                    if pix[0] < 1:
-                        xTest = ((self.header['CRPIX1'])-(ra-360.0) /
+        if self.useAstropyWCS == False:
+            if type(RADeg) == numpy.ndarray or type(RADeg) == list:
+                if type(decDeg) == numpy.ndarray or type(decDeg) == list:
+                    pixCoords = []
+                    for ra, dec in zip(RADeg, decDeg):
+                        pix = wcs.wcs2pix(self.WCSStructure, float(ra), float(dec))
+                        # Below handles CEA wraparounds
+                        if pix[0] < 1:
+                            xTest = ((self.header['CRPIX1'])-(ra-360.0) /
+                                self.getXPixelSizeDeg())
+                            if xTest >= 1 and xTest < self.header['NAXIS1']:
+                                pix[0] = xTest
+                        if NUMPY_MODE == True:
+                            pix[0] = pix[0]-1
+                            pix[1] = pix[1]-1
+                        pixCoords.append([pix[0], pix[1]])
+            else:
+                pixCoords = (wcs.wcs2pix(self.WCSStructure, float(RADeg),
+                            float(decDeg)))
+                # Below handles CEA wraparounds
+                if pixCoords[0] < 1:
+                    xTest = ((self.header['CRPIX1'])-(RADeg-360.0) /
                             self.getXPixelSizeDeg())
-                        if xTest >= 1 and xTest < self.header['NAXIS1']:
-                            pix[0] = xTest
-                    if NUMPY_MODE == True:
-                        pix[0] = pix[0]-1
-                        pix[1] = pix[1]-1
-                    pixCoords.append([pix[0], pix[1]])
+                    if xTest >= 1 and xTest < self.header['NAXIS1']:
+                        pixCoords[0] = xTest
+                if NUMPY_MODE == True:
+                    pixCoords[0] = pixCoords[0]-1
+                    pixCoords[1] = pixCoords[1]-1
+                pixCoords = [pixCoords[0], pixCoords[1]]
+        
         else:
-            pixCoords = (wcs.wcs2pix(self.WCSStructure, float(RADeg),
-                        float(decDeg)))
-            # Below handles CEA wraparounds
-            if pixCoords[0] < 1:
-                xTest = ((self.header['CRPIX1'])-(RADeg-360.0) /
-                        self.getXPixelSizeDeg())
-                if xTest >= 1 and xTest < self.header['NAXIS1']:
-                    pixCoords[0] = xTest
-            if NUMPY_MODE == True:
-                pixCoords[0] = pixCoords[0]-1
-                pixCoords[1] = pixCoords[1]-1
-            pixCoords = [pixCoords[0], pixCoords[1]]
+            # astropy.wcs shim
+            pixCoords = self.AWCS.wcs_world2pix(RADeg, decDeg, self._apywcsOrigin)
+            pixCoords = numpy.array(pixCoords).transpose().tolist() 
 
         return pixCoords
 
@@ -292,21 +308,26 @@ class WCS:
         @return: WCS coordinates in format [RADeg, decDeg]
 
         """
-        if type(x) == numpy.ndarray or type(x) == list:
-            if type(y) == numpy.ndarray or type(y) == list:
-                WCSCoords = []
-                for xc, yc in zip(x, y):
-                    if NUMPY_MODE == True:
-                        xc += 1
-                        yc += 1
-                    WCSCoords.append(wcs.pix2wcs(self.WCSStructure, float(xc),
-                                float(yc)))
+        if self.useAstropyWCS == False:
+            if type(x) == numpy.ndarray or type(x) == list:
+                if type(y) == numpy.ndarray or type(y) == list:
+                    WCSCoords = []
+                    for xc, yc in zip(x, y):
+                        if NUMPY_MODE == True:
+                            xc += 1
+                            yc += 1
+                        WCSCoords.append(wcs.pix2wcs(self.WCSStructure, float(xc),
+                                    float(yc)))
+            else:
+                if NUMPY_MODE == True:
+                    x += 1
+                    y += 1
+                WCSCoords = wcs.pix2wcs(self.WCSStructure, float(x), float(y))
         else:
-            if NUMPY_MODE == True:
-                x += 1
-                y += 1
-            WCSCoords = wcs.pix2wcs(self.WCSStructure, float(x), float(y))
-
+            # astropy.wcs shim
+            WCSCoords = self.AWCS.wcs_pix2world(x, y, self._apywcsOrigin)
+            WCSCoords = numpy.array(WCSCoords).transpose().tolist() 
+            
         return WCSCoords
 
 
@@ -318,13 +339,20 @@ class WCS:
         @return: True if coordinate within image, False if not.
 
         """
-
-        pixCoords = wcs.wcs2pix(self.WCSStructure, RADeg, decDeg)
-        if pixCoords[0] >= 0 and pixCoords[0] < self.header['NAXIS1'] and \
-            pixCoords[1] >= 0 and pixCoords[1] < self.header['NAXIS2']:
-                return True
+        
+        if self.useAstropyWCS == False:
+            pixCoords = wcs.wcs2pix(self.WCSStructure, RADeg, decDeg)
+            if pixCoords[0] >= 0 and pixCoords[0] < self.header['NAXIS1'] and \
+                pixCoords[1] >= 0 and pixCoords[1] < self.header['NAXIS2']:
+                    return True
+            else:
+                return False
         else:
-            return False
+            # astropy.wcs shim
+            import IPython
+            print("implement for shim")
+            IPython.embed()
+            sys.exit()
 
 
     def getRotationDeg(self):
