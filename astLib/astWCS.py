@@ -116,6 +116,10 @@ class WCS:
                         self.headerSource.remove(z)
             self.header=headerSource
         
+        # If we use astropy.wcs, then we have issues if NAXIS != 2
+        if useAstropyWCS == True and self.header['NAXIS'] > 2:
+            self.header['NAXIS']=2
+        
         # This enables a shim to allow code written for astLib to use astropy.wcs underneath
         self.useAstropyWCS=useAstropyWCS
         if NUMPY_MODE == True:
@@ -169,7 +173,8 @@ class WCS:
         for card in newHead.cards:
             cardstring = cardstring+str(card)
         
-        self.AWCS = apywcs.WCS(self.header)             # For astropy.wcs shim
+        if self.useAstropyWCS == True:
+            self.AWCS = apywcs.WCS(self.header)         # For astropy.wcs shim
         self.WCSStructure = wcs.wcsinit(cardstring)
 
 
