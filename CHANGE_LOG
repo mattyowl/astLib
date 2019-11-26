@@ -1,5 +1,11 @@
 CHANGE LOG:
 
+VERSION 0.11.0
+--------------
+
+* This version adds a 'shim' that uses astropy.wcs for WCS coordinate conversions 
+  (enabled by default).
+
 VERSION 0.10.0
 --------------
 

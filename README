@@ -1,9 +1,9 @@
 astLib: python astronomy modules
 
-    version: 0.10.1
+    version: 0.11.0
 
     (c) 2007-2012 Matt Hilton
-    (c) 2013-2018 Matt Hilton & Steven Boada
+    (c) 2013-2019 Matt Hilton & Steven Boada
 
     http://astlib.sourceforge.net
 
@@ -37,7 +37,7 @@ Some scripts using astLib can be found in the examples/ folder in this archive.
 -------------------------------------------------------------------------------------------------------------
 INSTALLATION
 
-astLib 0.10.0 requires:
+astLib 0.11.0 requires:
 
     * Python
       (tested on versions 2.7.12+)
