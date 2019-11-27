@@ -119,6 +119,9 @@ class WCS:
         # If we use astropy.wcs, then we have issues if NAXIS != 2
         if useAstropyWCS == True and self.header['NAXIS'] > 2:
             self.header['NAXIS']=2
+            for key in self.header.keys():
+                if key[:5] == 'NAXIS' and len(key) == 6 and int(key[5]) > 2:
+                    del self.header[key]
         
         # This enables a shim to allow code written for astLib to use astropy.wcs underneath
         self.useAstropyWCS=useAstropyWCS
