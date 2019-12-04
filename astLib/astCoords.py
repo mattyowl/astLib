@@ -353,7 +353,7 @@ def convertCoords(inputSystem, outputSystem, coordX, coordY, epoch):
             outputSystem=="GALACTIC":
 
             outCoords=wcscon.wcscon(wcscon.wcscsys(inputSystem),
-                wcscon.wcscsys(outputSystem), 0, 0, coordX, coordY, epoch)
+                wcscon.wcscsys(outputSystem), 0, 0, float(coordX), float(coordY), epoch)
 
             return outCoords
 
