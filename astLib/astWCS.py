@@ -27,7 +27,7 @@ unnecessary.
 from astropy.io import fits as pyfits
 from PyWCSTools import wcs
 import astropy.wcs as apywcs
-import numpy
+import numpy as np
 import locale
 
 # if True, -1 from pixel coords to be zero-indexed like numpy. If False, use
@@ -115,13 +115,6 @@ class WCS:
                     for count in range(self.headerSource.count(z)):
                         self.headerSource.remove(z)
             self.header=headerSource
-        
-        # If we use astropy.wcs, then we have issues if NAXIS != 2
-        if useAstropyWCS == True and self.header['NAXIS'] > 2:
-            self.header['NAXIS']=2
-            for key in self.header.keys():
-                if key[:5] == 'NAXIS' and len(key) == 6 and int(key[5]) > 2:
-                    del self.header[key]
         
         # This enables a shim to allow code written for astLib to use astropy.wcs underneath
         self.useAstropyWCS=useAstropyWCS
@@ -264,15 +257,15 @@ class WCS:
     def wcs2pix(self, RADeg, decDeg):
         """Returns the pixel coordinates corresponding to the input WCS
         coordinates (given in decimal degrees). RADeg, decDeg can be single
-        floats, or lists or numpy arrays.
+        floats, or lists or np arrays.
 
         @rtype: list
         @return: pixel coordinates in format [x, y]
 
         """
         if self.useAstropyWCS == False:
-            if type(RADeg) == numpy.ndarray or type(RADeg) == list:
-                if type(decDeg) == numpy.ndarray or type(decDeg) == list:
+            if type(RADeg) == np.ndarray or type(RADeg) == list:
+                if type(decDeg) == np.ndarray or type(decDeg) == list:
                     pixCoords = []
                     for ra, dec in zip(RADeg, decDeg):
                         pix = wcs.wcs2pix(self.WCSStructure, float(ra), float(dec))
@@ -302,8 +295,13 @@ class WCS:
         
         else:
             # astropy.wcs shim
-            pixCoords = self.AWCS.wcs_world2pix(RADeg, decDeg, self._apywcsOrigin)
-            pixCoords = numpy.array(pixCoords).transpose().tolist() 
+            if self.header['NAXIS'] == 2:
+                pixCoords = self.AWCS.all_world2pix(RADeg, decDeg, self._apywcsOrigin)
+            elif self.header['NAXIS'] == 3:
+                pixCoords = self.AWCS.all_world2pix(RADeg, decDeg, 0, self._apywcsOrigin)
+            else:
+                raise Exception("Not handling NAXIS > 3 with astropy.wcs shim")
+            pixCoords = np.array(pixCoords)[:2].transpose().tolist()
 
         return pixCoords
 
@@ -317,8 +315,8 @@ class WCS:
 
         """
         if self.useAstropyWCS == False:
-            if type(x) == numpy.ndarray or type(x) == list:
-                if type(y) == numpy.ndarray or type(y) == list:
+            if type(x) == np.ndarray or type(x) == list:
+                if type(y) == np.ndarray or type(y) == list:
                     WCSCoords = []
                     for xc, yc in zip(x, y):
                         if NUMPY_MODE == True:
@@ -333,8 +331,13 @@ class WCS:
                 WCSCoords = wcs.pix2wcs(self.WCSStructure, float(x), float(y))
         else:
             # astropy.wcs shim
-            WCSCoords = self.AWCS.wcs_pix2world(x, y, self._apywcsOrigin)
-            WCSCoords = numpy.array(WCSCoords).transpose().tolist() 
+            if self.header['NAXIS'] == 2:
+                WCSCoords = self.AWCS.all_pix2world(x, y, self._apywcsOrigin)
+            elif self.header['NAXIS'] == 3:
+                WCSCoords = self.AWCS.all_pix2world(x, y, 0, self._apywcsOrigin)
+            else:
+                raise Exception("Not handling NAXIS > 3 with astropy.wcs shim")
+            WCSCoords = np.array(WCSCoords)[:2].transpose().tolist()
             
         return WCSCoords
 
@@ -348,19 +351,12 @@ class WCS:
 
         """
         
-        if self.useAstropyWCS == False:
-            pixCoords = wcs.wcs2pix(self.WCSStructure, RADeg, decDeg)
-            if pixCoords[0] >= 0 and pixCoords[0] < self.header['NAXIS1'] and \
-                pixCoords[1] >= 0 and pixCoords[1] < self.header['NAXIS2']:
-                    return True
-            else:
-                return False
+        pixCoords = self.wcs2pix(RADeg, decDeg)
+        if pixCoords[0] >= 0 and pixCoords[0] < self.header['NAXIS1'] and \
+            pixCoords[1] >= 0 and pixCoords[1] < self.header['NAXIS2']:
+                return True
         else:
-            # astropy.wcs shim
-            import IPython
-            print("implement for shim")
-            IPython.embed()
-            sys.exit()
+            return False
 
 
     def getRotationDeg(self):
