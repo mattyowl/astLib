@@ -1,3 +1,7 @@
+.. image:: https://readthedocs.org/projects/astlib/badge/?version=latest
+:target: https://astlib.readthedocs.io/en/latest/?badge=latest
+:alt: Documentation Status
+
 astLib provides some tools for research astronomers who use Python. It is divided into several modules:
 
 * astCalc   (general calculations, e.g. luminosity distance etc.)
