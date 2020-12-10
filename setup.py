@@ -63,10 +63,9 @@ class build_PyWCSTools_ext(build_ext):
         build_ext.build_extensions(self)
 
 setup(name='astLib',
-    version='0.11.4',
-    url='http://astlib.sourceforge.net',
-    download_url='http://sourceforge.net/project/platformdownload.php?group_id=202537',
-    author='Matt Hilton',
+    version='0.11.5',
+    url='https://astlib.readthedocs.io',
+    author='Matt Hilton & Steven Boada',
     author_email='matt.hilton@mykolab.com',
     classifiers=['Development Status :: 5 - Production/Stable',
             'Environment :: Console',

@@ -156,15 +156,14 @@ Thanks to Markus Demleitner for pointing this out.
 Documentation
 =============
 
-Documentation is available on the web at:
-
-    http://astlib.readthedocs.io
+Documentation is available on the web at http://astlib.readthedocs.io.
 
 
 Bugs
 ====
 
-Please email bug reports to matt.hilton@mykolab.com. Please include details of your operating system, python
-version, and versions of the python packages required by astLib that you have installed on your machine. 
-For any WCS-related bugs, it would be helpful if you could also include the image header as a text file so
-that I can reproduce them easily. 
+Please email bug reports to matt.hilton@mykolab.com, and/or use the `GitHub issues page <https://github.com/mattyowl/astLib/issues>`_. 
+
+Please include details of your operating system, python version, and versions of the python packages
+required by astLib that you have installed on your machine. For any WCS-related bugs, it would be helpful 
+if you could also include the image header as a text file so that I can reproduce them easily. 
