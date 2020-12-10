@@ -25,24 +25,18 @@ Software needed
 
 astLib requires:
 
-    * Python
-      (tested on versions 3.6+)
-    * Astropy - http://www.astropy.org
-      (tested on version 3.2.1)
-    * numpy - http://numpy.scipy.org
-      (tested on version 1.18.1)
-    * scipy - http://scipy.org
-      (tested on version 1.3.1)
-    * matplotlib - http://matplotlib.sourceforge.net
-      (tested on version 3.1.1)
+* Python (tested on versions 3.6+)
+* Astropy - http://www.astropy.org (tested on version 3.2.1)
+* Numpy - http://numpy.scipy.org (tested on version 1.18.1)
+* SciPy - http://scipy.org (tested on version 1.3.1)
+* Matplotlib - http://matplotlib.sourceforge.net (tested on version 3.1.1)
 
 From astLib 0.10.0, pyfits is no longer supported, as STScI have depreciated it. If you still require pyfits
 instead of Astropy, please continue to use astLib 0.9.3.
 
-optional:
+Optional:
    
-    * Python Imaging Library - http://www.pythonware.com/products/pil
-      (tested on version 1.1.7)
+* Python Imaging Library - http://www.pythonware.com/products/pil (tested on version 1.1.7)
 
 Other versions of the software listed above are likely to work.
 
@@ -121,7 +115,6 @@ The astWCS module currently provides access to what are (I think) the most commo
 and functions (such as converting between pixel and WCS coordinates etc.). However, should you wish to 
 access the wrapped WCSTools routines themselves directly: 
 
-
 .. code-block::
 
    from PyWCSTools import wcs
@@ -151,9 +144,11 @@ the case and print a warning message to the console.
 
 The workaround for this issue is to add the following after importing any python modules that expicitly set 
 the locale (such as matplotlib):
+
+.. code-block::
     
-    % import locale
-    % locale.setlocale(locale.LC_NUMERIC, 'C')"
+    import locale
+    locale.setlocale(locale.LC_NUMERIC, 'C')"
 
 Thanks to Markus Demleitner for pointing this out.
 
