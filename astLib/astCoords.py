@@ -1,10 +1,8 @@
-"""module for coordinate manipulation (conversions, calculations etc.)
+"""Module for coordinate manipulation (conversions, calculations etc.).
 
 (c) 2007-2012 Matt Hilton
 
 (c) 2013-2016 Matt Hilton & Steven Boada
-
-U{http://astlib.sourceforge.net}
 
 """
 

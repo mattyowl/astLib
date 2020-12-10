@@ -1,10 +1,8 @@
-"""module for handling World Coordinate Systems (WCS)
+"""Module for handling World Coordinate Systems (WCS).
 
 (c) 2007-2012 Matt Hilton
 
-(c) 2013-2018 Matt Hilton & Steven Boada
-
-U{http://astlib.sourceforge.net}
+(c) 2013-2020 Matt Hilton & Steven Boada
 
 This is a higher level interface to some of the routines in PyWCSTools
 (distributed with astLib).

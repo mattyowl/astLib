@@ -1,10 +1,8 @@
-"""module for performing common calculations
+"""Module for performing common calculations.
 
 (c) 2007-2011 Matt Hilton
 
 (c) 2013-2014 Matt Hilton & Steven Boada
-
-U{http://astlib.sourceforge.net}
 
 The focus in this module is at present on calculations of distances in a given
 cosmology. The parameters for the cosmological model are set using the
