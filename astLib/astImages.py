@@ -1,8 +1,6 @@
-"""module for simple .fits image tasks (rotation, clipping out sections, making .pngs etc.)
+"""Module for simple .fits image tasks (rotation, clipping out sections, making .pngs etc.).
 
 (c) 2007-2018 Matt Hilton 
-
-U{http://astlib.sourceforge.net}
 
 Some routines in this module will fail if, e.g., asked to clip a section from a .fits image at a
 position not found within the image (as determined using the WCS). Where this occurs, the function

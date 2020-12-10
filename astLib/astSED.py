@@ -1,8 +1,6 @@
-"""module for performing calculations on Spectral Energy Distributions (SEDs)
+"""Module for performing calculations on Spectral Energy Distributions (SEDs).
 
 (c) 2007-2013 Matt Hilton 
-
-U{http://astlib.sourceforge.net}
 
 This module provides classes for manipulating SEDs, in particular the Bruzual & Charlot 2003, Maraston
 2005, and Percival et al 2009 stellar population synthesis models are currently supported. Functions are 

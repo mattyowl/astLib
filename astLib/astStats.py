@@ -1,10 +1,8 @@
-"""module for performing statistical calculations.
+"""Module for performing statistical calculations.
 
 (c) 2007-2012 Matt Hilton 
 
 (c) 2013-2014 Matt Hilton & Steven Boada
-
-U{http://astlib.sourceforge.net}
 
 This module (as you may notice) provides very few statistical routines. It does, however, provide
 biweight (robust) estimators of location and scale, as described in Beers et al. 1990 (AJ, 100,

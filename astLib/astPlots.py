@@ -1,8 +1,6 @@
-"""module for producing astronomical plots
+"""Module for producing astronomical plots.
 
 (c) 2007-2018 Matt Hilton 
-
-U{http://astlib.sourceforge.net}
 
 This module provides the matplotlib powered ImagePlot class, which is designed to be flexible. 
 ImagePlots can have RA, Dec. coordinate axes, contour overlays, and have objects marked in them, 
