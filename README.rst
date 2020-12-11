@@ -47,6 +47,7 @@ Installation
 ============
 
 You can install astLib via pip:
+
 .. code-block::
 
    pip install pip
@@ -75,12 +76,11 @@ You can also use the ``--prefix`` option, e.g.,
    python setup.py install --prefix=$HOME/local
 
 
-and then add ``$HOME/local/bin`` to $PATH, and e.g., ``$HOME/local/lib/python3.6/site-packages`` to 
+and then add, e.g., ``$HOME/local/lib/python3.6/site-packages`` to 
 $PYTHONPATH (adjust the path according to your Python version number).
 
 .. code-block::
 
-   export PATH=$HOME/local/bin:$PATH    
    export PYTHONPATH=$HOME/local/lib/python3.6/site-packages:$PYTHONPATH
 
 
