@@ -6,33 +6,24 @@
 
 The focus in this module is at present on calculations of distances in a given
 cosmology. The parameters for the cosmological model are set using the
-variables OMEGA_M0, OMEGA_L0, OMEGA_R0, H0 in the module namespace (see below for details).
-
-@var OMEGA_M0: The matter density parameter at z=0.
-@type OMEGA_M0: float
-
-@var OMEGA_L0: The dark energy density (in the form of a cosmological
-    constant) at z=0.
-@type OMEGA_L0: float
-
-@var OMEGA_R0: The radiation density at z=0 (note this is only used currently
-    in calculation of L{Ez}).
-@type OMEGA_R0: float
-
-@var H0: The Hubble parameter (in km/s/Mpc) at z=0.
-@type H0: float
-
-@var C_LIGHT: The speed of light in km/s.
-@type C_LIGHT: float
+variables OMEGA_M0, OMEGA_L0, OMEGA_R0, H0 in the module namespace.
 
 """
 
 OMEGA_M0 = 0.3
+"""The matter density parameter at z=0."""
+
 OMEGA_L0 = 0.7
+"""The dark energy density (in the form of a cosmological constant) at z=0."""
+
 OMEGA_R0 = 8.24E-5
+"""The radiation density at z=0 (note this is only used currently in calculation of L{Ez})."""
+
 H0 = 70.0
+"""The Hubble parameter (in km/s/Mpc) at z=0."""
 
 C_LIGHT = 3.0e5
+"""The speed of light in km/s."""
 
 import math
 try:

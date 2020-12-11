@@ -7,13 +7,6 @@ This module provides classes for manipulating SEDs, in particular the Bruzual & 
 provided for calculating the evolution of colours and magnitudes in these models with redshift etc., and 
 for fitting broadband photometry using these models.
 
-@var VEGA: The SED of Vega, used for calculation of magnitudes on the Vega system.
-@type VEGA: L{SED} object
-@var AB: Flat spectrum SED, used for calculation of magnitudes on the AB system.
-@type AB: L{SED} object
-@var SOL: The SED of the Sun.
-@type SOL: L{SED} object
-
 """
 
 #------------------------------------------------------------------------------------------------------------
@@ -1102,8 +1095,7 @@ def fitSEDDict(SEDDict, modelSEDDictList):
     @type SEDDict: dictionary, in format of L{mags2SEDDict}
     @param SEDDict: dictionary of observed fluxes and uncertainties, in format of L{mags2SEDDict}
     @type modelSEDDictList: list of dictionaries, in format of L{makeModelSEDDictList}
-    @param modelSEDDictList: list of dictionaries containing fluxes of models to be fitted to the observed
-    fluxes listed in the SEDDict. This should be made using L{makeModelSEDDictList}.
+    @param modelSEDDictList: list of dictionaries containing fluxes of models to be fitted to the observed fluxes listed in the SEDDict. This should be made using L{makeModelSEDDictList}.
     @rtype: dictionary
     @return: results of the fitting - keys: 
              - 'minChiSq': minimum chi squared value of best fit
@@ -1269,13 +1261,16 @@ def Jy2Mag(fluxJy):
 #------------------------------------------------------------------------------------------------------------
 # Data
 VEGA=VegaSED()
+"""The SED of Vega, used for calculation of magnitudes on the Vega system (L{SED} object)."""
 
 # AB SED has constant flux density 3631 Jy
 AB=SED(wavelength = numpy.logspace(1, 8, int(1e5)), flux = numpy.ones(1000000))
+"""Flat spectrum SED, used for calculation of magnitudes on the AB system (L{SED} object)."""
 AB.flux=(3e-5*3631)/(AB.wavelength**2)
 AB.z0flux=AB.flux[:]
 
 # Solar SED from HST CALSPEC (http://www.stsci.edu/hst/observatory/cdbs/calspec.html)
 SOL=SED()
+"""The SED of the Sun (L{SED} object)."""
 SOL.loadFromFile(astLib.__path__[0]+os.path.sep+"data"+os.path.sep+"sun_reference_stis_001.ascii")
 

@@ -6,27 +6,6 @@ This module provides the matplotlib powered ImagePlot class, which is designed t
 ImagePlots can have RA, Dec. coordinate axes, contour overlays, and have objects marked in them, 
 using WCS coordinates. RGB plots are supported too.
 
-@var DEC_TICK_STEPS: Defines the possible coordinate label steps on the delination axis in
-sexagesimal mode. Dictionary format: {'deg', 'unit'}
-@type DEC_TICK_STEPS: dictionary list
-
-@var RA_TICK_STEPS: Defines the possible coordinate label steps on the right ascension axis in
-sexagesimal mode. Dictionary format: {'deg', 'unit'}
-@type RA_TICK_STEPS: dictionary list
-
-@var DECIMAL_TICK_STEPS: Defines the possible coordinate label steps on both coordinate axes in
-decimal degrees mode.
-@type DECIMAL_TICK_STEPS: list
-
-@var DEG: Variable to stand in for the degrees symbol.
-@type DEG: string
-
-@var PRIME: Variable to stand in for the prime symbol.
-@type PRIME: string
-
-@var DOUBLE_PRIME: Variable to stand in for the double prime symbol.
-@type DOUBLE_PRIME: string
-
 """
 
 import math
@@ -66,6 +45,8 @@ DEC_TICK_STEPS=[{'deg': 1.0/60.0/60.0,  'unit': "s"},
                 {'deg': 10.0,           'unit': "d"},
                 {'deg': 20.0,           'unit': "d"},
                 {'deg': 30.0,           'unit': "d"}]
+"""Defines the possible coordinate label steps on the delination axis in
+sexagesimal mode. Dictionary format: {'deg', 'unit'}"""
 
 RA_TICK_STEPS=[ {'deg': (0.5/60.0/60.0/24.0)*360.0,  'unit': "s"},
                 {'deg': (1.0/60.0/60.0/24.0)*360.0,  'unit': "s"},
@@ -85,11 +66,16 @@ RA_TICK_STEPS=[ {'deg': (0.5/60.0/60.0/24.0)*360.0,  'unit': "s"},
                 {'deg': (3.0/24.0)*360.0,            'unit': "h"},
                 {'deg': (6.0/24.0)*360.0,            'unit': "h"},
                 {'deg': (12.0/24.0)*360.0,           'unit': "h"}]
+"""Defines the possible coordinate label steps on the right ascension axis in
+sexagesimal mode. Dictionary format: {'deg', 'unit'}"""
 
 DECIMAL_TICK_STEPS=[0.001, 0.0025, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1.0, 2.0, 2.5, 5.0, 10.0, 30.0, 90.0]
+"""Defines the possible coordinate label steps on both coordinate axes in decimal degrees mode."""
 
 DEG = u("\N{DEGREE SIGN}")
+
 PRIME = "$^\prime$"
+
 DOUBLE_PRIME = "$^{\prime\prime}$"
 
 #---------------------------------------------------------------------------------------------------

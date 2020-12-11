@@ -11,13 +11,6 @@ PyWCSTools is a simple SWIG wrapping of WCSTools by Jessica Mink
 this interface complete enough such that direct use of PyWCSTools is
 unnecessary.
 
-@var NUMPY_MODE: If True (default), pixel coordinates accepted/returned by
-    routines such as L{astWCS.WCS.pix2wcs}, L{astWCS.WCS.wcs2pix} have (0, 0)
-    as the origin. Set to False to make these routines accept/return pixel
-    coords with (1, 1) as the origin (i.e. to match the FITS convention,
-    default behaviour prior to astLib version 0.3.0).
-@type NUMPY_MODE: bool
-
 """
 
 #-----------------------------------------------------------------------------
@@ -31,6 +24,11 @@ import locale
 # if True, -1 from pixel coords to be zero-indexed like numpy. If False, use
 # FITS convention.
 NUMPY_MODE = True
+"""If True (default), pixel coordinates accepted/returned by routines such as
+L{astWCS.WCS.pix2wcs}, L{astWCS.WCS.wcs2pix} have (0, 0) as the origin. Set
+to False to make these routines accept/return pixel coords with (1, 1) as the
+origin (i.e. to match the FITS convention, default behaviour prior to astLib
+version 0.3.0)."""
 
 # Check for the locale bug when decimal separator isn't '.' (atof used in
 # libwcs)
