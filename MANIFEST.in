@@ -1,12 +1,12 @@
 recursive-include docs *
 recursive-include astLib/data *
-recursive-include PyWCSTools/wcssubs-3.9.0 *.c*
-recursive-include PyWCSTools/wcssubs-3.9.0 *.h*
-recursive-include PyWCSTools/wcssubs-3.9.0 *.i*
-recursive-include PyWCSTools/wcssubs-3.9.0 Makefile
-recursive-include PyWCSTools/wcssubs-3.9.0 Readme
-recursive-include PyWCSTools/wcssubs-3.9.0 COPYING
-recursive-include PyWCSTools/wcssubs-3.9.0 NEWS
+recursive-include PyWCSTools/wcssubs-3.9.5 *.c*
+recursive-include PyWCSTools/wcssubs-3.9.5 *.h*
+recursive-include PyWCSTools/wcssubs-3.9.5 *.i*
+recursive-include PyWCSTools/wcssubs-3.9.5 Makefile
+recursive-include PyWCSTools/wcssubs-3.9.5 Readme
+recursive-include PyWCSTools/wcssubs-3.9.5 COPYING
+recursive-include PyWCSTools/wcssubs-3.9.5 NEWS
 recursive-include examples/* *.py
 include LICENSE
 include CHANGE_LOG
