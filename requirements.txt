@@ -4,4 +4,5 @@ sphinx_epytext
 numpy
 astropy
 scipy
+matplotlib
 -e .
