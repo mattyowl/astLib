@@ -58,7 +58,7 @@ class WCS:
     """
 
     def __init__(self, headerSource, extensionName = 0, mode = "image", zapKeywords = [],
-                 useAstropyWCS = True):
+                 useAstropyWCS = True, naxis = 2):
         """Creates a WCS object using either the information contained in the
         header of the specified .fits image, or from a pyfits.header object.
         Set mode = "pyfits" if the headerSource is a pyfits.header.
@@ -93,6 +93,7 @@ class WCS:
         self.mode = mode
         self.headerSource = headerSource
         self.extensionName = extensionName
+        self.naxis = naxis
 
         if self.mode == "image":
             img = pyfits.open(self.headerSource)
@@ -111,6 +112,12 @@ class WCS:
                     for count in range(self.headerSource.count(z)):
                         self.headerSource.remove(z)
             self.header=headerSource
+        
+        # Scan for CUNIT values that upset astropy.wcs
+        for i in (1, 2):
+            if 'CUNIT%d' % (i) in self.header.keys():
+                if self.header['CUNIT%d' % (i)] == '' or self.header['CUNIT%d' % (i)] == 'degree':
+                    self.header['CUNIT%d' % (i)]='deg'
         
         # This enables a shim to allow code written for astLib to use astropy.wcs underneath
         self.useAstropyWCS=useAstropyWCS
@@ -166,7 +173,7 @@ class WCS:
             cardstring = cardstring+str(card)
         
         if self.useAstropyWCS == True:
-            self.AWCS = apywcs.WCS(self.header)         # For astropy.wcs shim
+            self.AWCS = apywcs.WCS(self.header, naxis = self.naxis) # For astropy.wcs shim
         self.WCSStructure = wcs.wcsinit(cardstring)
 
 
@@ -291,9 +298,9 @@ class WCS:
         
         else:
             # astropy.wcs shim
-            if self.header['NAXIS'] == 2:
+            if self.naxis == 2:
                 pixCoords = self.AWCS.all_world2pix(RADeg, decDeg, self._apywcsOrigin)
-            elif self.header['NAXIS'] == 3:
+            elif self.naxis == 3:
                 pixCoords = self.AWCS.all_world2pix(RADeg, decDeg, 0, self._apywcsOrigin)
             else:
                 raise Exception("Not handling NAXIS > 3 with astropy.wcs shim")
@@ -327,9 +334,9 @@ class WCS:
                 WCSCoords = wcs.pix2wcs(self.WCSStructure, float(x), float(y))
         else:
             # astropy.wcs shim
-            if self.header['NAXIS'] == 2:
+            if self.naxis == 2:
                 WCSCoords = self.AWCS.all_pix2world(x, y, self._apywcsOrigin)
-            elif self.header['NAXIS'] == 3:
+            elif self.naxis == 3:
                 WCSCoords = self.AWCS.all_pix2world(x, y, 0, self._apywcsOrigin)
             else:
                 raise Exception("Not handling NAXIS > 3 with astropy.wcs shim")
