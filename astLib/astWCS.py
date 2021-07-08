@@ -116,7 +116,8 @@ class WCS:
         # Scan for CUNIT values that upset astropy.wcs
         for i in (1, 2):
             if 'CUNIT%d' % (i) in self.header.keys():
-                if self.header['CUNIT%d' % (i)] == '' or self.header['CUNIT%d' % (i)] == 'degree':
+                if self.header['CUNIT%d' % (i)] == '' or self.header['CUNIT%d' % (i)] == 'degree'\
+                    or self.header['CUNIT%d' % (i)] == 'degrees' or self.header['CUNIT%d' % (i)] == 'DEG':
                     self.header['CUNIT%d' % (i)]='deg'
         
         # This enables a shim to allow code written for astLib to use astropy.wcs underneath
