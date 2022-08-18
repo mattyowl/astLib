@@ -63,7 +63,7 @@ class build_PyWCSTools_ext(build_ext):
         build_ext.build_extensions(self)
 
 setup(name='astLib',
-    version='0.11.7',
+    version='0.11.8',
     url='https://astlib.readthedocs.io',
     author='Matt Hilton & Steven Boada',
     author_email='matt.hilton@mykolab.com',
