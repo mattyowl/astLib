@@ -860,6 +860,10 @@ class ImagePlot:
                 ra2x=interpolate.interp1d(ras, xArray, kind='linear')
             RADegs=numpy.arange(RAPlotMin, RAPlotMax-360.0-0.0001, -RADegStep)
 
+        # Full RA range?
+        if round(self.wcs.getXPixelSizeDeg()*self.wcs.header['NAXIS1']) == 360:
+            RADegs=numpy.arange(0, 360, RADegStep)
+
         decPlotMin=decDegStep*math.modf(decMin/decDegStep)[1]
         decPlotMax=decDegStep*math.modf(decMax/decDegStep)[1]
         if decPlotMin < decMin:
