@@ -50,7 +50,7 @@ You can install astLib via pip:
 
 .. code-block::
 
-   pip install pip
+   pip install astLib --user
 
 
 You may also install using the standard ``setup.py`` script, e.g., as root:
