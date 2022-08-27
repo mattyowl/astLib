@@ -33,9 +33,6 @@ astLib requires:
 * SciPy - http://scipy.org (tested on version 1.3.1)
 * Matplotlib - http://matplotlib.sourceforge.net (tested on version 3.1.1)
 
-From astLib 0.10.0, pyfits is no longer supported, as STScI have depreciated it. If you still require pyfits
-instead of Astropy, please continue to use astLib 0.9.3.
-
 Optional:
    
 * Python Imaging Library - http://www.pythonware.com/products/pil (tested on version 1.1.7)
