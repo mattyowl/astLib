@@ -43,6 +43,9 @@ class build_PyWCSTools_ext(build_ext):
             cc.compiler_so.pop(cc.compiler_so.index("-Wstrict-prototypes"))
         if "-Wall" in cc.compiler_so:
             cc.compiler_so.pop(cc.compiler_so.index("-Wall"))
+        # For recent macOS
+        if "-Wno-error=implicit-function-declaration" in cc.compiler.so:
+            cc.compiler_so.pop(cc.compiler_so.index("-Wno-error=implicit-function-declaration"))
 
         WCSToolsCFiles = glob.glob("*.c")
         WCSToolsCFiles.pop(WCSToolsCFiles.index("wcs_wrap.c"))
