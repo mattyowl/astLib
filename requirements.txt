@@ -5,4 +5,5 @@ numpy
 astropy
 scipy
 matplotlib
+sphinx_rtd_theme
 -e .
