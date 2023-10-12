@@ -1,16 +1,10 @@
-# -*- coding: utf-8 -*-
-#File: setup.py
-#Created: Sat Dec 15 19:40:30 2012
-#Last Change: Sat Dec 15 19:42:45 2012
-
 import os
 import glob
-from distutils.core import setup
-from distutils.command.build_ext import build_ext
-from distutils.extension import Extension
-import distutils.ccompiler
-import distutils.command.config
-import distutils.sysconfig
+import setuptools
+from setuptools import setup
+from setuptools.command.build_ext import build_ext
+from setuptools.extension import Extension
+import sysconfig
 from pkg_resources import require
 
 topDir = os.getcwd()
@@ -41,29 +35,28 @@ class build_PyWCSTools_ext(build_ext):
     def build_extensions(self):
 
         os.chdir(sourceDir)
-
-        # This line is tough to make match the style guide
-        cc =distutils.ccompiler.new_compiler(
-            distutils.ccompiler.get_default_compiler())
-        distutils.command.config.customize_compiler(cc)
+        cc=setuptools._distutils.ccompiler.new_compiler(setuptools._distutils.ccompiler.get_default_compiler())
+        cc.compiler_so=[sysconfig.get_config_var('CC')]+sysconfig.get_config_var('CFLAGS').split()+sysconfig.get_config_var('CFLAGSFORSHARED').split()
 
         # Suppress warnings from compiling WCSTools wcssubs-3.9.5
         if "-Wstrict-prototypes" in cc.compiler_so:
             cc.compiler_so.pop(cc.compiler_so.index("-Wstrict-prototypes"))
         if "-Wall" in cc.compiler_so:
             cc.compiler_so.pop(cc.compiler_so.index("-Wall"))
+        # For recent macOS
+        if "-Wno-error=implicit-function-declaration" in cc.compiler_so:
+            cc.compiler_so.pop(cc.compiler_so.index("-Wno-error=implicit-function-declaration"))
 
         WCSToolsCFiles = glob.glob("*.c")
         WCSToolsCFiles.pop(WCSToolsCFiles.index("wcs_wrap.c"))
         WCSToolsCFiles.pop(WCSToolsCFiles.index("wcscon_wrap.c"))
         cc.compile(WCSToolsCFiles)
-
         os.chdir(topDir)
 
         build_ext.build_extensions(self)
 
 setup(name='astLib',
-    version='0.11.8',
+    version='0.11.9',
     url='https://astlib.readthedocs.io',
     author='Matt Hilton & Steven Boada',
     author_email='matt.hilton@mykolab.com',

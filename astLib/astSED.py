@@ -11,7 +11,7 @@ for fitting broadband photometry using these models.
 
 #------------------------------------------------------------------------------------------------------------
 import sys
-import numpy
+import numpy as np
 import math
 import operator
 try:
@@ -61,8 +61,8 @@ class Passband:
                 transmission.append(float(bits[transmissionColumn]))
                 wavelength.append(float(bits[wavelengthColumn]))
             
-        self.wavelength=numpy.array(wavelength)
-        self.transmission=numpy.array(transmission)
+        self.wavelength=np.array(wavelength)
+        self.transmission=np.array(transmission)
         
         if inputUnits == 'angstroms':
             pass
@@ -79,13 +79,13 @@ class Passband:
             raise Exception("didn't understand passband input units")
     
         # Sort into ascending order of wavelength otherwise normalisation will be wrong
-        merged=numpy.array([self.wavelength, self.transmission]).transpose()
-        sortedMerged=numpy.array(sorted(merged, key=operator.itemgetter(0)))
+        merged=np.array([self.wavelength, self.transmission]).transpose()
+        sortedMerged=np.array(sorted(merged, key=operator.itemgetter(0)))
         self.wavelength=sortedMerged[:, 0]
         self.transmission=sortedMerged[:, 1]
         
         if normalise == True:
-            self.transmission=self.transmission/numpy.trapz(self.transmission, self.wavelength)
+            self.transmission=self.transmission/np.trapz(self.transmission, self.wavelength)
         
         # Store a ready-to-go interpolation object to speed calculation of fluxes up
         self.interpolator=interpolate.interp1d(self.wavelength, self.transmission, kind='linear')
@@ -152,9 +152,9 @@ class Passband:
         
         """
         
-        a=numpy.trapz(self.transmission*self.wavelength, self.wavelength)
-        b=numpy.trapz(self.transmission/self.wavelength, self.wavelength)
-        effWavelength=numpy.sqrt(a/b)
+        a=np.trapz(self.transmission*self.wavelength, self.wavelength)
+        b=np.trapz(self.transmission/self.wavelength, self.wavelength)
+        effWavelength=np.sqrt(a/b)
         
         return effWavelength
 
@@ -178,11 +178,11 @@ class TopHatPassband(Passband):
         
         """
         
-        self.wavelength=numpy.arange(wavelengthMin, wavelengthMax+10, 10, dtype = float)
-        self.transmission=numpy.ones(self.wavelength.shape, dtype = float)
+        self.wavelength=np.arange(wavelengthMin, wavelengthMax+10, 10, dtype = float)
+        self.transmission=np.ones(self.wavelength.shape, dtype = float)
         
         if normalise == True:
-            self.transmission=self.transmission/numpy.trapz(self.transmission, self.wavelength)
+            self.transmission=self.transmission/np.trapz(self.transmission, self.wavelength)
         
         # Store a ready-to-go interpolation object to speed calculation of fluxes up
         self.interpolator=interpolate.interp1d(self.wavelength, self.transmission, kind='linear')
@@ -192,7 +192,7 @@ class TopHatPassband(Passband):
 class SED:
     """This class describes a Spectral Energy Distribution (SED).
      
-    To create a SED object, lists (or numpy arrays) of wavelength and relative flux must be provided. The SED
+    To create a SED object, lists (or np arrays) of wavelength and relative flux must be provided. The SED
     can optionally be redshifted. The wavelength units of SEDs are assumed to be Angstroms - flux 
     calculations using Passband and SED objects specified with different wavelength units will be incorrect.
     
@@ -206,16 +206,16 @@ class SED:
         # We keep a copy of the wavelength, flux at z = 0, as it's more robust to copy that
         # to self.wavelength, flux and redshift it, rather than repeatedly redshifting the same
         # arrays back and forth
-        self.z0wavelength=numpy.array(wavelength)
-        self.z0flux=numpy.array(flux)
-        self.wavelength=numpy.array(wavelength)
-        self.flux=numpy.array(flux)
+        self.z0wavelength=np.array(wavelength)
+        self.z0flux=np.array(flux)
+        self.wavelength=np.array(wavelength)
+        self.flux=np.array(flux)
         self.z=z
         self.label=label    # plain text label, handy for using in photo-z codes
         
         # Store the intrinsic (i.e. unextincted) flux in case we change extinction
         self.EBMinusV=0.0
-        self.intrinsic_z0flux=numpy.array(flux)
+        self.intrinsic_z0flux=np.array(flux)
         
         if normalise == True:
             self.normalise()
@@ -266,10 +266,12 @@ class SED:
             wavelength.reverse()
             flux.reverse()
         
-        self.z0wavelength=numpy.array(wavelength)
-        self.z0flux=numpy.array(flux)
-        self.wavelength=numpy.array(wavelength)
-        self.flux=numpy.array(flux)
+        self.z0wavelength=np.array(wavelength)
+        self.z0flux=np.array(flux)
+        self.wavelength=np.array(wavelength)
+        self.flux=np.array(flux)
+        self.intrinsic_z0flux=np.array(flux)
+
 
     def writeToFile(self, fileName):
         """Writes SED to a white space delimited file in the format wavelength, flux.
@@ -284,6 +286,7 @@ class SED:
             outFile.write(str(l)+" "+str(f)+"\n")
         outFile.close()
     
+
     def asList(self):
         """Returns a two dimensional list of [wavelength, flux], suitable for plotting by gnuplot.
         
@@ -298,6 +301,7 @@ class SED:
         
         return listData
         
+
     def plot(self, xmin = 'min', xmax = 'max'):
         """Produces a simple (wavelength, flux) plot of the SED.
         
@@ -317,13 +321,14 @@ class SED:
             xmax=self.wavelength.max()
         
         # Sensible y scale
-        plotMask=numpy.logical_and(numpy.greater(self.wavelength, xmin), numpy.less(self.wavelength, xmax))
+        plotMask=np.logical_and(np.greater(self.wavelength, xmin), np.less(self.wavelength, xmax))
         plotMax=self.flux[plotMask].max()
         pylab.ylim(0, plotMax*1.1)
         pylab.xlim(xmin, xmax)
         pylab.xlabel("Wavelength")
         pylab.ylabel("Relative Flux")
     
+
     def integrate(self, wavelengthMin = 'min', wavelengthMax = 'max'):
         """Calculates flux in SED within given wavelength range.
         
@@ -341,12 +346,13 @@ class SED:
         if wavelengthMax == 'max':
             wavelengthMax=self.wavelength.max()
         
-        mask=numpy.logical_and(numpy.greater(self.wavelength, wavelengthMin), \
-                               numpy.less(self.wavelength, wavelengthMax))
-        flux=numpy.trapz(self.flux[mask], self.wavelength[mask])
+        mask=np.logical_and(np.greater(self.wavelength, wavelengthMin), \
+                               np.less(self.wavelength, wavelengthMax))
+        flux=np.trapz(self.flux[mask], self.wavelength[mask])
         
         return flux
         
+
     def smooth(self, smoothPix):
         """Smooths SED.flux with a uniform (boxcar) filter of width smoothPix. Cannot be undone.
         
@@ -357,6 +363,7 @@ class SED:
         smoothed=ndimage.uniform_filter1d(self.flux, smoothPix)
         self.flux=smoothed
     
+
     def redshift(self, z):
         """Redshifts the SED to redshift z.
         
@@ -368,17 +375,18 @@ class SED:
         # We have to conserve energy so the area under the redshifted SED has to be equal to
         # the area under the unredshifted SED, otherwise magnitude calculations will be wrong
         # when comparing SEDs at different zs
-        self.wavelength=numpy.zeros(self.z0wavelength.shape[0])
-        self.flux=numpy.zeros(self.z0flux.shape[0])
+        self.wavelength=np.zeros(self.z0wavelength.shape[0])
+        self.flux=np.zeros(self.z0flux.shape[0])
         self.wavelength=self.wavelength+self.z0wavelength
         self.flux=self.flux+self.z0flux
         
-        z0TotalFlux=numpy.trapz(self.z0wavelength, self.z0flux)
+        z0TotalFlux=np.trapz(self.z0wavelength, self.z0flux)
         self.wavelength=self.wavelength*(1.0+z)
-        zTotalFlux=numpy.trapz(self.wavelength, self.flux)
+        zTotalFlux=np.trapz(self.wavelength, self.flux)
         self.flux=self.flux*(z0TotalFlux/zTotalFlux)
         self.z=z
         
+
     def normalise(self, minWavelength = 'min', maxWavelength = 'max'):
         """Normalises the SED such that the area under the specified wavelength range is equal to 1.
         
@@ -393,13 +401,14 @@ class SED:
         if maxWavelength == 'max':
             maxWavelength=self.wavelength.max()
             
-        lowCut=numpy.greater(self.wavelength, minWavelength)
-        highCut=numpy.less(self.wavelength, maxWavelength)
-        totalCut=numpy.logical_and(lowCut, highCut)
+        lowCut=np.greater(self.wavelength, minWavelength)
+        highCut=np.less(self.wavelength, maxWavelength)
+        totalCut=np.logical_and(lowCut, highCut)
         sedFluxSlice=self.flux[totalCut]
         sedWavelengthSlice=self.wavelength[totalCut]
         
-        self.flux=self.flux/numpy.trapz(abs(sedFluxSlice), sedWavelengthSlice)#self.wavelength)
+        self.flux=self.flux/np.trapz(abs(sedFluxSlice), sedWavelengthSlice)#self.wavelength)
+
 
     def normaliseToMag(self, ABMag, passband):
         """Normalises the SED to match the flux equivalent to the given AB magnitude in the given passband.
@@ -417,6 +426,7 @@ class SED:
         self.flux=self.flux*norm
         self.z0flux=self.z0flux*norm
         
+
     def matchFlux(self, matchSED, minWavelength, maxWavelength):
         """Matches the flux in the wavelength range given by minWavelength, maxWavelength to the
         flux in the same region in matchSED. Useful for plotting purposes.
@@ -433,10 +443,10 @@ class SED:
         interpMatch=interpolate.interp1d(matchSED.wavelength, matchSED.flux, kind='linear')
         interpSelf=interpolate.interp1d(self.wavelength, self.flux, kind='linear')
         
-        wavelengthRange=numpy.arange(minWavelength, maxWavelength, 5.0)
+        wavelengthRange=np.arange(minWavelength, maxWavelength, 5.0)
         
-        matchFlux=numpy.trapz(interpMatch(wavelengthRange), wavelengthRange)
-        selfFlux=numpy.trapz(interpSelf(wavelengthRange), wavelengthRange)
+        matchFlux=np.trapz(interpMatch(wavelengthRange), wavelengthRange)
+        selfFlux=np.trapz(interpSelf(wavelengthRange), wavelengthRange)
         
         self.flux=self.flux*(matchFlux/selfFlux)
 
@@ -450,21 +460,22 @@ class SED:
         @return: flux
         
         """
-        lowCut=numpy.greater(self.wavelength, passband.wavelength.min())
-        highCut=numpy.less(self.wavelength, passband.wavelength.max())
-        totalCut=numpy.logical_and(lowCut, highCut)
+        lowCut=np.greater(self.wavelength, passband.wavelength.min())
+        highCut=np.less(self.wavelength, passband.wavelength.max())
+        totalCut=np.logical_and(lowCut, highCut)
         sedFluxSlice=self.flux[totalCut]
         sedWavelengthSlice=self.wavelength[totalCut]
     
         # Use linear interpolation to rebin the passband to the same dimensions as the 
         # part of the SED we're interested in
         sedInBand=passband.interpolator(sedWavelengthSlice)*sedFluxSlice   
-        totalFlux=numpy.trapz(sedInBand*sedWavelengthSlice, sedWavelengthSlice)        
-        totalFlux=totalFlux/numpy.trapz(passband.interpolator(sedWavelengthSlice)\
+        totalFlux=np.trapz(sedInBand*sedWavelengthSlice, sedWavelengthSlice)
+        totalFlux=totalFlux/np.trapz(passband.interpolator(sedWavelengthSlice)\
                             *sedWavelengthSlice, sedWavelengthSlice)
                             
         return totalFlux      
     
+
     def calcMag(self, passband, addDistanceModulus = True, magType = "Vega"):
         """Calculates magnitude in the given passband. If addDistanceModulus == True,
         then the distance modulus (5.0*log10*(dl*1e5), where dl is the luminosity distance
@@ -498,6 +509,7 @@ class SED:
         
         return appMag
     
+
     def calcColour(self, passband1, passband2, magType = "Vega"):
         """Calculates the colour passband1-passband2.
         
@@ -517,6 +529,7 @@ class SED:
         colour=mag1-mag2
         return colour
     
+
     def getSEDDict(self, passbands):
         """This is a convenience function for pulling out fluxes from a SED for a given set of passbands
         in the same format as made by L{mags2SEDDict} - designed to make fitting code simpler.
@@ -533,10 +546,41 @@ class SED:
             wavelength.append(p.effectiveWavelength())
             
         SEDDict={}
-        SEDDict['flux']=numpy.array(flux)
-        SEDDict['wavelength']=numpy.array(wavelength)
+        SEDDict['flux']=np.array(flux)
+        SEDDict['wavelength']=np.array(wavelength)
         
         return SEDDict
+
+
+    def addEmissionLines(self, scaleFactor = 1.0, modifyIntrinsicFlux = True):
+        """Add emission lines to the SED (mostly) in the style of Ilbert+2009.
+
+        @type scaleFactor: float
+        @param scaleFactor: line flux will be scaled by this factor.
+
+        """
+
+        # Line widths - assume ~200 km/s width - these are always < 1 sample in wavelength for our templates
+        # lineWidthPix=((200/3e5)*(1+self.z)*self.wavelength)/np.gradient(self.wavelength)
+
+        self.z0flux=self.intrinsic_z0flux.copy()
+        OiiFlux=self.z0flux[np.argmin(abs(self.z0wavelength-2300))]
+        linesList=[{'label': 'Oii', 'wavelength': 3727.0, 'scale': 1.0},
+                   {'label': 'Oiiia', 'wavelength': 4363.2, 'scale': 0.36},
+                   {'label': 'Oiiib', 'wavelength': 4958.9, 'scale': 0.36},
+                   {'label': 'Oiiic', 'wavelength': 5006.8, 'scale': 0.36},
+                   {'label': 'Hbeta', 'wavelength': 4861.3, 'scale': 0.61},
+                   {'label': 'Halpha', 'wavelength': 6562.8, 'scale': 1.77},
+                   {'label': 'Lyalpha', 'wavelength': 1215.7, 'scale': 2.0}]
+        lineSED=np.zeros(len(self.wavelength))
+        for lineDict in linesList:
+            w=lineDict['wavelength']#(1+self.z)*lineDict['wavelength']
+            lineSED[np.argmin(abs(self.wavelength-w))]=OiiFlux*lineDict['scale']
+        self.z0flux=self.z0flux+lineSED*scaleFactor
+        if modifyIntrinsicFlux == True:
+            self.intrinsic_z0flux=self.z0flux.copy()
+        self.redshift(self.z)
+
     
     def extinctionCalzetti(self, EBMinusV):
         """Applies the Calzetti et al. 2000 (ApJ, 533, 682) extinction law to the SED with the given
@@ -550,19 +594,19 @@ class SED:
         self.EBMinusV=EBMinusV
         
         # All done in rest frame
-        self.z0flux=self.intrinsic_z0flux
+        self.z0flux=self.intrinsic_z0flux.copy()
         
         # Allow us to set EBMinusV == 0 to turn extinction off
         if EBMinusV > 0:
             # Note that EBMinusV is assumed to be Es as in equations (2) - (5)
             # Note here wavelength units have to be microns for constants to make sense
             RvPrime=4.05    # equation (5) of Calzetti et al. 2000
-            shortWavelengthMask=numpy.logical_and(numpy.greater_equal(self.z0wavelength, 1200), \
-                                                 numpy.less(self.z0wavelength, 6300))
-            longWavelengthMask=numpy.logical_and(numpy.greater_equal(self.z0wavelength, 6300), \
-                                                numpy.less_equal(self.z0wavelength, 22000))
-            wavelengthMicrons=numpy.array(self.z0wavelength/10000.0, dtype=numpy.float64)
-            kPrime=numpy.zeros(self.z0wavelength.shape[0], dtype=numpy.float64)
+            shortWavelengthMask=np.logical_and(np.greater_equal(self.z0wavelength, 1200), \
+                                                 np.less(self.z0wavelength, 6300))
+            longWavelengthMask=np.logical_and(np.greater_equal(self.z0wavelength, 6300), \
+                                                np.less_equal(self.z0wavelength, 22000))
+            wavelengthMicrons=np.array(self.z0wavelength/10000.0, dtype=np.float64)
+            kPrime=np.zeros(self.z0wavelength.shape[0], dtype=np.float64)
             kPrimeLong=(2.659*(-1.857 \
                                 +1.040/wavelengthMicrons \
                                ))+RvPrime
@@ -580,22 +624,22 @@ class SED:
                 interpolator=interpolate.interp1d(self.z0wavelength, kPrimeShort, kind='linear')
                 slope=(interpolator(1100.0)-interpolator(1200.0))/(1100.0-1200.0)
                 intercept=interpolator(1200.0)-(slope*1200.0)
-                mask=numpy.less(self.z0wavelength, 1200.0)
+                mask=np.less(self.z0wavelength, 1200.0)
                 kPrime[mask]=slope*self.z0wavelength[mask]+intercept
                 
                 # Long wavelengths
                 interpolator=interpolate.interp1d(self.z0wavelength, kPrimeLong, kind='linear')
                 slope=(interpolator(21900.0)-interpolator(22000.0))/(21900.0-22000.0)
                 intercept=interpolator(21900.0)-(slope*21900.0)
-                mask=numpy.greater(self.z0wavelength, 22000.0)
+                mask=np.greater(self.z0wavelength, 22000.0)
                 kPrime[mask]=slope*self.z0wavelength[mask]+intercept
             except:
                 raise Exception("This SED has a wavelength range that doesn't cover ~1200-22000 Angstroms")
                             
             # Never let go negative
-            kPrime[numpy.less_equal(kPrime, 0.0)]=1e-6
+            kPrime[np.less_equal(kPrime, 0.0)]=1e-6
                 
-            reddening=numpy.power(10, 0.4*EBMinusV*kPrime)
+            reddening=np.power(10, 0.4*EBMinusV*kPrime)
             self.z0flux=self.z0flux/reddening
 
         self.redshift(self.z)
@@ -626,17 +670,17 @@ class VegaSED(SED):
                 flux.append(float(bits[1]))
                 wavelength.append(float(bits[0]))
         
-        self.wavelength=numpy.array(wavelength)
-        self.flux=numpy.array(flux, dtype=numpy.float64)
+        self.wavelength=np.array(wavelength)
+        self.flux=np.array(flux, dtype=np.float64)
         
         # We may want to redshift reference SEDs to calculate rest-frame colors from SEDs at different zs
-        self.z0wavelength=numpy.array(wavelength)
-        self.z0flux=numpy.array(flux, dtype=numpy.float64)
+        self.z0wavelength=np.array(wavelength)
+        self.z0flux=np.array(flux, dtype=np.float64)
         self.z=0.0
         
         #if normalise == True:
-            #self.flux=self.flux/numpy.trapz(self.flux, self.wavelength)
-            #self.z0flux=self.z0flux/numpy.trapz(self.z0flux, self.z0wavelength)
+            #self.flux=self.flux/np.trapz(self.flux, self.wavelength)
+            #self.z0flux=self.z0flux/np.trapz(self.z0flux, self.z0wavelength)
         
 #------------------------------------------------------------------------------------------------------------
 class StellarPopulation:
@@ -674,7 +718,7 @@ class StellarPopulation:
                     self.wavelengths.append(wavelength)
         
         # Construct a grid of flux - rows correspond to each wavelength, columns to age
-        self.fluxGrid=numpy.zeros([len(self.ages), len(self.wavelengths)])
+        self.fluxGrid=np.zeros([len(self.ages), len(self.wavelengths)])
         for line in lines:
             if line[0] !="#" and len(line) > 3:
                 bits=line.split()
@@ -733,7 +777,7 @@ class StellarPopulation:
         @type magType: string
         @param magType: either "Vega" or "AB"
         @rtype: dictionary
-        @return: dictionary of numpy.arrays in format {'z', 'colour'}
+        @return: dictionary of np.arrays in format {'z', 'colour'}
         
         """
        
@@ -748,8 +792,8 @@ class StellarPopulation:
             zData.append(zc)
             colourData.append(colour)
 
-        zData=numpy.array(zData)
-        colourData=numpy.array(colourData)
+        zData=np.array(zData)
+        colourData=np.array(colourData)
         
         return {'z': zData, 'colour': colourData}
         
@@ -774,7 +818,7 @@ class StellarPopulation:
         @type magType: string
         @param magType: either "Vega" or "AB"
         @rtype: dictionary
-        @return: dictionary of numpy.arrays in format {'z', 'mag'}
+        @return: dictionary of np.arrays in format {'z', 'mag'}
         
         """
         
@@ -799,8 +843,8 @@ class StellarPopulation:
             magData.append(mag)
             absMagData.append(sed.calcMag(passband, addDistanceModulus = False))
 
-        zData=numpy.array(zData)
-        magData=numpy.array(magData)
+        zData=np.array(zData)
+        magData=np.array(magData)
         
         # Do the normalisation
         interpolator=interpolate.interp1d(zData, magData, kind='linear')
@@ -894,7 +938,7 @@ class M05Model(StellarPopulation):
                     self.wavelengths.append(wavelength)
         
         # Construct a grid of flux - rows correspond to each wavelength, columns to age
-        self.fluxGrid=numpy.zeros([len(self.ages), len(self.wavelengths)])
+        self.fluxGrid=np.zeros([len(self.ages), len(self.wavelengths)])
         for line in lines:
             if line[0] !="#" and len(line) > 3:
                 bits=line.split()
@@ -959,7 +1003,7 @@ class BC03Model(StellarPopulation):
             self.wavelengths.append(float(bits[0]))        
         
         # Construct a grid of flux - rows correspond to each wavelength, columns to age
-        self.fluxGrid=numpy.zeros([len(self.ages), len(self.wavelengths)])
+        self.fluxGrid=np.zeros([len(self.ages), len(self.wavelengths)])
         for i in range(startFluxDataLine, len(lines), lambdaLinesCount):
             line=lines[i]
             bits=[]
@@ -1023,7 +1067,7 @@ class P09Model(StellarPopulation):
                     if self.wavelengths == None:
                         self.wavelengths=wavelength
                     if self.fluxGrid == None:
-                        self.fluxGrid=numpy.zeros([len(self.ages), len(self.wavelengths)])
+                        self.fluxGrid=np.zeros([len(self.ages), len(self.wavelengths)])
                     self.fluxGrid[i]=flux                    
 
         # Convert flux into erg/s/Angstrom - native units in BaSTI files are 4.3607e-33 erg/s/m
@@ -1063,9 +1107,9 @@ def makeModelSEDDictList(modelList, z, passbandsList, labelsList = [], EBMinusVL
         
     modelSEDDictList=[]
     for m in range(len(modelList)):
-        testAges=numpy.array(modelList[m].ages)
+        testAges=np.array(modelList[m].ages)
         if forceYoungerThanUniverse == True:
-            testAges=testAges[numpy.logical_and(numpy.less(testAges, astCalc.tz(z)), numpy.greater(testAges, 0))]
+            testAges=testAges[np.logical_and(np.less(testAges, astCalc.tz(z)), np.greater(testAges, 0))]
         for t in testAges:
             s=modelList[m].getSED(t, z = z, label=modelList[m].fileName+" - age="+str(t)+" Gyr")
             for EBMinusV in EBMinusVList:
@@ -1112,17 +1156,17 @@ def fitSEDDict(SEDDict, modelSEDDictList):
     modelFlux=[]
     for modelSEDDict in modelSEDDictList:
         modelFlux.append(modelSEDDict['flux'])
-    modelFlux=numpy.array(modelFlux)    
-    sedFlux=numpy.array([SEDDict['flux']]*len(modelSEDDictList))
-    sedFluxErr=numpy.array([SEDDict['fluxErr']]*len(modelSEDDictList))
+    modelFlux=np.array(modelFlux)
+    sedFlux=np.array([SEDDict['flux']]*len(modelSEDDictList))
+    sedFluxErr=np.array([SEDDict['fluxErr']]*len(modelSEDDictList))
 
     # Analytic expression below is for normalisation at minimum chi squared (see note book)
-    norm=numpy.sum((modelFlux*sedFlux)/(sedFluxErr**2), axis=1)/numpy.sum(modelFlux**2/sedFluxErr**2, axis=1)
-    norms=numpy.array([norm]*modelFlux.shape[1]).transpose()
-    chiSq=numpy.sum(((sedFlux-norms*modelFlux)**2)/sedFluxErr**2, axis=1)
-    chiSq[numpy.isnan(chiSq)]=1e6   # throw these out, should check this out and handle more gracefully
+    norm=np.sum((modelFlux*sedFlux)/(sedFluxErr**2), axis=1)/np.sum(modelFlux**2/sedFluxErr**2, axis=1)
+    norms=np.array([norm]*modelFlux.shape[1]).transpose()
+    chiSq=np.sum(((sedFlux-norms*modelFlux)**2)/sedFluxErr**2, axis=1)
+    chiSq[np.isnan(chiSq)]=1e6   # throw these out, should check this out and handle more gracefully
     minChiSq=chiSq.min()
-    bestMatchIndex=numpy.equal(chiSq, minChiSq).nonzero()[0][0]
+    bestMatchIndex=np.equal(chiSq, minChiSq).nonzero()[0][0]
     bestNorm=norm[bestMatchIndex]
     bestChiSq=minChiSq
     bestChiSqContrib=((sedFlux[bestMatchIndex]-norms[bestMatchIndex]*modelFlux[bestMatchIndex])**2)\
@@ -1147,9 +1191,9 @@ def mags2SEDDict(ABMags, ABMagErrs, passbands):
     erg/s/cm^2/Angstrom, wavelength in Angstroms. These dictionaries are the staple diet of the
     L{fitSEDDict} routine.
     
-    @type ABMags: list or numpy array
+    @type ABMags: list or np array
     @param ABMags: AB magnitudes, specified in corresponding order to passbands and ABMagErrs
-    @type ABMagErrs: list or numpy array
+    @type ABMagErrs: list or np array
     @param ABMagErrs: AB magnitude errors, specified in corresponding order to passbands and ABMags
     @type passbands: list of L{Passband} objects
     @param passbands: passband objects, specified in corresponding order to ABMags and ABMagErrs
@@ -1168,9 +1212,9 @@ def mags2SEDDict(ABMags, ABMagErrs, passbands):
         wavelength.append(p.effectiveWavelength())
         
     SEDDict={}
-    SEDDict['flux']=numpy.array(flux)
-    SEDDict['fluxErr']=numpy.array(fluxErr)
-    SEDDict['wavelength']=numpy.array(wavelength)
+    SEDDict['flux']=np.array(flux)
+    SEDDict['fluxErr']=np.array(fluxErr)
+    SEDDict['wavelength']=np.array(wavelength)
     
     return SEDDict
     
@@ -1220,10 +1264,10 @@ def flux2Mag(flux, fluxErr, passband):
     effLMicron=passband.effectiveWavelength()*(1e-10/1e-6)
 
     fluxJy=(flux*effLMicron**2)/aLambda
-    mag=-2.5*numpy.log10(fluxJy/10**23)-48.6
+    mag=-2.5*np.log10(fluxJy/10**23)-48.6
     
     fluxErrJy=(fluxErr*effLMicron**2)/aLambda
-    magErr=mag-(-2.5*numpy.log10((fluxJy+fluxErrJy)/10**23)-48.6)
+    magErr=mag-(-2.5*np.log10((fluxJy+fluxErrJy)/10**23)-48.6)
     
     return [mag, magErr]
 
@@ -1254,7 +1298,7 @@ def Jy2Mag(fluxJy):
     
     """
         
-    ABMag=-2.5*(numpy.log10(fluxJy)-23.0)-48.6
+    ABMag=-2.5*(np.log10(fluxJy)-23.0)-48.6
     
     return ABMag
     
@@ -1264,7 +1308,7 @@ VEGA=VegaSED()
 """The SED of Vega, used for calculation of magnitudes on the Vega system (L{SED} object)."""
 
 # AB SED has constant flux density 3631 Jy
-AB=SED(wavelength = numpy.logspace(1, 8, int(1e5)), flux = numpy.ones(1000000))
+AB=SED(wavelength = np.logspace(1, 8, int(1e5)), flux = np.ones(1000000))
 """Flat spectrum SED, used for calculation of magnitudes on the AB system (L{SED} object)."""
 AB.flux=(3e-5*3631)/(AB.wavelength**2)
 AB.z0flux=AB.flux[:]

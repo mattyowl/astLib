@@ -261,12 +261,12 @@ class ImagePlot:
         for p in self.plotObjects:
             for x, y, l in zip(p['x'], p['y'], p['objLabels']):
                 if p['symbol'] == "circle":
-                    c=patches.Circle((x, y), radius=p['sizePix']/2.0, fill=False, edgecolor=p['color'], 
+                    c=patches.Circle((x, y), radius=p['sizePix']/2.0, fill=p['fill'], color=p['color'],
                                         linewidth=p['width'])
                     self.axes.add_patch(c)
                 elif p['symbol'] == "box":
                     c=patches.Rectangle((x-p['sizePix']/2, y-p['sizePix']/2), p['sizePix'], p['sizePix'], 
-                        fill=False, edgecolor=p['color'], linewidth=p['width'])
+                        fill=p['fill'], color=p['color'], linewidth=p['width'])
                     self.axes.add_patch(c)
                 elif p['symbol'] == "cross":
                     pylab.plot([x-p['sizePix']/2, x+p['sizePix']/2], [y, y], linestyle='-', 
@@ -275,7 +275,7 @@ class ImagePlot:
                         linewidth=p['width'], color= p['color'])
                 elif p['symbol'] == "diamond":
                     c=patches.RegularPolygon([x, y], 4, radius=p['sizePix']/2, orientation=0, 
-                                            edgecolor=p['color'], fill=False, linewidth=p['width'])
+                                             color=p['color'], fill=p['fill'], linewidth=p['width'])
                     self.axes.add_patch(c)
                 if l != None:
                     pylab.text(x, y+p['sizePix']/1.5, l, horizontalalignment='center', \
@@ -435,8 +435,8 @@ class ImagePlot:
         self.draw()
         
         
-    def addPlotObjects(self, objRAs, objDecs, tag, symbol="circle", size=4.0, width=1.0, color="yellow",                                           
-                                    objLabels = None, objLabelSize = 12.0):
+    def addPlotObjects(self, objRAs, objDecs, tag, symbol="circle", size=4.0, width=1.0, color="yellow",\
+                       fill = False, objLabels = None, objLabelSize = 12.0):
         """Add objects with RA, dec coords objRAs, objDecs to the ImagePlot. Only objects that fall within 
         the image boundaries will be plotted.
         
@@ -472,6 +472,8 @@ class ImagePlot:
         @param width: width of symbols in pixels
         @type color: string
         @param color: any valid matplotlib color string, e.g. "red", "green" etc.
+        @type fill: bool
+        @param color: if True, fill symbols
         @type objLabels: list
         @param objLabels: text labels to plot next to objects in figure
         @type objLabelSize: float
@@ -484,7 +486,7 @@ class ImagePlot:
         xMax=self.data.shape[1]
         yMax=self.data.shape[0]
         
-        if objLabels == None:
+        if objLabels is None:
             objLabels=[None]*len(objRAs)
             
         xInPlot=[]
@@ -523,13 +525,14 @@ class ImagePlot:
                 p['width']=width
                 p['color']=color
                 p['objLabelSize']=objLabelSize
+                p['fill']=fill
                 alreadyGot=True
         
         if alreadyGot == False:
             self.plotObjects.append({'x': xInPlot, 'y': yInPlot, 'RA': RAInPlot, 'dec': decInPlot,
                                 'tag': tag, 'objLabels': labelInPlot, 'symbol': symbol, 
                                 'sizePix': sizePix, 'width': width, 'color': color,
-                                'objLabelSize': objLabelSize, 'sizeArcSec': size})
+                                'objLabelSize': objLabelSize, 'sizeArcSec': size, 'fill': fill})
         self.draw()
         
         
@@ -801,17 +804,21 @@ class ImagePlot:
         else:
             raise Exception("axesLabels must be either 'sexagesimal' or 'decimal'")
         
-        xArray=numpy.arange(0, self.data.shape[1], 1)
+        # xArray=numpy.arange(0, self.data.shape[1], 1)
+        xArray=numpy.linspace(0, self.data.shape[1], self.data.shape[1]*2)
         yArray=numpy.arange(0, self.data.shape[0], 1)
         xWCS=self.wcs.pix2wcs(xArray, numpy.zeros(xArray.shape[0], dtype=float))
         yWCS=self.wcs.pix2wcs(numpy.zeros(yArray.shape[0], dtype=float), yArray)
         xWCS=numpy.array(xWCS)
         yWCS=numpy.array(yWCS)
         ras=xWCS[:,0]
+        # ras[ras < 0]=ras[ras < 0]+360
         decs=yWCS[:,1]
         RAEdges=numpy.array([ras[0], ras[-1]])
-        RAMin=RAEdges.min()
-        RAMax=RAEdges.max()
+        # RAMin=RAEdges.min()
+        # RAMax=RAEdges.max()
+        RAMin=ras.min()
+        RAMax=ras.max()
         decMin=decs.min()
         decMax=decs.max()
         
@@ -962,7 +969,6 @@ class ImagePlot:
         if key == 'minor':
             RALabels=RALabels+RADegs.shape[0]*['']
             decLabels=decLabels+decDegs.shape[0]*['']
-        
         RALocs=RALocs+ra2x(RADegs).tolist()
         decLocs=decLocs+dec2y(decDegs).tolist()
             
