@@ -44,7 +44,7 @@ class build_PyWCSTools_ext(build_ext):
         if "-Wall" in cc.compiler_so:
             cc.compiler_so.pop(cc.compiler_so.index("-Wall"))
         # For recent macOS
-        if "-Wno-error=implicit-function-declaration" in cc.compiler.so:
+        if "-Wno-error=implicit-function-declaration" in cc.compiler_so:
             cc.compiler_so.pop(cc.compiler_so.index("-Wno-error=implicit-function-declaration"))
 
         WCSToolsCFiles = glob.glob("*.c")
