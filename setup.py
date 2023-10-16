@@ -36,7 +36,7 @@ class build_PyWCSTools_ext(build_ext):
 
         os.chdir(sourceDir)
         cc=setuptools._distutils.ccompiler.new_compiler(setuptools._distutils.ccompiler.get_default_compiler())
-        cc.compiler_so=[sysconfig.get_config_var('CC')]+sysconfig.get_config_var('CFLAGS').split()+sysconfig.get_config_var('CFLAGSFORSHARED').split()
+        cc.compiler_so=sysconfig.get_config_var('CC').split()+sysconfig.get_config_var('CFLAGS').split()+sysconfig.get_config_var('CFLAGSFORSHARED').split()
 
         # Suppress warnings from compiling WCSTools wcssubs-3.9.5
         if "-Wstrict-prototypes" in cc.compiler_so:
