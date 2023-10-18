@@ -11,7 +11,7 @@ import numpy
 import pylab
 import IPython
 import sys
-pylab.matplotlib.interactive(True)
+#pylab.matplotlib.interactive(True)
 
 omegaMs = [1.0, 0.2, 0.05]
 omegaLs = [0.0, 0.8, 0.0]
@@ -51,6 +51,3 @@ pylab.xlim(0, 5)
 pylab.xlabel("$z$")
 pylab.ylabel("$(1/D_H)^3 dV/dz/d\Omega$")
 pylab.legend(loc='upper left')
-
-IPython.embed()
-sys.exit()
