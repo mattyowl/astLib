@@ -1,8 +1,8 @@
 os: osx
 language: python
 python:
-  - "3.10"
-  - "3.12"
+  - "3.11-dev"
+  #- "3.12"
 install:
   - pip install .
 script: python3 examples/cosmologyTest/cosmologyTest.py
