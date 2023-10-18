@@ -10,21 +10,18 @@ jobs:
       fail-fast: false
       matrix:
         include:
-
           - name: latest supported versions
             os: ubuntu-latest
             python-version: '3.10'
             toxenv: py310-test-all-latest-cov
-
-              #- name: oldest supported versions
-              #os: ubuntu-latest
-              #python-version: '3.8'
-              #toxenv: py38-test-oldest
-
-              #- name: macOS 11
-              #os: macos-11
-              #python-version: '3.10'
-              #toxenv: py310-test-latest
+          - name: oldest supported versions
+            os: ubuntu-latest
+            python-version: '3.8'
+            toxenv: py38-test-oldest
+          - name: macOS 11
+            os: macos-11
+            python-version: '3.10'
+            toxenv: py310-test-latest
 
     steps:
       - name: Checkout repository
