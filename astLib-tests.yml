@@ -1,0 +1,13 @@
+name: astLib-tests
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python>=3.8,<3.11
+  - pip
+  - pytest-cov
+  - compilers
+  - make
+  - swig
+  - pip:
+      - -r requirements.txt
