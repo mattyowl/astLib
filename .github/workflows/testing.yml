@@ -20,6 +20,7 @@ jobs:
             toxenv: py38-test-oldest
           - name: macOS 11
             os: macos-11
+            label: osx-64
             python-version: '3.10'
             toxenv: py310-test-latest
 
@@ -36,11 +37,17 @@ jobs:
         shell: bash -el {0}
         run: |
           pip install tox-conda
-      # - name: Set MacOS env
-      #   if: runner.os == 'MacOS'
-      #   run: export SDKROOT="`xcrun --show-sdk-path`"
-      - name: Run Tests
+      - name: Set env variables for macOS
+        if: matrix.label == 'osx-64'
+        run: |
+          echo "DYLD_FALLBACK_LIBRARY_PATH=${CONDA_PREFIX}/lib" >> $GITHUB_ENV
+          SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
+          echo "SDKROOT: ${SDKROOT}"
+          echo "SDKROOT=${SDKROOT}" >> $GITHUB_ENV
+          echo "CONDA_BUILD_SYSROOT=${SDKROOT}" >> $GITHUB_ENV
+          export CFLAGS="-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
+          export LDFLAGS="-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib"
+      - name: Run tests
         shell: bash -el {0}
         run: |
-           echo SDKROOT
            tox -e ${{ matrix.toxenv }} ${{ matrix.toxargs }} -- ${{ matrix.toxposargs }}
