@@ -37,11 +37,10 @@ jobs:
         run: |
           pip install tox-conda
       # - name: Set MacOS env
-        if: runner.os == 'MacOS'
-        run: export SDKROOT="`xcrun --show-sdk-path`"
+      #   if: runner.os == 'MacOS'
+      #   run: export SDKROOT="`xcrun --show-sdk-path`"
       - name: Run Tests
         shell: bash -el {0}
-        if: runner.os == 'MacOS'
-        run: export SDKROOT="`xcrun --show-sdk-path`"
         run: |
+           echo SDKROOT
            tox -e ${{ matrix.toxenv }} ${{ matrix.toxargs }} -- ${{ matrix.toxposargs }}
