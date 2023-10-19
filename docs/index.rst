@@ -6,10 +6,13 @@
 astLib - Python astronomy modules
 =================================
 
+.. include:: ../README.rst
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   install
    usage
    reference
 
