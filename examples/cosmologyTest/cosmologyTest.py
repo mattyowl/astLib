@@ -34,6 +34,7 @@ pylab.xlim(0, 5)
 pylab.xlabel("$z$")
 pylab.ylabel("$D_A/D_H$")
 pylab.legend(loc='lower right')
+pylab.show()
 
 # dV/dz
 pylab.clf()
@@ -51,3 +52,4 @@ pylab.xlim(0, 5)
 pylab.xlabel("$z$")
 pylab.ylabel("$(1/D_H)^3 dV/dz/d\Omega$")
 pylab.legend(loc='upper left')
+pylab.show()
