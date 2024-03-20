@@ -1,8 +1,8 @@
 /*** File fitsfile.h  FITS and IRAF file access subroutines
- *** June 20, 2014
+ *** February 2, 2022
  *** By Jessica Mink, jmink@cfa.harvard.edu
  *** Harvard-Smithsonian Center for Astrophysics
- *** Copyright (C) 1996-2014
+ *** Copyright (C) 1996-2022
  *** Smithsonian Astrophysical Observatory, Cambridge, MA, USA
 
     This library is free software; you can redistribute it and/or
@@ -59,6 +59,22 @@ struct Tokens {
     int ltok[MAXTOKENS]; /* Lengths of tokens */
     int itok;		/* Current token number */
 };
+
+/* Structure for dealing with ranges */
+#define MAXRANGE 20
+struct Range {
+    double first;       /* Current minimum value */
+    double last;        /* Current maximum value */
+    double step;        /* Current step in value */
+    double value;       /* Current value */
+    double valmin;      /* Minimum value in all ranges */
+    double valmax;      /* Maximum value in all ranges */
+    double ranges[MAXRANGE*3];  /* nranges sets of first, last, step */
+    int nvalues;        /* Total number of values in all ranges */
+    int nranges;        /* Number of ranges */
+    int irange;         /* Index of current range */
+};
+
 
 #ifdef __cplusplus /* C++ prototypes */
 extern "C" {
@@ -130,7 +146,6 @@ extern "C" {
 	char *header);	/* FITS image header */
 	
 /* FITS table file access subroutines in fitsfile.c */
-
     int fitsrtopen(	/* Open FITS table file and fill structure with
 			 * pointers to selected keywords
 			 * Return file descriptor (-1 if unsuccessful) */
@@ -188,7 +203,6 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
 
 
 /* IRAF file access subroutines in imhfile.c */
-
     char *irafrhead(	/* Read IRAF .imh header file and translate to FITS header */
 	char *filename,	/* Name of IRAF header file */
 	int *lihead);	/* Length of IRAF image header in bytes (returned) */
@@ -222,7 +236,6 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
 	int *nbiraf);	/* Length of returned IRAF header */
 
 /* Image pixel access subroutines in imio.c */
-
     double getpix(	/* Read one pixel from any data type 2-D array (0,0)*/
 	char *image,	/* Image array as 1-D vector */
 	int bitpix,	/* FITS bits per pixel
@@ -321,7 +334,6 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
 	int y2);	/* One-based column for output pixel */
 
 /* Image vector processing subroutines in imio.c */
-
     void addvec(	/* Add constant to vector from 2-D array */
 	char *image,	/* Image array as 1-D vector */
 	int bitpix,	/* FITS bits per pixel */
@@ -372,7 +384,6 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
 	double dpix);	/* Value to which to set pixels */
 
 /* Image pixel byte-swapping subroutines in imio.c */
-
     void imswap(	/* Swap alternating bytes in a vector */
 	int bitpix,	/* Number of bits per pixel */
 	char *string,	/* Address of starting point of bytes to swap */
@@ -389,11 +400,15 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
     int imswapped(void); /* Return 1 if machine byte order is not FITS order */
 
 /* File utilities from fileutil.c */
-
     int getfilelines(	/*  Return number of lines in an ASCII file */
 	char *filename); /* Name of file to check */
+    int getmaxlength (	/* Return length of longest line in an ASCII file */		
+	char *filename);      /* Name of file for which to find number of lines */
     char *getfilebuff(	/* Return entire file contents in a character string */
 	char *filename); /* Name of file to read */
+    int putfilebuff(	/* Return entire file contents in a character string */
+	char *filename,	/* Name of file to read */
+	char *string);	/* Character string to write */
     int getfilesize(	/* Return size of a binary or ASCII file */
 	char *filename); /* Name of file to check */
     int isimlist(	/* Return 1 if file is list of FITS or IRAF image files, else 0 */
@@ -427,6 +442,21 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
 	char *spchar,	/* Character with which to replace spaces */
 	char *string);	/* Character string to process */
 
+/* Subroutines for dealing with ranges from fileutil.c */
+    struct Range *RangeInit(	/* Initialize range structure from string */
+	char *string,	/* String containing numbers separated by , and - */
+	int ndef);	/* Maximum allowable range value */
+    int isrange(	/* Return 1 if string is a range of numbers, else 0 */
+	char *string);	/* String which might be a range of numbers */
+    void rstart(	/* Restart range */
+	struct Range *range); /* Range structure */
+    int rgetn(		/* Return number of values in all ranges */
+	struct Range *range); /* Range structure */
+    int rgeti4(		/* Return next number in range as integer */
+	struct Range *range); /* Range structure */
+    double rgetr8(	/* Return next number in range as double */
+	struct Range *range); /* Range structure */
+
 /* Subroutines for access to tokens within a string from fileutil.c */
     int setoken(	/* Tokenize a string for easy decoding */
 	struct Tokens *tokens, /* Token structure returned */
@@ -445,10 +475,62 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
 	char *token,	/* token (returned) */
 	int maxchars);	/* Maximum length of token */
 
+/* Subroutines to read values from keyword=value in blocks of text from fileutil.c */
+    int agetl(		/* Get nth LF- or CR-terminated line from an ASCII string */
+	char *string,	/* Character string containing <keyword>= <value> info */
+	int iline,	/* Sequential line to return with 0=first line */
+	char *line,	/* Line (returned) */
+	int lline);	/* Maximum length for line */
+    int ageti4(		/* Extract int value from keyword= value in string */
+	char *string,	/* character string containing <keyword>= <value> */
+	char *keyword,	/* character string containing the name of the keyword
+			 * the value of which is returned.  hget searches for a
+			 * line beginning with this string.  if "[n]" or ",n" is
+			 * present, the n'th token in the value is returned. */
+	int *ival);	/* Integer value, returned */
+    int agetr8(		/* Extract double value from keyword= value in string */
+	char *string,	/* character string containing <keyword>= <value> */
+	char *keyword,	/* character string containing the name of the keyword */
+	double *dval);	/* Double value, returned */
+    int agetw(		/* Get first word of ASCII value from keyword=value */
+	char *string,	/* character string containing <keyword>= <value> */
+	char *keyword,	/* character string containing the name of the keyword
+			   and the first word of the value is returned */
+	char *word,	/* First word of string value */
+	int maxlength);	/* Maximum number of characters in word */
+    int agets(		/* Extract value from keyword= value in string */
+	char *string,	/* character string containing <keyword>= <value> */
+	char *keyword,	/* character string containing the name of the keyword */
+	int lval,	/* Size of value in characters
+			 * If negative, value ends at end of line */
+	int fillblank,	/* If 0, leave blanks, strip trailing blanks
+			   if non-zero, replace blanks with underscores */
+	char *value);	/* String (returned) */
+
+/* Subroutines for fitting and evaluating polynomials from fileutil.c */
+    void polfit(        /* Fit polynomial coefficients */
+        double *x,      /* Array of independent variable points */
+        double *y,      /* Array of dependent variable points */
+        double x0,      /* Offset to independent variable */
+        int npts,       /* Number of data points to fit */
+        int nterms,     /* Number of parameters to fit */
+        double *a,      /* Vector containing current fit values */
+        double *stdev); /* Standard deviation of fit (returned) */
+    double polcomp(     /* Evaluate polynomial from polfit coefficients */
+        double xi,      /* Independent variable */
+        double x0,      /* Offset to independent variable */
+        int norder,     /* Number of coefficients */
+        double *a);     /* Vector containing coeffiecients */
+    double determ (	/* Calculate the determinant of a square matrix
+			 * This subprogram destroys the input matrix array
+			 * From Bevington, page 294. */
+	double *array,	/* Input matrix array */
+	int norder);	/* Order of determinant (degree of matrix) */
+
+
 /* Subroutines for translating dates and times in dateutil.c */
 
     /* Subroutines to convert between floating point and vigesimal angles */
-
     void ang2hr ( 	/* Fractional degrees to hours as hh:mm:ss.ss */
 	double angle,	/* Angle in fractional degrees */
 	int lstr,	/* Maximum number of characters in string */
@@ -461,9 +543,14 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
 	char *angle);	/* Angle as dd:mm:ss.ss */
     double hr2ang (	/* Hours as hh:mm:ss.ss to fractional degrees */
 	char *angle);	/* Angle in sexigesimal hours (hh:mm:ss.sss) */
+    double ang2sec (	/* Angle in fractional arcseconds */
+	double  angle);	/* Angle in fractional degrees */
+    double hr2sec (	/* Angle in fractional arcseconds */
+	char *angle);	/* Angle in sexigesimal hours (hh:mm:ss.sss) */
+    double deg2sec (	/* Angle in fractional arcseconds */
+	char *angle);	/* Angle in sexigesimal degrees (dd:mm:ss.sss) */
 
     /* Subroutines to convert from year and day of year */
-
     void doy2dt(	/* Year and day of year to yyyy.mmdd hh.mmss */
 	int year,	/* Year */
 	double doy,	/* Day of year with fraction */
@@ -498,7 +585,6 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
 	double doy);	/* Day of year with fraction */
 
     /* Subroutines to convert from date and time */
-
     void dt2doy(	/* yyyy.mmdd hh.mmss to year and day of year */
 	double date,	/* Date as yyyy.mmdd
 			 * yyyy = calendar year (e.g. 1973)
@@ -551,7 +637,6 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
 	double time);	/* Time as hh.mmssxxxx */
 
     /* Subroutines to convert from epoch (various types of fractional year) */
-
     void ep2dt(		/* Fractional year to yyyy.mmdd hh.mmssss */
 	double epoch,	/* Date as fractional year */
 	double *date,	/* Date as yyyy.mmdd (returned) */
@@ -629,7 +714,6 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
 	double  epoch);  /* Julian epoch (fractional 365.25-day years) */
 
     /* Convert from FITS standard date string */
-
     void fd2dt(		/* FITS standard date string to date and time */
 	char *string,	/* FITS date string, which may be:
 			 * fractional year
@@ -650,6 +734,8 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
     double fd2epj(	/* FITS standard date string to Julian epoch */
 	char *string);	/* FITS date string */
     char *fd2fd(	/* Any FITS standard date string to ISO FITS date string */
+	char *string);	/* FITS date string */
+    char *fd2mfd(	/* Any FITS standard date string to date string with month name*/
 	char *string);	/* FITS date string */
     char *fd2of(	/* Any FITS standard date string to old FITS date and time */
 	char *string);	/* FITS date string */
@@ -678,7 +764,6 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
 	char *string);	/* FITS date string */
 
     /* Convert from Julian Day */
-
     void jd2doy(	/* Julian Day to year and day of year */
 	double dj,	/* Julian Day */
 	int *year,	/* Year (returned) */
@@ -714,17 +799,16 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
 	double dj);	/* Julian Day */
 
     /* Convert current local time to various formats */
-
     void lt2dt(		/* Current local time to date (yyyy.mmdd), time (hh.mmsss) */
 	double *date,	/* Date as yyyy.mmdd (returned) */
 	double *time);	/* Time as hh.mmssxxxx (returned) */
     char *lt2fd(void);	/* Current local time to FITS ISO date string */
+    char *lt2mfd(void);	/* Current local time to FITS ISO date string with month name*/
     int lt2tsi(void);	/* Current local time to IRAF seconds since 1980-01-01T00:00 */
     time_t lt2tsu(void); /* Current local time to Unix seconds since 1970-01-01T00:00 */
     double lt2ts(void);	/* Current local time to IRAF seconds since 1950-01-01T00:00 */
 
     /* Convert from Modified Julian Day (JD - 2400000.5) */
-
     void mjd2doy(	/* Modified Julian Day to year and day of year */
 	double dj,	/* Modified Julian Day */
 	int *year,	/* Year (returned) */
@@ -756,7 +840,6 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
 	double dj);	/* Modified Julian Date */
 
     /* Convert from seconds since 1950-01-01 0:00 (JPL Ephemeris time) */
-
     void ts2dt(		/* Seconds since 1950.0 to yyyy.mmdd hh.mmssss */
 	double tsec,	/* seconds since 1950.0 */
 	double *date,	/* Date as yyyy.mmdd (returned)*/
@@ -784,7 +867,6 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
 	double tsec);	/* seconds since 1950.0 */
 
     /* Convert from IRAF time (seconds since 1980-01-01 0:00 UT) */
-
     char *tsi2fd(	/* Seconds since 1980-01-01 to FITS standard date string */
 	int isec);	/* Seconds past 1980-01-01 */
     double tsi2ts( /* Seconds since 1980-01-01 to seconds since 1950-01-01 */
@@ -795,7 +877,6 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
 	double *time);	/* Time as hh.mmssxxxx (returned) */
 
     /* Convert from Unix time (seconds since 1970-01-01 0:00 UT) */
-
     void tsu2dt(	/* Seconds since 1970-01-01 to date yyyy.ddmm, time hh.mmsss */
 	time_t isec,	/* Seconds past 1970-01-01 */
 	double *date,	/* Date as yyyy.mmdd (returned) */
@@ -808,14 +889,12 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
 	time_t isec);	/* Seconds past 1970-01-01 */
 
     /* Convert times within a day */
-
     char *tsd2fd(	/* Seconds since start of day to FITS standard time string */
 	double tsec);	/* Seconds since start of day */
     double tsd2dt(	/* Seconds since start of day to hh.mmsssss */
 	double tsec);	/* Seconds since start of day */
 
     /* Convert from current Universal Time */
-
     void ut2dt(		/* Current Universal Time to date (yyyy.mmdd), time (hh.mmsss) */
 	double *date,	/* Date as yyyy.mmdd (returned) */
 	double *time);	/* Time as hh.mmssxxxx (returned) */
@@ -840,7 +919,6 @@ float ftgetr4(		/* Extract column for keyword from FITS table line
 			 *  yyyy-mm-ddThh:mm:ss.ss (FITS standard after 1999) */
 
     /* Ephemeris time conversions (ET, TT, and TDT) */
-
     char *et2fd(	/* ET (or TDT or TT) in FITS format to UT in FITS format */
 	char *string);	/* Ephemeris Time as FITS date string (E not T) */
     char *fd2et(	/* UT in FITS format to ET (or TDT or TT) in FITS format */
@@ -1021,9 +1099,11 @@ extern void imswap4();	/* Reverse bytes in a vector of 4-byte numbers */
 extern void imswap8();	/* Reverse bytes in a vector of 8-byte numbers */
 extern int imswapped();	/* Return 1 if machine byte order is not FITS order */
 
+
 /* File utilities from fileutil.c */
 extern int getfilelines();
 extern char *getfilebuff();
+extern int putfilebuff();
 extern int getfilesize();
 extern int isimlist();
 extern int isimlistd();
@@ -1035,19 +1115,40 @@ extern int isgif();
 extern int next_line();
 extern int first_token();
 
+/* Subroutines for dealing with ranges from fileutil.c */
+struct Range *RangeInit();	/* Initialize range structure from string */
+int isrange();		/* Return 1 if string is a range of numbers, else 0 */
+void rstart();		/* Restart range */
+int rgetn();		/* Return number of values in all ranges */
+int rgeti4();		/* Return next number in range as integer */
+double rgetr8();	/* Return next number in range as double */
+
 /* Subroutines for access to tokens within a string from fileutil.c */
-int setoken();		/* Tokenize a string for easy decoding */
-int nextoken();		/* Get next token from tokenized string */
-int getoken();		/* Get specified token from tokenized string */
+extern int setoken();	/* Tokenize a string for easy decoding */
+extern int nextoken();	/* Get next token from tokenized string */
+extern int getoken();	/* Get specified token from tokenized string */
+
+/* Subroutines to read values from keyword=value in blocks of text from fileutil.c */
+int agetl();	/* Get nth LF- or CR-terminated line from an ASCII string */
+int ageti4();	/* Extract int value from keyword= value in string */
+int agetr8();	/* Extract double value from keyword= value in string */
+int agetw();	/* Get first word of ASCII value from keyword=value */
+int agets();	/* Extract value from keyword= value in string */
+
+/* Subroutines for fitting and evaluating polynomials from fileutil.c */
+void polfit();		/* Fit polynomial coefficients */
+double polcomp();	/* Evaluate polynomial from polfit coefficients */
+double determ();	/* Calculate the determinant of a square matrix */
+
 
 /* Subroutines for translating dates and times in dateutil.c */
-
 void ang2hr();		/* Fractional degrees to hours as hh:mm:ss.ss */
 void ang2deg();		/* Fractional degrees to degrees as dd:mm:ss.ss */
 double deg2ang();	/* Degrees as dd:mm:ss.ss to fractional degrees */
 double hr2ang();	/* Hours as hh:mm:ss.ss to fractional degrees */
-
-void doy2dt();	/* year and day of year to yyyy.mmdd hh.mmss */
+double ang2sec();	/* Angle as fractional degrees to fractional arcsec */
+double deg2sec();	/* Angle as dd:mm:ss.ss to fractional arcsec */
+double hr2sec();	/* Angle as hh:mm:ss.ss to fractional arcsec */
 double doy2ep(); /* year and day of year to fractional year (epoch) */
 double doy2epb(); /* year and day of year to Besselian epoch */
 double doy2epj(); /* year and day of year to Julian epoch */
@@ -1290,4 +1391,13 @@ void compnut();	/* Compute nutation in longitude and obliquity and mean obliquit
  * Sep 25 2009	Add moveb()
  *
  * Jun 20 2014	Add next_line()
+ *
+ * Sep 24 2019	Add hr2sec(), deg2sec(), ang2sec() to convert to arcseconds
+ *
+ * Jun 11 2021	Add fd2mfd() to convert FITS date to ISO format with month name
+ * Aug 30 2021	Add getmaxlength() to return length of longest line in file
+ *
+ * Jan 21 2022	Add lt2mfd() to convert local time to ISO format with month name
+ * Jan 31 2022	Add putfilebuff(), aget*(), polynomial routines from fileutil.c
+ * Feb  2 2022	Add range subroutine declarations
  */

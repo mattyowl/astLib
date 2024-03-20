@@ -1,8 +1,8 @@
 /*** File libwcs/dateutil.c
- *** May 2, 2017
+ *** July 27, 2021
  *** By Jessica Mink, jmink@cfa.harvard.edu
  *** Harvard-Smithsonian Center for Astrophysics
- *** Copyright (C) 1999-2017
+ *** Copyright (C) 1999-2021
  *** Smithsonian Astrophysical Observatory, Cambridge, MA, USA
 
     This library is free software; you can redistribute it and/or
@@ -42,6 +42,9 @@
 	dd-mm-yy (nonstandard FITS use before 2000)
 	yyyy-mm-dd (FITS standard after 1999)
 	yyyy-mm-ddThh:mm:ss.ss (FITS standard after 1999)
+  mfd = New FITS date string with month as name not number
+	yyyy-mmm-dd or
+	yyyy-mmm-ddThh:mm:ss.ss
    hr = Sexigesimal hours as hh:mm:dd.ss
    jd = Julian Date
    lt = Local time
@@ -61,6 +64,7 @@
   lst = Local Sidereal Time (includes nutation) (longitude must be set)
   hjd = Heliocentric Julian Date
  mhjd = modified Heliocentric Julian Date = HJD - 2400000.5
+  sec = seconds of angle
 
  * ang2hr (angle)
  *	Convert angle in decimal floating point degrees to hours as hh:mm:ss.ss
@@ -133,20 +137,22 @@
  * ets2ts (tsec)
  *	Convert from ET in seconds since 1950-01-01 to UT in same format
  *
- * fd2ep, fd2epb, fd2epj (string)
- *	Convert FITS date string to fractional year
- *	Convert time alone to fraction of Besselian year
  * fd2doy (string, year, doy)
  *	Convert FITS standard date string to year and day of year
  * fd2dt (string, date, time)
  *	Convert FITS date string to date as yyyy.ddmm and time as hh.mmsss
  *	Convert time alone to hh.mmssss with date set to 0.0
+ * fd2ep, fd2epb, fd2epj (string)
+ *	Convert FITS date string to fractional year
+ *	Convert time alone to fraction of Besselian year
  * fd2i (string,iyr,imon,iday,ihr,imn,sec, ndsec)
  *	Convert FITS standard date string to year month day hours min sec
  *	Convert time alone to hours min sec, year month day are zero
  * fd2jd (string)
  *	Convert FITS standard date string to Julian date
  *	Convert time alone to fraction of day
+ * fd2mfd (string)
+ *	Convert from FITS date to FITS date string with month name
  * fd2mjd (string)
  *	Convert FITS standard date string to modified Julian date
  * fd2ts (string)
@@ -178,6 +184,8 @@
  *
  * lt2dt()
  *	Return local time as yyyy.mmdd and time as hh.mmssss
+ * lt2mfd ()
+ *	Return local time as ISO date string with month name
  * lt2fd()
  *	Return local time as FITS ISO date string
  * lt2tsi()
@@ -231,7 +239,7 @@
  *	Convert seconds since start of day to hh.mmssss
  *
  * fd2gst (string)
- *      convert from FITS date Greenwich Sidereal Time
+ *      convert from FITS date to Greenwich Sidereal Time
  * dt2gst (date, time)
  *      convert from UT as yyyy.mmdd hh.mmssss to Greenwich Sidereal Time
  * ts2gst (tsec)
@@ -250,6 +258,8 @@
  *	convert to current UT in FITS format given Greenwich Mean Sidereal Time
  * mst2jd (dj)
  *	convert to current UT as Julian Date given Greenwich Mean Sidereal Time
+ * hjd2lst (dj)
+ *	Calculate Local Sidereal Time from heliocentric Julian Date
  * jd2lst (dj)
  *	Calculate Local Sidereal Time from Julian Date
  * ts2lst (tsec)
@@ -387,6 +397,48 @@ char *angle;	/* Angle in sexigesimal hours (hh:mm:ss.sss) */
     deg = str2dec (angle);
     deg = deg * 15.0;
     return (deg);
+}
+
+
+/* HR2SEC -- Convert angle in hours as hh:mm:ss.ss to fractional arcseconds */
+
+double
+hr2sec (angle)
+
+char *angle;	/* Angle as dd:mm:ss.ss */
+{
+    double sec;
+
+    sec = 15.0 * (str2dec (angle) * 3600.0);
+    return (sec);
+}
+
+
+/* DEG2SEC -- Convert angle in degrees as dd:mm:ss.ss to fractional arcseconds */
+
+double
+deg2sec (angle)
+
+char *angle;	/* Angle as dd:mm:ss.ss */
+{
+    double sec;
+
+    sec = str2dec (angle) * 3600.0;
+    return (sec);
+}
+
+
+/* ANG2SEC -- Convert angle in fractional degrees to fractional arcseconds */
+
+double
+ang2sec (angle)
+
+double angle;	/* Angle in degrees */
+{
+    double sec;
+
+    sec = angle * 3600.0;
+    return (sec);
 }
 
 
@@ -528,6 +580,50 @@ int	sys;	/* J2000, B1950, GALACTIC, ECLIPTIC */
     return (dj - lt);
 }
 
+/* HJD2LST-- convert Heliocentric Julian Date to local sidereal time in radians */
+
+double
+hjd2lst (dj)
+
+double dj;     /* Julian Date */
+
+{
+double dlong;   /* Longitude in degrees */
+double dtpi, dj0, dst0, dut, dt;
+double d1, d2, d3;
+double dpi, df, dct0, dcjul;
+double dst;	/* Local sidereal time in radians (returned) */
+
+    dpi = 3.141592653589793;
+    dtpi = 2.0 * dpi;
+    df = 1.00273790934;
+    dct0 = 2415020.0;
+    dcjul = 36525.0;
+
+/* Convert longitude from degrees to radians */
+    dlong = longitude * dpi / 180.0;
+
+/* Constants D1,D2,D3 for calculating Greenwich Mean Sidereal Time at 0 UT */
+    d1 = 1.739935934667999;
+    d2 = 628.3319509909095;
+    d3 = 0.000006755878646261384;
+
+    dj0 = floor (dj) + 0.5;
+    if (dj0 > dj) {
+	dj0 = dj0 - 1.0;
+	}
+    dut = (dj - dj0) * dtpi;
+
+    dt = (dj0 - dct0) / dcjul;
+    dst0 = d1 + (d2 * dt) + (d3 * dt * dt);
+    dst0 = fmod (dst0, dtpi);
+    dst = (df * dut) + dst0 - dlong;
+    dst = fmod (dst + (2.0 * dtpi) , dtpi);
+
+return (dst);
+
+
+}
 
 /* JD2HJD-- convert (geocentric) Julian date to Heliocentric Julian Date */
 
@@ -852,6 +948,20 @@ double	*time;	/* Time as hh.mmssxxxx (returned) */
     *time = *time + (0.0001 * (double) ts->tm_sec);
 
     return;
+}
+
+
+/* LT2MFD-- Convert local time to ISO date with month name */
+
+char *
+lt2mfd ()
+
+{
+    char *datestring;
+
+    datestring = lt2fd();
+
+    return (fd2mfd (datestring));
 }
 
 
@@ -1955,6 +2065,80 @@ char *string;	/* FITS date string, which may be:
     double date, time;
     fd2dt (string, &date, &time);
     return (dt2ts (date, time));
+}
+
+
+/* FD2MFD-- convert any FITS standard date to ISO date with month name */
+
+char *
+fd2mfd (string)
+
+char *string;	/* FITS date string, which may be:
+			fractional year
+			dd/mm/yy (FITS standard before 2000)
+			dd-mm-yy (nonstandard use before 2000)
+			yyyy-mm-dd (FITS standard after 1999)
+			yyyy-mm-ddThh:mm:ss.ss (FITS standard after 1999) */
+{
+    int iyr,imon,iday,ihr,imn;
+    double sec, date, time;
+    int nf;
+    char tstring[32], dstring[32], *fstring;
+    char outform[64];
+    char month[13][4];
+    strcpy (month[1],"Jan");
+    strcpy (month[2],"Feb");
+    strcpy (month[3],"Mar");
+    strcpy (month[4],"Apr");
+    strcpy (month[5],"May");
+    strcpy (month[6],"Jun");
+    strcpy (month[7],"Jul");
+    strcpy (month[8],"Aug");
+    strcpy (month[9],"Sep");
+    strcpy (month[10],"Oct");
+    strcpy (month[11],"Nov");
+    strcpy (month[12],"Dec");
+
+    fd2dt (string, &date, &time);
+    fd2i (string,&iyr,&imon,&iday,&ihr,&imn,&sec, 3);
+
+    /* Convert to ISO date format */
+    string = (char *) calloc (32, sizeof (char));
+
+    /* Make time string */
+    if (time != 0.0 || ndec > 0) {
+	if (ndec == 0)
+	    nf = 2;
+	else
+	    nf = 3 + ndec;
+	if (ndec > 0) {
+	    sprintf (outform, "%%02d:%%02d:%%0%d.%df", nf, ndec);
+	    sprintf (tstring, outform, ihr, imn, sec);
+	    }
+	else {
+	    sprintf (outform, "%%02d:%%02d:%%0%dd", nf);
+	    sprintf (tstring, outform, ihr, imn, (int)(sec+0.5));
+	    }
+	}
+    else
+	sprintf (tstring, "");
+
+    /* Make date string */
+    if (date != 0.0)
+	sprintf (dstring, "%4d-%3s-%02d", iyr, month[imon], iday);
+    else
+	sprintf (dstring, "");
+
+    /* Make ISOish date string */
+    fstring = (char *) calloc (32, sizeof (char));
+    if (date == 0.0)
+	strcpy (fstring, tstring);
+    else if (time == 0.0 && ndec < 1)
+	strcpy (fstring, dstring);
+    else
+	sprintf (fstring, "%sT%s", dstring, tstring);
+
+    return (fstring);
 }
 
 
@@ -4555,4 +4739,10 @@ double	dnum, dm;
  * Oct 19 2012	Unused l0 dropped from jd2lst(); ts2ss from jd2mst()
  *
  * May  2 2017	Allocate new output string for fd2ofd() and fd2oft()
+ *
+ * Sep 24 2019	Add ang2sec() and deg2sec() to convert to arcseconds
+ *
+ * Jun 11 2021	Add fd2mfd() to replace month number with month name
+ * Jul 13 2021	Add hjd2lst() for rvtools.
+ * Jul 27 2021	Add lt2mfd() for logging time in RVTools
  */

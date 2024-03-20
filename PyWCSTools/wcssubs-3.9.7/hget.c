@@ -1,8 +1,8 @@
 /*** File libwcs/hget.c
- *** November 6, 2015
+ *** September 23, 2019
  *** By Jessica Mink, jmink@cfa.harvard.edu
  *** Harvard-Smithsonian Center for Astrophysics
- *** Copyright (C) 1994-2015
+ *** Copyright (C) 1994-2019
  *** Smithsonian Astrophysical Observatory, Cambridge, MA, USA
 
     This library is free software; you can redistribute it and/or
@@ -58,7 +58,7 @@
  * Subroutine:	strfix (string,blankfill,zerodrop) removes extraneous characters
  */
 
-#include <string.h>		/* NULL, strlen, strstr, strcpy */
+#include <string.h>	/* NULL, strlen, strstr, strcpy */
 #include <stdio.h>
 #include "fitshead.h"	/* FITS header extraction subroutines */
 #include <stdlib.h>
@@ -69,6 +69,7 @@
 #define SHRT_MAX 32767
 #endif
 #define VLENGTH 81
+#define LHEAD0 288000	/* Maximum number of characters to search in header */
 
 #ifdef USE_SAOLIB
 static int use_saolib=0;
@@ -90,10 +91,14 @@ int	lhead;	/* Maximum length of FITS header */
     char *hend;
     if (lhead > 0)
 	lhead0 = lhead;
-    else {
+
+    else if (lhead == 0) {
 	lhead0 = 0;
 	hend = ksearch (header,"END");
 	lhead0 = hend + 80 - header;
+	}
+    else {
+	lhead0 = 0;
 	}
     return (lhead0);
 }
@@ -1096,7 +1101,7 @@ const char *keyword;	/* character string containing the name of the variable
 	lhstr = lhead0;
     else {
 	lhstr = 0;
-	while (lhstr < 256000 && hstring[lhstr] != 0)
+	while (lhstr < LHEAD0 && hstring[lhstr] != 0)
 	    lhstr++;
 	}
     headlast = hstring + lhstr;
@@ -1195,10 +1200,10 @@ const char *keyword;	/* character string containing the name of the variable
     pval = 0;
 
 /* Find current length of header string */
-    if (lhead0)
+    if (lhead0 > 0)
 	lmax = lhead0;
     else
-	lmax = 256000;
+	lmax = LHEAD0;
     for (lhead = 0; lhead < lmax; lhead++) {
 	if (hstring[lhead] <= (char) 0)
 	    break;
@@ -1920,4 +1925,6 @@ int	dropzero;	/* If nonzero, drop trailing zeroes */
  * Nov  6 2015	In isnum(), add return of 4 for yyyy-mm-dd dates
  *
  * Jun  9 2016	Fix isnum() tests for added coloned times and dashed dates
+ *
+ * Sep 23 2019	Add -1 argument to hlen()
  */
