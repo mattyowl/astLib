@@ -1,6 +1,6 @@
 """Module for producing astronomical plots.
 
-(c) 2007-2018 Matt Hilton 
+(c) 2007-2024 Matt Hilton
 
 This module provides the matplotlib powered ImagePlot class, which is designed to be flexible. 
 ImagePlots can have RA, Dec. coordinate axes, contour overlays, and have objects marked in them, 
@@ -12,7 +12,7 @@ import math
 from . import astImages
 from . import astWCS
 from . import astCoords
-import numpy
+import numpy as np
 import astropy.io.fits as pyfits
 from scipy import interpolate
 import pylab
@@ -120,8 +120,8 @@ class ImagePlot:
         needed (see L{RA_TICK_STEPS} and L{DEC_TICK_STEPS} for examples). If the coordinate axes are in
         decimal format, the tick step size is specified simply in RA, dec decimal degrees.
         
-        @type imageData: numpy array or list
-        @param imageData: image data array or list of numpy arrays [r, g, b]
+        @type imageData: np array or list
+        @param imageData: image data array or list of np arrays [r, g, b]
         @type imageWCS: astWCS.WCS
         @param imageWCS: astWCS.WCS object
         @type axes: list
@@ -166,7 +166,7 @@ class ImagePlot:
                     r=astImages.normalise(imageData[0], cutLevels[0])
                     g=astImages.normalise(imageData[1], cutLevels[1])
                     b=astImages.normalise(imageData[2], cutLevels[2])
-                    rgb=numpy.array([r.transpose(), g.transpose(), b.transpose()])
+                    rgb=np.array([r.transpose(), g.transpose(), b.transpose()])
                     rgb=rgb.transpose()
                     self.data=rgb
                     self.rgbImage=True
@@ -369,7 +369,7 @@ class ImagePlot:
         """Adds image data to the ImagePlot as a contour overlay. The contours can be removed using 
         L{removeContourOverlay}. If a contour overlay already exists with this tag, it will be replaced.
         
-        @type contourImageData: numpy array
+        @type contourImageData: np array
         @param contourImageData: image data array from which contours are to be generated
         @type contourWCS: astWCS.WCS
         @param contourWCS: astWCS.WCS object for the image to be contoured
@@ -458,9 +458,9 @@ class ImagePlot:
         draw(). If the ImagePlot already has a set of plotObjects with the same tag, they will be 
         replaced.
         
-        @type objRAs: numpy array or list
+        @type objRAs: np array or list
         @param objRAs: object RA coords in decimal degrees
-        @type objDecs: numpy array or list
+        @type objDecs: np array or list
         @param objDecs: corresponding object Dec. coords in decimal degrees
         @type tag: string
         @param tag: identifying tag for this set of objects
@@ -502,10 +502,10 @@ class ImagePlot:
                 decInPlot.append(d)
                 labelInPlot.append(l)
         
-        xInPlot=numpy.array(xInPlot)
-        yInPlot=numpy.array(yInPlot)
-        RAInPlot=numpy.array(RAInPlot)
-        decInPlot=numpy.array(decInPlot)
+        xInPlot=np.array(xInPlot)
+        yInPlot=np.array(yInPlot)
+        RAInPlot=np.array(RAInPlot)
+        decInPlot=np.array(decInPlot)
         
         # Size of symbols in pixels in plot - converted from arcsec
         sizePix=(size/3600.0)/self.wcs.getPixelSizeDeg()
@@ -804,17 +804,17 @@ class ImagePlot:
         else:
             raise Exception("axesLabels must be either 'sexagesimal' or 'decimal'")
         
-        # xArray=numpy.arange(0, self.data.shape[1], 1)
-        xArray=numpy.linspace(0, self.data.shape[1], self.data.shape[1]*2)
-        yArray=numpy.arange(0, self.data.shape[0], 1)
-        xWCS=self.wcs.pix2wcs(xArray, numpy.zeros(xArray.shape[0], dtype=float))
-        yWCS=self.wcs.pix2wcs(numpy.zeros(yArray.shape[0], dtype=float), yArray)
-        xWCS=numpy.array(xWCS)
-        yWCS=numpy.array(yWCS)
+        # xArray=np.arange(0, self.data.shape[1], 1)
+        xArray=np.linspace(0, self.data.shape[1], self.data.shape[1]*2)
+        yArray=np.arange(0, self.data.shape[0], 1)
+        xWCS=self.wcs.pix2wcs(xArray, np.zeros(xArray.shape[0], dtype=float))
+        yWCS=self.wcs.pix2wcs(np.zeros(yArray.shape[0], dtype=float), yArray)
+        xWCS=np.array(xWCS)
+        yWCS=np.array(yWCS)
         ras=xWCS[:,0]
         # ras[ras < 0]=ras[ras < 0]+360
         decs=yWCS[:,1]
-        RAEdges=numpy.array([ras[0], ras[-1]])
+        RAEdges=np.array([ras[0], ras[-1]])
         # RAMin=RAEdges.min()
         # RAMax=RAEdges.max()
         RAMin=ras.min()
@@ -850,7 +850,7 @@ class ImagePlot:
                 RAPlotMin=RAPlotMin+RADegStep
             if RAPlotMax >= RAMax:
                 RAPlotMax=RAPlotMax-RADegStep
-            RADegs=numpy.arange(RAPlotMin, RAPlotMax+0.0001, RADegStep)
+            RADegs=np.arange(RAPlotMin, RAPlotMax+0.0001, RADegStep)
         else:
             RAPlotMin=RADegStep*math.modf(RAMin/RADegStep)[1]
             RAPlotMax=RADegStep*math.modf(RAMax/RADegStep)[1]
@@ -865,11 +865,11 @@ class ImagePlot:
                 ra2x=interpolate.interp1d(ras[::-1], xArray[::-1], kind='linear')
             else:
                 ra2x=interpolate.interp1d(ras, xArray, kind='linear')
-            RADegs=numpy.arange(RAPlotMin, RAPlotMax-360.0-0.0001, -RADegStep)
+            RADegs=np.arange(RAPlotMin, RAPlotMax-360.0-0.0001, -RADegStep)
 
         # Full RA range?
         if round(self.wcs.getXPixelSizeDeg()*self.wcs.header['NAXIS1']) == 360:
-            RADegs=numpy.arange(0, 360, RADegStep)
+            RADegs=np.arange(0, 360, RADegStep)
 
         decPlotMin=decDegStep*math.modf(decMin/decDegStep)[1]
         decPlotMax=decDegStep*math.modf(decMax/decDegStep)[1]
@@ -877,7 +877,7 @@ class ImagePlot:
             decPlotMin=decPlotMin+decDegStep
         if decPlotMax >= decMax:
             decPlotMax=decPlotMax-decDegStep
-        decDegs=numpy.arange(decPlotMin, decPlotMax+0.0001, decDegStep)
+        decDegs=np.arange(decPlotMin, decPlotMax+0.0001, decDegStep)
         
         if key == "major":
             if axesLabels == "sexagesimal":
@@ -969,9 +969,21 @@ class ImagePlot:
         if key == 'minor':
             RALabels=RALabels+RADegs.shape[0]*['']
             decLabels=decLabels+decDegs.shape[0]*['']
-        RALocs=RALocs+ra2x(RADegs).tolist()
+
         decLocs=decLocs+dec2y(decDegs).tolist()
-            
+
+        # This is for avoiding 0h <-> 12h degeneracy that sometimes happens
+        RALocs=[]
+        RALocs=RALocs+ra2x(RADegs).tolist()
+        uniqRALocs=[]
+        uniqRALabels=[]
+        for i in range(len(RALocs)):
+            if RALocs[i] not in uniqRALocs:
+                uniqRALocs.append(RALocs[i])
+                uniqRALabels.append(RALabels[i])
+        RALocs=uniqRALocs
+        RALabels=uniqRALabels
+
         self.ticsRA=[RALocs, RALabels]
         self.ticsDec=[decLocs, decLabels]
         
@@ -1001,15 +1013,15 @@ class ImagePlot:
         """
         
         # Aim for 5 major tick marks on a plot
-        xArray=numpy.arange(0, self.data.shape[1], 1)
-        yArray=numpy.arange(0, self.data.shape[0], 1)
-        xWCS=self.wcs.pix2wcs(xArray, numpy.zeros(xArray.shape[0], dtype=float))
-        yWCS=self.wcs.pix2wcs(numpy.zeros(yArray.shape[0], dtype=float), yArray)
-        xWCS=numpy.array(xWCS)
-        yWCS=numpy.array(yWCS)
+        xArray=np.arange(0, self.data.shape[1], 1)
+        yArray=np.arange(0, self.data.shape[0], 1)
+        xWCS=self.wcs.pix2wcs(xArray, np.zeros(xArray.shape[0], dtype=float))
+        yWCS=self.wcs.pix2wcs(np.zeros(yArray.shape[0], dtype=float), yArray)
+        xWCS=np.array(xWCS)
+        yWCS=np.array(yWCS)
         ras=xWCS[:,0]
         decs=yWCS[:,1]
-        RAEdges=numpy.array([ras[0], ras[-1]])
+        RAEdges=np.array([ras[0], ras[-1]])
         RAMin=RAEdges.min()
         RAMax=RAEdges.max()
         decMin=decs.min()
