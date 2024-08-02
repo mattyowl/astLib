@@ -18,7 +18,7 @@ oFiles = ['PyWCSTools/wcssubs-3.9.7/cel.o', 'PyWCSTools/wcssubs-3.9.7/wcs.o',
     'PyWCSTools/wcssubs-3.9.7/poly.o', 'PyWCSTools/wcssubs-3.9.7/platepos.o',
     'PyWCSTools/wcssubs-3.9.7/zpxpos.o', 'PyWCSTools/wcssubs-3.9.7/iget.o',
     'PyWCSTools/wcssubs-3.9.7/imio.o', 'PyWCSTools/wcssubs-3.9.7/dsspos.o',
-    'PyWCSTools/wcssubs-3.9.7/tnxpos.o', 'PyWCSTools/wcssubs-3.9.7/wcscon.o',
+    'PyWCSTools/wcssubs-3.9.7/tnxpos.o', #'PyWCSTools/wcssubs-3.9.7/wcscon.o',
     'PyWCSTools/wcssubs-3.9.7/fitsfile.o',
     'PyWCSTools/wcssubs-3.9.7/dateutil.o',
     'PyWCSTools/wcssubs-3.9.7/imhfile.o', 'PyWCSTools/wcssubs-3.9.7/lin.o',
@@ -44,26 +44,26 @@ class build_PyWCSTools_ext(build_ext):
         if "-Wall" in cc.compiler_so:
             cc.compiler_so.pop(cc.compiler_so.index("-Wall"))
         # For recent macOS
-        if "-Wno-error=implicit-function-declaration" in cc.compiler_so:
-            cc.compiler_so.pop(cc.compiler_so.index("-Wno-error=implicit-function-declaration"))
+        # if "-Werror=implicit-function-declaration" in cc.compiler_so:
+            # cc.compiler_so.pop(cc.compiler_so.index("-Werror=implicit-function-declaration"))
 
         WCSToolsCFiles = glob.glob("*.c")
         WCSToolsCFiles.pop(WCSToolsCFiles.index("wcs_wrap.c"))
-        WCSToolsCFiles.pop(WCSToolsCFiles.index("wcscon_wrap.c"))
+        # WCSToolsCFiles.pop(WCSToolsCFiles.index("wcscon_wrap.c"))
         cc.compile(WCSToolsCFiles)
         os.chdir(topDir)
 
         build_ext.build_extensions(self)
 
 setup(name='astLib',
-    version='0.11.11',
+    version='0.12.0',
     packages=['astLib', 'PyWCSTools'],
     package_data={'astLib': ['data/*']},
     cmdclass={"build_ext": build_PyWCSTools_ext},
     scripts=exampleScripts,
     ext_modules=[
-        Extension('PyWCSTools._wcscon', [sourceDir+"wcscon_wrap.c"],
-        extra_objects=oFiles),
+        # Extension('PyWCSTools._wcscon', [sourceDir+"wcscon_wrap.c"],
+        # extra_objects=oFiles),
         Extension('PyWCSTools._wcs', [sourceDir+"wcs_wrap.c"],
         extra_objects=oFiles)
     ]
