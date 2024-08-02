@@ -9,6 +9,7 @@
 import sys
 import math
 import numpy
+import astropy.coordinates as apyCoords
 #from PyWCSTools import wcscon
 #import IPython
 
@@ -325,38 +326,41 @@ def shiftRADec(ra1, dec1, deltaRA, deltaDec):
     return ra2, dec2
 
 #-----------------------------------------------------------------------------
-# def convertCoords(inputSystem, outputSystem, coordX, coordY, epoch):
-#     """Converts specified coordinates (given in decimal degrees) between J2000,
-#     B1950, and Galactic.
+def convertCoords(inputSystem, outputSystem, coordX, coordY, epoch):
+    """Converts specified coordinates (given in decimal degrees) between J2000,
+    B1950, and Galactic.
 
-#     @type inputSystem: string
-#     @param inputSystem: system of the input coordinates (either "J2000",
-#         "B1950" or "GALACTIC")
-#     @type outputSystem: string
-#     @param outputSystem: system of the returned coordinates (either "J2000",
-#         "B1950" or "GALACTIC")
-#     @type coordX: float
-#     @param coordX: longitude coordinate in decimal degrees, e.g. R. A.
-#     @type coordY: float
-#     @param coordY: latitude coordinate in decimal degrees, e.g. dec.
-#     @type epoch: float
-#     @param epoch: epoch of the input coordinates
-#     @rtype: list
-#     @return: coordinates in decimal degrees in requested output system
+    @type inputSystem: string
+    @param inputSystem: system of the input coordinates (either "J2000",
+        "B1950" or "GALACTIC")
+    @type outputSystem: string
+    @param outputSystem: system of the returned coordinates (either "J2000",
+        "B1950" or "GALACTIC")
+    @type coordX: float
+    @param coordX: longitude coordinate in decimal degrees, e.g. R. A.
+    @type coordY: float
+    @param coordY: latitude coordinate in decimal degrees, e.g. dec.
+    @type epoch: float
+    @param epoch: epoch of the input coordinates
+    @rtype: list
+    @return: coordinates in decimal degrees in requested output system
 
-#     """
+    """
 
-#     if inputSystem=="J2000" or inputSystem=="B1950" or inputSystem=="GALACTIC":
-#         if outputSystem=="J2000" or outputSystem=="B1950" or \
-#             outputSystem=="GALACTIC":
+    # Replaced WCSTools wcscon routine here with astropy
+    # This is only here to save breaking old code that still uses this routine
+    sysMap={'J2000': 'fk5', 'B1950': 'fk4', 'GALACTIC': 'galactic'}
+    if inputSystem not in sysMap.keys() or outputSystem not in sysMap.keys():
+        raise Exception("inputSystem and outputSystem must be 'J2000', 'B1950'\
+            or 'GALACTIC'")
+    c=apyCoords.SkyCoord(coordX, coordY, frame = sysMap[inputSystem], unit='deg')
+    b=c.transform_to(sysMap[outputSystem])
+    if outputSystem in ['J2000', 'B1950']:
+        outCoords=[b.ra.deg, b.dec.deg]
+    elif outputSystem == 'GALACTIC':
+        outCoords=[b.l.deg, b.b.deg]
 
-#             outCoords=wcscon.wcscon(wcscon.wcscsys(inputSystem),
-#                 wcscon.wcscsys(outputSystem), 0, 0, float(coordX), float(coordY), epoch)
-
-#             return outCoords
-
-#     raise Exception("inputSystem and outputSystem must be 'J2000', 'B1950'"
-#                     "or 'GALACTIC'")
+    return outCoords
 
 #-----------------------------------------------------------------------------
 def calcRADecSearchBox(RADeg, decDeg, radiusSkyDeg):
