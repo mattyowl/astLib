@@ -21,7 +21,7 @@
 // void wcscon (int sys1, int sys2, double eq1, double eq2, double *dtheta, double *dphi, double epoch);
 void wcscon (int sys1, int sys2, double eq1, double eq2, double *INOUT, double *INOUT, double epoch);
 
-int wcscsys (char *wcstring);
+//int wcscsys (char *wcstring);
 
 
 
