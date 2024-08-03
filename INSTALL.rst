@@ -49,17 +49,3 @@ $PYTHONPATH (adjust the path according to your Python version number).
 
    export PYTHONPATH=$HOME/local/lib/python3.6/site-packages:$PYTHONPATH
 
-
-Installation on recent versions of macOS (may no longer be relevant)
-====================================================================
-
-Some users have reported that the standard method for installing ``astLib`` does not work on recent versions
-of macOS (e.g., Big Sur), due to the default compiler flags. The current workaround for this is to install
-using:
-  
-.. code-block::
-
-   CFLAGS="-Wno-error=implicit-function-declaration" python setup.py install
-   
-
-Thanks to Michael Cowley and Stefano Covino for helping to resolve this issue.
