@@ -1,9 +1,7 @@
 /*** File libwcs/wcs.h
- *** June 23, 2016
- *** By Jessica Mink, jmink@cfa.harvard.edu
- *** Harvard-Smithsonian Center for Astrophysics
- *** Copyright (C) 1994-2016
- *** Smithsonian Astrophysical Observatory, Cambridge, MA, USA
+ *** February 1, 2022
+ *** By Jessica Mink, SAO Telescope Data Center
+ *** Copyright (C) 1994-2022
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -32,6 +30,7 @@
 
 #include "wcslib.h"
 #include "fitshead.h"
+#include "fitsfile.h"
 
 #define MAXNKWD	500
 
@@ -971,4 +970,8 @@ extern int zpxpix();	/* Inverse transform (world to physical) gnomonic projectio
  *
  * Jun  8 2016	Increase projection code from 9 to 16 characters for SIP distortion
  * Jun 23 2016	Set MAXNKWD here; used for copying keywords in cpwcs()
+ *
+ * Aug  2 2021	Add range, string-parsing, and polynomial-fitting subroutines from wcscat.h
+ *
+ * Feb  1 2022	Move range, string parsing, and polynomial-fitting subroutines to fitsfile.h
  */

@@ -482,7 +482,8 @@ double	*rv;	/* Radial velocity in km/sec */
 	}
     else if (*dphi < -90.0) {
 	*dphi = -180.0 - *dphi;
-	*dtheta = *dtheta + 180.0;
+	*dtheta = *dtheta
+	+ 180.0;
 	}
 
     /* Keep longitude/right ascension between 0 and 360 degrees */
@@ -495,6 +496,8 @@ double	*rv;	/* Radial velocity in km/sec */
 
 
 /* Convert from coordinate system sys1 to coordinate system sys2 */
+void
+wcscon (int sys1, int sys2, double eq1, double eq2, double *dtheta, double *dphi, double epoch);
 
 void
 wcscon (sys1, sys2, eq1, eq2, dtheta, dphi, epoch)
