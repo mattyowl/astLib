@@ -13,12 +13,13 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-
+sys.path.insert(0, os.path.abspath('..'))
+from astLib import __version__
 
 # -- Project information -----------------------------------------------------
 
 project = 'astLib'
-copyright = '2020, Matt Hilton & Steven Boada'
+copyright = '2025, Matt Hilton & Steven Boada'
 author = 'Matt Hilton & Steven Boada'
 
 
