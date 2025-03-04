@@ -33,7 +33,7 @@ extensions = [
     'sphinx_epytext',
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
-    'readthedocs_ext.readthedocs',
+    #'readthedocs_ext.readthedocs',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
