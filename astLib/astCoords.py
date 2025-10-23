@@ -264,7 +264,7 @@ def calcAngSepDeg(RADeg1, decDeg1, RADeg2, decDeg2):
     r=numpy.degrees(numpy.arccos(a))
             
     # Above gives nan when RADeg1, decDeg1 == RADeg1, decDeg2
-    indexList=numpy.where(numpy.isnan(r) == True)[0]
+    indexList=numpy.where(numpy.isnan(numpy.atleast_1d(r)) == True)[0]
     tolerance=1e-6
     if len(indexList) > 0:
         for index in indexList:
