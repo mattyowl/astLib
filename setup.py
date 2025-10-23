@@ -58,7 +58,7 @@ class build_PyWCSTools_ext(build_ext):
         build_ext.build_extensions(self)
 
 setup(name='astLib',
-    version='0.12.1',
+    version='0.13.0',
     packages=['astLib', 'PyWCSTools'],
     package_data={'astLib': ['data/*']},
     cmdclass={"build_ext": build_PyWCSTools_ext},
