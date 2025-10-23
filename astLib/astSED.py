@@ -85,7 +85,7 @@ class Passband:
         self.transmission=sortedMerged[:, 1]
         
         if normalise == True:
-            self.transmission=self.transmission/np.trapz(self.transmission, self.wavelength)
+            self.transmission=self.transmission/np.trapezoid(self.transmission, self.wavelength)
         
         # Store a ready-to-go interpolation object to speed calculation of fluxes up
         self.interpolator=interpolate.interp1d(self.wavelength, self.transmission, kind='linear')
@@ -152,8 +152,8 @@ class Passband:
         
         """
         
-        a=np.trapz(self.transmission*self.wavelength, self.wavelength)
-        b=np.trapz(self.transmission/self.wavelength, self.wavelength)
+        a=np.trapezoid(self.transmission*self.wavelength, self.wavelength)
+        b=np.trapezoid(self.transmission/self.wavelength, self.wavelength)
         effWavelength=np.sqrt(a/b)
         
         return effWavelength
@@ -182,7 +182,7 @@ class TopHatPassband(Passband):
         self.transmission=np.ones(self.wavelength.shape, dtype = float)
         
         if normalise == True:
-            self.transmission=self.transmission/np.trapz(self.transmission, self.wavelength)
+            self.transmission=self.transmission/np.trapezoid(self.transmission, self.wavelength)
         
         # Store a ready-to-go interpolation object to speed calculation of fluxes up
         self.interpolator=interpolate.interp1d(self.wavelength, self.transmission, kind='linear')
@@ -348,7 +348,7 @@ class SED:
         
         mask=np.logical_and(np.greater(self.wavelength, wavelengthMin), \
                                np.less(self.wavelength, wavelengthMax))
-        flux=np.trapz(self.flux[mask], self.wavelength[mask])
+        flux=np.trapezoid(self.flux[mask], self.wavelength[mask])
         
         return flux
         
@@ -380,9 +380,9 @@ class SED:
         self.wavelength=self.wavelength+self.z0wavelength
         self.flux=self.flux+self.z0flux
         
-        z0TotalFlux=np.trapz(self.z0wavelength, self.z0flux)
+        z0TotalFlux=np.trapezoid(self.z0wavelength, self.z0flux)
         self.wavelength=self.wavelength*(1.0+z)
-        zTotalFlux=np.trapz(self.wavelength, self.flux)
+        zTotalFlux=np.trapezoid(self.wavelength, self.flux)
         self.flux=self.flux*(z0TotalFlux/zTotalFlux)
         self.z=z
         
@@ -407,7 +407,7 @@ class SED:
         sedFluxSlice=self.flux[totalCut]
         sedWavelengthSlice=self.wavelength[totalCut]
         
-        self.flux=self.flux/np.trapz(abs(sedFluxSlice), sedWavelengthSlice)#self.wavelength)
+        self.flux=self.flux/np.trapezoid(abs(sedFluxSlice), sedWavelengthSlice)#self.wavelength)
 
 
     def normaliseToMag(self, ABMag, passband):
@@ -445,8 +445,8 @@ class SED:
         
         wavelengthRange=np.arange(minWavelength, maxWavelength, 5.0)
         
-        matchFlux=np.trapz(interpMatch(wavelengthRange), wavelengthRange)
-        selfFlux=np.trapz(interpSelf(wavelengthRange), wavelengthRange)
+        matchFlux=np.trapezoid(interpMatch(wavelengthRange), wavelengthRange)
+        selfFlux=np.trapezoid(interpSelf(wavelengthRange), wavelengthRange)
         
         self.flux=self.flux*(matchFlux/selfFlux)
 
@@ -469,8 +469,8 @@ class SED:
         # Use linear interpolation to rebin the passband to the same dimensions as the 
         # part of the SED we're interested in
         sedInBand=passband.interpolator(sedWavelengthSlice)*sedFluxSlice   
-        totalFlux=np.trapz(sedInBand*sedWavelengthSlice, sedWavelengthSlice)
-        totalFlux=totalFlux/np.trapz(passband.interpolator(sedWavelengthSlice)\
+        totalFlux=np.trapezoid(sedInBand*sedWavelengthSlice, sedWavelengthSlice)
+        totalFlux=totalFlux/np.trapezoid(passband.interpolator(sedWavelengthSlice)\
                             *sedWavelengthSlice, sedWavelengthSlice)
                             
         return totalFlux      
@@ -679,8 +679,8 @@ class VegaSED(SED):
         self.z=0.0
         
         #if normalise == True:
-            #self.flux=self.flux/np.trapz(self.flux, self.wavelength)
-            #self.z0flux=self.z0flux/np.trapz(self.z0flux, self.z0wavelength)
+            #self.flux=self.flux/np.trapezoid(self.flux, self.wavelength)
+            #self.z0flux=self.z0flux/np.trapezoid(self.z0flux, self.z0wavelength)
         
 #------------------------------------------------------------------------------------------------------------
 class StellarPopulation:
