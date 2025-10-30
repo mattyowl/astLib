@@ -657,9 +657,9 @@ class VegaSED(SED):
         
         VEGA_SED_PATH=astLib.__path__[0]+os.path.sep+"data"+os.path.sep+"bohlin2006_Vega.sed" # from HST CALSPEC
 
-        inFile=open(VEGA_SED_PATH, "r")
-        lines=inFile.readlines()
-        
+        with open(VEGA_SED_PATH, "r") as inFile:
+            lines=inFile.readlines()
+
         wavelength=[]
         flux=[]
         for line in lines:
@@ -698,9 +698,8 @@ class StellarPopulation:
     """
     def __init__(self, fileName, ageColumn = 0, wavelengthColumn = 1, fluxColumn = 2):
        
-        inFile=open(fileName, "r")
-        lines=inFile.readlines()
-        inFile.close()
+        with open(fileName, "r") as inFile:
+            lines=inFile.readlines()
 
         self.fileName=fileName
 
