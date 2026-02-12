@@ -5,7 +5,6 @@ from setuptools import setup
 from setuptools.command.build_ext import build_ext
 from setuptools.extension import Extension
 import sysconfig
-from pkg_resources import require
 
 topDir = os.getcwd()
 sourceDir = "PyWCSTools"+os.path.sep+"wcssubs-3.9.7"+os.path.sep
