@@ -427,10 +427,11 @@ class ImagePlot:
 
         symbol specifies the type of symbol with which to mark the object in the image. The following
         values are allowed:
-            - "circle"
-            - "box"
-            - "cross"
-            - "diamond"
+
+        - "circle"
+        - "box"
+        - "cross"
+        - "diamond"
 
         size specifies the diameter in arcsec of the symbol (if plotSymbol == "circle"), or the width
         of the box in arcsec (if plotSymbol == "box")
