@@ -2,8 +2,8 @@
 
 (c) 2007-2024 Matt Hilton
 
-This module provides the matplotlib powered ImagePlot class, which is designed to be flexible. 
-ImagePlots can have RA, Dec. coordinate axes, contour overlays, and have objects marked in them, 
+This module provides the matplotlib powered ImagePlot class, which is designed to be flexible.
+ImagePlots can have RA, Dec. coordinate axes, contour overlays, and have objects marked in them,
 using WCS coordinates. RGB plots are supported too.
 
 """
@@ -27,17 +27,17 @@ if sys.version < '3':
 else:
     def u(x):
         return x
-    
-DEC_TICK_STEPS=[{'deg': 1.0/60.0/60.0,  'unit': "s"}, 
+
+DEC_TICK_STEPS=[{'deg': 1.0/60.0/60.0,  'unit': "s"},
                 {'deg': 2.0/60.0/60.0,  'unit': "s"},
-                {'deg': 5.0/60.0/60.0,  'unit': "s"}, 
+                {'deg': 5.0/60.0/60.0,  'unit': "s"},
                 {'deg': 10.0/60.0/60.0, 'unit': "s"},
                 {'deg': 30.0/60.0/60.0, 'unit': "s"},
                 {'deg': 1.0/60.0,       'unit': "m"},
                 {'deg': 2.0/60.0,       'unit': "m"},
                 {'deg': 5.0/60.0,       'unit': "m"},
                 {'deg': 15.0/60.0,      'unit': "m"},
-                {'deg': 30.0/60.0,      'unit': "m"}, 
+                {'deg': 30.0/60.0,      'unit': "m"},
                 {'deg': 1.0,            'unit': "d"},
                 {'deg': 2.0,            'unit': "d"},
                 {'deg': 4.0,            'unit': "d"},
@@ -50,9 +50,9 @@ sexagesimal mode. Dictionary format: {'deg', 'unit'}"""
 
 RA_TICK_STEPS=[ {'deg': (0.5/60.0/60.0/24.0)*360.0,  'unit': "s"},
                 {'deg': (1.0/60.0/60.0/24.0)*360.0,  'unit': "s"},
-                {'deg': (2.0/60.0/60.0/24.0)*360.0,  'unit': "s"}, 
-                {'deg': (4.0/60.0/60.0/24.0)*360.0,  'unit': "s"}, 
-                {'deg': (5.0/60.0/60.0/24.0)*360.0,  'unit': "s"}, 
+                {'deg': (2.0/60.0/60.0/24.0)*360.0,  'unit': "s"},
+                {'deg': (4.0/60.0/60.0/24.0)*360.0,  'unit': "s"},
+                {'deg': (5.0/60.0/60.0/24.0)*360.0,  'unit': "s"},
                 {'deg': (10.0/60.0/60.0/24.0)*360.0, 'unit': "s"},
                 {'deg': (20.0/60.0/60.0/24.0)*360.0, 'unit': "s"},
                 {'deg': (30.0/60.0/60.0/24.0)*360.0, 'unit': "s"},
@@ -61,7 +61,7 @@ RA_TICK_STEPS=[ {'deg': (0.5/60.0/60.0/24.0)*360.0,  'unit': "s"},
                 {'deg': (5.0/60.0/24.0)*360.0,       'unit': "m"},
                 {'deg': (10.0/60.0/24.0)*360.0,      'unit': "m"},
                 {'deg': (20.0/60.0/24.0)*360.0,      'unit': "m"},
-                {'deg': (30.0/60.0/24.0)*360.0,      'unit': "m"}, 
+                {'deg': (30.0/60.0/24.0)*360.0,      'unit': "m"},
                 {'deg': (1.0/24.0)*360.0,            'unit': "h"},
                 {'deg': (3.0/24.0)*360.0,            'unit': "h"},
                 {'deg': (6.0/24.0)*360.0,            'unit': "h"},
@@ -82,21 +82,21 @@ DOUBLE_PRIME = "$^{\prime\prime}$"
 class ImagePlot:
     """This class describes a matplotlib image plot containing an astronomical image with an
     associated WCS.
-    
-    Objects within the image boundaries can be marked by passing their WCS coordinates to 
-    L{ImagePlot.addPlotObjects}.
-    
-    Other images can be overlaid using L{ImagePlot.addContourOverlay}.
-    
+
+    Objects within the image boundaries can be marked by passing their WCS coordinates to
+    :meth:`~astLib.astPlots.ImagePlot.addPlotObjects`.
+
+    Other images can be overlaid using :meth:`~astLib.astPlots.ImagePlot.addContourOverlay`.
+
     For images rotated with North at the top, East at the left (as can be done using
-    L{astImages.clipRotatedImageSectionWCS} or L{astImages.resampleToTanProjection}, WCS coordinate
-    axes can be plotted, with tick marks set appropriately for the image size. Otherwise, a compass 
+    :func:`~astLib.astImages.clipRotatedImageSectionWCS` or :func:`~astLib.astImages.resampleToTanProjection`), WCS coordinate
+    axes can be plotted, with tick marks set appropriately for the image size. Otherwise, a compass
     can be plotted showing the directions of North and East in the image.
 
     RGB images are also supported.
-    
+
     The plot can of course be tweaked further after creation using matplotlib/pylab commands.
-    
+
     """
     def __init__(self, imageData, imageWCS, axes = [0.1,0.1,0.8,0.8], \
         cutLevels = ["smart", 99.5], colorMapName = "gray", title = None, axesLabels = "sexagesimal", \
@@ -104,61 +104,52 @@ class ImagePlot:
         colorBar = False, interpolation = "bilinear"):
         """Makes an ImagePlot from the given image array and astWCS. For coordinate axes to work, the
         image and WCS should have been rotated such that East is at the left, North is at the top
-        (see e.g. L{astImages.clipRotatedImageSectionWCS}, or L{astImages.resampleToTanProjection}).
-        
+        (see e.g. :func:`~astLib.astImages.clipRotatedImageSectionWCS`, or :func:`~astLib.astImages.resampleToTanProjection`).
+
         If imageData is given as a list in the format [r, g, b], a color RGB plot will be made. However,
         in this case the cutLevels must be specified manually for each component as a list -
         i.e. cutLevels = [[r min, r max], [g min, g max], [b min, b max]]. In this case of course, the
         colorMap will be ignored. All r, g, b image arrays must have the same dimensions.
-        
+
         Set axesLabels = None to make a plot without coordinate axes plotted.
-        
+
         The axes can be marked in either sexagesimal or decimal celestial coordinates. If RATickSteps
-        or decTickSteps are set to "auto", the appropriate axis scales will be determined automatically 
-        from the size of the image array and associated WCS. The tick step sizes can be overidden. 
-        If the coordinate axes are in sexagesimal format a dictionary in the format {'deg', 'unit'} is 
-        needed (see L{RA_TICK_STEPS} and L{DEC_TICK_STEPS} for examples). If the coordinate axes are in
+        or decTickSteps are set to "auto", the appropriate axis scales will be determined automatically
+        from the size of the image array and associated WCS. The tick step sizes can be overidden.
+        If the coordinate axes are in sexagesimal format a dictionary in the format {'deg', 'unit'} is
+        needed (see :data:`~astLib.astPlots.RA_TICK_STEPS` and :data:`~astLib.astPlots.DEC_TICK_STEPS` for examples). If the coordinate axes are in
         decimal format, the tick step size is specified simply in RA, dec decimal degrees.
-        
-        @type imageData: np array or list
-        @param imageData: image data array or list of np arrays [r, g, b]
-        @type imageWCS: astWCS.WCS
-        @param imageWCS: astWCS.WCS object
-        @type axes: list
-        @param axes: specifies where in the current figure to draw the finder chart (see pylab.axes)
-        @type cutLevels: list
-        @param cutLevels: sets the image scaling - available options:
-            - pixel values: cutLevels=[low value, high value].
-            - histogram equalisation: cutLevels=["histEq", number of bins ( e.g. 1024)]
-            - relative: cutLevels=["relative", cut per cent level (e.g. 99.5)]
-            - smart: cutLevels=["smart", cut per cent level (e.g. 99.5)]
-        ["smart", 99.5] seems to provide good scaling over a range of different images.
-        Note that for RGB images, cut levels must be specified manually i.e. as a list:
-        [[r min, rmax], [g min, g max], [b min, b max]]
-        @type colorMapName: string
-        @param colorMapName: name of a standard matplotlib colormap, e.g. "hot", "cool", "gray"
-        etc. (do "help(pylab.colormaps)" in the Python interpreter to see available options)
-        @type title: string
-        @param title: optional title for the plot
-        @type axesLabels: string
-        @param axesLabels: either "sexagesimal" (for H:M:S, D:M:S), "decimal" (for decimal degrees)
-        or None (for no coordinate axes labels)
-        @type axesFontFamily: string
-        @param axesFontFamily: matplotlib fontfamily, e.g. 'serif', 'sans-serif' etc.
-        @type axesFontSize: float
-        @param axesFontSize: font size of axes labels and titles (in points)
-        @type colorBar: bool
-        @param colorBar: if True, plot a vertical color bar at the side of the image indicating the intensity
-        scale.
-        @type interpolation: string
-        @param interpolation: interpolation to apply to the image plot (see the documentation for
-                              the matplotlib.pylab.imshow command)
-        
+
+        Args:
+            imageData (numpy.ndarray or list): image data array or list of np arrays [r, g, b]
+            imageWCS (astWCS.WCS): astWCS.WCS object
+            axes (list): specifies where in the current figure to draw the finder chart (see pylab.axes)
+            cutLevels (list): sets the image scaling - available options:
+
+                - pixel values: ``cutLevels=[low value, high value]``
+                - histogram equalisation: ``cutLevels=["histEq", number of bins (e.g. 1024)]``
+                - relative: ``cutLevels=["relative", cut per cent level (e.g. 99.5)]``
+                - smart: ``cutLevels=["smart", cut per cent level (e.g. 99.5)]``
+
+                ``["smart", 99.5]`` seems to provide good scaling over a range of different images.
+                For RGB images, cut levels must be specified manually as a list:
+                ``[[r min, r max], [g min, g max], [b min, b max]]``
+            colorMapName (str): name of a standard matplotlib colormap, e.g. "hot", "cool", "gray"
+            title (str): optional title for the plot
+            axesLabels (str): either "sexagesimal" (for H:M:S, D:M:S), "decimal" (for decimal degrees)
+                or None (for no coordinate axes labels)
+            axesFontFamily (str): matplotlib fontfamily, e.g. 'serif', 'sans-serif' etc.
+            axesFontSize (float): font size of axes labels and titles (in points)
+            colorBar (bool): if True, plot a vertical color bar at the side of the image indicating
+                the intensity scale
+            interpolation (str): interpolation to apply to the image plot (see the documentation for
+                the matplotlib.pylab.imshow command)
+
         """
-                
+
         self.RADeg, self.decDeg=imageWCS.getCentreWCSCoords()
         self.wcs=imageWCS
-        
+
         # Handle case where imageData is [r, g, b]
         if type(imageData) == list:
             if len(imageData) == 3:
@@ -178,7 +169,7 @@ class ImagePlot:
         else:
             self.data=imageData
             self.rgbImage=False
-        
+
         self.axes=pylab.axes(axes)
         self.cutLevels=cutLevels
         self.colorMapName=colorMapName
@@ -187,14 +178,14 @@ class ImagePlot:
         self.colorBar=colorBar
         self.axesFontSize=axesFontSize
         self.axesFontFamily=axesFontFamily
-        
+
         self.flipXAxis=False
         self.flipYAxis=False
-                
+
         self.interpolation=interpolation
-        
+
         if self.axesLabels != None:
-            
+
             # Allow user to override the automatic coord tick spacing
             if self.axesLabels == "sexagesimal":
                 if RATickSteps != "auto":
@@ -214,33 +205,33 @@ class ImagePlot:
                         raise Exception("decTickSteps needs to be a float (if not 'auto') for decimal axes labels")
             self.RATickSteps=RATickSteps
             self.decTickSteps=decTickSteps
-        
+
             self.calcWCSAxisLabels(axesLabels = self.axesLabels)
-        
+
         # this list stores objects to overplot, add to it using addPlotObjects()
-        self.plotObjects=[] 
-        
+        self.plotObjects=[]
+
         # this list stores image data to overlay as contours, add to it using addContourOverlay()
         self.contourOverlays=[]
-        
+
         self.draw()
 
 
     def draw(self):
         """Redraws the ImagePlot.
-        
+
         """
-        
+
         pylab.axes(self.axes)
         pylab.cla()
-        
+
         if self.title != None:
             pylab.title(self.title)
         try:
             colorMap=pylab.cm.get_cmap(self.colorMapName)
         except AssertionError:
             raise Exception(self.colorMapName+"is not a defined matplotlib colormap.")
-        
+
         if self.rgbImage == False:
             self.cutImage=astImages.intensityCutImage(self.data, self.cutLevels)
             if self.cutLevels[0]=="histEq":
@@ -250,14 +241,14 @@ class ImagePlot:
                             origin='lower', cmap=colorMap)
         else:
             pylab.imshow(self.data, interpolation="bilinear", origin='lower')
-        
+
         if self.colorBar == True:
             pylab.colorbar(shrink=0.8)
-        
+
         for c in self.contourOverlays:
-            pylab.contour(c['contourData']['scaledImage'], c['contourData']['contourLevels'], 
+            pylab.contour(c['contourData']['scaledImage'], c['contourData']['contourLevels'],
                             colors=c['color'], linewidths=c['width'])
-        
+
         for p in self.plotObjects:
             for x, y, l in zip(p['x'], p['y'], p['objLabels']):
                 if p['symbol'] == "circle":
@@ -265,43 +256,43 @@ class ImagePlot:
                                         linewidth=p['width'])
                     self.axes.add_patch(c)
                 elif p['symbol'] == "box":
-                    c=patches.Rectangle((x-p['sizePix']/2, y-p['sizePix']/2), p['sizePix'], p['sizePix'], 
+                    c=patches.Rectangle((x-p['sizePix']/2, y-p['sizePix']/2), p['sizePix'], p['sizePix'],
                         fill=p['fill'], color=p['color'], linewidth=p['width'])
                     self.axes.add_patch(c)
                 elif p['symbol'] == "cross":
-                    pylab.plot([x-p['sizePix']/2, x+p['sizePix']/2], [y, y], linestyle='-', 
+                    pylab.plot([x-p['sizePix']/2, x+p['sizePix']/2], [y, y], linestyle='-',
                         linewidth=p['width'], color= p['color'])
-                    pylab.plot([x, x], [y-p['sizePix']/2, y+p['sizePix']/2], linestyle='-', 
+                    pylab.plot([x, x], [y-p['sizePix']/2, y+p['sizePix']/2], linestyle='-',
                         linewidth=p['width'], color= p['color'])
                 elif p['symbol'] == "diamond":
-                    c=patches.RegularPolygon([x, y], 4, radius=p['sizePix']/2, orientation=0, 
+                    c=patches.RegularPolygon([x, y], 4, radius=p['sizePix']/2, orientation=0,
                                              color=p['color'], fill=p['fill'], linewidth=p['width'])
                     self.axes.add_patch(c)
                 if l != None:
                     pylab.text(x, y+p['sizePix']/1.5, l, horizontalalignment='center', \
                                 fontsize=p['objLabelSize'], color=p['color'])
-            
+
             if p['symbol'] == "compass":
                 x=p['x'][0]
                 y=p['y'][0]
                 ra=p['RA'][0]
                 dec=p['dec'][0]
-                
+
                 westPoint,eastPoint,southPoint,northPoint=astCoords.calcRADecSearchBox(ra, dec, p['sizeArcSec']/3600.0/2.0)
                 northPix=self.wcs.wcs2pix(ra, northPoint)
                 eastPix=self.wcs.wcs2pix(eastPoint, dec)
-                                
+
                 edx=eastPix[0]-x
                 edy=eastPix[1]-y
                 ndx=northPix[0]-x
                 ndy=northPix[1]-y
                 nArrow=patches.Arrow(x, y, ndx, ndy, edgecolor=p['color'], facecolor=p['color'], width=p['width'])
-                eArrow=patches.Arrow(x, y, edx, edy, edgecolor=p['color'], facecolor=p['color'], width=p['width'])                
+                eArrow=patches.Arrow(x, y, edx, edy, edgecolor=p['color'], facecolor=p['color'], width=p['width'])
                 self.axes.add_patch(nArrow)
                 self.axes.add_patch(eArrow)
-                pylab.text(x+ndx+ndx*0.2, y+ndy+ndy*0.2, "N", horizontalalignment='center', 
+                pylab.text(x+ndx+ndx*0.2, y+ndy+ndy*0.2, "N", horizontalalignment='center',
                                 verticalalignment='center', fontsize=p['objLabelSize'], color=p['color'])
-                pylab.text(x+edx+edx*0.2, y+edy+edy*0.2, "E", horizontalalignment='center', 
+                pylab.text(x+edx+edx*0.2, y+edy+edy*0.2, "E", horizontalalignment='center',
                                 verticalalignment='center', fontsize=p['objLabelSize'], color=p['color'])
 
             if p['symbol'] == "scaleBar":
@@ -309,7 +300,7 @@ class ImagePlot:
                 y=p['y'][0]
                 ra=p['RA'][0]
                 dec=p['dec'][0]
-                
+
                 westPoint,eastPoint,southPoint,northPoint=astCoords.calcRADecSearchBox(ra, dec, p['sizeArcSec']/3600.0/2.0)
                 northPix=self.wcs.wcs2pix(ra, northPoint)
                 eastPix=self.wcs.wcs2pix(eastPoint, dec)
@@ -317,16 +308,16 @@ class ImagePlot:
                 edy=eastPix[1]-y
                 ndx=northPix[0]-x
                 ndy=northPix[1]-y
-                
+
                 if p['style'] == "arrows":
-                    eArrow=patches.Arrow(x, y, edx, edy, edgecolor=p['color'], facecolor=p['color'], width=p['width'])  
-                    wArrow=patches.Arrow(x, y, -edx, edy, edgecolor=p['color'], facecolor=p['color'], width=p['width'])   
+                    eArrow=patches.Arrow(x, y, edx, edy, edgecolor=p['color'], facecolor=p['color'], width=p['width'])
+                    wArrow=patches.Arrow(x, y, -edx, edy, edgecolor=p['color'], facecolor=p['color'], width=p['width'])
                     self.axes.add_patch(eArrow)
                     self.axes.add_patch(wArrow)
                 elif p['style'] == "whiskers":
-                    ewArrow=patches.FancyArrowPatch(posA = (x+edx, y), posB = (x-edx,y+edy), edgecolor=p['color'], facecolor=p['color'], linewidth = p['width'], arrowstyle = '|-|')  
+                    ewArrow=patches.FancyArrowPatch(posA = (x+edx, y), posB = (x-edx,y+edy), edgecolor=p['color'], facecolor=p['color'], linewidth = p['width'], arrowstyle = '|-|')
                     self.axes.add_patch(ewArrow)
-                
+
                 # Work out label
                 if p['scaleBarLabel'] == None:
                     scaleLabel=None
@@ -338,9 +329,9 @@ class ImagePlot:
                         scaleLabel="%.0f %s" % (p['sizeArcSec']/3600.0, DEG)
                 else:
                     scaleLabel=p['scaleBarLabel']
-                pylab.text(x, y+0.025*self.data.shape[1], scaleLabel, horizontalalignment='center', 
+                pylab.text(x, y+0.025*self.data.shape[1], scaleLabel, horizontalalignment='center',
                            verticalalignment='center', fontsize=p['objLabelSize'], color=p['color'])
-                                
+
         if self.axesLabels != None:
             pylab.xticks(self.ticsRA[0], self.ticsRA[1], weight='normal', family=self.axesFontFamily, \
                                     fontsize=self.axesFontSize)
@@ -353,7 +344,7 @@ class ImagePlot:
             pylab.yticks([], [])
             pylab.xlabel("")
             pylab.ylabel("")
-        
+
         if self.flipXAxis == False:
             pylab.xlim(0, self.data.shape[1]-1)
         else:
@@ -366,44 +357,38 @@ class ImagePlot:
 
     def addContourOverlay(self, contourImageData, contourWCS, tag, levels = ["linear", "min", "max", 5],
                              width = 1, color = "white", smooth = 0, highAccuracy = False):
-        """Adds image data to the ImagePlot as a contour overlay. The contours can be removed using 
-        L{removeContourOverlay}. If a contour overlay already exists with this tag, it will be replaced.
-        
-        @type contourImageData: np array
-        @param contourImageData: image data array from which contours are to be generated
-        @type contourWCS: astWCS.WCS
-        @param contourWCS: astWCS.WCS object for the image to be contoured
-        @type tag: string
-        @param tag: identifying tag for this set of contours
-        @type levels: list
-        @param levels: sets the contour levels - available options:
-            - values: contourLevels=[list of values specifying each level]
-            - linear spacing: contourLevels=['linear', min level value, max level value, number
-            of levels] - can use "min", "max" to automatically set min, max levels from image data
-            - log spacing: contourLevels=['log', min level value, max level value, number of
-            levels] - can use "min", "max" to automatically set min, max levels from image data
-        @type width: int
-        @param width: width of the overlaid contours
-        @type color: string
-        @param color: color of the overlaid contours, specified by the name of a standard
-            matplotlib color, e.g., "black", "white", "cyan"
-            etc. (do "help(pylab.colors)" in the Python interpreter to see available options)
-        @type smooth: float
-        @param smooth: standard deviation (in arcsec) of Gaussian filter for
-            pre-smoothing of contour image data (set to 0 for no smoothing)
-        @type highAccuracy: bool
-        @param highAccuracy: if True, sample every corresponding pixel in each image; otherwise, sample
-            every nth pixel, where n = the ratio of the image scales.
-        
+        """Adds image data to the ImagePlot as a contour overlay. The contours can be removed using
+        :meth:`~astLib.astPlots.ImagePlot.removeContourOverlay`. If a contour overlay already exists with this tag, it will be replaced.
+
+        Args:
+            contourImageData (numpy.ndarray): image data array from which contours are to be generated
+            contourWCS (astWCS.WCS): astWCS.WCS object for the image to be contoured
+            tag (str): identifying tag for this set of contours
+            levels (list): sets the contour levels - available options:
+
+                - values: ``contourLevels=[list of values specifying each level]``
+                - linear spacing: ``contourLevels=['linear', min level value, max level value, number of levels]``
+                  (use "min", "max" to automatically set min, max levels from image data)
+                - log spacing: ``contourLevels=['log', min level value, max level value, number of levels]``
+                  (use "min", "max" to automatically set min, max levels from image data)
+
+            width (int): width of the overlaid contours
+            color (str): color of the overlaid contours, specified by the name of a standard matplotlib
+                color, e.g., "black", "white", "cyan"
+            smooth (float): standard deviation (in arcsec) of Gaussian filter for pre-smoothing of
+                contour image data (set to 0 for no smoothing)
+            highAccuracy (bool): if True, sample every corresponding pixel in each image; otherwise,
+                sample every nth pixel, where n = the ratio of the image scales
+
         """
-                
+
         if self.rgbImage == True:
             backgroundData=self.data[:,:,0]
         else:
             backgroundData=self.data
         contourData=astImages.generateContourOverlay(backgroundData, self.wcs, contourImageData, \
                                               contourWCS, levels, smooth, highAccuracy = highAccuracy)
-        
+
         alreadyGot=False
         for c in self.contourOverlays:
             if c['tag'] == tag:
@@ -412,83 +397,75 @@ class ImagePlot:
                 c['color']=color
                 c['width']=width
                 alreadyGot=True
-                
+
         if alreadyGot == False:
             self.contourOverlays.append({'contourData': contourData, 'tag': tag, 'color': color, \
                                             'width': width})
         self.draw()
 
-    
+
     def removeContourOverlay(self, tag):
         """Removes the contourOverlay from the ImagePlot corresponding to the tag.
-        
-        @type tag: string
-        @param tag: tag for contour overlay in ImagePlot.contourOverlays to be removed
-        
+
+        Args:
+            tag (str): tag for contour overlay in ImagePlot.contourOverlays to be removed
+
         """
-        
+
         index=0
         for p in self.contourOverlays:
             if p['tag'] == tag:
                 self.plotObjects.remove(self.plotObjects[index])
             index=index+1
         self.draw()
-        
-        
+
+
     def addPlotObjects(self, objRAs, objDecs, tag, symbol="circle", size=4.0, width=1.0, color="yellow",\
                        fill = False, objLabels = None, objLabelSize = 12.0):
-        """Add objects with RA, dec coords objRAs, objDecs to the ImagePlot. Only objects that fall within 
+        """Add objects with RA, dec coords objRAs, objDecs to the ImagePlot. Only objects that fall within
         the image boundaries will be plotted.
-        
+
         symbol specifies the type of symbol with which to mark the object in the image. The following
         values are allowed:
-            - "circle"
-            - "box"
-            - "cross"
-            - "diamond"
-        
+
+        - "circle"
+        - "box"
+        - "cross"
+        - "diamond"
+
         size specifies the diameter in arcsec of the symbol (if plotSymbol == "circle"), or the width
         of the box in arcsec (if plotSymbol == "box")
-        
+
         width specifies the thickness of the symbol lines in pixels
-        
+
         color can be any valid matplotlib color (e.g. "red", "green", etc.)
-        
-        The objects can be removed from the plot by using removePlotObjects(), and then calling
-        draw(). If the ImagePlot already has a set of plotObjects with the same tag, they will be 
+
+        The objects can be removed from the plot by using :meth:`~astLib.astPlots.ImagePlot.removePlotObjects`, and then calling
+        draw(). If the ImagePlot already has a set of plotObjects with the same tag, they will be
         replaced.
-        
-        @type objRAs: np array or list
-        @param objRAs: object RA coords in decimal degrees
-        @type objDecs: np array or list
-        @param objDecs: corresponding object Dec. coords in decimal degrees
-        @type tag: string
-        @param tag: identifying tag for this set of objects
-        @type symbol: string
-        @param symbol: either "circle", "box", "cross", or "diamond"
-        @type size: float
-        @param size: size of symbols to plot (radius in arcsec, or width of box)
-        @type width: float
-        @param width: width of symbols in pixels
-        @type color: string
-        @param color: any valid matplotlib color string, e.g. "red", "green" etc.
-        @type fill: bool
-        @param color: if True, fill symbols
-        @type objLabels: list
-        @param objLabels: text labels to plot next to objects in figure
-        @type objLabelSize: float
-        @param objLabelSize: size of font used for object labels (in points)
-        
+
+        Args:
+            objRAs (numpy.ndarray or list): object RA coords in decimal degrees
+            objDecs (numpy.ndarray or list): corresponding object Dec. coords in decimal degrees
+            tag (str): identifying tag for this set of objects
+            symbol (str): either "circle", "box", "cross", or "diamond"
+            size (float): size of symbols to plot (radius in arcsec, or width of box)
+            width (float): width of symbols in pixels
+            color (str): any valid matplotlib color string, e.g. "red", "green" etc.
+            fill (bool): if True, fill symbols
+            objLabels (list): text labels to plot next to objects in figure
+            objLabelSize (float): size of font used for object labels (in points)
+
         """
-        
+
         pixCoords=self.wcs.wcs2pix(objRAs, objDecs)
-        
+
         xMax=self.data.shape[1]
         yMax=self.data.shape[0]
-        
+
         if objLabels is None:
             objLabels=[None]*len(objRAs)
-            
+
         xInPlot=[]
         yInPlot=[]
         RAInPlot=[]
@@ -501,15 +478,15 @@ class ImagePlot:
                 RAInPlot.append(r)
                 decInPlot.append(d)
                 labelInPlot.append(l)
-        
+
         xInPlot=np.array(xInPlot)
         yInPlot=np.array(yInPlot)
         RAInPlot=np.array(RAInPlot)
         decInPlot=np.array(decInPlot)
-        
+
         # Size of symbols in pixels in plot - converted from arcsec
         sizePix=(size/3600.0)/self.wcs.getPixelSizeDeg()
-        
+
         alreadyGot=False
         for p in self.plotObjects:
             if p['tag'] == tag:
@@ -527,54 +504,52 @@ class ImagePlot:
                 p['objLabelSize']=objLabelSize
                 p['fill']=fill
                 alreadyGot=True
-        
+
         if alreadyGot == False:
             self.plotObjects.append({'x': xInPlot, 'y': yInPlot, 'RA': RAInPlot, 'dec': decInPlot,
-                                'tag': tag, 'objLabels': labelInPlot, 'symbol': symbol, 
+                                'tag': tag, 'objLabels': labelInPlot, 'symbol': symbol,
                                 'sizePix': sizePix, 'width': width, 'color': color,
                                 'objLabelSize': objLabelSize, 'sizeArcSec': size, 'fill': fill})
         self.draw()
-        
-        
+
+
     def removePlotObjects(self, tag):
         """Removes the plotObjects from the ImagePlot corresponding to the tag. The plot must be redrawn
         for the change to take effect.
-        
-        @type tag: string
-        @param tag: tag for set of objects in ImagePlot.plotObjects to be removed
-        
+
+        Args:
+            tag (str): tag for set of objects in ImagePlot.plotObjects to be removed
+
         """
-        
+
         index=0
         for p in self.plotObjects:
             if p['tag'] == tag:
                 self.plotObjects.remove(self.plotObjects[index])
             index=index+1
         self.draw()
-  
-        
+
+
     def addCompass(self, location, sizeArcSec, color = "white", fontSize = 12, \
                         width = 20.0):
-        """Adds a compass to the ImagePlot at the given location ('N', 'NE', 'E', 'SE', 'S', 
-        'SW', 'W', or 'NW'). Note these aren't directions on the WCS coordinate grid, they are 
-        relative positions on the plot - so N is top centre, NE is top right, SW is bottom right etc.. 
+        """Adds a compass to the ImagePlot at the given location ('N', 'NE', 'E', 'SE', 'S',
+        'SW', 'W', or 'NW'). Note these aren't directions on the WCS coordinate grid, they are
+        relative positions on the plot - so N is top centre, NE is top right, SW is bottom right etc..
         Alternatively, pixel coordinates (x, y) in the image can be given.
-        
-        @type location: string or tuple
-        @param location: location in the plot where the compass is drawn:
-            - string: N, NE, E, SE, S, SW, W or NW
-            - tuple: (x, y)
-        @type sizeArcSec: float
-        @param sizeArcSec: length of the compass arrows on the plot in arc seconds
-        @type color: string
-        @param color: any valid matplotlib color string
-        @type fontSize: float
-        @param fontSize: size of font used to label N and E, in points
-        @type width: float
-        @param width: width of arrows used to mark compass
-        
+
+        Args:
+            location (str or tuple): location in the plot where the compass is drawn:
+
+                - string: N, NE, E, SE, S, SW, W or NW
+                - tuple: (x, y)
+
+            sizeArcSec (float): length of the compass arrows on the plot in arc seconds
+            color (str): any valid matplotlib color string
+            fontSize (float): size of font used to label N and E, in points
+            width (float): width of arrows used to mark compass
+
         """
-        
+
         if type(location) == str:
             cRADeg, cDecDeg=self.wcs.getCentreWCSCoords()
             RAMin, RAMax, decMin, decMax=self.wcs.getImageMinMaxWCSCoords()
@@ -591,7 +566,7 @@ class ImagePlot:
             foundLocation=False
             x=cy
             y=cx
-            if self.wcs.isFlipped() == False:              
+            if self.wcs.isFlipped() == False:
                 if location.find("N") != -1:
                     y=Y-2*yBufferPix
                     foundLocation=True
@@ -625,7 +600,7 @@ class ImagePlot:
             RADeg, decDeg=self.wcs.pix2wcs(x, y)
         else:
             raise Exception("didn't understand location for scale bar - should be string or tuple.")
-        
+
         alreadyGot=False
         for p in self.plotObjects:
             if p['tag'] == "compass":
@@ -641,10 +616,10 @@ class ImagePlot:
                 p['color']=color
                 p['objLabelSize']=fontSize
                 alreadyGot=True
-        
+
         if alreadyGot == False:
             self.plotObjects.append({'x': [x], 'y': [y], 'RA': [RADeg], 'dec': [decDeg],
-                                'tag': "compass", 'objLabels': [None], 'symbol': "compass", 
+                                'tag': "compass", 'objLabels': [None], 'symbol': "compass",
                                 'width': width, 'color': color,
                                 'objLabelSize': fontSize, 'sizeArcSec': sizeArcSec})
         self.draw()
@@ -652,30 +627,26 @@ class ImagePlot:
 
     def addScaleBar(self, location, sizeArcSec, color = "white", fontSize = 12, \
                         width = 20.0, label = None, style = "whiskers"):
-        """Adds a scale bar to the ImagePlot at the given location ('N', 'NE', 'E', 'SE', 'S', 
-        'SW', 'W', or 'NW'). Note these aren't directions on the WCS coordinate grid, they are 
-        relative positions on the plot - so N is top centre, NE is top right, SW is bottom right etc.. 
+        """Adds a scale bar to the ImagePlot at the given location ('N', 'NE', 'E', 'SE', 'S',
+        'SW', 'W', or 'NW'). Note these aren't directions on the WCS coordinate grid, they are
+        relative positions on the plot - so N is top centre, NE is top right, SW is bottom right etc..
         Alternatively, pixel coordinates (x, y) in the image can be given.
-        
-        @type location: string or tuple
-        @param location: location in the plot where the compass is drawn:
-            - string: N, NE, E, SE, S, SW, W or NW
-            - tuple: (x, y)
-        @type sizeArcSec: float
-        @param sizeArcSec: scale length to indicate on the plot in arc seconds
-        @type color: string
-        @param color: any valid matplotlib color string
-        @type fontSize: float
-        @param fontSize: size of font used to label N and E, in points
-        @type width: float
-        @param width: width of arrow used to mark scale
-        @type label: string
-        @param label: overrides the displayed label if not None (if None, label is the angular size)
-        @type style: string
-        @param style: either "whiskers" or "arrows"
-        
+
+        Args:
+            location (str or tuple): location in the plot where the scale bar is drawn:
+
+                - string: N, NE, E, SE, S, SW, W or NW
+                - tuple: (x, y)
+
+            sizeArcSec (float): scale length to indicate on the plot in arc seconds
+            color (str): any valid matplotlib color string
+            fontSize (float): size of font used to label the scale bar, in points
+            width (float): width of arrow used to mark scale
+            label (str): overrides the displayed label if not None (if None, label is the angular size)
+            style (str): either "whiskers" or "arrows"
+
         """
-        
+
         # Work out where the scale bar is going in WCS coords from the relative location given
         if type(location) == str:
             cRADeg, cDecDeg=self.wcs.getCentreWCSCoords()
@@ -727,7 +698,7 @@ class ImagePlot:
             RADeg, decDeg=self.wcs.pix2wcs(x, y)
         else:
             raise Exception("didn't understand location for scale bar - should be string or tuple.")
-        
+
         alreadyGot=False
         for p in self.plotObjects:
             if p['tag'] == "scaleBar":
@@ -745,46 +716,46 @@ class ImagePlot:
                 p['scaleBarLabel']=label
                 p['style']=style
                 alreadyGot=True
-        
+
         if alreadyGot == False:
             self.plotObjects.append({'x': [x], 'y': [y], 'RA': [RADeg], 'dec': [decDeg],
-                                'tag': "scaleBar", 'objLabels': [None], 'symbol': "scaleBar", 
+                                'tag': "scaleBar", 'objLabels': [None], 'symbol': "scaleBar",
                                 'width': width, 'color': color,
                                 'objLabelSize': fontSize, 'sizeArcSec': sizeArcSec,
                                 'scaleBarLabel': label, 'style': style})
         self.draw()
-                                
+
 
     def calcWCSAxisLabels(self, axesLabels = "decimal"):
-        """This function calculates the positions of coordinate labels for the RA and Dec axes of the 
+        """This function calculates the positions of coordinate labels for the RA and Dec axes of the
         ImagePlot. The tick steps are calculated automatically unless self.RATickSteps,
-        self.decTickSteps are set to values other than "auto" (see L{ImagePlot.__init__}). 
-        
+        self.decTickSteps are set to values other than "auto" (see __init__).
+
         The ImagePlot must be redrawn for changes to be applied.
-        
-        @type axesLabels: string
-        @param axesLabels: either "sexagesimal" (for H:M:S, D:M:S), "decimal" (for decimal degrees),
-        or None for no coordinate axes labels
-        
+
+        Args:
+            axesLabels (str): either "sexagesimal" (for H:M:S, D:M:S), "decimal" (for decimal degrees),
+                or None for no coordinate axes labels
+
         """
-        
+
         # Label equinox on axes
         equinox=self.wcs.getEquinox()
         if equinox<1984:
             equinoxLabel="B"+str(int(equinox))
         else:
             equinoxLabel="J"+str(int(equinox))
-           
+
         self.axesLabels=axesLabels
-        
+
         ticsDict=self.getTickSteps()
-        
+
         # Manual override - note: no minor tick marks anymore, but may want to bring them back
         if self.RATickSteps != "auto":
             ticsDict['major']['RA']=self.RATickSteps
         if self.decTickSteps != "auto":
             ticsDict['major']['dec']=self.decTickSteps
-        
+
         RALocs=[]
         decLocs=[]
         RALabels=[]
@@ -803,7 +774,7 @@ class ImagePlot:
             decDegStep=ticsDict[key]['dec']
         else:
             raise Exception("axesLabels must be either 'sexagesimal' or 'decimal'")
-        
+
         # xArray=np.arange(0, self.data.shape[1], 1)
         xArray=np.linspace(0, self.data.shape[1], self.data.shape[1]*2)
         yArray=np.arange(0, self.data.shape[0], 1)
@@ -821,14 +792,14 @@ class ImagePlot:
         RAMax=ras.max()
         decMin=decs.min()
         decMax=decs.max()
-        
+
         # Work out if wrapped around
         midRAPix, midDecPix=self.wcs.wcs2pix((RAEdges[1]+RAEdges[0])/2.0, (decMax+decMin)/2.0)
         if midRAPix < 0 or midRAPix > self.wcs.header['NAXIS1']:
             wrappedRA=True
         else:
             wrappedRA=False
-            
+
         # Note RA, dec work in opposite sense below because E at left
         if ras[1] < ras[0]:
             self.flipXAxis=False
@@ -842,7 +813,7 @@ class ImagePlot:
         else:
             self.flipYAxis=False
             dec2y=interpolate.interp1d(decs, yArray, kind='linear')
-        
+
         if wrappedRA == False:
             RAPlotMin=RADegStep*math.modf(RAMin/RADegStep)[1]
             RAPlotMax=RADegStep*math.modf(RAMax/RADegStep)[1]
@@ -878,7 +849,7 @@ class ImagePlot:
         if decPlotMax >= decMax:
             decPlotMax=decPlotMax-decDegStep
         decDegs=np.arange(decPlotMin, decPlotMax+0.0001, decDegStep)
-        
+
         if key == "major":
             if axesLabels == "sexagesimal":
                 for r in RADegs:
@@ -941,10 +912,10 @@ class ImagePlot:
                     elif ticsDict[key]['dec']['unit'] == 'm':
                         dString=dString+DEG+mString+PRIME
                     else:
-                        dString=dString+DEG+mString+PRIME+sString+DOUBLE_PRIME               
+                        dString=dString+DEG+mString+PRIME+sString+DOUBLE_PRIME
                     decLabels.append(dString)
             elif axesLabels == "decimal":
-                                
+
                 if wrappedRA == False:
                     RALabels=RALabels+RADegs.tolist()
                 else:
@@ -955,7 +926,7 @@ class ImagePlot:
                         nonNegativeLabels.append(r)
                     RALabels=RALabels+nonNegativeLabels
                 decLabels=decLabels+decDegs.tolist()
-                
+
                 # Format RALabels, decLabels to same number of d.p.
                 dpNumRA=len(str(ticsDict['major']['RA']).split(".")[-1])
                 dpNumDec=len(str(ticsDict['major']['dec']).split(".")[-1])
@@ -964,8 +935,8 @@ class ImagePlot:
                     RALabels[i]=fString % (RALabels[i])
                 for i in range(len(decLabels)):
                     fString="%."+str(dpNumDec)+"f"
-                    decLabels[i]=fString % (decLabels[i])                                
-        
+                    decLabels[i]=fString % (decLabels[i])
+
         if key == 'minor':
             RALabels=RALabels+RADegs.shape[0]*['']
             decLabels=decLabels+decDegs.shape[0]*['']
@@ -986,32 +957,33 @@ class ImagePlot:
 
         self.ticsRA=[RALocs, RALabels]
         self.ticsDec=[decLocs, decLabels]
-        
+
 
     def save(self, fileName):
-        """Saves the ImagePlot in any format that matplotlib can understand, as determined from the 
+        """Saves the ImagePlot in any format that matplotlib can understand, as determined from the
         fileName extension.
-        
-        @type fileName: string
-        @param fileName: path where plot will be written
-        
+
+        Args:
+            fileName (str): path where plot will be written
+
         """
-        
+
         pylab.draw()
         pylab.savefig(fileName)
-        
-        
+
+
     def getTickSteps(self):
         """Chooses the appropriate WCS coordinate tick steps for the plot based on its size.
         Whether the ticks are decimal or sexagesimal is set by self.axesLabels.
-        
-        Note: minor ticks not used at the moment.
-        
-        @rtype: dictionary
-        @return: tick step sizes for major, minor plot ticks, in format {'major', 'minor'}
-                
+
+        Note:
+            Minor ticks not used at the moment.
+
+        Returns:
+            dict: tick step sizes for major, minor plot ticks, in format ``{'major', 'minor'}``
+
         """
-        
+
         # Aim for 5 major tick marks on a plot
         xArray=np.arange(0, self.data.shape[1], 1)
         yArray=np.arange(0, self.data.shape[0], 1)
@@ -1026,7 +998,7 @@ class ImagePlot:
         RAMax=RAEdges.max()
         decMin=decs.min()
         decMax=decs.max()
-        
+
         # Work out if wrapped around
         midRAPix, midDecPix=self.wcs.wcs2pix((RAEdges[1]+RAEdges[0])/2.0, (decMax+decMin)/2.0)
         if midRAPix < 0 or midRAPix > self.wcs.header['NAXIS1']:
@@ -1043,12 +1015,12 @@ class ImagePlot:
         ticsDict['major']={}
         ticsDict['minor']={}
         if self.axesLabels == "sexagesimal":
-            
+
             matchIndex = 0
             for i in range(len(RA_TICK_STEPS)):
                 if RAWidthDeg/2.5 > RA_TICK_STEPS[i]['deg']:
                     matchIndex = i
-            
+
             ticsDict['major']['RA']=RA_TICK_STEPS[matchIndex]
             ticsDict['minor']['RA']=RA_TICK_STEPS[matchIndex-1]
 
@@ -1056,32 +1028,31 @@ class ImagePlot:
             for i in range(len(DEC_TICK_STEPS)):
                 if decHeightDeg/2.5 > DEC_TICK_STEPS[i]['deg']:
                     matchIndex = i
-                                
+
             ticsDict['major']['dec']=DEC_TICK_STEPS[matchIndex]
             ticsDict['minor']['dec']=DEC_TICK_STEPS[matchIndex-1]
-            
+
             return ticsDict
-            
+
         elif self.axesLabels == "decimal":
-            
+
             matchIndex = 0
             for i in range(len(DECIMAL_TICK_STEPS)):
                 if RAWidthDeg/2.5 > DECIMAL_TICK_STEPS[i]:
                     matchIndex = i
-            
+
             ticsDict['major']['RA']=DECIMAL_TICK_STEPS[matchIndex]
             ticsDict['minor']['RA']=DECIMAL_TICK_STEPS[matchIndex-1]
-            
+
             matchIndex = 0
             for i in range(len(DECIMAL_TICK_STEPS)):
                 if decHeightDeg/2.5 > DECIMAL_TICK_STEPS[i]:
                     matchIndex = i
-                    
+
             ticsDict['major']['dec']=DECIMAL_TICK_STEPS[matchIndex]
             ticsDict['minor']['dec']=DECIMAL_TICK_STEPS[matchIndex-1]
-            
+
             return ticsDict
-        
+
         else:
             raise Exception("axesLabels must be either 'sexagesimal' or 'decimal'")
-

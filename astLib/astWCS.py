@@ -7,7 +7,7 @@
 This is a higher level interface to some of the routines in PyWCSTools
 (distributed with astLib).
 PyWCSTools is a simple SWIG wrapping of WCSTools by Jessica Mink
-(U{http://tdc-www.harvard.edu/software/wcstools/}). It is intended is to make
+(http://tdc-www.harvard.edu/software/wcstools/). It is intended is to make
 this interface complete enough such that direct use of PyWCSTools is
 unnecessary.
 
@@ -25,7 +25,7 @@ import locale
 # FITS convention.
 NUMPY_MODE = True
 """If True (default), pixel coordinates accepted/returned by routines such as
-L{astWCS.WCS.pix2wcs}, L{astWCS.WCS.wcs2pix} have (0, 0) as the origin. Set
+astWCS.WCS.pix2wcs, astWCS.WCS.wcs2pix have (0, 0) as the origin. Set
 to False to make these routines accept/return pixel coords with (1, 1) as the
 origin (i.e. to match the FITS convention, default behaviour prior to astLib
 version 0.3.0)."""
@@ -45,15 +45,15 @@ class WCS:
     Coordinate System (WCS) contained in the header of a FITS image.
     Conversions between pixel and WCS coordinates can also be performed.
 
-    To create a WCS object from a FITS file called "test.fits", simply:
+    To create a WCS object from a FITS file called "test.fits", simply::
 
-    WCS=astWCS.WCS("test.fits")
+        WCS=astWCS.WCS("test.fits")
 
-    Likewise, to create a WCS object from the pyfits.header of "test.fits":
+    Likewise, to create a WCS object from the pyfits.header of "test.fits"::
 
-    img=pyfits.open("test.fits")
-    header=img[0].header
-    WCS=astWCS.WCS(header, mode = "pyfits")
+        img=pyfits.open("test.fits")
+        header=img[0].header
+        WCS=astWCS.WCS(header, mode = "pyfits")
 
     """
 
@@ -63,29 +63,28 @@ class WCS:
         header of the specified .fits image, or from a pyfits.header object.
         Set mode = "pyfits" if the headerSource is a pyfits.header.
 
-        For some images from some archives, particular header keywords such as 
+        For some images from some archives, particular header keywords such as
         COMMENT or HISTORY may contain unprintable strings. If you encounter
         this, try setting zapKeywords = ['COMMENT', 'HISTORY'] (for example).
-        
-        @type headerSource: string or pyfits.header
-        @param headerSource: filename of input .fits image, or a pyfits.header
-            object
-        @type extensionName: int or string
-        @param extensionName: name or number of .fits extension in which image
-            data is stored
-        @type mode: string
-        @param mode: set to "image" if headerSource is a .fits file name, or
-            set to "astropy" if headerSource is an astropy.io.fits.Header object 
-            (setting to this to "pyfits" is equivalent, for backwards 
-            compatibility with existing code)
-        @type zapKeywords: list
-        @param: zapKeywords: keywords to remove from the header before making
-            astWCS object.
-        @type: useAstropyWCS: bool
-        @param: useAstropyWCS: if True, use astropy.wcs to perform WCS 
-            coordinate conversions in wcs2pix, pix2wcs (if False, use PyWCSTools)
-            
-        @note: The meta data provided by headerSource is stored in WCS.header
+
+        Args:
+            headerSource (str or astropy.io.fits.Header): filename of input
+                .fits image, or an astropy.io.fits.Header object
+            extensionName (int or str): name or number of .fits extension in
+                which image data is stored
+            mode (str): set to ``"image"`` if headerSource is a .fits file
+                name, or set to ``"astropy"`` if headerSource is an
+                astropy.io.fits.Header object (setting to ``"pyfits"`` is
+                equivalent, for backwards compatibility with existing code)
+            zapKeywords (list): keywords to remove from the header before
+                making the WCS object
+            useAstropyWCS (bool): if True, use astropy.wcs to perform WCS
+                coordinate conversions in :meth:`~astLib.astWCS.WCS.wcs2pix`, :meth:`~astLib.astWCS.WCS.pix2wcs` (if False, use
+                PyWCSTools)
+            naxis (int): number of WCS axes to use
+
+        Note:
+            The meta data provided by headerSource is stored in WCS.header
             as a pyfits.header object.
 
         """
@@ -112,14 +111,14 @@ class WCS:
                     for count in range(self.headerSource.count(z)):
                         self.headerSource.remove(z)
             self.header=headerSource
-        
+
         # Scan for CUNIT values that upset astropy.wcs
         for i in (1, 2):
             if 'CUNIT%d' % (i) in self.header.keys():
                 if self.header['CUNIT%d' % (i)] == '' or self.header['CUNIT%d' % (i)] == 'degree'\
                     or self.header['CUNIT%d' % (i)] == 'degrees' or self.header['CUNIT%d' % (i)] == 'DEG':
                     self.header['CUNIT%d' % (i)]='deg'
-        
+
         # This enables a shim to allow code written for astLib to use astropy.wcs underneath
         self.useAstropyWCS=useAstropyWCS
         if NUMPY_MODE == True:
@@ -133,13 +132,13 @@ class WCS:
     def copy(self):
         """Copies the WCS object to a new object.
 
-        @rtype: astWCS.WCS object
-        @return: WCS object
+        Returns:
+            WCS: a new WCS object copied from this one
 
         """
 
         # This only sets up a new WCS object, doesn't do a deep copy
-        ret = WCS(self.headerSource, self.extensionName, self.mode, 
+        ret = WCS(self.headerSource, self.extensionName, self.mode,
                   useAstropyWCS = self.useAstropyWCS)
 
         # This fixes copy bug
@@ -164,15 +163,15 @@ class WCS:
                     newHead.append((i[0], i[1]))
                 else:
                     newHead.append(('HIERARCH '+i[0], i[1]))
-        
+
         # Workaround for ZPN bug when PV2_3 == 0 (as in, e.g., ESO WFI images)
         if "PV2_3" in list(newHead.keys()) and newHead['PV2_3'] == 0 and newHead['CTYPE1'] == 'RA---ZPN':
             newHead["PV2_3"]=1e-15
-                
+
         cardstring = ""
         for card in newHead.cards:
             cardstring = cardstring+str(card)
-        
+
         if self.useAstropyWCS == True:
             self.AWCS = apywcs.WCS(self.header, naxis = self.naxis) # For astropy.wcs shim
         self.WCSStructure = wcs.wcsinit(cardstring)
@@ -182,8 +181,8 @@ class WCS:
         """Returns the RA and dec coordinates (in decimal degrees) at the
         centre of the WCS.
 
-        @rtype: list
-        @return: coordinates in decimal degrees in format [RADeg, decDeg]
+        Returns:
+            list: coordinates in decimal degrees in format [RADeg, decDeg]
 
         """
         full = wcs.wcsfull(self.WCSStructure)
@@ -198,9 +197,9 @@ class WCS:
         decimal degrees on the sky (i.e., with the projection taken into
         account).
 
-        @rtype: list
-        @return: width and height of image in decimal degrees on the sky in
-            format [width, height]
+        Returns:
+            list: width and height of image in decimal degrees on the sky in
+                format [width, height]
 
         """
         full = wcs.wcsfull(self.WCSStructure)
@@ -214,9 +213,9 @@ class WCS:
         """Returns the half-width, half-height of the image according to the
         WCS in RA and dec degrees.
 
-        @rtype: list
-        @return: half-width and half-height of image in R.A., dec. decimal
-            degrees in format [half-width, half-height]
+        Returns:
+            list: half-width and half-height of image in R.A., dec. decimal
+                degrees in format [half-width, half-height]
 
         """
         half = wcs.wcssize(self.WCSStructure)
@@ -230,8 +229,8 @@ class WCS:
         """Returns the minimum, maximum WCS coords defined by the size of the
         parent image (as defined by the NAXIS keywords in the image header).
 
-        @rtype: list
-        @return: [minimum R.A., maximum R.A., minimum Dec., maximum Dec.]
+        Returns:
+            list: [minimum R.A., maximum R.A., minimum Dec., maximum Dec.]
 
         """
 
@@ -263,8 +262,12 @@ class WCS:
         coordinates (given in decimal degrees). RADeg, decDeg can be single
         floats, or lists or np arrays.
 
-        @rtype: list
-        @return: pixel coordinates in format [x, y]
+        Args:
+            RADeg (float or list or numpy.ndarray): R.A. in decimal degrees
+            decDeg (float or list or numpy.ndarray): dec. in decimal degrees
+
+        Returns:
+            list: pixel coordinates in format [x, y]
 
         """
         if self.useAstropyWCS == False:
@@ -296,7 +299,7 @@ class WCS:
                     pixCoords[0] = pixCoords[0]-1
                     pixCoords[1] = pixCoords[1]-1
                 pixCoords = [pixCoords[0], pixCoords[1]]
-        
+
         else:
             # astropy.wcs shim
             if self.naxis == 2:
@@ -314,8 +317,12 @@ class WCS:
         """Returns the WCS coordinates corresponding to the input pixel
         coordinates.
 
-        @rtype: list
-        @return: WCS coordinates in format [RADeg, decDeg]
+        Args:
+            x (float or list or numpy.ndarray): pixel x coordinate(s)
+            y (float or list or numpy.ndarray): pixel y coordinate(s)
+
+        Returns:
+            list: WCS coordinates in format [RADeg, decDeg]
 
         """
         if self.useAstropyWCS == False:
@@ -342,7 +349,7 @@ class WCS:
             else:
                 raise Exception("Not handling NAXIS > 3 with astropy.wcs shim")
             WCSCoords = np.array(WCSCoords)[:2].transpose().tolist()
-            
+
         return WCSCoords
 
 
@@ -350,11 +357,15 @@ class WCS:
         """Returns True if the given RA, dec coordinate is within the image
         boundaries.
 
-        @rtype: bool
-        @return: True if coordinate within image, False if not.
+        Args:
+            RADeg (float): R.A. in decimal degrees
+            decDeg (float): dec. in decimal degrees
+
+        Returns:
+            bool: True if coordinate is within the image, False otherwise
 
         """
-        
+
         pixCoords = self.wcs2pix(RADeg, decDeg)
         if pixCoords[0] >= 0 and pixCoords[0] < self.header['NAXIS1'] and \
             pixCoords[1] >= 0 and pixCoords[1] < self.header['NAXIS2']:
@@ -367,8 +378,8 @@ class WCS:
         """Returns the rotation angle in degrees around the axis, North through
         East.
 
-        @rtype: float
-        @return: rotation angle in degrees
+        Returns:
+            float: rotation angle in degrees
 
         """
         return self.WCSStructure.rot
@@ -377,8 +388,8 @@ class WCS:
     def isFlipped(self):
         """Returns 1 if image is reflected around axis, otherwise returns 0.
 
-        @rtype: int
-        @return: 1 if image is flipped, 0 otherwise
+        Returns:
+            int: 1 if image is flipped, 0 otherwise
 
         """
         return self.WCSStructure.imflip
@@ -388,8 +399,8 @@ class WCS:
         """Returns the pixel scale of the WCS. This is the average of the x, y
         pixel scales.
 
-        @rtype: float
-        @return: pixel size in decimal degrees
+        Returns:
+            float: pixel size in decimal degrees
 
         """
 
@@ -401,8 +412,8 @@ class WCS:
     def getXPixelSizeDeg(self):
         """Returns the pixel scale along the x-axis of the WCS in degrees.
 
-        @rtype: float
-        @return: pixel size in decimal degrees
+        Returns:
+            float: pixel size in decimal degrees
 
         """
 
@@ -414,8 +425,8 @@ class WCS:
     def getYPixelSizeDeg(self):
         """Returns the pixel scale along the y-axis of the WCS in degrees.
 
-        @rtype: float
-        @return: pixel size in decimal degrees
+        Returns:
+            float: pixel size in decimal degrees
 
         """
 
@@ -427,8 +438,8 @@ class WCS:
     def getEquinox(self):
         """Returns the equinox of the WCS.
 
-        @rtype: float
-        @return: equinox of the WCS
+        Returns:
+            float: equinox of the WCS
 
         """
         return self.WCSStructure.equinox
@@ -437,8 +448,8 @@ class WCS:
     def getEpoch(self):
         """Returns the epoch of the WCS.
 
-        @rtype: float
-        @return: epoch of the WCS
+        Returns:
+            float: epoch of the WCS
 
         """
         return self.WCSStructure.epoch
@@ -451,10 +462,19 @@ def findWCSOverlap(wcs1, wcs2):
     wcs2. Returns these coordinates, plus the corresponding pixel coordinates
     for each wcs. Useful for clipping overlapping region between two images.
 
-    @rtype: dictionary
-    @return: dictionary with keys 'overlapWCS' (min, max RA, dec of overlap
-        between wcs1, wcs2) 'wcs1Pix', 'wcs2Pix' (pixel coords in each input
-        WCS that correspond to 'overlapWCS' coords)
+    Args:
+        wcs1 (WCS): first WCS object
+        wcs2 (WCS): second WCS object
+
+    Returns:
+        dict: dictionary with keys:
+
+            - ``'overlapWCS'``: [minRA, maxRA, minDec, maxDec] of the overlap
+              between wcs1 and wcs2
+            - ``'wcs1Pix'``: pixel coords in wcs1 corresponding to the overlap
+              WCS coords
+            - ``'wcs2Pix'``: pixel coords in wcs2 corresponding to the overlap
+              WCS coords
 
     """
 

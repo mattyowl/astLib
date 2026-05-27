@@ -48,3 +48,10 @@ astSED
    :members:
 
 
+astStats
+--------
+
+.. automodule:: astLib.astStats
+   :members:
+
+
