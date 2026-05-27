@@ -361,7 +361,7 @@ def calcRADecSearchBox(RADeg, decDeg, radiusSkyDeg):
     """Calculates minimum and maximum RA, dec coords needed to define a box
     enclosing a circle of radius radiusSkyDeg around the given RADeg, decDeg
     coordinates. Useful for freeform queries of e.g. SDSS, UKIDSS etc.. Uses
-    calcAngSepDeg, so has the same limitations.
+    :func:`~astLib.astCoords.calcAngSepDeg`, so has the same limitations.
 
     Args:
         RADeg (float): RA coordinate of centre of search region

@@ -504,7 +504,7 @@ def weightedLSFit(dataList, weightType):
         weightType (str): if ``"errors"``, weights are calculated assuming the input data is in
             the format [x, y, error on y]; if ``"weights"``, the weights are assumed to be already
             calculated and stored in a fourth column [x, y, error on y, weight] (as used by e.g.
-            biweightLSFit)
+            :func:`~astLib.astStats.biweightLSFit`)
 
     Returns:
         dict or None: slope and intercept on y-axis with associated errors in the format

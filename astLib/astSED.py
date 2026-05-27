@@ -190,9 +190,9 @@ class SED:
 
     To create a SED object, lists (or np arrays) of wavelength and relative flux must be provided. The SED
     can optionally be redshifted. The wavelength units of SEDs are assumed to be Angstroms - flux
-    calculations using Passband and SED objects specified with different wavelength units will be incorrect.
+    calculations using :class:`~astLib.astSED.Passband` and SED objects specified with different wavelength units will be incorrect.
 
-    The StellarPopulation class (and derivatives) can be used to extract SEDs for specified ages from e.g.
+    The :class:`~astLib.astSED.StellarPopulation` class (and derivatives) can be used to extract SEDs for specified ages from e.g.
     the Bruzual & Charlot 2003 or Maraston 2005 models.
 
     """
@@ -409,7 +409,7 @@ class SED:
 
         Args:
             ABMag (float): AB magnitude to which the SED is to be normalised at the given passband
-            passband (Passband): passband at which normalisation to AB magnitude is calculated
+            passband (:class:`~astLib.astSED.Passband`): passband at which normalisation to AB magnitude is calculated
 
         """
 
@@ -425,7 +425,7 @@ class SED:
         flux in the same region in matchSED. Useful for plotting purposes.
 
         Args:
-            matchSED (SED): SED to match flux to
+            matchSED (:class:`~astLib.astSED.SED`): SED to match flux to
             minWavelength (float): minimum of range in which to match flux of current SED to matchSED
             maxWavelength (float): maximum of range in which to match flux of current SED to matchSED
 
@@ -446,7 +446,7 @@ class SED:
         """Calculates flux in the given passband.
 
         Args:
-            passband (Passband): filter passband through which to calculate the flux from the SED
+            passband (:class:`~astLib.astSED.Passband`): filter passband through which to calculate the flux from the SED
 
         Returns:
             float: flux
@@ -474,7 +474,7 @@ class SED:
         in Mpc at the redshift of the SED) is added.
 
         Args:
-            passband (Passband): filter passband through which to calculate the magnitude from the SED
+            passband (:class:`~astLib.astSED.Passband`): filter passband through which to calculate the magnitude from the SED
             addDistanceModulus (bool): if True, adds 5.0*log10*(dl*1e5) to the mag returned, where
                 dl is the luminosity distance (Mpc) corresponding to the SED z
             magType (str): either "Vega" or "AB"
@@ -505,8 +505,8 @@ class SED:
         """Calculates the colour passband1-passband2.
 
         Args:
-            passband1 (Passband): filter passband through which to calculate the first magnitude
-            passband2 (Passband): filter passband through which to calculate the second magnitude
+            passband1 (:class:`~astLib.astSED.Passband`): filter passband through which to calculate the first magnitude
+            passband2 (:class:`~astLib.astSED.Passband`): filter passband through which to calculate the second magnitude
             magType (str): either "Vega" or "AB"
 
         Returns:
@@ -522,10 +522,10 @@ class SED:
 
     def getSEDDict(self, passbands):
         """This is a convenience function for pulling out fluxes from a SED for a given set of passbands
-        in the same format as made by mags2SEDDict - designed to make fitting code simpler.
+        in the same format as made by :func:`~astLib.astSED.mags2SEDDict` - designed to make fitting code simpler.
 
         Args:
-            passbands (list): list of Passband objects through which fluxes will be calculated
+            passbands (list): list of :class:`~astLib.astSED.Passband` objects through which fluxes will be calculated
 
         """
 
@@ -681,8 +681,8 @@ class StellarPopulation:
     files, containing columns for age, wavelength, and flux. Columns are counted from 0 ... n. Lines starting
     with # are ignored.
 
-    The classes M05Model (for Maraston 2005 models), BC03Model (for Bruzual & Charlot 2003 models), and
-    P09Model (for Percival et al. 2009 models) are derived from this class. The only difference between
+    The classes :class:`~astLib.astSED.M05Model` (for Maraston 2005 models), :class:`~astLib.astSED.BC03Model` (for Bruzual & Charlot 2003 models), and
+    :class:`~astLib.astSED.P09Model` (for Percival et al. 2009 models) are derived from this class. The only difference between
     them is the code used to load in the model data.
 
     """
@@ -755,8 +755,8 @@ class StellarPopulation:
         StellarPopulation with redshift, from z = 0 to z = zFormation.
 
         Args:
-            passband1 (Passband): filter passband through which to calculate the first magnitude
-            passband2 (Passband): filter passband through which to calculate the second magnitude
+            passband1 (:class:`~astLib.astSED.Passband`): filter passband through which to calculate the first magnitude
+            passband2 (:class:`~astLib.astSED.Passband`): filter passband through which to calculate the second magnitude
             zFormation (float): formation redshift of the StellarPopulation
             zStepSize (float): size of interval in z at which to calculate model colours
             magType (str): either "Vega" or "AB"
@@ -789,7 +789,7 @@ class StellarPopulation:
         (apparent) at z = zNormalisation.
 
         Args:
-            passband (Passband): filter passband through which to calculate the magnitude
+            passband (:class:`~astLib.astSED.Passband`): filter passband through which to calculate the magnitude
             magNormalisation (float): sets the apparent magnitude of the SED at zNormalisation
             zNormalisation (float): the redshift at which the magnitude normalisation is carried out
             zFormation (float): formation redshift of the StellarPopulation
@@ -843,7 +843,7 @@ class StellarPopulation:
             zFrom (float): redshift to evolution correct from
             zTo (float): redshift to evolution correct to
             zFormation (float): formation redshift of the StellarPopulation
-            passband (Passband): filter passband through which to calculate magnitude
+            passband (:class:`~astLib.astSED.Passband`): filter passband through which to calculate magnitude
             magType (str): either "Vega" or "AB"
 
         Returns:
@@ -1052,8 +1052,8 @@ class P09Model(StellarPopulation):
 
 #------------------------------------------------------------------------------------------------------------
 def makeModelSEDDictList(modelList, z, passbandsList, labelsList = [], EBMinusVList = [0.0], forceYoungerThanUniverse = True):
-    """This routine makes a list of SEDDict dictionaries (see mags2SEDDict) for fitting using
-    fitSEDDict. This speeds up the fitting as this allows us to calculate model SED magnitudes only once,
+    """This routine makes a list of SEDDict dictionaries (see :func:`~astLib.astSED.mags2SEDDict`) for fitting using
+    :func:`~astLib.astSED.fitSEDDict`. This speeds up the fitting as this allows us to calculate model SED magnitudes only once,
     if all objects to be fitted are at the same redshift. We add some meta data to the modelSEDDicts (e.g.
     the model file names).
 
@@ -1064,15 +1064,15 @@ def makeModelSEDDictList(modelList, z, passbandsList, labelsList = [], EBMinusVL
     included.
 
     Args:
-        modelList (list): list of StellarPopulation models to include
+        modelList (list): list of :class:`~astLib.astSED.StellarPopulation` models to include
         z (float): redshift to apply to all stellar population models in modelList
-        passbandsList (list): list of Passband objects
+        passbandsList (list): list of :class:`~astLib.astSED.Passband` objects
         labelsList (list): optional list used for labelling passbands in output SEDDicts
         EBMinusVList (list): list of E(B-V) extinction values to apply to all models, in magnitudes
         forceYoungerThanUniverse (bool): if True, do not allow models that exceed the age of the universe at z
 
     Returns:
-        list: list of dictionaries containing model fluxes, to be used as input to fitSEDDict
+        list: list of dictionaries containing model fluxes, to be used as input to :func:`~astLib.astSED.fitSEDDict`
 
     """
 
@@ -1105,16 +1105,16 @@ def makeModelSEDDictList(modelList, z, passbandsList, labelsList = [], EBMinusVL
 
 #------------------------------------------------------------------------------------------------------------
 def fitSEDDict(SEDDict, modelSEDDictList):
-    """Fits the given SED dictionary (made using mags2SEDDict) with the given list of model SED
-    dictionaries. The latter should be made using makeModelSEDDictList, and entries for fluxes should
+    """Fits the given SED dictionary (made using :func:`~astLib.astSED.mags2SEDDict`) with the given list of model SED
+    dictionaries. The latter should be made using :func:`~astLib.astSED.makeModelSEDDictList`, and entries for fluxes should
     correspond directly between the model and SEDDict.
 
     Returns a dictionary with best fit values.
 
     Args:
-        SEDDict (dict): dictionary of observed fluxes and uncertainties, in format of mags2SEDDict
+        SEDDict (dict): dictionary of observed fluxes and uncertainties, in format of :func:`~astLib.astSED.mags2SEDDict`
         modelSEDDictList (list): list of dictionaries containing fluxes of models to be fitted to the
-            observed fluxes listed in the SEDDict, made using makeModelSEDDictList
+            observed fluxes listed in the SEDDict, made using :func:`~astLib.astSED.makeModelSEDDictList`
 
     Returns:
         dict: results of the fitting - keys:
@@ -1166,17 +1166,17 @@ def mags2SEDDict(ABMags, ABMagErrs, passbands):
     """Takes a set of corresponding AB magnitudes, uncertainties, and passbands, and
     returns a dictionary with keys 'flux', 'fluxErr', 'wavelength'. Fluxes are in units of
     erg/s/cm^2/Angstrom, wavelength in Angstroms. These dictionaries are the staple diet of the
-    fitSEDDict routine.
+    :func:`~astLib.astSED.fitSEDDict` routine.
 
     Args:
         ABMags (list or numpy.ndarray): AB magnitudes, specified in corresponding order to passbands
             and ABMagErrs
         ABMagErrs (list or numpy.ndarray): AB magnitude errors, specified in corresponding order to
             passbands and ABMags
-        passbands (list): list of Passband objects, specified in corresponding order to ABMags and ABMagErrs
+        passbands (list): list of :class:`~astLib.astSED.Passband` objects, specified in corresponding order to ABMags and ABMagErrs
 
     Returns:
-        dict: dictionary with keys ``{'flux', 'fluxErr', 'wavelength'}``, suitable for input to fitSEDDict
+        dict: dictionary with keys ``{'flux', 'fluxErr', 'wavelength'}``, suitable for input to :func:`~astLib.astSED.fitSEDDict`
 
     """
 
@@ -1203,7 +1203,7 @@ def mag2Flux(ABMag, ABMagErr, passband):
     Args:
         ABMag (float): magnitude on AB system in passband
         ABMagErr (float): uncertainty in AB magnitude in passband
-        passband (Passband): Passband object at which ABMag was measured
+        passband (:class:`~astLib.astSED.Passband`): Passband object at which ABMag was measured
 
     Returns:
         list: [flux, fluxError], in units of erg/s/cm^2/Angstrom
@@ -1228,7 +1228,7 @@ def flux2Mag(flux, fluxErr, passband):
     Args:
         flux (float): flux in erg/s/cm^2/Angstrom in passband
         fluxErr (float): uncertainty in flux in passband, in erg/s/cm^2/Angstrom
-        passband (Passband): Passband object at which ABMag was measured
+        passband (:class:`~astLib.astSED.Passband`): Passband object at which ABMag was measured
 
     Returns:
         list: [ABMag, ABMagError], in AB magnitudes

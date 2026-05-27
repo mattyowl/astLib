@@ -84,12 +84,12 @@ class ImagePlot:
     associated WCS.
 
     Objects within the image boundaries can be marked by passing their WCS coordinates to
-    addPlotObjects.
+    :meth:`~astLib.astPlots.ImagePlot.addPlotObjects`.
 
-    Other images can be overlaid using addContourOverlay.
+    Other images can be overlaid using :meth:`~astLib.astPlots.ImagePlot.addContourOverlay`.
 
     For images rotated with North at the top, East at the left (as can be done using
-    astImages.clipRotatedImageSectionWCS or astImages.resampleToTanProjection), WCS coordinate
+    :func:`~astLib.astImages.clipRotatedImageSectionWCS` or :func:`~astLib.astImages.resampleToTanProjection`), WCS coordinate
     axes can be plotted, with tick marks set appropriately for the image size. Otherwise, a compass
     can be plotted showing the directions of North and East in the image.
 
@@ -104,7 +104,7 @@ class ImagePlot:
         colorBar = False, interpolation = "bilinear"):
         """Makes an ImagePlot from the given image array and astWCS. For coordinate axes to work, the
         image and WCS should have been rotated such that East is at the left, North is at the top
-        (see e.g. astImages.clipRotatedImageSectionWCS, or astImages.resampleToTanProjection).
+        (see e.g. :func:`~astLib.astImages.clipRotatedImageSectionWCS`, or :func:`~astLib.astImages.resampleToTanProjection`).
 
         If imageData is given as a list in the format [r, g, b], a color RGB plot will be made. However,
         in this case the cutLevels must be specified manually for each component as a list -
@@ -117,7 +117,7 @@ class ImagePlot:
         or decTickSteps are set to "auto", the appropriate axis scales will be determined automatically
         from the size of the image array and associated WCS. The tick step sizes can be overidden.
         If the coordinate axes are in sexagesimal format a dictionary in the format {'deg', 'unit'} is
-        needed (see RA_TICK_STEPS and DEC_TICK_STEPS for examples). If the coordinate axes are in
+        needed (see :data:`~astLib.astPlots.RA_TICK_STEPS` and :data:`~astLib.astPlots.DEC_TICK_STEPS` for examples). If the coordinate axes are in
         decimal format, the tick step size is specified simply in RA, dec decimal degrees.
 
         Args:
@@ -358,7 +358,7 @@ class ImagePlot:
     def addContourOverlay(self, contourImageData, contourWCS, tag, levels = ["linear", "min", "max", 5],
                              width = 1, color = "white", smooth = 0, highAccuracy = False):
         """Adds image data to the ImagePlot as a contour overlay. The contours can be removed using
-        removeContourOverlay. If a contour overlay already exists with this tag, it will be replaced.
+        :meth:`~astLib.astPlots.ImagePlot.removeContourOverlay`. If a contour overlay already exists with this tag, it will be replaced.
 
         Args:
             contourImageData (numpy.ndarray): image data array from which contours are to be generated
@@ -440,7 +440,7 @@ class ImagePlot:
 
         color can be any valid matplotlib color (e.g. "red", "green", etc.)
 
-        The objects can be removed from the plot by using removePlotObjects(), and then calling
+        The objects can be removed from the plot by using :meth:`~astLib.astPlots.ImagePlot.removePlotObjects`, and then calling
         draw(). If the ImagePlot already has a set of plotObjects with the same tag, they will be
         replaced.
 

@@ -37,10 +37,10 @@ def clipImageSectionWCS(imageData, imageWCS, RADeg, decDeg, clipSizeDeg, returnW
     coordinates in the original image corresponding to the clipped section.
 
     Note that the clip size is specified in degrees on the sky. For projections that have varying
-    real pixel scale across the map (e.g. CEA), use clipUsingRADecCoords instead.
+    real pixel scale across the map (e.g. CEA), use :func:`~astLib.astImages.clipUsingRADecCoords` instead.
 
     Similarly, this routine will not work for a WCS that has polynomial distortion coefficients
-    in the header (e.g., CTYPE1 = 'RA---TAN-SIP' etc.) - again clipUsingRADecCoords can be used
+    in the header (e.g., CTYPE1 = 'RA---TAN-SIP' etc.) - again :func:`~astLib.astImages.clipUsingRADecCoords` can be used
     in such cases.
 
     Args:
@@ -177,13 +177,13 @@ def clipRotatedImageSectionWCS(imageData, imageWCS, RADeg, decDeg, clipSizeDeg, 
     The resulting clip is rotated and/or flipped such that North is at the top, and East appears at
     the left. An updated WCS for the clipped section is also returned. Note that the alignment
     of the rotated WCS is currently not perfect - however, it is probably good enough in most
-    cases for use with ImagePlot for plotting purposes.
+    cases for use with :class:`astLib.astPlots.ImagePlot` for plotting purposes.
 
     Note that the clip size is specified in degrees on the sky. For projections that have varying
-    real pixel scale across the map (e.g. CEA), use clipUsingRADecCoords instead.
+    real pixel scale across the map (e.g. CEA), use :func:`~astLib.astImages.clipUsingRADecCoords` instead.
 
     Similarly, this routine will not work for a WCS that has polynomial distortion coefficients
-    in the header (e.g., CTYPE1 = 'RA---TAN-SIP' etc.) - again clipUsingRADecCoords can be used
+    in the header (e.g., CTYPE1 = 'RA---TAN-SIP' etc.) - again :func:`~astLib.astImages.clipUsingRADecCoords` can be used
     in such cases.
 
     Args:
@@ -467,7 +467,7 @@ def scaleImage(imageData, imageWCS, scaleFactor):
 #---------------------------------------------------------------------------------------------------
 def intensityCutImage(imageData, cutLevels):
     """Creates a matplotlib.pylab plot of an image array with the specified cuts in intensity
-    applied. This routine is used by saveBitmap and saveContourOverlayBitmap, which both
+    applied. This routine is used by :func:`~astLib.astImages.saveBitmap` and :func:`~astLib.astImages.saveContourOverlayBitmap`, which both
     produce output as .png, .jpg, etc. images.
 
     Args:
@@ -1066,7 +1066,7 @@ def normalise(inputArray, clipMinMax):
     [clipMin, clipMax].
 
     Used for normalising image arrays so that they can be turned into RGB arrays that matplotlib
-    can plot (see astPlots.ImagePlot).
+    can plot (see :class:`astLib.astPlots.ImagePlot`).
 
     Args:
         inputArray (numpy.ndarray): image data array

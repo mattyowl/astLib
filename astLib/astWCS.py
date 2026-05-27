@@ -79,7 +79,7 @@ class WCS:
             zapKeywords (list): keywords to remove from the header before
                 making the WCS object
             useAstropyWCS (bool): if True, use astropy.wcs to perform WCS
-                coordinate conversions in wcs2pix, pix2wcs (if False, use
+                coordinate conversions in :meth:`~astLib.astWCS.WCS.wcs2pix`, :meth:`~astLib.astWCS.WCS.pix2wcs` (if False, use
                 PyWCSTools)
             naxis (int): number of WCS axes to use
 
