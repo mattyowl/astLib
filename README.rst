@@ -11,13 +11,13 @@
 
 **astLib** is divided into several modules:
 
-* astCalc   (general calculations, e.g. luminosity distance etc.)
-* astCoords (coordinate conversions etc.)
-* astImages (clip sections from .fits etc.) 
-* astPlots  (provides a flexible image plot class, e.g. plot image with catalogue objects overlaid)
-* astSED    (calculate colours, magnitudes from stellar population models or spectral templates, fit photometric observations using stellar population models etc.)
-* astStats  (statistics, e.g. biweight location/scale estimators etc.)
-* astWCS    (routines for using FITS World Coordinate System information)
+* :mod:`astLib.astCalc`   (general calculations, e.g. luminosity distance etc.)
+* :mod:`astLib.astCoords` (coordinate conversions etc.)
+* :mod:`astLib.astImages` (clip sections from .fits etc.)
+* :mod:`astLib.astPlots`  (provides a flexible image plot class, e.g. plot image with catalogue objects overlaid)
+* :mod:`astLib.astSED`    (calculate colours, magnitudes from stellar population models or spectral templates, fit photometric observations using stellar population models etc.)
+* :mod:`astLib.astStats`  (statistics, e.g. biweight location/scale estimators etc.)
+* :mod:`astLib.astWCS`    (routines for using FITS World Coordinate System information)
 
 The astWCS module is a higher level interface to PyWCSTools, a simple SWIG (http://www.swig.org) wrapping 
 of some of the routines from WCSTools by Jessica Mink (http://tdc-www.harvard.edu/software/wcstools/). It is 
