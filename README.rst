@@ -19,13 +19,14 @@
 * :mod:`astLib.astStats`  (statistics, e.g. biweight location/scale estimators etc.)
 * :mod:`astLib.astWCS`    (routines for using FITS World Coordinate System information)
 
-The astWCS module is a higher level interface to PyWCSTools, a simple SWIG (http://www.swig.org) wrapping 
-of some of the routines from WCSTools by Jessica Mink (http://tdc-www.harvard.edu/software/wcstools/). It is 
+The astWCS module is a higher level interface to PyWCSTools, a simple `SWIG <http://www.swig.org>`_ wrapping
+of some of the routines from `WCSTools <http://tdc-www.harvard.edu/software/wcstools/>`_ by Jessica Mink. It is
 used by some routines in astCoords, astImages and astPlots.
 
-The goal of **astLib** was to provide features useful to astronomers that are not included in the scipy
-(http://scipy.org), numpy (http://numpy.scipy.org) or matplotlib (http://matplotlib.sourceforge.net) modules 
-on which astLib depends. For a far more extensive set of Python astronomy modules, see astropy 
-(http://www.astropy.org/).
+The goal of **astLib** was to provide features useful to astronomers that are not included in the
+`scipy <http://scipy.org>`_, `numpy <http://numpy.scipy.org>`_ or
+`matplotlib <http://matplotlib.sourceforge.net>`_ modules
+on which astLib depends. For a far more extensive set of Python astronomy modules, see
+`astropy <http://www.astropy.org/>`_.
 
 Some scripts using **astLib** can be found in the examples/ folder provided with the source code distribution.
