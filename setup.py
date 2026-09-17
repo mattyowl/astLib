@@ -1,5 +1,6 @@
 import os
 import glob
+import tempfile
 import setuptools
 from setuptools import setup
 from setuptools.command.build_ext import build_ext
@@ -30,6 +31,31 @@ oFiles = ['PyWCSTools/wcssubs-3.9.7/cel.o', 'PyWCSTools/wcssubs-3.9.7/wcs.o',
 
 exampleScripts = glob.glob("scripts"+os.path.sep+"*.py")
 
+def findStdFlag(cc):
+    """Return a -std= flag that makes the compiler accept WCSTools' K&R-era C.
+
+    GCC 15 defaults to -std=gnu23, under which an empty parameter list
+    (e.g. `static double dint();`) means "takes no arguments" rather than
+    "arguments unspecified", and old-style function definitions are gone.
+    WCSTools 3.9.7 relies on both, so pin the language standard back to C17.
+    Returns an empty list if no candidate flag is accepted (e.g. MSVC).
+
+    """
+
+    testDir = tempfile.mkdtemp()
+    testFileName = os.path.join(testDir, "stdtest.c")
+    with open(testFileName, "w") as outFile:
+        outFile.write("int main(void) { return 0; }\n")
+    for flag in ["-std=gnu17", "-std=c17", "-std=gnu11"]:
+        try:
+            cc.compile([testFileName], output_dir = testDir,
+                       extra_postargs = [flag])
+            return [flag]
+        except Exception:
+            pass
+    return []
+
+
 class build_PyWCSTools_ext(build_ext):
 
     def build_extensions(self):
@@ -49,11 +75,19 @@ class build_PyWCSTools_ext(build_ext):
         # if "-Wno-error=implicit-function-declaration" in cc.compiler_so:
         #     cc.compiler_so.pop(cc.compiler_so.index("-Wno-error=implicit-function-declaration"))
 
+        # WCSTools 3.9.7 predates C23, which GCC 15 uses by default
+        stdFlag = findStdFlag(cc)
+        cc.compiler_so = cc.compiler_so+stdFlag
+
         WCSToolsCFiles = glob.glob("*.c")
         WCSToolsCFiles.pop(WCSToolsCFiles.index("wcs_wrap.c"))
         WCSToolsCFiles.pop(WCSToolsCFiles.index("wcscon_wrap.c"))
         cc.compile(WCSToolsCFiles)
         os.chdir(topDir)
+
+        # The SWIG wrapper includes the same old-style WCSTools headers
+        for ext in self.extensions:
+            ext.extra_compile_args = ext.extra_compile_args+stdFlag
 
         build_ext.build_extensions(self)
 
