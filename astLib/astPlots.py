@@ -74,9 +74,9 @@ DECIMAL_TICK_STEPS=[0.001, 0.0025, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1.0
 
 DEG = u("\N{DEGREE SIGN}")
 
-PRIME = "$^\prime$"
+PRIME = r"$^\prime$"
 
-DOUBLE_PRIME = "$^{\prime\prime}$"
+DOUBLE_PRIME = r"$^{\prime\prime}$"
 
 #---------------------------------------------------------------------------------------------------
 class ImagePlot:
@@ -876,11 +876,11 @@ class ImagePlot:
                     else:
                         sString=str(sInt)
                     if ticsDict[key]['RA']['unit'] == 'h':
-                        rString=hString+"$^{\sf{h}}$"
+                        rString=hString+r"$^{\sf{h}}$"
                     elif ticsDict[key]['RA']['unit'] == 'm':
-                        rString=hString+"$^{\sf{h}}$"+mString+"$^{\sf{m}}$"
+                        rString=hString+r"$^{\sf{h}}$"+mString+r"$^{\sf{m}}$"
                     else:
-                        rString=hString+"$^{\sf{h}}$"+mString+"$^{\sf{m}}$"+sString+"$^{\sf{s}}$"
+                        rString=hString+r"$^{\sf{h}}$"+mString+r"$^{\sf{m}}$"+sString+r"$^{\sf{s}}$"
                     RALabels.append(rString)
                 for D in decDegs:
                     d, m, s=astCoords.decimal2dms(D, ":").split(":")
