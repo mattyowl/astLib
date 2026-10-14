@@ -18,12 +18,12 @@ def hms2decimal(RAString, delimiter):
     """Converts a delimited string of Hours:Minutes:Seconds format into decimal
     degrees.
 
-    @type RAString: string
-    @param RAString: coordinate string in H:M:S format
-    @type delimiter: string
-    @param delimiter: delimiter character in RAString
-    @rtype: float
-    @return: coordinate in decimal degrees
+    Args:
+        RAString (str): coordinate string in H:M:S format
+        delimiter (str): delimiter character in RAString
+
+    Returns:
+        float: coordinate in decimal degrees
 
     """
     # is it in HH:MM:SS format?
@@ -48,12 +48,12 @@ def dms2decimal(decString, delimiter):
     """Converts a delimited string of Degrees:Minutes:Seconds format into
     decimal degrees.
 
-    @type decString: string
-    @param decString: coordinate string in D:M:S format
-    @type delimiter: string
-    @param delimiter: delimiter character in decString
-    @rtype: float
-    @return: coordinate in decimal degrees
+    Args:
+        decString (str): coordinate string in D:M:S format
+        delimiter (str): delimiter character in decString
+
+    Returns:
+        float: coordinate in decimal degrees
 
     """
     # is it in DD:MM:SS format?
@@ -83,12 +83,12 @@ def decimal2hms(RADeg, delimiter):
     """Converts decimal degrees to string in Hours:Minutes:Seconds format with
     user specified delimiter.
 
-    @type RADeg: float
-    @param RADeg: coordinate in decimal degrees
-    @type delimiter: string
-    @param delimiter: delimiter character in returned string
-    @rtype: string
-    @return: coordinate string in H:M:S format
+    Args:
+        RADeg (float): coordinate in decimal degrees
+        delimiter (str): delimiter character in returned string
+
+    Returns:
+        str: coordinate string in H:M:S format
 
     """
     hours = (RADeg/360.0)*24
@@ -137,12 +137,12 @@ def decimal2dms(decDeg, delimiter):
     """Converts decimal degrees to string in Degrees:Minutes:Seconds format
     with user specified delimiter.
 
-    @type decDeg: float
-    @param decDeg: coordinate in decimal degrees
-    @type delimiter: string
-    @param delimiter: delimiter character in returned string
-    @rtype: string
-    @return: coordinate string in D:M:S format
+    Args:
+        decDeg (float): coordinate in decimal degrees
+        delimiter (str): delimiter character in returned string
+
+    Returns:
+        str: coordinate string in D:M:S format
 
     """
     # Positive
@@ -235,19 +235,18 @@ def calcAngSepDeg(RADeg1, decDeg1, RADeg2, decDeg2):
     in decimal degrees) in decimal degrees. Note that RADeg2, decDeg2 can be numpy
     arrays.
 
-    @type RADeg1: float
-    @param RADeg1: R.A. in decimal degrees for position 1
-    @type decDeg1: float
-    @param decDeg1: dec. in decimal degrees for position 1
-    @type RADeg2: float or numpy array
-    @param RADeg2: R.A. in decimal degrees for position 2
-    @type decDeg2: float or numpy array
-    @param decDeg2: dec. in decimal degrees for position 2
-    @rtype: float or numpy array, depending upon type of RADeg2, decDeg2
-    @return: angular separation in decimal degrees
+    Args:
+        RADeg1 (float): R.A. in decimal degrees for position 1
+        decDeg1 (float): dec. in decimal degrees for position 1
+        RADeg2 (float or numpy.ndarray): R.A. in decimal degrees for position 2
+        decDeg2 (float or numpy.ndarray): dec. in decimal degrees for position 2
+
+    Returns:
+        float or numpy.ndarray: angular separation in decimal degrees; type
+            matches the type of RADeg2, decDeg2
 
     """
-    
+
     a=numpy.sin(numpy.radians(decDeg1))*numpy.sin(numpy.radians(decDeg2))+numpy.cos(numpy.radians(decDeg1))*numpy.cos(numpy.radians(decDeg2))*numpy.cos(numpy.radians(RADeg1-RADeg2))
     mask=numpy.greater(a, 1.0)
     if mask.sum() > 0:
@@ -262,7 +261,7 @@ def calcAngSepDeg(RADeg1, decDeg1, RADeg2, decDeg2):
         else:
             a=-1.0
     r=numpy.degrees(numpy.arccos(a))
-            
+
     # Above gives nan when RADeg1, decDeg1 == RADeg1, decDeg2
     indexList=numpy.where(numpy.isnan(numpy.atleast_1d(r)) == True)[0]
     tolerance=1e-6
@@ -275,13 +274,13 @@ def calcAngSepDeg(RADeg1, decDeg1, RADeg2, decDeg2):
                     else:
                         raise Exception("astCoords: calcAngSepDeg - encountered nan not due to equal RADeg, decDeg coords")
                 elif type(RADeg1) == numpy.ndarray:
-                    if abs(RADeg2 - RADeg1[index]) < tolerance and abs(decDeg2 -decDeg1[index]) < tolerance: 
+                    if abs(RADeg2 - RADeg1[index]) < tolerance and abs(decDeg2 -decDeg1[index]) < tolerance:
                         r[index]=0.0
                     else:
                         raise Exception("astCoords: calcAngSepDeg - encountered nan not due to equal RADeg, decDeg coords")
             else:
                 r=0.0
-        
+
     return r
 
 #-----------------------------------------------------------------------------
@@ -291,16 +290,14 @@ def shiftRADec(ra1, dec1, deltaRA, deltaDec):
     (deltaRA, deltaDec) are arcseconds, and output is decimal degrees. Based on
     an IDL routine of the same name.
 
-    @param ra1: float
-    @type ra1: R.A. in decimal degrees
-    @param dec1: float
-    @type dec1: dec. in decimal degrees
-    @param deltaRA: float
-    @type deltaRA: shift in R.A. in arcseconds
-    @param deltaDec: float
-    @type deltaDec: shift in dec. in arcseconds
-    @rtype: float [newRA, newDec]
-    @return: shifted R.A. and dec.
+    Args:
+        ra1 (float): R.A. in decimal degrees
+        dec1 (float): dec. in decimal degrees
+        deltaRA (float): shift in R.A. in arcseconds
+        deltaDec (float): shift in dec. in arcseconds
+
+    Returns:
+        tuple: shifted R.A. and dec. as (newRA, newDec) in decimal degrees
 
     """
 
@@ -330,20 +327,17 @@ def convertCoords(inputSystem, outputSystem, coordX, coordY, epoch):
     """Converts specified coordinates (given in decimal degrees) between J2000,
     B1950, and Galactic.
 
-    @type inputSystem: string
-    @param inputSystem: system of the input coordinates (either "J2000",
-        "B1950" or "GALACTIC")
-    @type outputSystem: string
-    @param outputSystem: system of the returned coordinates (either "J2000",
-        "B1950" or "GALACTIC")
-    @type coordX: float
-    @param coordX: longitude coordinate in decimal degrees, e.g. R. A.
-    @type coordY: float
-    @param coordY: latitude coordinate in decimal degrees, e.g. dec.
-    @type epoch: float
-    @param epoch: epoch of the input coordinates
-    @rtype: list
-    @return: coordinates in decimal degrees in requested output system
+    Args:
+        inputSystem (str): system of the input coordinates; one of "J2000",
+            "B1950", or "GALACTIC"
+        outputSystem (str): system of the returned coordinates; one of "J2000",
+            "B1950", or "GALACTIC"
+        coordX (float): longitude coordinate in decimal degrees, e.g. R.A.
+        coordY (float): latitude coordinate in decimal degrees, e.g. dec.
+        epoch (float): epoch of the input coordinates
+
+    Returns:
+        list: coordinates in decimal degrees in the requested output system
 
     """
 
@@ -367,18 +361,17 @@ def calcRADecSearchBox(RADeg, decDeg, radiusSkyDeg):
     """Calculates minimum and maximum RA, dec coords needed to define a box
     enclosing a circle of radius radiusSkyDeg around the given RADeg, decDeg
     coordinates. Useful for freeform queries of e.g. SDSS, UKIDSS etc.. Uses
-    L{calcAngSepDeg}, so has the same limitations.
+    :func:`~astLib.astCoords.calcAngSepDeg`, so has the same limitations.
 
-    @type RADeg: float
-    @param RADeg: RA coordinate of centre of search region
-    @type decDeg: float
-    @param decDeg: dec coordinate of centre of search region
-    @type radiusSkyDeg: float
-    @param radiusSkyDeg: radius in degrees on the sky used to define search
-        region
-    @rtype: list
-    @return: [RAMin, RAMax, decMin, decMax] - coordinates in decimal degrees
-        defining search box
+    Args:
+        RADeg (float): RA coordinate of centre of search region
+        decDeg (float): dec coordinate of centre of search region
+        radiusSkyDeg (float): radius in degrees on the sky used to define the
+            search region
+
+    Returns:
+        list: [RAMin, RAMax, decMin, decMax] - coordinates in decimal degrees
+            defining search box
 
     """
 
@@ -439,4 +432,3 @@ def calcRADecSearchBox(RADeg, decDeg, radiusSkyDeg):
         raise Exception("calcRADecSearchBox failed sanity check")
 
     return [RAMin, RAMax, decMin, decMax]
-

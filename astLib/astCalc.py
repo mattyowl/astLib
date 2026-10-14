@@ -17,7 +17,7 @@ OMEGA_L0 = 0.7
 """The dark energy density (in the form of a cosmological constant) at z=0."""
 
 OMEGA_R0 = 8.24E-5
-"""The radiation density at z=0 (note this is only used currently in calculation of L{Ez})."""
+"""The radiation density at z=0 (note this is only used currently in calculation of Ez)."""
 
 H0 = 70.0
 """The Hubble parameter (in km/s/Mpc) at z=0."""
@@ -35,10 +35,11 @@ except ImportError:
 def dl(z):
     """Calculates the luminosity distance in Mpc at redshift z.
 
-    @type z: float
-    @param z: redshift
-    @rtype: float
-    @return: luminosity distance in Mpc
+    Args:
+        z (float): redshift
+
+    Returns:
+        float: luminosity distance in Mpc
 
     """
 
@@ -51,10 +52,11 @@ def dl(z):
 def da(z):
     """Calculates the angular diameter distance in Mpc at redshift z.
 
-    @type z: float
-    @param z: redshift
-    @rtype: float
-    @return: angular diameter distance in Mpc
+    Args:
+        z (float): redshift
+
+    Returns:
+        float: angular diameter distance in Mpc
 
     """
     DM = dm(z)
@@ -67,10 +69,11 @@ def dm(z):
     """Calculates the transverse comoving distance (proper motion distance) in
     Mpc at redshift z.
 
-    @type z: float
-    @param z: redshift
-    @rtype: float
-    @return: transverse comoving distance (proper motion distance) in Mpc
+    Args:
+        z (float): redshift
+
+    Returns:
+        float: transverse comoving distance (proper motion distance) in Mpc
 
     """
 
@@ -101,10 +104,11 @@ def dm(z):
 def dc(z):
     """Calculates the line of sight comoving distance in Mpc at redshift z.
 
-    @type z: float
-    @param z: redshift
-    @rtype: float
-    @return: transverse comoving distance (proper motion distance) in Mpc
+    Args:
+        z (float): redshift
+
+    Returns:
+        float: transverse comoving distance (proper motion distance) in Mpc
 
     """
 
@@ -129,10 +133,11 @@ def dVcdz(z):
     """Calculates the line of sight comoving volume element per steradian dV/dz
     at redshift z.
 
-    @type z: float
-    @param z: redshift
-    @rtype: float
-    @return: comoving volume element per steradian
+    Args:
+        z (float): redshift
+
+    Returns:
+        float: comoving volume element per steradian
 
     """
 
@@ -146,10 +151,11 @@ def dl2z(distanceMpc):
     """Calculates the redshift z corresponding to the luminosity distance given
     in Mpc.
 
-    @type distanceMpc: float
-    @param distanceMpc: distance in Mpc
-    @rtype: float
-    @return: redshift
+    Args:
+        distanceMpc (float): distance in Mpc
+
+    Returns:
+        float: redshift
 
     """
 
@@ -187,10 +193,11 @@ def dc2z(distanceMpc):
     """Calculates the redshift z corresponding to the comoving distance given
     in Mpc.
 
-    @type distanceMpc: float
-    @param distanceMpc: distance in Mpc
-    @rtype: float
-    @return: redshift
+    Args:
+        distanceMpc (float): distance in Mpc
+
+    Returns:
+        float: redshift
 
     """
 
@@ -228,8 +235,8 @@ def t0():
     """Calculates the age of the universe in Gyr at z=0 for the current set of
     cosmological parameters.
 
-    @rtype: float
-    @return: age of the universe in Gyr at z=0
+    Returns:
+        float: age of the universe in Gyr at z=0
 
     """
 
@@ -251,13 +258,14 @@ def t0():
 
 #------------------------------------------------------------------------------
 def tl(z):
-    """ Calculates the lookback time in Gyr to redshift z for the current set
+    """Calculates the lookback time in Gyr to redshift z for the current set
     of cosmological parameters.
 
-    @type z: float
-    @param z: redshift
-    @rtype: float
-    @return: lookback time in Gyr to redshift z
+    Args:
+        z (float): redshift
+
+    Returns:
+        float: lookback time in Gyr to redshift z
 
     """
     OMEGA_K = 1.0 - OMEGA_M0 - OMEGA_L0
@@ -281,10 +289,11 @@ def tz(z):
     """Calculates the age of the universe at redshift z for the current set of
     cosmological parameters.
 
-    @type z: float
-    @param z: redshift
-    @rtype: float
-    @return: age of the universe in Gyr at redshift z
+    Args:
+        z (float): redshift
+
+    Returns:
+        float: age of the universe in Gyr at redshift z
 
     """
 
@@ -297,13 +306,15 @@ def tl2z(tlGyr):
     """Calculates the redshift z corresponding to lookback time tlGyr given in
     Gyr.
 
-    @type tlGyr: float
-    @param tlGyr: lookback time in Gyr
-    @rtype: float
-    @return: redshift
-    
-    @note: Raises ValueError if tlGyr is not positive.
-    
+    Args:
+        tlGyr (float): lookback time in Gyr
+
+    Returns:
+        float: redshift
+
+    Raises:
+        ValueError: if tlGyr is not positive.
+
     """
     if tlGyr < 0.:
         raise ValueError('Lookback time must be positive')
@@ -342,12 +353,14 @@ def tz2z(tzGyr):
     """Calculates the redshift z corresponding to age of the universe tzGyr
     given in Gyr.
 
-    @type tzGyr: float
-    @param tzGyr: age of the universe in Gyr
-    @rtype: float
-    @return: redshift
-    
-    @note: Raises ValueError if Universe age not positive
+    Args:
+        tzGyr (float): age of the universe in Gyr
+
+    Returns:
+        float: redshift
+
+    Raises:
+        ValueError: if Universe age is not positive.
 
     """
     if tzGyr <= 0:
@@ -362,12 +375,12 @@ def absMag(appMag, distMpc):
     """Calculates the absolute magnitude of an object at given luminosity
     distance in Mpc.
 
-    @type appMag: float
-    @param appMag: apparent magnitude of object
-    @type distMpc: float
-    @param distMpc: distance to object in Mpc
-    @rtype: float
-    @return: absolute magnitude of object
+    Args:
+        appMag (float): apparent magnitude of object
+        distMpc (float): distance to object in Mpc
+
+    Returns:
+        float: absolute magnitude of object
 
     """
     absMag = appMag - (5.0*math.log10(distMpc*1.0e5))
@@ -380,10 +393,11 @@ def Ez(z):
     parameter with redshift, at redshift z for the current set of cosmological
     parameters. See, e.g., Bryan & Norman 1998 (ApJ, 495, 80).
 
-    @type z: float
-    @param z: redshift
-    @rtype: float
-    @return: value of E(z) at redshift z
+    Args:
+        z (float): redshift
+
+    Returns:
+        float: value of E(z) at redshift z
 
     """
 
@@ -397,10 +411,11 @@ def Ez2(z):
     parameter with redshift, at redshift z for the current set of cosmological
     parameters. See, e.g., Bryan & Norman 1998 (ApJ, 495, 80).
 
-    @type z: float
-    @param z: redshift
-    @rtype: float
-    @return: value of E(z)^2 at redshift z
+    Args:
+        z (float): redshift
+
+    Returns:
+        float: value of E(z)^2 at redshift z
 
     """
     # This form of E(z) is more reliable at high redshift. It is basically the
@@ -419,10 +434,11 @@ def OmegaMz(z):
     """Calculates the matter density of the universe at redshift z. See, e.g.,
     Bryan & Norman 1998 (ApJ, 495, 80).
 
-    @type z: float
-    @param z: redshift
-    @rtype: float
-    @return: matter density of universe at redshift z
+    Args:
+        z (float): redshift
+
+    Returns:
+        float: matter density of universe at redshift z
 
     """
     ez2 = Ez2(z)
@@ -433,12 +449,13 @@ def OmegaMz(z):
 
 #------------------------------------------------------------------------------
 def OmegaLz(z):
-    """ Calculates the dark energy density of the universe at redshift z.
+    """Calculates the dark energy density of the universe at redshift z.
 
-    @type z: float
-    @param z: redshift
-    @rtype: float
-    @return: dark energy density of universe at redshift z
+    Args:
+        z (float): redshift
+
+    Returns:
+        float: dark energy density of universe at redshift z
 
     """
     ez2 = Ez2(z)
@@ -447,12 +464,13 @@ def OmegaLz(z):
 
 #------------------------------------------------------------------------------
 def OmegaRz(z):
-    """ Calculates the radiation density of the universe at redshift z.
+    """Calculates the radiation density of the universe at redshift z.
 
-    @type z: float
-    @param z: redshift
-    @rtype: float
-    @return: radiation density of universe at redshift z
+    Args:
+        z (float): redshift
+
+    Returns:
+        float: radiation density of universe at redshift z
 
     """
     ez2 = Ez2(z)
@@ -461,18 +479,18 @@ def OmegaRz(z):
 
 #------------------------------------------------------------------------------
 def DeltaVz(z):
-    """Calculates the density contrast of a virialised region S{Delta}V(z),
-    assuming a S{Lambda}CDM-type flat cosmology. See, e.g., Bryan & Norman
+    """Calculates the density contrast of a virialised region DeltaV(z),
+    assuming a LambdaCDM-type flat cosmology. See, e.g., Bryan & Norman
     1998 (ApJ, 495, 80).
 
-    @type z: float
-    @param z: redshift
-    @rtype: float
-    @return: density contrast of a virialised region at redshift z
+    Args:
+        z (float): redshift
 
-    @note: If OMEGA_M0+OMEGA_L0 is not equal to 1, this routine exits and
-    prints an error
-    message to the console.
+    Returns:
+        float: density contrast of a virialised region at redshift z
+
+    Raises:
+        Exception: if OMEGA_M0+OMEGA_L0 is not equal to 1 (non-flat cosmology).
 
     """
 
@@ -491,20 +509,19 @@ def RVirialXRayCluster(kT, z, betaT):
     """Calculates the virial radius (in Mpc) of a galaxy cluster at redshift z
     with X-ray temperature kT, assuming self-similar evolution and a flat
     cosmology. See Arnaud et al. 2002 (A&A, 389, 1) and Bryan & Norman 1998
-    (ApJ, 495, 80). A flat S{Lambda}CDM-type flat cosmology is assumed.
+    (ApJ, 495, 80). A flat LambdaCDM-type flat cosmology is assumed.
 
-    @type kT: float
-    @param kT: cluster X-ray temperature in keV
-    @type z: float
-    @param z: redshift
-    @type betaT: float
-    @param betaT: the normalisation of the virial relation, for which Evrard et
-    al. 1996 (ApJ,469, 494) find a value of 1.05
-    @rtype: float
-    @return: virial radius of cluster in Mpc
+    Args:
+        kT (float): cluster X-ray temperature in keV
+        z (float): redshift
+        betaT (float): the normalisation of the virial relation, for which
+            Evrard et al. 1996 (ApJ, 469, 494) find a value of 1.05
 
-    @note: If OMEGA_M0+OMEGA_L0 is not equal to 1, this routine exits and
-    prints an error message to the console.
+    Returns:
+        float: virial radius of cluster in Mpc
+
+    Raises:
+        Exception: if OMEGA_M0+OMEGA_L0 is not equal to 1 (non-flat cosmology).
 
     """
 
@@ -528,4 +545,3 @@ def RVirialXRayCluster(kT, z, betaT):
         raise Exception("cosmology is NOT flat.")
 
 #------------------------------------------------------------------------------
-

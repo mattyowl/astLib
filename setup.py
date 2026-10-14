@@ -6,7 +6,6 @@ from setuptools import setup
 from setuptools.command.build_ext import build_ext
 from setuptools.extension import Extension
 import sysconfig
-from pkg_resources import require
 
 topDir = os.getcwd()
 sourceDir = "PyWCSTools"+os.path.sep+"wcssubs-3.9.7"+os.path.sep
@@ -92,7 +91,7 @@ class build_PyWCSTools_ext(build_ext):
         build_ext.build_extensions(self)
 
 setup(name='astLib',
-    version='0.13.1',
+    version='0.13.2',
     packages=['astLib', 'PyWCSTools'],
     package_data={'astLib': ['data/*']},
     cmdclass={"build_ext": build_PyWCSTools_ext},

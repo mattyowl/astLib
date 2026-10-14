@@ -30,11 +30,12 @@ author = 'Matt Hilton & Steven Boada'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx_epytext',
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
     #'readthedocs_ext.readthedocs',
 ]
+
+autodoc_mock_imports = ['PyWCSTools._wcs', 'PyWCSTools.wcs']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
