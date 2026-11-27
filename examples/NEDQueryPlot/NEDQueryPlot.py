@@ -30,8 +30,8 @@ def queryNED(RAMin, RAMax, decMin, decMax):
     urlretrieve("http://nedwww.ipac.caltech.edu/cgi-bin/nph-allsky?ra_constraint=Between&ra_1=%.6fd&ra_2=%.6fd&dec_constraint=Between&dec_1=%.6fd&dec_2=%.6fd&glon_constraint=Unconstrained&glon_1=&glon_2=&glat_constraint=Unconstrained&glat_1=&glat_2=&hconst=73&omegam=0.27&omegav=0.73&corr_z=1&z_constraint=Unconstrained&z_value1=&z_value2=&z_unit=z&flux_constraint=Unconstrained&flux_value1=&flux_value2=&flux_unit=Jy&frat_constraint=Unconstrained&ot_include=ANY&in_objtypes1=GGroups&in_objtypes1=Galaxies&nmp_op=ANY&out_csys=Equatorial&out_equinox=J2000.0&obj_sort=RA+or+Longitude&of=ascii_tab&zv_breaker=30000.0&list_limit=5&img_stamp=YES"
     % (RAMin, RAMax, decMin, decMax), "result.txt")
 
-    inFile = open("result.txt", "r")
-    lines = inFile.readlines()
+    with open("result.txt", "r") as inFile:
+        lines = inFile.readlines()
 
     dataStarted = False
     labels = []
@@ -78,9 +78,8 @@ if os.path.exists(fitsFolder+os.path.sep+outFITS) == True:
 urlretrieve("http://skyview.gsfc.nasa.gov/cgi-bin/images?Position="+str(RADeg)+","+str(decDeg)+"&Size=0.1&Pixels=1000&Projection=Tan&Grid=J2000&Survey=digitized+sky+survey&Coordinates=J2000&Return=fits",
 fitsFolder+os.path.sep+outFITS)
 
-img = pyfits.open(fitsFolder+os.path.sep+outFITS)
+imgData = pyfits.getdata(fitsFolder+os.path.sep+outFITS)
 wcs = astWCS.WCS(fitsFolder+os.path.sep+outFITS)
-imgData = img[0].data
 RAMin, RAMax, decMin, decMax=wcs.getImageMinMaxWCSCoords()
 objs = queryNED(RAMin, RAMax, decMin, decMax)
 
@@ -143,4 +142,3 @@ plot.draw()
 plot.save(outImageName)
 
 pylab.close()
-img.close()

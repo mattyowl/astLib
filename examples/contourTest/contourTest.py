@@ -14,13 +14,11 @@ import numpy
 TEST_IMAGE = "../../../testingData/testImage2.fits"
 TEST_CONTOUR_IMAGE = "../../../testingData/testXRayImage.fits"
 
-img = pyfits.open(TEST_IMAGE)
+d = pyfits.getdata(TEST_IMAGE)
 wcs = astWCS.WCS(TEST_IMAGE)
-d = img[0].data
 
-ximg = pyfits.open(TEST_CONTOUR_IMAGE)
+xd = pyfits.getdata(TEST_CONTOUR_IMAGE)
 xwcs = astWCS.WCS(TEST_CONTOUR_IMAGE)
-xd = ximg[0].data
 
 f = astPlots.ImagePlot(d, wcs, axesLabels='decimal')
 

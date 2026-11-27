@@ -426,34 +426,32 @@ for litCMR, trans in zip(litCMRs, transformations):
     results.append(result)
 
 # Write results to a text file
-outFile = open("output_CMRRestConversion.txt", "w")
+with open("output_CMRRestConversion.txt", "w") as outFile:
+    # Colour, mag transformation
+    outFile.write("# Color, mag %s rest frame transformation fit coeffs:\n" %
+                (restColour))
+    for t in transformations:
+        outFile.write("name = %s\n" % (t['name']))
+        outFile.write("# Color transformation:\n")
+        outFile.write("slope = %.5f\n" % (t['fitCols']['slope']))
+        outFile.write("slopeError = %.5f\n" % (t['fitCols']['slopeError']))
+        outFile.write("intercept = %.5f\n" % (t['fitCols']['intercept']))
+        outFile.write("interceptError = %.5f\n" % (t['fitCols']['interceptError']))
+        outFile.write("# Mag transformation:\n")
+        outFile.write("slope = %.5f\n" % (t['fitMags']['slope']))
+        outFile.write("slopeError = %.5f\n" % (t['fitMags']['slopeError']))
+        outFile.write("intercept = %.5f\n" % (t['fitMags']['intercept']))
+        outFile.write("interceptError = %.5f\n" % (t['fitMags']['interceptError']))
 
-# Colour, mag transformation
-outFile.write("# Color, mag %s rest frame transformation fit coeffs:\n" %
-            (restColour))
-for t in transformations:
-    outFile.write("name = %s\n" % (t['name']))
-    outFile.write("# Color transformation:\n")
-    outFile.write("slope = %.5f\n" % (t['fitCols']['slope']))
-    outFile.write("slopeError = %.5f\n" % (t['fitCols']['slopeError']))
-    outFile.write("intercept = %.5f\n" % (t['fitCols']['intercept']))
-    outFile.write("interceptError = %.5f\n" % (t['fitCols']['interceptError']))
-    outFile.write("# Mag transformation:\n")
-    outFile.write("slope = %.5f\n" % (t['fitMags']['slope']))
-    outFile.write("slopeError = %.5f\n" % (t['fitMags']['slopeError']))
-    outFile.write("intercept = %.5f\n" % (t['fitMags']['intercept']))
-    outFile.write("interceptError = %.5f\n" % (t['fitMags']['interceptError']))
-
-# Transformed CMR
-outFile.write("# Transformed CMR:\n")
-keyOrder = ["name", "redshift", "colour", "mag", "zeroMag", "slope",
-            "slopeErr", "intercept", "interceptErr", "scatter", "scatterErr"]
-for r in results:
-    for k in keyOrder:
-        for key in list(r.keys()):
-            if str(key) == k:
-                if type(r[key]) == str:
-                    outFile.write("%s = %s\n" % (key, r[key]))
-                else:
-                    outFile.write("%s = %.3f\n" % (key, float(r[key])))
-outFile.close()
+    # Transformed CMR
+    outFile.write("# Transformed CMR:\n")
+    keyOrder = ["name", "redshift", "colour", "mag", "zeroMag", "slope",
+                "slopeErr", "intercept", "interceptErr", "scatter", "scatterErr"]
+    for r in results:
+        for k in keyOrder:
+            for key in list(r.keys()):
+                if str(key) == k:
+                    if type(r[key]) == str:
+                        outFile.write("%s = %s\n" % (key, r[key]))
+                    else:
+                        outFile.write("%s = %.3f\n" % (key, float(r[key])))

@@ -12,9 +12,8 @@ import pylab
 
 TEST_IMAGE = "../../../testingData/testImage1.fits"
 
-img = pyfits.open(TEST_IMAGE)
+d = pyfits.getdata(TEST_IMAGE)
 wcs = astWCS.WCS(TEST_IMAGE)
-d = img[0].data
 
 f = astPlots.ImagePlot(d, wcs, axes = [0, 0, 1, 1])
 f.addCompass("SE", 60.0, color = 'red')

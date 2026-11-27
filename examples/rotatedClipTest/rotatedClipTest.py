@@ -9,9 +9,8 @@
 import astropy.io.fits as pyfits
 from astLib import *
 
-img = pyfits.open("../../../testingData/testImage1.fits")
+d = pyfits.getdata("../../../testingData/testImage1.fits")
 wcs = astWCS.WCS("../../../testingData/testImage1.fits")
-d = img[0].data
 
 # Clip slightly off centre
 RADeg, decDeg = wcs.getCentreWCSCoords()
