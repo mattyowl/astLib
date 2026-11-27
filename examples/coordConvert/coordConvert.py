@@ -35,38 +35,36 @@ else:
         print("<way>: either \"to_decimal\" or \"to_hmsdms\"")
         sys.exit()
 
-    reader = open(inFile, "r")
-    lines = reader.readlines()
-    reader.close()
+    with open(inFile, "r") as reader:
+        lines = reader.readlines()
 
-    writer = open(outFile, "w")
-    for row in lines:
-        if len(row)>1:
-            if "#" not in row[:1]:
-                rowBits = row.split("\t")
-                if way == "to_decimal":
-                    RADeg = astCoords.hms2decimal(rowBits[RACol], delimiter)
-                    decDeg = astCoords.dms2decimal(rowBits[decCol], delimiter)
-                if way == "to_hmsdms":
-                    RADeg = astCoords.decimal2hms(float(rowBits[RACol]),
-                            delimiter)
-                    decDeg = astCoords.decimal2dms(float(rowBits[decCol]),
-                            delimiter)
-                writeString = ""
-                for i in range(len(rowBits)):
-                    if i == RACol:
-                        writeString = writeString+str(RADeg)+"\t"
-                    elif i == decCol:
-                        writeString = writeString+str(decDeg)+"\t"
-                    elif rowBits[i].find("\n") != -1:
-                        writeString = writeString+str(rowBits[i])
-                    else:
-                        writeString = writeString+str(rowBits[i])+"\t"
-                # new line character already included
-                writer.write(writeString.replace("\n", "").replace("\t",
-                    colDelim)+"\n")
-            else:
-                writer.write(row.replace("\t", colDelim))
-    writer.close()
+    with open(outFile, "w") as writer:
+        for row in lines:
+            if len(row)>1:
+                if "#" not in row[:1]:
+                    rowBits = row.split("\t")
+                    if way == "to_decimal":
+                        RADeg = astCoords.hms2decimal(rowBits[RACol], delimiter)
+                        decDeg = astCoords.dms2decimal(rowBits[decCol], delimiter)
+                    if way == "to_hmsdms":
+                        RADeg = astCoords.decimal2hms(float(rowBits[RACol]),
+                                delimiter)
+                        decDeg = astCoords.decimal2dms(float(rowBits[decCol]),
+                                delimiter)
+                    writeString = ""
+                    for i in range(len(rowBits)):
+                        if i == RACol:
+                            writeString = writeString+str(RADeg)+"\t"
+                        elif i == decCol:
+                            writeString = writeString+str(decDeg)+"\t"
+                        elif rowBits[i].find("\n") != -1:
+                            writeString = writeString+str(rowBits[i])
+                        else:
+                            writeString = writeString+str(rowBits[i])+"\t"
+                    # new line character already included
+                    writer.write(writeString.replace("\n", "").replace("\t",
+                        colDelim)+"\n")
+                else:
+                    writer.write(row.replace("\t", colDelim))
 
 #-----------------------------------------------------------------------------

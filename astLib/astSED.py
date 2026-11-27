@@ -48,8 +48,8 @@ class Passband:
     """
     def __init__(self, fileName, normalise = True, inputUnits = 'angstroms', wavelengthColumn = 0, transmissionColumn = 1):
 
-        inFile=open(fileName, "r")
-        lines=inFile.readlines()
+        with open(fileName, "r") as inFile:
+            lines=inFile.readlines()
 
         wavelength=[]
         transmission=[]
@@ -245,9 +245,8 @@ class SED:
 
         """
 
-        inFile=open(fileName, "r")
-        lines=inFile.readlines()
-        inFile.close()
+        with open(fileName, "r") as inFile:
+            lines=inFile.readlines()
         wavelength=[]
         flux=[]
         wholeLines=[]
@@ -277,10 +276,9 @@ class SED:
 
         """
 
-        outFile=open(fileName, "w")
-        for l, f in zip(self.wavelength, self.flux):
-            outFile.write(str(l)+" "+str(f)+"\n")
-        outFile.close()
+        with open(fileName, "w") as outFile:
+            for l, f in zip(self.wavelength, self.flux):
+                outFile.write(str(l)+" "+str(f)+"\n")
 
 
     def asList(self):
@@ -884,9 +882,8 @@ class M05Model(StellarPopulation):
 
         self.modelFamily="M05"
 
-        inFile=open(fileName, "r")
-        lines=inFile.readlines()
-        inFile.close()
+        with open(fileName, "r") as inFile:
+            lines=inFile.readlines()
 
         self.fileName=fileName
 
@@ -951,9 +948,8 @@ class BC03Model(StellarPopulation):
         self.modelFamily="BC03"
         self.fileName=fileName
 
-        inFile=open(fileName, "r")
-        lines=inFile.readlines()
-        inFile.close()
+        with open(fileName, "r") as inFile:
+            lines=inFile.readlines()
 
         # Extract a list of model ages - BC03 ages are in years, so convert to Gyr
         self.ages=[]
@@ -1032,9 +1028,8 @@ class P09Model(StellarPopulation):
             for e in extensionAgeMap.keys():
                 if extensionAgeMap[e] == self.ages[i]:
                     inFileName=glob.glob(fileName+os.path.sep+"*."+e)[0]
-                    inFile=open(inFileName, "r")
-                    lines=inFile.readlines()
-                    inFile.close()
+                    with open(inFileName, "r") as inFile:
+                        lines=inFile.readlines()
                     wavelength=[]
                     flux=[]
                     for line in lines:

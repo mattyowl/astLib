@@ -13,13 +13,10 @@ from astLib import *
 
 # Load the images - these have to be aligned to pixel and same pixel
 # dimensions
-rimg = pyfits.open("../../../testingData/stephanDSS2IR.fits")
-gimg = pyfits.open("../../../testingData/stephanDSS2Red.fits")
-bimg = pyfits.open("../../../testingData/stephanDSS2Blue.fits")
+r = pyfits.getdata("../../../testingData/stephanDSS2IR.fits")
+g = pyfits.getdata("../../../testingData/stephanDSS2Red.fits")
+b = pyfits.getdata("../../../testingData/stephanDSS2Blue.fits")
 wcs = astWCS.WCS("../../../testingData/stephanDSS2Blue.fits")
-r = rimg[0].data
-g = gimg[0].data
-b = bimg[0].data
 rCut = [r.min(), r.max()]
 gCut = [g.min(), g.max()]
 bCut = [b.min(), b.max()]

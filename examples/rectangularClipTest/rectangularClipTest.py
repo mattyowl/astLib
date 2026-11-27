@@ -10,9 +10,8 @@ import astropy.io.fits as pyfits
 from astLib import *
 
 # Regular clipping routines test
-img = pyfits.open("../../../testingData/testImage3.fits")
+d = pyfits.getdata("../../../testingData/testImage3.fits")
 wcs = astWCS.WCS("../../../testingData/testImage3.fits")
-d = img[0].data
 
 RADeg, decDeg = wcs.getCentreWCSCoords()
 RADeg = RADeg+1.2/60.0
@@ -31,10 +30,9 @@ astImages.saveFITS("output_notRotated.fits", clipnr['data'], clipnr['wcs'])
 astImages.saveFITS("output_pixelCoords.fits", clippix, None)
 
 # RA, dec coords clipping routine
-img = pyfits.open("../../../testingData/testCEAImage.fits")
+d = pyfits.getdata("../../../testingData/testCEAImage.fits")
 wcs = astWCS.WCS("../../../testingData/testCEAImage.fits")
-d = img[0].data
-clip = astImages.clipUsingRADecCoords(img[0].data, wcs, 30.0, 50.0, -55.0,
+clip = astImages.clipUsingRADecCoords(d, wcs, 30.0, 50.0, -55.0,
         -50.0)
 
 astImages.saveFITS("output_RADecClipped.fits", clip['data'], clip['wcs'])

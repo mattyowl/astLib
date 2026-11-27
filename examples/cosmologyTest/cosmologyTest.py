@@ -23,7 +23,7 @@ pylab.clf()
 for m, l, s in zip(omegaMs, omegaLs, styles):
     astCalc.OMEGA_M0 = m
     astCalc.OMEGA_L = l
-    label = "$\Omega_{m0}$ = %.2f $\Omega_\Lambda$ = %.2f" % (m, l)
+    label = r"$\Omega_{m0}$ = %.2f $\Omega_\Lambda$ = %.2f" % (m, l)
     dH = astCalc.C_LIGHT/astCalc.H0
     plotData = []
     for i in z:
@@ -41,7 +41,7 @@ pylab.clf()
 for m, l, s in zip(omegaMs, omegaLs, styles):
     astCalc.OMEGA_M0 = m
     astCalc.OMEGA_L = l
-    label = "$\Omega_{m0}$ = %.2f $\Omega_\Lambda$ = %.2f" % (m, l)
+    label = r"$\Omega_{m0}$ = %.2f $\Omega_\Lambda$ = %.2f" % (m, l)
     dH = astCalc.C_LIGHT/astCalc.H0
     plotData = []
     for i in z:
@@ -50,6 +50,6 @@ for m, l, s in zip(omegaMs, omegaLs, styles):
 pylab.ylim(0, 1.1)
 pylab.xlim(0, 5)
 pylab.xlabel("$z$")
-pylab.ylabel("$(1/D_H)^3 dV/dz/d\Omega$")
+pylab.ylabel(r"$(1/D_H)^3 dV/dz/d\Omega$")
 pylab.legend(loc='upper left')
 pylab.show()
