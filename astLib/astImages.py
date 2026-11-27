@@ -882,9 +882,9 @@ def saveBitmap(outputFileName, imageData, cutLevels, size, colorMapName):
         from PIL import Image
     except:
         raise Exception("astImages.saveBitmap requires the Python Imaging Library to be installed.")
-    im=Image.open("out_astImages.png")
-    im.thumbnail((int(size),int(size)))
-    im.save(outputFileName)
+    with Image.open("out_astImages.png") as im:
+        im.thumbnail((int(size),int(size)))
+        im.save(outputFileName)
 
     os.remove("out_astImages.png")
 
@@ -966,9 +966,9 @@ def saveContourOverlayBitmap(outputFileName, backgroundImageData, backgroundImag
     except:
         raise Exception("astImages.saveContourOverlayBitmap requires the Python Imaging Library to be installed")
 
-    im=Image.open("out_astImages.png")
-    im.thumbnail((int(size),int(size)))
-    im.save(outputFileName)
+    with Image.open("out_astImages.png") as im:
+        im.thumbnail((int(size),int(size)))
+        im.save(outputFileName)
 
     os.remove("out_astImages.png")
 

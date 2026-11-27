@@ -95,16 +95,15 @@ class WCS:
         self.naxis = naxis
 
         if self.mode == "image":
-            img = pyfits.open(self.headerSource)
-            # silentfix below won't deal with unprintable strings
-            # so here we optionally remove problematic keywords
-            for z in zapKeywords:
-                if z in img[self.extensionName].header.keys():
-                    for count in range(img[self.extensionName].header.count(z)):
-                        img[self.extensionName].header.remove(z)
-            img.verify('silentfix') # solves problems with non-standard headers
-            self.header = img[self.extensionName].header
-            img.close()
+            with pyfits.open(self.headerSource) as img:
+                # silentfix below won't deal with unprintable strings
+                # so here we optionally remove problematic keywords
+                for z in zapKeywords:
+                    if z in img[self.extensionName].header.keys():
+                        for count in range(img[self.extensionName].header.count(z)):
+                            img[self.extensionName].header.remove(z)
+                img.verify('silentfix') # solves problems with non-standard headers
+                self.header = img[self.extensionName].header
         elif self.mode == "astropy" or self.mode == "pyfits":
             for z in zapKeywords:
                 if z in self.headerSource.keys():
