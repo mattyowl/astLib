@@ -15,6 +15,7 @@ from . import astCoords
 import numpy as np
 import astropy.io.fits as pyfits
 from scipy import interpolate
+import matplotlib
 import pylab
 import matplotlib.patches as patches
 import sys
@@ -228,9 +229,9 @@ class ImagePlot:
         if self.title != None:
             pylab.title(self.title)
         try:
-            colorMap=pylab.cm.get_cmap(self.colorMapName)
-        except AssertionError:
-            raise Exception(self.colorMapName+"is not a defined matplotlib colormap.")
+            colorMap=matplotlib.colormaps[self.colorMapName]
+        except KeyError:
+            raise Exception(self.colorMapName+" is not a defined matplotlib colormap.")
 
         if self.rgbImage == False:
             self.cutImage=astImages.intensityCutImage(self.data, self.cutLevels)

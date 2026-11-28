@@ -4,6 +4,6 @@ sphinx_epytext
 numpy
 astropy
 scipy
-matplotlib
+matplotlib>=3.5
 sphinx_rtd_theme
 -e .
