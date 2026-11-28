@@ -4,7 +4,7 @@
 
 * **Documentation:** https://astlib.readthedocs.io
 * **License:** `LGPL <LICENSE>`_
-* **Authors:** Matt Hilton & Steven Boada
+* **Authors:** Matt Hilton & Steven Boada + `contributors <https://github.com/mattyowl/astLib/graphs/contributors?all=1>`_
 * **Installation:** ``pip install astLib``
 * **Support:** Please use the `GitHub issues page <https://github.com/mattyowl/astLib/issues>`_,
   and/or contact `Matt Hilton <mailto:matt.hilton@mykolab.com>`_.
