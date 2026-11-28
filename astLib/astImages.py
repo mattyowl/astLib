@@ -862,8 +862,8 @@ def saveBitmap(outputFileName, imageData, cutLevels, size, colorMapName):
     pylab.axes([0,0,1,1])
 
     try:
-        colorMap=pylab.cm.get_cmap(colorMapName)
-    except AssertionError:
+        colorMap=matplotlib.colormaps[colorMapName]
+    except KeyError:
         raise Exception(colorMapName+" is not a defined matplotlib colormap.")
 
     if cutLevels[0]=="histEq":
@@ -938,8 +938,8 @@ def saveContourOverlayBitmap(outputFileName, backgroundImageData, backgroundImag
     pylab.axes([0,0,1,1])
 
     try:
-        colorMap=pylab.cm.get_cmap(colorMapName)
-    except AssertionError:
+        colorMap=matplotlib.colormaps[colorMapName]
+    except KeyError:
         raise Exception(colorMapName+" is not a defined matplotlib colormap.")
 
     if cutLevels[0]=="histEq":
